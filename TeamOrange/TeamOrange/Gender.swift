@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum Gender {
-    case male
-    case female
+enum Gender: String {
+    case male = "male"
+    case female = "female"
 }
