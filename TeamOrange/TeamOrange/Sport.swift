@@ -8,9 +8,14 @@
 
 import Foundation
 
-enum Sport {
+enum Sport: String {
     
-    case baseball
-    case basketball
+    static let allSports:[Sport] = [.baseball, .basketball]
+    
+    case baseball = "baseball"
+    case basketball = "handball"
     
 }
+
+//Syntax for initializing an enum by raw value:
+//      mySport = Sport(rawValue: myString)
