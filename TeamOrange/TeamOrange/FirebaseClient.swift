@@ -7,64 +7,84 @@
 //
 
 import Foundation
+import Firebase
+import FirebaseAuth
+import FirebaseDatabase
 
 class FirebaseClient {
+ 
+    //MARK: Create Stuff
     
+    func createUser(with userInfo: [String:Any] ) {
+        FIRDatabase.database().reference().child("users").childByAutoId().setValue(userInfo)
+    }
     
-    //MARK: Teams
-    
-    class func getUserFor(teamId: String) -> User {
+    func createGame() {
         
     }
     
-    class func getCapatainFor(teamId: String) -> User {
+    func createTeam() {
         
     }
     
-    class func getCoCaptainsFor(teamId: String) -> [User]{
+    func createLocation() {
         
     }
     
-    //MARK: Users
-    
-    class func getGamesFor(userId: String) -> [Game] {
-        
-    }
-    
-    class func getTeamsFor(userId: String) -> [Team] {
-        
-    }
-    
-    class func getFavLocationsFor(userId: String) -> [Location] {
-        
-    }
-    
-    class func getFriendsFor(userId: String) -> [User] {
-        
-    }
-    
-    //MARK: Games
-    
-    class func getUsersFor(gameId: String) -> [User] {
-        
-    }
-    
-    class func getLocationFor(gameId: String) -> Location {
-        
-    }
-    
-    class func getAdminFor(gameId: String) -> User {
-        
-    }
-    
-    //MARK: Locations
-    
-    class func getGamesFor(locationId: String) -> [Game] {
-        
-    }
-    
-    class func getUsersFor(locationId: String) -> [User] {
-        
-    }
+//    //MARK: Get Info For Team
+//    
+//    class func getUserFor(teamId: String) -> User {
+//        
+//    }
+//    
+//    class func getCapatainFor(teamId: String) -> User {
+//        
+//    }
+//    
+//    class func getCoCaptainsFor(teamId: String) -> [User]{
+//        
+//    }
+//    
+//    //MARK: Get Info For User
+//    
+//    class func getGamesFor(userId: String) -> [Game] {
+//        
+//    }
+//    
+//    class func getTeamsFor(userId: String) -> [Team] {
+//        
+//    }
+//    
+//    class func getFavLocationsFor(userId: String) -> [Location] {
+//        
+//    }
+//    
+//    class func getFriendsFor(userId: String) -> [User] {
+//        
+//    }
+//    
+//    //MARK: Get Info For Game
+//    
+//    class func getUsersFor(gameId: String) -> [User] {
+//        
+//    }
+//    
+//    class func getLocationFor(gameId: String) -> Location {
+//        
+//    }
+//    
+//    class func getAdminFor(gameId: String) -> User {
+//        
+//    }
+//    
+//    //MARK: Get Info For Location
+//    
+//    class func getGamesFor(locationId: String) -> [Game] {
+//        
+//    }
+//    
+//    class func getUsersFor(locationId: String) -> [User] {
+//        
+//    }
     
 }
