@@ -46,7 +46,7 @@ import Foundation
             , let gameState = GameState(rawValue: gameStateString) else { return }
         self.state = gameState
     }
-    
+    =--
     func getPlayers() {
         self.players = FirebaseClient.getUsersFor(gameId: self.id)
     }
