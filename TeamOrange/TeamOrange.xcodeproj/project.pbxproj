@@ -18,6 +18,8 @@
 		5624F0031E92C58900BB2662 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5624F0021E92C58900BB2662 /* Gender.swift */; };
 		5624F00B1E92F43100BB2662 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5624F00A1E92F43100BB2662 /* GameState.swift */; };
 		5624F00D1E92F44400BB2662 /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5624F00C1E92F44400BB2662 /* FirebaseClient.swift */; };
+		887987E11E93E7D100F5C540 /* CoreLocClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887987E01E93E7D100F5C540 /* CoreLocClient.swift */; };
+		887987E31E93EC3000F5C540 /* MapKitClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887987E21E93EC3000F5C540 /* MapKitClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		5624F0021E92C58900BB2662 /* Gender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		5624F00A1E92F43100BB2662 /* GameState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		5624F00C1E92F44400BB2662 /* FirebaseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
+		887987E01E93E7D100F5C540 /* CoreLocClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreLocClient.swift; sourceTree = "<group>"; };
+		887987E21E93EC3000F5C540 /* MapKitClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapKitClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,8 @@
 				5624F0021E92C58900BB2662 /* Gender.swift */,
 				5624F00A1E92F43100BB2662 /* GameState.swift */,
 				5624F00C1E92F44400BB2662 /* FirebaseClient.swift */,
+				887987E01E93E7D100F5C540 /* CoreLocClient.swift */,
+				887987E21E93EC3000F5C540 /* MapKitClient.swift */,
 			);
 			name = DataModel;
 			sourceTree = "<group>";
@@ -171,7 +177,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				887987E11E93E7D100F5C540 /* CoreLocClient.swift in Sources */,
 				5624F0011E92C04B00BB2662 /* Sport.swift in Sources */,
+				887987E31E93EC3000F5C540 /* MapKitClient.swift in Sources */,
 				5624EFFA1E92BD7200BB2662 /* Team.swift in Sources */,
 				5624EFFC1E92BD7F00BB2662 /* Game.swift in Sources */,
 				5624EFE91E92BBED00BB2662 /* TeamOrange.xcdatamodeld in Sources */,
