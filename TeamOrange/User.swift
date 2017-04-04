@@ -8,7 +8,7 @@
 
 import Foundation
 
-class User {
+class User { 
     
     var userName: String
     var profPic: String?
