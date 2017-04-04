@@ -1,21 +1,21 @@
+////
+////  Sport.swift
+////  TeamOrange
+////
+////  Created by William Brancato on 4/3/17.
+////  Copyright © 2017 William Brancato. All rights reserved.
+////
 //
-//  Sport.swift
-//  TeamOrange
+//import Foundation
 //
-//  Created by William Brancato on 4/3/17.
-//  Copyright © 2017 William Brancato. All rights reserved.
+//enum Sport: String {
+//    
+//    static let allSports:[Sport] = [.baseball, .basketball]
+//    
+//    case baseball = "baseball"
+//    case basketball = "handball"
+//    
+//}
 //
-
-import Foundation
-
-enum Sport: String {
-    
-    static let allSports:[Sport] = [.baseball, .basketball]
-    
-    case baseball = "baseball"
-    case basketball = "handball"
-    
-}
-
-//Syntax for initializing an enum by raw value:
-//      mySport = Sport(rawValue: myString)
+////Syntax for initializing an enum by raw value:
+////      mySport = Sport(rawValue: myString)
