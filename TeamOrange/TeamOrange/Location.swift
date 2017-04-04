@@ -6,7 +6,7 @@
 ////  Copyright © 2017 William Brancato. All rights reserved.
 ////
 
-/*
+
 import Foundation
 import MapKit
 
@@ -29,4 +29,4 @@ class Location: NSObject {
         self.longitude = dict["longitude"] as? Double
     }
 }
-*/
+
