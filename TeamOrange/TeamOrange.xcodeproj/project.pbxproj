@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C885E3F1E93EB9700B80EA4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E3E1E93EB9700B80EA4 /* LoginViewController.swift */; };
 		5624EFE11E92BBED00BB2662 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5624EFE01E92BBED00BB2662 /* AppDelegate.swift */; };
 		5624EFE91E92BBED00BB2662 /* TeamOrange.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5624EFE71E92BBED00BB2662 /* TeamOrange.xcdatamodeld */; };
 		5624EFEB1E92BBED00BB2662 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5624EFEA1E92BBED00BB2662 /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C885E3E1E93EB9700B80EA4 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5624EFDD1E92BBED00BB2662 /* TeamOrange.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeamOrange.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5624EFE01E92BBED00BB2662 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = TeamOrange/AppDelegate.swift; sourceTree = "<group>"; };
 		5624EFE81E92BBED00BB2662 /* TeamOrange.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TeamOrange.xcdatamodel; sourceTree = "<group>"; };
@@ -47,6 +49,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C885E3D1E93EB8100B80EA4 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4C885E3E1E93EB9700B80EA4 /* LoginViewController.swift */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
 		5624EFD41E92BBED00BB2662 = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +76,7 @@
 		5624EFDF1E92BBED00BB2662 /* TeamOrange */ = {
 			isa = PBXGroup;
 			children = (
+				4C885E3D1E93EB8100B80EA4 /* ViewController */,
 				5624EFFF1E92BF3500BB2662 /* Essential Files */,
 				5624EFF81E92BD4600BB2662 /* DataModel */,
 				5624EFDE1E92BBED00BB2662 /* Products */,
@@ -181,6 +192,7 @@
 				5624F00D1E92F44400BB2662 /* FirebaseClient.swift in Sources */,
 				5624EFFE1E92BD8E00BB2662 /* Location.swift in Sources */,
 				5624EFF71E92BD3D00BB2662 /* User.swift in Sources */,
+				4C885E3F1E93EB9700B80EA4 /* LoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
