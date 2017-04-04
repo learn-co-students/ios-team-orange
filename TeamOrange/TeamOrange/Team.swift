@@ -6,7 +6,7 @@
 ////  Copyright © 2017 William Brancato. All rights reserved.
 ////
 
-/*
+
 import Foundation
 import UIKit
 
@@ -34,10 +34,10 @@ class Team {
             numberGamesPlayed = games.count
         } else {numberGamesPlayed = 0}
         if let captName = dict["captain"] as? String {
-            captain = firebaseClient.getCaptainFor(teamID: self.id) //TODO: Implement
+            captain = FirebaseClient.getCaptainFor(teamId: self.id) //TODO: Implement
         }
         color = dict["color"] as? UIColor
     }
 }
- */
+ 
 
