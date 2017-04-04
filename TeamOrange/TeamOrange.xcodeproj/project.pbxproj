@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4C885E3F1E93EB9700B80EA4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E3E1E93EB9700B80EA4 /* LoginViewController.swift */; };
+		4C885E421E93F3C000B80EA4 /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E411E93F3C000B80EA4 /* Constraints.swift */; };
 		5624EFE11E92BBED00BB2662 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5624EFE01E92BBED00BB2662 /* AppDelegate.swift */; };
 		5624EFE91E92BBED00BB2662 /* TeamOrange.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5624EFE71E92BBED00BB2662 /* TeamOrange.xcdatamodeld */; };
 		5624EFEB1E92BBED00BB2662 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5624EFEA1E92BBED00BB2662 /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		4C885E3E1E93EB9700B80EA4 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		4C885E411E93F3C000B80EA4 /* Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
 		5624EFDD1E92BBED00BB2662 /* TeamOrange.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeamOrange.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5624EFE01E92BBED00BB2662 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = TeamOrange/AppDelegate.swift; sourceTree = "<group>"; };
 		5624EFE81E92BBED00BB2662 /* TeamOrange.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TeamOrange.xcdatamodel; sourceTree = "<group>"; };
@@ -57,6 +59,14 @@
 			name = ViewController;
 			sourceTree = "<group>";
 		};
+		4C885E401E93F2D200B80EA4 /* Apple class extension */ = {
+			isa = PBXGroup;
+			children = (
+				4C885E411E93F3C000B80EA4 /* Constraints.swift */,
+			);
+			name = "Apple class extension";
+			sourceTree = "<group>";
+		};
 		5624EFD41E92BBED00BB2662 = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +86,7 @@
 		5624EFDF1E92BBED00BB2662 /* TeamOrange */ = {
 			isa = PBXGroup;
 			children = (
+				4C885E401E93F2D200B80EA4 /* Apple class extension */,
 				5624EFFF1E92BF3500BB2662 /* Essential Files */,
 				4C885E3D1E93EB8100B80EA4 /* ViewController */,
 				5624EFF81E92BD4600BB2662 /* DataModel */,
@@ -186,6 +197,7 @@
 				5624EFFA1E92BD7200BB2662 /* Team.swift in Sources */,
 				5624EFFC1E92BD7F00BB2662 /* Game.swift in Sources */,
 				5624EFE91E92BBED00BB2662 /* TeamOrange.xcdatamodeld in Sources */,
+				4C885E421E93F3C000B80EA4 /* Constraints.swift in Sources */,
 				5624F0031E92C58900BB2662 /* Gender.swift in Sources */,
 				5624EFE11E92BBED00BB2662 /* AppDelegate.swift in Sources */,
 				5624F00B1E92F43100BB2662 /* GameState.swift in Sources */,
