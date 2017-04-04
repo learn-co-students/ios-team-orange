@@ -32,7 +32,7 @@ extension MapUpdater{
     func mapViewWillStartRenderingMap(_ mapView: MKMapView) {
         
     }
-    
+/*
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let identifier = "Location"
         if annotation is Location{ // will only fire off for a Location
@@ -91,5 +91,6 @@ extension Location: MKAnnotation{
         }
         return CLLocationCoordinate2D(latitude: lat, longitude: long)
     }
+*/
 }
 

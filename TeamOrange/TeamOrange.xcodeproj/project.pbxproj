@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2099EEF48E437A15D0A1FDC1 /* Pods_TeamOrange.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAEF8389E9CBFCA746229A38 /* Pods_TeamOrange.framework */; };
-		5623484C1E93F9B300F54337 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5623484B1E93F9B300F54337 /* GoogleService-Info.plist */; };
-		4C885E3F1E93EB9700B80EA4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E3E1E93EB9700B80EA4 /* LoginViewController.swift */; };
+		4C885E3F1E93EB9700B80EA4 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E3E1E93EB9700B80EA4 /* LoginController.swift */; };
 		4C885E421E93F3C000B80EA4 /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E411E93F3C000B80EA4 /* Constraints.swift */; };
-		4C885E461E93F99C00B80EA4 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E451E93F99C00B80EA4 /* Buttons.swift */; };
+		4C885E461E93F99C00B80EA4 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E451E93F99C00B80EA4 /* LoginButton.swift */; };
+		5623484C1E93F9B300F54337 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5623484B1E93F9B300F54337 /* GoogleService-Info.plist */; };
 		5624EFE11E92BBED00BB2662 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5624EFE01E92BBED00BB2662 /* AppDelegate.swift */; };
 		5624EFE91E92BBED00BB2662 /* TeamOrange.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5624EFE71E92BBED00BB2662 /* TeamOrange.xcdatamodeld */; };
 		5624EFEB1E92BBED00BB2662 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5624EFEA1E92BBED00BB2662 /* Assets.xcassets */; };
@@ -29,10 +29,10 @@
 
 /* Begin PBXFileReference section */
 		40B865929CF74C03A91BAF9F /* Pods-TeamOrange.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamOrange.release.xcconfig"; path = "Pods/Target Support Files/Pods-TeamOrange/Pods-TeamOrange.release.xcconfig"; sourceTree = "<group>"; };
-		5623484B1E93F9B300F54337 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "TeamOrange/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		4C885E3E1E93EB9700B80EA4 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		4C885E3E1E93EB9700B80EA4 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		4C885E411E93F3C000B80EA4 /* Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
-		4C885E451E93F99C00B80EA4 /* Buttons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
+		4C885E451E93F99C00B80EA4 /* LoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
+		5623484B1E93F9B300F54337 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "TeamOrange/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5624EFDD1E92BBED00BB2662 /* TeamOrange.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeamOrange.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5624EFE01E92BBED00BB2662 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = TeamOrange/AppDelegate.swift; sourceTree = "<group>"; };
 		5624EFE81E92BBED00BB2662 /* TeamOrange.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TeamOrange.xcdatamodel; sourceTree = "<group>"; };
@@ -46,10 +46,10 @@
 		5624F0021E92C58900BB2662 /* Gender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		5624F00A1E92F43100BB2662 /* GameState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		5624F00C1E92F44400BB2662 /* FirebaseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
-		AAEF8389E9CBFCA746229A38 /* Pods_TeamOrange.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeamOrange.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D8EA57988E1A6ABDDCAF32E9 /* Pods-TeamOrange.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamOrange.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TeamOrange/Pods-TeamOrange.debug.xcconfig"; sourceTree = "<group>"; };
 		887987E01E93E7D100F5C540 /* CoreLocClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreLocClient.swift; sourceTree = "<group>"; };
 		887987E21E93EC3000F5C540 /* MapKitClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapKitClient.swift; sourceTree = "<group>"; };
+		AAEF8389E9CBFCA746229A38 /* Pods_TeamOrange.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeamOrange.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8EA57988E1A6ABDDCAF32E9 /* Pods-TeamOrange.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamOrange.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TeamOrange/Pods-TeamOrange.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,28 +64,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4C885E3D1E93EB8100B80EA4 /* ViewController */ = {
+		4C885E3D1E93EB8100B80EA4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4C885E3E1E93EB9700B80EA4 /* LoginViewController.swift */,
+				4C885E3E1E93EB9700B80EA4 /* LoginController.swift */,
 			);
-			name = ViewController;
+			name = Controllers;
 			sourceTree = "<group>";
 		};
-		4C885E401E93F2D200B80EA4 /* Apple class extension */ = {
+		4C885E401E93F2D200B80EA4 /* Apple Class Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				4C885E411E93F3C000B80EA4 /* Constraints.swift */,
 			);
-			name = "Apple class extension";
+			name = "Apple Class Extensions";
 			sourceTree = "<group>";
 		};
-		4C885E441E93F8DB00B80EA4 /* Graphical Elements */ = {
+		4C885E441E93F8DB00B80EA4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4C885E451E93F99C00B80EA4 /* Buttons.swift */,
+				4C885E451E93F99C00B80EA4 /* LoginButton.swift */,
 			);
-			name = "Graphical Elements";
+			name = Views;
 			sourceTree = "<group>";
 		};
 		5624EFD41E92BBED00BB2662 = {
@@ -93,6 +93,7 @@
 			children = (
 				5624EFDF1E92BBED00BB2662 /* TeamOrange */,
 				7020B53CF8B5E1EF120691F7 /* Pods */,
+				5624EFDE1E92BBED00BB2662 /* Products */,
 				979D5305D3A31456FB1561CA /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -103,37 +104,33 @@
 				5624EFDD1E92BBED00BB2662 /* TeamOrange.app */,
 			);
 			name = Products;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		5624EFDF1E92BBED00BB2662 /* TeamOrange */ = {
 			isa = PBXGroup;
 			children = (
+				5624EFF81E92BD4600BB2662 /* Models */,
+				4C885E441E93F8DB00B80EA4 /* Views */,
+				4C885E3D1E93EB8100B80EA4 /* Controllers */,
+				4C885E401E93F2D200B80EA4 /* Apple Class Extensions */,
+				56FDCD341E941E4400FE5AA9 /* Enums */,
 				5624EFFF1E92BF3500BB2662 /* Essential Files */,
-				4C885E3D1E93EB8100B80EA4 /* ViewController */,
-				5624EFF81E92BD4600BB2662 /* DataModel */,
-				4C885E441E93F8DB00B80EA4 /* Graphical Elements */,
-				4C885E401E93F2D200B80EA4 /* Apple class extension */,
-				5624EFDE1E92BBED00BB2662 /* Products */,
+				56FDCD351E941E8D00FE5AA9 /* Protocols */,
+				56FDCD331E941E1600FE5AA9 /* Utilities */,
 			);
 			path = TeamOrange;
 			sourceTree = "<group>";
 		};
-		5624EFF81E92BD4600BB2662 /* DataModel */ = {
+		5624EFF81E92BD4600BB2662 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				5624EFF61E92BD3D00BB2662 /* User.swift */,
-				5624F0001E92C04B00BB2662 /* Sport.swift */,
-				5624EFF91E92BD7200BB2662 /* Team.swift */,
 				5624EFFB1E92BD7F00BB2662 /* Game.swift */,
-				5624EFFD1E92BD8E00BB2662 /* Location.swift */,
-				5624F0021E92C58900BB2662 /* Gender.swift */,
 				5624F00A1E92F43100BB2662 /* GameState.swift */,
-				5624F00C1E92F44400BB2662 /* FirebaseClient.swift */,
-				887987E01E93E7D100F5C540 /* CoreLocClient.swift */,
-				887987E21E93EC3000F5C540 /* MapKitClient.swift */,
+				5624EFFD1E92BD8E00BB2662 /* Location.swift */,
+				5624EFF91E92BD7200BB2662 /* Team.swift */,
+				5624EFF61E92BD3D00BB2662 /* User.swift */,
 			);
-			name = DataModel;
+			name = Models;
 			sourceTree = "<group>";
 		};
 		5624EFFF1E92BF3500BB2662 /* Essential Files */ = {
@@ -147,6 +144,32 @@
 			);
 			name = "Essential Files";
 			path = ..;
+			sourceTree = "<group>";
+		};
+		56FDCD331E941E1600FE5AA9 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				887987E01E93E7D100F5C540 /* CoreLocClient.swift */,
+				5624F00C1E92F44400BB2662 /* FirebaseClient.swift */,
+				887987E21E93EC3000F5C540 /* MapKitClient.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		56FDCD341E941E4400FE5AA9 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				5624F0021E92C58900BB2662 /* Gender.swift */,
+				5624F0001E92C04B00BB2662 /* Sport.swift */,
+			);
+			name = Enums;
+			sourceTree = "<group>";
+		};
+		56FDCD351E941E8D00FE5AA9 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 		7020B53CF8B5E1EF120691F7 /* Pods */ = {
@@ -294,7 +317,7 @@
 				887987E31E93EC3000F5C540 /* MapKitClient.swift in Sources */,
 				5624EFFA1E92BD7200BB2662 /* Team.swift in Sources */,
 				5624EFFC1E92BD7F00BB2662 /* Game.swift in Sources */,
-				4C885E461E93F99C00B80EA4 /* Buttons.swift in Sources */,
+				4C885E461E93F99C00B80EA4 /* LoginButton.swift in Sources */,
 				5624EFE91E92BBED00BB2662 /* TeamOrange.xcdatamodeld in Sources */,
 				4C885E421E93F3C000B80EA4 /* Constraints.swift in Sources */,
 				5624F0031E92C58900BB2662 /* Gender.swift in Sources */,
@@ -303,7 +326,7 @@
 				5624F00D1E92F44400BB2662 /* FirebaseClient.swift in Sources */,
 				5624EFFE1E92BD8E00BB2662 /* Location.swift in Sources */,
 				5624EFF71E92BD3D00BB2662 /* User.swift in Sources */,
-				4C885E3F1E93EB9700B80EA4 /* LoginViewController.swift in Sources */,
+				4C885E3F1E93EB9700B80EA4 /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,7 +434,6 @@
 				DEVELOPMENT_TEAM = X6M58BL6UT;
 				INFOPLIST_FILE = TeamOrange/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
-
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.TeamOrange.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
