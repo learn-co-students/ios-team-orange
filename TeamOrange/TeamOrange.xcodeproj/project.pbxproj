@@ -76,8 +76,8 @@
 		5624EFDF1E92BBED00BB2662 /* TeamOrange */ = {
 			isa = PBXGroup;
 			children = (
-				4C885E3D1E93EB8100B80EA4 /* ViewController */,
 				5624EFFF1E92BF3500BB2662 /* Essential Files */,
+				4C885E3D1E93EB8100B80EA4 /* ViewController */,
 				5624EFF81E92BD4600BB2662 /* DataModel */,
 				5624EFDE1E92BBED00BB2662 /* Products */,
 			);
@@ -298,6 +298,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = X6M58BL6UT;
 				INFOPLIST_FILE = TeamOrange/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mycompany.TeamOrange;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -311,6 +312,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = X6M58BL6UT;
 				INFOPLIST_FILE = TeamOrange/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mycompany.TeamOrange;
 				PRODUCT_NAME = "$(TARGET_NAME)";
