@@ -1,15 +1,16 @@
+////
+////  Team.swift
+////  TeamOrange
+////
+////  Created by William Brancato on 4/3/17.
+////  Copyright © 2017 William Brancato. All rights reserved.
+////
 //
-//  Team.swift
-//  TeamOrange
-//
-//  Created by William Brancato on 4/3/17.
-//  Copyright © 2017 William Brancato. All rights reserved.
+//import Foundation
+//import UIKit
 //
 
-import Foundation
-import UIKit
-
-class Team {
+//class Team {
 //    let id: String
 //    var name: String
 //    var users: [User]?
@@ -36,4 +37,5 @@ class Team {
 //        }
 //        color = dict["color"] as? UIColor
 //    }
-}
+//}
+

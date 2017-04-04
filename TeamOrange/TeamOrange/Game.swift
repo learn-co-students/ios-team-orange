@@ -1,15 +1,16 @@
+////
+////  Game.swift
+////  TeamOrange
+////
+////  Created by William Brancato on 4/3/17.
+////  Copyright © 2017 William Brancato. All rights reserved.
+////
 //
-//  Game.swift
-//  TeamOrange
-//
-//  Created by William Brancato on 4/3/17.
-//  Copyright © 2017 William Brancato. All rights reserved.
+//import Foundation
 //
 
-import Foundation
-
-class Game {
-    
+// class Game {
+//
 //    let id: String
 //    var location: Location
 //    var players: [User]?
@@ -39,7 +40,7 @@ class Game {
 //        self.success = dict["success"] as? Bool ?? false //TODO: Should we be defaulting to false?
 //        self.over = dict["over"] as? Bool ?? false //TODO: Should we ve defaulting to false?
 //        self.admin = FirebaseClient.getAdminFor(gameId: self.id) //TODO: should we make two seperate API Calls for admin and location?
-//        
+//
 //        guard let gameStateString = dict["gameState"] as? String
 //            , let gameState = GameState(rawValue: gameStateString) else { return }
 //        self.state = gameState
@@ -49,4 +50,4 @@ class Game {
 //        self.players = FirebaseClient.getUsersFor(gameId: self.id)
 //    }
 //    
-}
+// }

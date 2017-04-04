@@ -1,15 +1,17 @@
+////
+////  User.swift
+////  TeamOrange
+////
+////  Created by William Brancato on 4/3/17.
+////  Copyright © 2017 William Brancato. All rights reserved.
+////
 //
-//  User.swift
-//  TeamOrange
-//
-//  Created by William Brancato on 4/3/17.
-//  Copyright © 2017 William Brancato. All rights reserved.
+//import Foundation
 //
 
-import Foundation
+//class User { 
+//    
 
-class User {
-    
 //    var userName: String
 //    var profPic: String?
 //    var gender: Gender?
@@ -44,4 +46,6 @@ class User {
 //        
 //        self.homeField = userDict["homeField"] as? Location ?? nil
 //    }
-}
+
+//}
+

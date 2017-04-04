@@ -32,7 +32,7 @@ class FirebaseClient {
     }
     
 //    //MARK: Get Info For Team
-//    
+//
 //    class func getUserFor(teamId: String) -> User {
 //        
 //    }
@@ -44,8 +44,9 @@ class FirebaseClient {
 //    class func getCoCaptainsFor(teamId: String) -> [User]{
 //        
 //    }
-//    
+//
 //    //MARK: Get Info For User
+
 //    
 //    class func getGamesFor(userId: String) -> [Game] {
 //        
@@ -63,7 +64,9 @@ class FirebaseClient {
 //        
 //    }
 //    
+
 //    //MARK: Get Info For Game
+
 //    
 //    class func getUsersFor(gameId: String) -> [User] {
 //        
@@ -78,6 +81,7 @@ class FirebaseClient {
 //    }
 //    
 //    //MARK: Get Info For Location
+
 //    
 //    class func getGamesFor(locationId: String) -> [Game] {
 //        
