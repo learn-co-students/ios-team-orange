@@ -14,20 +14,20 @@ import UIKit
 class Team {
     let id: String
     var name: String
-    var users: [User]?
+    var users: [Player]?
     var profPic: UIImage?
     var profPicUrl: String?
     weak var homeField: Location?
     var numberGamesPlayed: Int
     //TODO: compute successful & unsuccessful games from this property
-    weak var captain: User?
-    var coCaptains: [User]?
+    weak var captain: Player?
+    var coCaptains: [Player]?
     var color: UIColor?
     
     init? (id: String, dict: [String: Any]) {
         self.id = id
         self.name = dict["name"] as? String ?? ""
-        self.users =  dict["players"] as? [User] ?? nil
+        self.users =  dict["players"] as? [Player] ?? nil
         self.profPic = nil
         self.profPicUrl = dict["profPic"] as? String ?? nil
         if let games = dict["game"] as? [String : Any] {

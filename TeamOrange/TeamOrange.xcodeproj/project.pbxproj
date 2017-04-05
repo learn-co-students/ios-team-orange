@@ -11,7 +11,6 @@
 		4C885E3F1E93EB9700B80EA4 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E3E1E93EB9700B80EA4 /* LoginController.swift */; };
 		4C885E421E93F3C000B80EA4 /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E411E93F3C000B80EA4 /* Constraints.swift */; };
 		4C885E461E93F99C00B80EA4 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E451E93F99C00B80EA4 /* LoginButton.swift */; };
-		5623484C1E93F9B300F54337 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5623484B1E93F9B300F54337 /* GoogleService-Info.plist */; };
 		5624EFE11E92BBED00BB2662 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5624EFE01E92BBED00BB2662 /* AppDelegate.swift */; };
 		5624EFE91E92BBED00BB2662 /* TeamOrange.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5624EFE71E92BBED00BB2662 /* TeamOrange.xcdatamodeld */; };
 		5624EFEB1E92BBED00BB2662 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5624EFEA1E92BBED00BB2662 /* Assets.xcassets */; };
@@ -22,6 +21,8 @@
 		5624F0031E92C58900BB2662 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5624F0021E92C58900BB2662 /* Gender.swift */; };
 		5624F00B1E92F43100BB2662 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5624F00A1E92F43100BB2662 /* GameState.swift */; };
 		5624F00D1E92F44400BB2662 /* FirebaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5624F00C1E92F44400BB2662 /* FirebaseClient.swift */; };
+		56FDCD371E9431AE00FE5AA9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56FDCD361E9431AE00FE5AA9 /* GoogleService-Info.plist */; };
+		56FDCD391E9557CC00FE5AA9 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FDCD381E9557CC00FE5AA9 /* Category.swift */; };
 		887987E11E93E7D100F5C540 /* CoreLocClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887987E01E93E7D100F5C540 /* CoreLocClient.swift */; };
 		887987E31E93EC3000F5C540 /* MapKitClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887987E21E93EC3000F5C540 /* MapKitClient.swift */; };
 		887987E51E9426DA00F5C540 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887987E41E9426DA00F5C540 /* Game.swift */; };
@@ -32,7 +33,6 @@
 		4C885E3E1E93EB9700B80EA4 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		4C885E411E93F3C000B80EA4 /* Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
 		4C885E451E93F99C00B80EA4 /* LoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
-		5623484B1E93F9B300F54337 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "TeamOrange/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5624EFDD1E92BBED00BB2662 /* TeamOrange.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeamOrange.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5624EFE01E92BBED00BB2662 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = TeamOrange/AppDelegate.swift; sourceTree = "<group>"; };
 		5624EFE81E92BBED00BB2662 /* TeamOrange.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TeamOrange.xcdatamodel; sourceTree = "<group>"; };
@@ -45,6 +45,8 @@
 		5624F0021E92C58900BB2662 /* Gender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		5624F00A1E92F43100BB2662 /* GameState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		5624F00C1E92F44400BB2662 /* FirebaseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseClient.swift; sourceTree = "<group>"; };
+		56FDCD361E9431AE00FE5AA9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		56FDCD381E9557CC00FE5AA9 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		887987E01E93E7D100F5C540 /* CoreLocClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreLocClient.swift; sourceTree = "<group>"; };
 		887987E21E93EC3000F5C540 /* MapKitClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapKitClient.swift; sourceTree = "<group>"; };
 		887987E41E9426DA00F5C540 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
@@ -140,7 +142,7 @@
 				5624EFE71E92BBED00BB2662 /* TeamOrange.xcdatamodeld */,
 				5624EFEA1E92BBED00BB2662 /* Assets.xcassets */,
 				5624EFEF1E92BBED00BB2662 /* Info.plist */,
-				5623484B1E93F9B300F54337 /* GoogleService-Info.plist */,
+				56FDCD361E9431AE00FE5AA9 /* GoogleService-Info.plist */,
 			);
 			name = "Essential Files";
 			path = ..;
@@ -161,6 +163,7 @@
 			children = (
 				5624F0021E92C58900BB2662 /* Gender.swift */,
 				5624F0001E92C04B00BB2662 /* Sport.swift */,
+				56FDCD381E9557CC00FE5AA9 /* Category.swift */,
 			);
 			name = Enums;
 			sourceTree = "<group>";
@@ -252,8 +255,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5623484C1E93F9B300F54337 /* GoogleService-Info.plist in Resources */,
 				5624EFEB1E92BBED00BB2662 /* Assets.xcassets in Resources */,
+				56FDCD371E9431AE00FE5AA9 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +322,7 @@
 				5624EFFA1E92BD7200BB2662 /* Team.swift in Sources */,
 				4C885E461E93F99C00B80EA4 /* LoginButton.swift in Sources */,
 				5624EFE91E92BBED00BB2662 /* TeamOrange.xcdatamodeld in Sources */,
+				56FDCD391E9557CC00FE5AA9 /* Category.swift in Sources */,
 				4C885E421E93F3C000B80EA4 /* Constraints.swift in Sources */,
 				5624F0031E92C58900BB2662 /* Gender.swift in Sources */,
 				5624EFE11E92BBED00BB2662 /* AppDelegate.swift in Sources */,

@@ -13,14 +13,14 @@ import Foundation
  class Game {
 
     let id: String
-    var location: Location
-    var players: [User]?
+    var location: Location?
+    var players: [Player]?
     var date: String //TODO: change to NSDate
     var sport: Sport?
     var name: String?
     var success: Bool?
     var over: Bool?
-    let admin: User
+    let admin: Player
     let state: GameState?
     
     var numPlayers: Int? {
@@ -31,7 +31,6 @@ import Foundation
     //TODO: Make 
     init?(id: String, dict: [String:Any]) {
         self.id = id
-        self.location = FirebaseClient.getLocationFor(gameId: id)
         self.date = dict["date"] as? String ?? ""
         
         guard let sportString = dict["sport"] as? String
@@ -47,7 +46,7 @@ import Foundation
             , let gameState = GameState(rawValue: gameStateString) else { return nil }
         self.state = gameState
     }
-    =--
+    
     func getPlayers() {
         self.players = FirebaseClient.getUsersFor(gameId: self.id)
     }
