@@ -16,8 +16,15 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.view.backgroundColor = UIColor.white
+
+//        Uncomment the below for a blur effect in the background
+
+        var darkBlur:UIBlurEffect = UIBlurEffect()
+        darkBlur = UIBlurEffect(style: UIBlurEffectStyle.regular)
+        let blurView = UIVisualEffectView(effect: darkBlur)
+        blurView.frame = self.view.frame //your view that have any objects
+        blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(blurView)
         
         let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(self.donePressed))
         
