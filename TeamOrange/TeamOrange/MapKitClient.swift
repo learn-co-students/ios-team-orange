@@ -5,7 +5,7 @@
 //  Created by Edmund Holderbaum on 4/4/17.
 //  Copyright © 2017 William Brancato. All rights reserved.
 //
-/*
+
 import Foundation
 import MapKit
 import CoreLocation
@@ -32,7 +32,7 @@ extension MapUpdater{
     func mapViewWillStartRenderingMap(_ mapView: MKMapView) {
         
     }
-/*
+
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let identifier = "Location"
         if annotation is Location{ // will only fire off for a Location
@@ -91,8 +91,7 @@ extension Location: MKAnnotation{
         }
         return CLLocationCoordinate2D(latitude: lat, longitude: long)
     }
-*/
+
     
 }
 
-*/

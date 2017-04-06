@@ -10,25 +10,26 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController, MapUpdater {
     
     lazy var mainView: MapSearchView = MapSearchView()
     let loginButton = UIButton()
+    weak var mapView: MKMapView!
     
     override func loadView() {
         super.loadView()
         self.view = mainView
+        self.mapView = mainView.mapView
         self.mainView.searchButton.addTarget(self, action: #selector(searchButtonClicked), for: .touchUpInside)
+        self.mainView.searchBarView.cancelButton.addTarget(self, action: #selector(searchButtonClicked), for: .touchUpInside)
         mainView.searchBarView.searchBar.delegate = self
-//        mainView.searchTable.delegate = self
-//        mainView.searchTable.dataSource = self
-        //mainView.searchTable.register(SearchCell.self, forCellReuseIdentifier: "SearchCell")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Huddle"
-        
+        let sportsButton = UIBarButtonItem(title: "Sports", style: .plain, target: self, action: #selector(goToSportsPicker) )
+        self.navigationItem.setRightBarButton(sportsButton, animated: false)
         // set the nav bar to clear
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -64,6 +65,10 @@ class MapViewController: UIViewController {
         let loginScreen = LoginViewController()
         self.navigationController?.pushViewController(loginScreen, animated: false)
     }
+    
+    func goToSportsPicker() {
+        //TODO: implement sports picker view
+    }
 }
 
 extension MapViewController: UITextFieldDelegate{
@@ -71,37 +76,20 @@ extension MapViewController: UITextFieldDelegate{
         textField.returnKeyType = .search
     }
     
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//
-//        textFieldShouldHide(textField)
-//        return
-//    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard textField.text != "" else {
+            searchButtonClicked()
             return false
         }
+        textField.text = ""
         textField.endEditing(true)
+        searchButtonClicked()
         return true
     }
 }
 
 
 
-//extension ViewController: UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
-//    
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 1
-//    }
-//    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = mainView.searchTable.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath) as! SearchCell
-//        cell.searchBar.delegate = self
-//        return cell
-//    }
-//    
-//    func textFieldDidBeginEditing(_ textField: UITextField) {
-//        mainView.searchTable.setEditing(true, animated: false)
-//    }
-//}
+
 
