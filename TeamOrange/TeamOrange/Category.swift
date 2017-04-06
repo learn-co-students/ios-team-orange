@@ -10,7 +10,7 @@ import Foundation
 
 enum Category: String {
     
-    case users
+    case players
     case games
     case teams
     

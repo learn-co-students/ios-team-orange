@@ -24,7 +24,7 @@ class Team {
     var coCaptains: [Player]?
     var color: UIColor?
     
-    init? (id: String, dict: [String: Any]) {
+    init(id: String, dict: [String: Any]) {
         self.id = id
         self.name = dict["name"] as? String ?? ""
         self.players =  dict["players"] as? [Player] ?? nil
@@ -32,11 +32,17 @@ class Team {
         if let games = dict["game"] as? [String : Any] {
             numberGamesPlayed = games.count
         } else {numberGamesPlayed = 0}
-        if let captName = dict["captain"] as? String {
-            captain = FirebaseClient.getCaptainFor(teamId: self.id) //TODO: Implement
-        }
+        self.captain = dict["captain"] as? Player
         color = dict["color"] as? UIColor
     }
+}
+
+extension Team: CustomStringConvertible {
+    
+    var description: String {
+        return "Team: \(self.name)"
+    }
+    
 }
  
 
