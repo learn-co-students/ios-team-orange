@@ -40,7 +40,7 @@ class MapViewController: UIViewController {
     }
 }
 
-extension ViewController: UITextFieldDelegate{
+extension MapViewController: UITextFieldDelegate{
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.returnKeyType = .search
     }
