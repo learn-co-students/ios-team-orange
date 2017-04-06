@@ -30,3 +30,15 @@ class Location: NSObject {
     }
 }
 
+extension Location: MKAnnotation{
+    public var coordinate: CLLocationCoordinate2D{
+        guard let lat = latitude, let long = longitude else{
+            NSLog("%@", "(Location): Error creating annotation, latitude and longitude empty")
+            return CLLocationCoordinate2D(latitude: 180, longitude: 180)
+        }
+        return CLLocationCoordinate2D(latitude: lat, longitude: long)
+    }
+    
+    
+}
+

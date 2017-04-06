@@ -10,16 +10,18 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapViewController: UIViewController, MapUpdater {
+class MapViewController: UIViewController {
     
     lazy var mainView: MapSearchView = MapSearchView()
     let loginButton = UIButton()
-    weak var mapView: MKMapView!
     
     override func loadView() {
         super.loadView()
         self.view = mainView
-        self.mapView = mainView.mapView
+        self.mainView.mapView.delegate = self
+        self.mainView.mapView.setUserTrackingMode(.follow, animated: true)
+        
+        self.mainView.centerMapButton.addTarget(self, action: #selector(centerMapButtonClicked), for: .touchUpInside)
         self.mainView.searchButton.addTarget(self, action: #selector(searchButtonClicked), for: .touchUpInside)
         self.mainView.searchBarView.cancelButton.addTarget(self, action: #selector(searchButtonClicked), for: .touchUpInside)
         mainView.searchBarView.searchBar.delegate = self
@@ -44,7 +46,15 @@ class MapViewController: UIViewController, MapUpdater {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    func centerMapButtonClicked(){
+        if self.mainView.mapView.userTrackingMode == .follow {
+            self.mainView.mapView.userTrackingMode = .none
+        } else if self.mainView.mapView.userTrackingMode == .none {
+            self.mainView.mapView.userTrackingMode = .follow
+        }
+    }
+    
     func searchButtonClicked() {
         self.mainView.animateSearchBar()
     }
@@ -72,6 +82,62 @@ class MapViewController: UIViewController, MapUpdater {
         //TODO: implement sports picker view
     }
 }
+
+extension MapViewController: CLLocationManagerDelegate, MKMapViewDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard self.mainView.mapView.userTrackingMode == .follow else {return}
+        if let clLoc = locations.last {
+            let center = clLoc.coordinate
+            let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+            let region = MKCoordinateRegion.init(center: center, span: span)
+            self.mainView.mapView.setRegion(region, animated: true)
+        }
+    }
+    
+    func mapViewWillStartRenderingMap(_ mapView: MKMapView) {
+        
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let identifier = "Location"
+        if annotation is Location{ // will only fire off for a Location
+            //this will display a standard apple annotation.
+            //add a custom annotation view here later.
+            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as! MKPinAnnotationView
+            if annotationView.annotation == nil{
+                //this part adds an annotation view if one hasnt been dequeued for this location
+                annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                annotationView.canShowCallout = true
+                let btn = UIButton(type: .detailDisclosure)
+                //this button will call calloutAccessoryTapped
+                annotationView.rightCalloutAccessoryView = btn
+            }else{
+                //if view for this location has been dequeued, show the annotation
+                annotationView.annotation = annotation
+            }
+            return annotationView
+        }
+        return nil
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        guard let location = view.annotation as? Location else { return }
+        
+        //this part gets some basic data from the location.
+        let locationName = location.name
+        var gamesString = "No game data for this location"
+        if let games = location.games?.count {
+            if games == 1 { gamesString = "One game at this location." }
+            else { gamesString = "\(games) games at this location." }
+        }//fallthrough to default gamesString if location.games == nil
+        
+        //present an alert controller with the name and message from above
+        //replace this with a different action once UI is built
+        let ac = UIAlertController(title: locationName, message: gamesString, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
+    }
+}
+
 
 extension MapViewController: UITextFieldDelegate{
     func textFieldDidBeginEditing(_ textField: UITextField) {

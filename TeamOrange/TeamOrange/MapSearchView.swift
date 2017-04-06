@@ -49,6 +49,7 @@ class MapSearchView: UIView {
         searchButton.widthAnchor.constraint(equalToConstant: 70).isActive = true
         searchButton.layer.cornerRadius = 29
         searchButton.setTitle("-O", for: .normal)
+        searchButton.setTitleColor(UIColor.red, for: .normal )
         self.insertSubview(searchButton, aboveSubview: mapView)
         
         self.addSubview(centerMapButton)
@@ -59,6 +60,9 @@ class MapSearchView: UIView {
         centerMapButton.widthAnchor.constraint(equalToConstant: 70).isActive = true
         centerMapButton.layer.cornerRadius = 29
         centerMapButton.setTitle(">O<", for: .normal)
+        centerMapButton.setTitle(">O<", for: .disabled)
+        centerMapButton.setTitleColor(UIColor.white, for: .disabled)
+        centerMapButton.setTitleColor(UIColor.red, for: .normal )
         self.insertSubview(centerMapButton, aboveSubview: mapView)
         
         self.addSubview(searchBarView)
