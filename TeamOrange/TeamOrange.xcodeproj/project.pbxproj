@@ -26,6 +26,9 @@
 		887987E11E93E7D100F5C540 /* CoreLocClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887987E01E93E7D100F5C540 /* CoreLocClient.swift */; };
 		887987E31E93EC3000F5C540 /* MapKitClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887987E21E93EC3000F5C540 /* MapKitClient.swift */; };
 		887987E51E9426DA00F5C540 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887987E41E9426DA00F5C540 /* Game.swift */; };
+		887987EB1E943DC700F5C540 /* MapSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887987EA1E943DC700F5C540 /* MapSearchView.swift */; };
+		887987ED1E94653000F5C540 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887987EC1E94653000F5C540 /* SearchBarView.swift */; };
+		88798E261E95B60900F5C540 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88798E251E95B60900F5C540 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +53,9 @@
 		887987E01E93E7D100F5C540 /* CoreLocClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreLocClient.swift; sourceTree = "<group>"; };
 		887987E21E93EC3000F5C540 /* MapKitClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapKitClient.swift; sourceTree = "<group>"; };
 		887987E41E9426DA00F5C540 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		887987EA1E943DC700F5C540 /* MapSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapSearchView.swift; sourceTree = "<group>"; };
+		887987EC1E94653000F5C540 /* SearchBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
+		88798E251E95B60900F5C540 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		AAEF8389E9CBFCA746229A38 /* Pods_TeamOrange.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeamOrange.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8EA57988E1A6ABDDCAF32E9 /* Pods-TeamOrange.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamOrange.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TeamOrange/Pods-TeamOrange.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -70,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				4C885E3E1E93EB9700B80EA4 /* LoginController.swift */,
+				88798E251E95B60900F5C540 /* MapViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -86,6 +93,8 @@
 			isa = PBXGroup;
 			children = (
 				4C885E451E93F99C00B80EA4 /* LoginButton.swift */,
+				887987EA1E943DC700F5C540 /* MapSearchView.swift */,
+				887987EC1E94653000F5C540 /* SearchBarView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -329,8 +338,11 @@
 				5624F00B1E92F43100BB2662 /* GameState.swift in Sources */,
 				5624F00D1E92F44400BB2662 /* FirebaseClient.swift in Sources */,
 				5624EFFE1E92BD8E00BB2662 /* Location.swift in Sources */,
+				88798E261E95B60900F5C540 /* MapViewController.swift in Sources */,
 				5624EFF71E92BD3D00BB2662 /* User.swift in Sources */,
 				4C885E3F1E93EB9700B80EA4 /* LoginController.swift in Sources */,
+				887987ED1E94653000F5C540 /* SearchBarView.swift in Sources */,
+				887987EB1E943DC700F5C540 /* MapSearchView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
