@@ -13,15 +13,15 @@ import Foundation
 
 class Player {
     
-    var displayName: String?
-    var profPic: String?
+    var name: String?
+    var image: String?
+    var imageUrlString: String?
     var gender: Gender?
     let birthDate: String?
     var homeTown: String?
     var zipCode: Int
     var favSport: Sport?
     var homeField: Location?
-    var favLocations: [Location]?
     var friends: [Player]?
     var teams: [Team]?
     var games: [Game]?
@@ -29,8 +29,8 @@ class Player {
     
     init(id: String, dict: [String:Any]) {
         self.id = id
-        self.displayName = dict["name"] as? String
-        self.profPic = dict["profPic"] as? String ?? "Profile pic URL not valid"
+        self.name = dict["name"] as? String
+        self.image = dict["profPic"] as? String ?? "Profile pic URL not valid"
         self.gender = dict["gender"] as? Gender
         self.birthDate = dict["birthDate"] as? String ?? "Birthdate not valid"
         self.homeTown = dict["homeTown"] as? String
@@ -43,7 +43,7 @@ class Player {
 extension Player: CustomStringConvertible {
     
     var description: String {
-        return "ID: \(self.id) with name of: \(self.displayName)\n"
+        return "ID: \(self.id) with name of: \(self.name)\n"
     }
     
 }

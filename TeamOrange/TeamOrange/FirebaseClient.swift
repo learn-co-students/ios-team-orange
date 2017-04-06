@@ -15,8 +15,8 @@ class FirebaseClient {
     
     //MARK: Create Stuff
     
-    class func createUser(with userInfo: [String:Any] ) {
-        FIRDatabase.database().reference().child("users").childByAutoId().setValue(userInfo)
+    class func createPlayer(with playerInfo: [String:Any] ) {
+        FIRDatabase.database().reference().child("players").childByAutoId().setValue(playerInfo)
     }
     
     class func createGame(with gameInfo: [String:Any]) {
@@ -63,6 +63,12 @@ class FirebaseClient {
             if let teams = teams as? [Team] { completion(teams) }
         }
     }
+    
+    // Add team to player & player to team
+    // Add game to player & player to game
+    // Add player1 to player2 Friends & player2 to player1 Friends
+    
+    
     
     
     

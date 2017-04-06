@@ -14,9 +14,9 @@ import UIKit
 class Team {
     let id: String
     var name: String
-    var users: [Player]?
-    var profPic: UIImage?
-    var profPicUrl: String?
+    var players: [Player]?
+    var image: UIImage?
+    var imageUrlString: String?
     weak var homeField: Location?
     var numberGamesPlayed: Int
     //TODO: compute successful & unsuccessful games from this property
@@ -27,9 +27,8 @@ class Team {
     init? (id: String, dict: [String: Any]) {
         self.id = id
         self.name = dict["name"] as? String ?? ""
-        self.users =  dict["players"] as? [Player] ?? nil
-        self.profPic = nil
-        self.profPicUrl = dict["profPic"] as? String ?? nil
+        self.players =  dict["players"] as? [Player] ?? nil
+        self.imageUrlString = dict["profPic"] as? String ?? nil
         if let games = dict["game"] as? [String : Any] {
             numberGamesPlayed = games.count
         } else {numberGamesPlayed = 0}

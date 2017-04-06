@@ -33,26 +33,68 @@ class LoginViewController: UIViewController {
         self.button.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.2).isActive = true
         self.button.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.3).isActive = true
         self.button.backgroundColor = UIColor.black
-        self.button.addTarget(self, action: #selector(self.queryData), for: .touchUpInside)
+        self.button.addTarget(self, action: #selector(self.fillDatabaseWithArrays), for: .touchUpInside)
     }
     
-    func updateData() {
+    func fillDatabaseWithBaseData() {
         for num in 1...30 {
-            let userInfo : [String:Any] = ["name" : "userNamel\(num)",
-                "favSport" : Sport.basketball.rawValue,
-                "gender" : Gender.female.rawValue,
-                "homeField" : "Russel Sage Park",
-                "homeTown" : "Manhatten",
-                "profPic" : "www.url.com",
-                "zipCode" : 33021]
-            FirebaseClient.createUser(with: userInfo)
+            let playerInfo : [String:Any] = [
+                "birthDate" : "9/\(num)/1986",
+                "favSport" : "Baseball",
+                "gender" : "male",
+                "homeField" : "Dingletown",
+                "homeTown" : "Medford",
+                "imageUrlString" : "www.url.com",
+                "name" : "username\(num)",
+                "zipCode" : "33021"
+            ]
+            
+            FirebaseClient.createPlayer(with: playerInfo)
+            
+            let teamInfo : [String:Any] = [
+                "color" : "blue",
+                "homeField" : "Shea Stadium",
+                "imageUrlString" : "www.url.com",
+                "name" : "NYC All Stars \(num)"
+            ]
+            
+            FirebaseClient.createTeam(with: teamInfo)
+            
+            let gameInfo: [String:Any] = [
+                "date" : "9/\(num)/2017",
+                "name" : "Game \(num)",
+                "over" : true,
+                "success" : false,
+                "sport" : "Baseball",
+                "state" : "Not Started"
+            ]
+            
+            FirebaseClient.createGame(with: gameInfo)
         }
     }
     
-    func queryData() {
-        FirebaseClient.getUsersWith(displayName: "BillyFuckinB"){ users in
-            print(users)
-        }
+    func fillDatabaseWithArrays() {
+        var playerKeys: [String] = []
+        var teamKeys: [String] = []
+        var gameKeys: [String] = []
+        FIRDatabase.database().reference().child("players").observeSingleEvent(of: .value, with: { snapshot in
+            let snapshot = snapshot.value as? [String:Any]
+            for snap in snapshot! {
+                playerKeys.append(snap.key)
+            }
+            FIRDatabase.database().reference().child("teams").observeSingleEvent(of: .value, with: { snapshot in
+                let snapshot = snapshot.value as? [String:Any]
+                for snap in snapshot! {
+                    teamKeys.append(snap.key)
+                }
+                FIRDatabase.database().reference().child("games").observeSingleEvent(of: .value, with: { snapshot in
+                    let snapshot = snapshot.value as? [String:Any]
+                    for snap in snapshot! {
+                        gameKeys.append(snap.key)
+                    }
+                })
+            })
+        })
     }
     
     

@@ -13,7 +13,6 @@ import Foundation
  class Game {
 
     let id: String
-    var location: Location?
     var players: [Player]?
     var date: String //TODO: change to NSDate
     var sport: Sport?
@@ -40,7 +39,7 @@ import Foundation
         self.name = dict["name"] as? String
         self.success = dict["success"] as? Bool ?? false //TODO: Should we be defaulting to false?
         self.over = dict["over"] as? Bool ?? false //TODO: Should we ve defaulting to false?
-        self.admin = FirebaseClient.getAdminFor(gameId: self.id) //TODO: should we make two seperate API Calls for admin and location?
+        self.admin = FirebaseClient.getAdminFor(gameId: self.id) 
         
         guard let gameStateString = dict["gameState"] as? String
             , let gameState = GameState(rawValue: gameStateString) else { return nil }
