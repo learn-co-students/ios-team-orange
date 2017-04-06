@@ -62,7 +62,9 @@ class MapViewController: UIViewController {
     
     func goToLoginScreen() {
         let loginScreen = LoginViewController()
-        self.navigationController?.pushViewController(loginScreen, animated: false)
+        loginScreen.modalPresentationStyle = .overCurrentContext
+        self.present(loginScreen, animated: true, completion: nil)
+
     }
 }
 
