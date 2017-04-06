@@ -11,43 +11,40 @@
 import Foundation
 
 
-class User { 
+class Player {
     
-
-    var userName: String
-    var profPic: String?
+    var name: String?
+    var image: String?
+    var imageUrlString: String?
     var gender: Gender?
     let birthDate: String?
     var homeTown: String?
     var zipCode: Int
     var favSport: Sport?
     var homeField: Location?
-    var favLocations: [Location]?
-    var friends: [User]?
+    var friends: [Player]?
     var teams: [Team]?
     var games: [Game]?
+    var id: String
     
-    init?(userDict: [String:Any]) {
-        guard let userName = userDict["userName"] as? String else {print("Username not valid"); return nil}
-        self.userName = userName
-        
-        self.profPic = userDict["profPic"] as? String ?? "Profile pic URL not valid"
-        
-        guard let gender = userDict["gender"] as? Gender else {print("Gender not valid");return nil}
-        self.gender = gender
-        
-        self.birthDate = userDict["birthDate"] as? String ?? "Birthdate not valid"
-        
-        guard let homeTown = userDict["homeTown"] as? String else {print("Hometown not valid");return nil}
-        self.homeTown = homeTown
-        
-        self.zipCode = userDict["zipCode"] as? Int ?? 0
-        
-        guard let favSport = userDict["favSport"] as? Sport else {print("Favorite sport not found"); return nil}
-        self.favSport = favSport
-        
-        self.homeField = userDict["homeField"] as? Location ?? nil
+    init(id: String, dict: [String:Any]) {
+        self.id = id
+        self.name = dict["name"] as? String
+        self.image = dict["profPic"] as? String ?? "Profile pic URL not valid"
+        self.gender = dict["gender"] as? Gender
+        self.birthDate = dict["birthDate"] as? String ?? "Birthdate not valid"
+        self.homeTown = dict["homeTown"] as? String
+        self.zipCode = dict["zipCode"] as? Int ?? 0
+        self.favSport = dict["favSport"] as? Sport
+        self.homeField = dict["homeField"] as? Location ?? nil
     }
+}
 
+extension Player: CustomStringConvertible {
+    
+    var description: String {
+        return "ID: \(self.id) with name of: \(self.name)\n"
+    }
+    
 }
 

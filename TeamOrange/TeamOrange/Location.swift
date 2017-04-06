@@ -17,7 +17,7 @@ class Location: NSObject {
     let name: String
     var games: [Game]?
     let address: String
-    var users:[User]?
+    var users:[Player]?
     
     init?(id: String, dict: [String: Any]) {
         self.id = id

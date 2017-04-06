@@ -13,14 +13,13 @@ import Foundation
  class Game {
 
     let id: String
-    var location: Location
-    var players: [User]?
+    var players: [Player]?
     var date: String //TODO: change to NSDate
     var sport: Sport?
     var name: String?
     var success: Bool?
     var over: Bool?
-    let admin: User
+    let admin: Player
     let state: GameState?
     
     var numPlayers: Int? {
@@ -28,29 +27,28 @@ import Foundation
         return players.count
     }
     
-    //TODO: Make 
-    init?(id: String, dict: [String:Any]) {
+    init(id: String, dict: [String:Any]) {
         self.id = id
-        self.location = FirebaseClient.getLocationFor(gameId: id)
         self.date = dict["date"] as? String ?? ""
-        
-        guard let sportString = dict["sport"] as? String
-            , let sport = Sport(rawValue: sportString) else { return nil}
-        self.sport = sport
-        
+        self.sport = dict ["sport"] as? Sport
         self.name = dict["name"] as? String
         self.success = dict["success"] as? Bool ?? false //TODO: Should we be defaulting to false?
         self.over = dict["over"] as? Bool ?? false //TODO: Should we ve defaulting to false?
-        self.admin = FirebaseClient.getAdminFor(gameId: self.id) //TODO: should we make two seperate API Calls for admin and location?
-        
-        guard let gameStateString = dict["gameState"] as? String
-            , let gameState = GameState(rawValue: gameStateString) else { return nil }
-        self.state = gameState
+        self.admin = FirebaseClient.getAdminFor(gameId: self.id)
+        self.state = dict["gameState"] as? GameState
     }
     
     func getPlayers() {
-        self.players = FirebaseClient.getUsersFor(gameId: self.id)
+        self.players = FirebaseClient.getPlayersFor(gameId: self.id)
     }
     
  }
+
+extension Game: CustomStringConvertible {
+    
+    var description: String {
+        return "game: \(self.name)"
+    }
+    
+}
 
