@@ -17,36 +17,12 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.buildButton()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    func buildButton() {
-        self.view.addSubview(self.button)
-        self.button.translatesAutoresizingMaskIntoConstraints = false
-        self.button.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        self.button.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        self.button.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.2).isActive = true
-        self.button.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.3).isActive = true
-        self.button.backgroundColor = UIColor.black
-        self.button.addTarget(self, action: #selector(self.fillDatabase), for: .touchUpInside)
-    }
-    
-    
-    func fillDatabase() {
-        FirebaseClient.fillDatabase()
-    }
-    
-    func getData() {
-        FirebaseClient.getGamesWith(name: "Game 5", completion: { games in
-            print(games)
-        })
-    }
-    
     
     /*
      // MARK: - Navigation
