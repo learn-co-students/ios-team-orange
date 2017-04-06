@@ -61,9 +61,7 @@ class MapViewController: UIViewController {
     }
     
     func goToLoginScreen() {
-        FirebaseClient.getArrayOf2(.games, playerId: "-Kh2WlizyeXGe_2Wr9NE") { games in
-            print(games)
-        }
+        FirebaseClient.getArrayOf3(.games, category2: .players, withId: "-Kh2Wlj2YTiXwwUs8kQ4") { print($0) }
         
 //        let loginScreen = LoginViewController()
 //        loginScreen.modalPresentationStyle = .overCurrentContext

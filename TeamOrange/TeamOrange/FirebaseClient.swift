@@ -11,7 +11,7 @@ import FirebaseDatabase
 
 class FirebaseClient {
     
-//MARK: Create new model in database
+    //MARK: Create new model in database
     
     class func createPlayer(with playerInfo: [String:Any] ) {
         FIRDatabase.database().reference().child("players").childByAutoId().setValue(playerInfo)
@@ -24,9 +24,9 @@ class FirebaseClient {
     class func createTeam(with teamInfo: [String:Any]) {
         FIRDatabase.database().reference().child("teams").childByAutoId().setValue(teamInfo)
     }
- 
-//MARK: Look up model with information
-
+    
+    //MARK: Look up model with information
+    
     // Find user by displayName
     class func getPlayersWith(name: String, completion: @escaping ([Player]) -> Void) {
         self.getArrayOf(.players, with: "name", of: name) { (users) in
@@ -62,7 +62,7 @@ class FirebaseClient {
         }
     }
     
-//MARK: Add players to other models
+    //MARK: Add players to other models
     
     // Add team to player & player to team
     class func addPlayer(withId playerId: String, toTeam teamId: String) {
@@ -95,31 +95,31 @@ class FirebaseClient {
         FIRDatabase.database().reference().child("games").child(gameId).child("admins").child(playerId).setValue(true)
     }
     
-//MARK: Everything above this mark is tested and is working
-
-//MARK: Get Info For Player
+    //MARK: Everything above this mark is tested and is working
+    
+    //MARK: Get Info For Player
     
     class func getGamesFor(playerId: String) {
         
     }
     
     class func getTeamsFor(playerId: String) {
-
+        
     }
     
     class func getFriendsFor(playerId: String) {
-
+        
     }
     
     class func getAdminGamesFor(playerId: String) {
-
+        
     }
     
     class func getCaptainedTeamsFor(playerId: String) {
         
     }
     
-//MARK: Get Info For Team
+    //MARK: Get Info For Team
     
     class func getPlayersFor(teamId: String) {
         
@@ -129,7 +129,7 @@ class FirebaseClient {
         
     }
     
-//MARK: Get Info for Game
+    //MARK: Get Info for Game
     
     class func getPlayersFor(gameId: String) {
         
@@ -142,60 +142,49 @@ class FirebaseClient {
 
 extension FirebaseClient {
     
-    
-    class func getArrayOf2(_ category: Category, playerId: String, completion: @escaping ([Any]) -> Void) {
-        var array: [Any] = []
-        FIRDatabase.database().reference().child("players").child(playerId).child("games").observeSingleEvent(of: .value, with: { snapshot in
-            guard let snapshot = snapshot.value as? [String:Any] else { return }
-            let keys = Array(snapshot.keys)
-            for key in keys {
-                FIRDatabase.database().reference().child("games").child(key).observeSingleEvent(of: .value, with: { snapshot in
-                    guard let snapshot = snapshot.value as? [String:Any] else { return }
-                    switch category {
-                    case .players: array.append(Player(id: key, dict: snapshot))
-                    case .teams: array.append(Team(id: key, dict: snapshot))
-                    case .games: array.append(Game(id: key, dict: snapshot))
-                    }
-                    array.append(Game(id: key, dict: snapshot))
-                    if array.count == keys.count { completion(array) }
-                })
-            }
-        })
-    }
-    
     fileprivate class func getArrayOf(_ category: Category, with searchField: String, of value: String, completion: @escaping ([Any]) -> Void) {
-        var dict = [Any]()
-        self.getKeyValuePairs(root: category.rawValue, searchField: searchField, lookupItem: value) { pairs in
-            for pair in pairs {
-                FIRDatabase.database().reference().child(category.rawValue).child(pair.key).observeSingleEvent(of: .value, with: { snapshot in
-                    let id = snapshot.key
-                    if let info = snapshot.value as? [String:Any] {
-                        switch category {
-                        case .players: dict.append(Player(id: id, dict: info))
-                        case .teams: dict.append(Team(id: id, dict: info))
-                        case .games: dict.append(Game(id: id, dict: info))
-                        }
-                        if dict.count == pairs.count {
-                            completion(dict)
-                        }
-                    }
-                })
-            }
+        self.getKeys(for: category.rawValue, with: searchField, of: value) { keys in
+            self.buildArrayOf(category, for: keys) { completion($0) }
         }
     }
     
-    private class func getKeyValuePairs(root: String, searchField: String, lookupItem: String, completion: @escaping ([String:String]) -> Void ) {
-        var dict: [String:String] = [:]
+    
+    private class func getKeys(for root: String, with searchField: String, of lookupItem: String, completion: @escaping ([String]) -> Void ) {
+        var array: [String] = []
         FIRDatabase.database().reference().child(root).observeSingleEvent(of: .value, with: { (snapshot) in
             guard let snapshot = snapshot.value as? [String:Any] else { return }
             snapshot.forEach {
-                let key = $0.key
-                let array = $0.value as? [String:Any]
-                guard let value = array?[searchField] as? String else { return }
-                if value == lookupItem { dict.updateValue(value, forKey: key) }
+                let item = $0.value as? [String:Any]
+                guard let value = item?[searchField] as? String else { return }
+                if value == lookupItem { array.append($0.key) }
             }
-            completion(dict)
+            completion(array)
         })
+    }
+    
+    // get array of games for players with ID
+    class func getArrayOf3(_ category1: Category, category2: Category, withId id: String, completion: @escaping ([Any]) -> Void) {
+        FIRDatabase.database().reference().child(category2.rawValue).child(id).child(category1.rawValue).observeSingleEvent(of: .value, with: { snapshot in
+            guard let snapshot = snapshot.value as? [String:Any] else { return }
+            let keys = Array(snapshot.keys)
+            self.buildArrayOf(category1, for: keys) { completion($0) }
+        })
+    }
+    
+    class func buildArrayOf(_ category: Category, for keys: [String], completion: @escaping ([Any]) -> Void) {
+        var array = [Any]()
+        for key in keys {
+            FIRDatabase.database().reference().child(category.rawValue).child(key).observeSingleEvent(of: .value, with: { snapshot in
+                if let info = snapshot.value as? [String:Any] {
+                    switch category {
+                    case .players: array.append(Player(id: snapshot.key, dict: info))
+                    case .teams: array.append(Team(id: snapshot.key, dict: info))
+                    case .games: array.append(Game(id: snapshot.key, dict: info))
+                    }
+                    if array.count == keys.count { completion(array) }
+                }
+            })
+        }
     }
 }
 
