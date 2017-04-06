@@ -15,7 +15,7 @@ class MapKitClient{
 }
 
 protocol MapUpdater: CLLocationManagerDelegate, MKMapViewDelegate {
-    weak var mapView: MKMapView! {get set}
+    weak var mapView: MKMapView! {get}
     
 }
 

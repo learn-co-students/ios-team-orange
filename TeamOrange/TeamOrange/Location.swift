@@ -6,7 +6,7 @@
 ////  Copyright © 2017 William Brancato. All rights reserved.
 ////
 
-/*
+
 import Foundation
 import MapKit
 
@@ -17,7 +17,7 @@ class Location: NSObject {
     let name: String
     var games: [Game]?
     let address: String
-    var users:[User]?
+    var users:[Player]?
     
     init?(id: String, dict: [String: Any]) {
         self.id = id
@@ -29,4 +29,4 @@ class Location: NSObject {
         self.longitude = dict["longitude"] as? Double
     }
 }
-*/
+
