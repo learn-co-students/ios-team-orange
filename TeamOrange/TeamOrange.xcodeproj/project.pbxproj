@@ -12,11 +12,10 @@
 		4C885E421E93F3C000B80EA4 /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E411E93F3C000B80EA4 /* Constraints.swift */; };
 		4C885E461E93F99C00B80EA4 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E451E93F99C00B80EA4 /* LoginButton.swift */; };
 		4CE02D271E95A1BD0068190C /* LoginButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE02D261E95A1BD0068190C /* LoginButtonStackView.swift */; };
-		5623484C1E93F9B300F54337 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5623484B1E93F9B300F54337 /* GoogleService-Info.plist */; };
 		5624EFE11E92BBED00BB2662 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5624EFE01E92BBED00BB2662 /* AppDelegate.swift */; };
 		5624EFE91E92BBED00BB2662 /* TeamOrange.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5624EFE71E92BBED00BB2662 /* TeamOrange.xcdatamodeld */; };
 		5624EFEB1E92BBED00BB2662 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5624EFEA1E92BBED00BB2662 /* Assets.xcassets */; };
-		5624EFF71E92BD3D00BB2662 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5624EFF61E92BD3D00BB2662 /* User.swift */; };
+		5624EFF71E92BD3D00BB2662 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5624EFF61E92BD3D00BB2662 /* Player.swift */; };
 		5624EFFA1E92BD7200BB2662 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5624EFF91E92BD7200BB2662 /* Team.swift */; };
 		5624EFFE1E92BD8E00BB2662 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5624EFFD1E92BD8E00BB2662 /* Location.swift */; };
 		5624F0011E92C04B00BB2662 /* Sport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5624F0001E92C04B00BB2662 /* Sport.swift */; };
@@ -39,13 +38,12 @@
 		4C885E411E93F3C000B80EA4 /* Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
 		4C885E451E93F99C00B80EA4 /* LoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
 		4CE02D261E95A1BD0068190C /* LoginButtonStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButtonStackView.swift; sourceTree = "<group>"; };
-		5623484B1E93F9B300F54337 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "TeamOrange/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5624EFDD1E92BBED00BB2662 /* TeamOrange.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeamOrange.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5624EFE01E92BBED00BB2662 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = TeamOrange/AppDelegate.swift; sourceTree = "<group>"; };
 		5624EFE81E92BBED00BB2662 /* TeamOrange.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TeamOrange.xcdatamodel; sourceTree = "<group>"; };
 		5624EFEA1E92BBED00BB2662 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = TeamOrange/Assets.xcassets; sourceTree = "<group>"; };
 		5624EFEF1E92BBED00BB2662 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = TeamOrange/Info.plist; sourceTree = "<group>"; };
-		5624EFF61E92BD3D00BB2662 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = ../User.swift; sourceTree = "<group>"; };
+		5624EFF61E92BD3D00BB2662 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Player.swift; path = ../Player.swift; sourceTree = "<group>"; };
 		5624EFF91E92BD7200BB2662 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		5624EFFD1E92BD8E00BB2662 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		5624F0001E92C04B00BB2662 /* Sport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sport.swift; sourceTree = "<group>"; };
@@ -144,7 +142,7 @@
 				5624F00A1E92F43100BB2662 /* GameState.swift */,
 				5624EFFD1E92BD8E00BB2662 /* Location.swift */,
 				5624EFF91E92BD7200BB2662 /* Team.swift */,
-				5624EFF61E92BD3D00BB2662 /* User.swift */,
+				5624EFF61E92BD3D00BB2662 /* Player.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -345,7 +343,7 @@
 				5624F00D1E92F44400BB2662 /* FirebaseClient.swift in Sources */,
 				5624EFFE1E92BD8E00BB2662 /* Location.swift in Sources */,
 				88798E261E95B60900F5C540 /* MapViewController.swift in Sources */,
-				5624EFF71E92BD3D00BB2662 /* User.swift in Sources */,
+				5624EFF71E92BD3D00BB2662 /* Player.swift in Sources */,
 				4C885E3F1E93EB9700B80EA4 /* LoginController.swift in Sources */,
 				887987ED1E94653000F5C540 /* SearchBarView.swift in Sources */,
 				887987EB1E943DC700F5C540 /* MapSearchView.swift in Sources */,
