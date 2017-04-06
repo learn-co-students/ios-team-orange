@@ -16,8 +16,8 @@ import Foundation
     let id: String
     var name: String?
     var over: Bool?
-    var sport: Sport
-    let state: GameState
+    var sport: Sport? // should not be optional, changing for testing purposes
+    let state: GameState? // should not be optional, changing for testing purposes
     var success: Bool?
     
     var numPlayers: Int? {
@@ -32,17 +32,12 @@ import Foundation
     init(id: String, dict: [String:Any]) {
         self.id = id
         self.date = dict["date"] as? String ?? ""
-        self.sport = dict ["sport"] as! Sport
+        self.sport = dict ["sport"] as? Sport
         self.name = dict["name"] as? String
         self.success = dict["success"] as? Bool ?? false //TODO: Should we be defaulting to false?
         self.over = dict["over"] as? Bool ?? false //TODO: Should we ve defaulting to false?
-        self.state = dict["gameState"] as! GameState
+        self.state = dict["gameState"] as? GameState
     }
-    
-    func getPlayers() {
-        self.players = FirebaseClient.getPlayersFor(gameId: self.id)
-    }
-    
  }
 
 extension Game: CustomStringConvertible {

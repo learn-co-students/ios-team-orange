@@ -61,9 +61,13 @@ class MapViewController: UIViewController {
     }
     
     func goToLoginScreen() {
-        let loginScreen = LoginViewController()
-        loginScreen.modalPresentationStyle = .overCurrentContext
-        self.present(loginScreen, animated: true, completion: nil)
+        FirebaseClient.getArrayOf2(.games, playerId: "-Kh2WlizyeXGe_2Wr9NE") { games in
+            print(games)
+        }
+        
+//        let loginScreen = LoginViewController()
+//        loginScreen.modalPresentationStyle = .overCurrentContext
+//        self.present(loginScreen, animated: true, completion: nil)
 
     }
 }
