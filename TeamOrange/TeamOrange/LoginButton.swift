@@ -13,7 +13,7 @@ class LoginButton: UIButton {
     
     let buttonImageView = UIImageView()
     
-    init(title: String, image: UIImage, backgroundColor: UIColor) {
+    init(title: String, image: UIImage?, backgroundColor: UIColor) {
         super.init(frame: CGRect.zero)
         self.backgroundColor = backgroundColor
         self.buttonImageView.image = image
@@ -26,7 +26,7 @@ class LoginButton: UIButton {
     }
     
     func pressed() {
-        
+        print("Login button pressed")
     }
     
     func buttonImageConstraint() {

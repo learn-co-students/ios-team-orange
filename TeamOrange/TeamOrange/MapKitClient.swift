@@ -5,7 +5,7 @@
 //  Created by Edmund Holderbaum on 4/4/17.
 //  Copyright © 2017 William Brancato. All rights reserved.
 //
-
+/*
 import Foundation
 import MapKit
 import CoreLocation
@@ -92,5 +92,7 @@ extension Location: MKAnnotation{
         return CLLocationCoordinate2D(latitude: lat, longitude: long)
     }
 */
+    
 }
 
+*/

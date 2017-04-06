@@ -11,6 +11,7 @@
 		4C885E3F1E93EB9700B80EA4 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E3E1E93EB9700B80EA4 /* LoginController.swift */; };
 		4C885E421E93F3C000B80EA4 /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E411E93F3C000B80EA4 /* Constraints.swift */; };
 		4C885E461E93F99C00B80EA4 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E451E93F99C00B80EA4 /* LoginButton.swift */; };
+		4CE02D271E95A1BD0068190C /* LoginButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE02D261E95A1BD0068190C /* LoginButtonStackView.swift */; };
 		5623484C1E93F9B300F54337 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5623484B1E93F9B300F54337 /* GoogleService-Info.plist */; };
 		5624EFE11E92BBED00BB2662 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5624EFE01E92BBED00BB2662 /* AppDelegate.swift */; };
 		5624EFE91E92BBED00BB2662 /* TeamOrange.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5624EFE71E92BBED00BB2662 /* TeamOrange.xcdatamodeld */; };
@@ -32,6 +33,7 @@
 		4C885E3E1E93EB9700B80EA4 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		4C885E411E93F3C000B80EA4 /* Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
 		4C885E451E93F99C00B80EA4 /* LoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
+		4CE02D261E95A1BD0068190C /* LoginButtonStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButtonStackView.swift; sourceTree = "<group>"; };
 		5623484B1E93F9B300F54337 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "TeamOrange/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5624EFDD1E92BBED00BB2662 /* TeamOrange.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeamOrange.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5624EFE01E92BBED00BB2662 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = TeamOrange/AppDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				4C885E451E93F99C00B80EA4 /* LoginButton.swift */,
+				4CE02D261E95A1BD0068190C /* LoginButtonStackView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				5624F0031E92C58900BB2662 /* Gender.swift in Sources */,
 				5624EFE11E92BBED00BB2662 /* AppDelegate.swift in Sources */,
 				5624F00B1E92F43100BB2662 /* GameState.swift in Sources */,
+				4CE02D271E95A1BD0068190C /* LoginButtonStackView.swift in Sources */,
 				5624F00D1E92F44400BB2662 /* FirebaseClient.swift in Sources */,
 				5624EFFE1E92BD8E00BB2662 /* Location.swift in Sources */,
 				5624EFF71E92BD3D00BB2662 /* User.swift in Sources */,
