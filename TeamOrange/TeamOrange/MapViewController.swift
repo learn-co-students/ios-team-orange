@@ -13,6 +13,7 @@ import CoreLocation
 class MapViewController: UIViewController {
     
     lazy var mainView: MapSearchView = MapSearchView()
+    let loginButton = UIButton()
     
     override func loadView() {
         super.loadView()
@@ -26,6 +27,15 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "Huddle"
+        
+        // set the nav bar to clear
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
+        
+        self.buildLoginButton()
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -35,8 +45,24 @@ class MapViewController: UIViewController {
     }
 
     func searchButtonClicked() {
-        print ("yo")
         self.mainView.animateSearchBar()
+    }
+    
+    func buildLoginButton() {
+        self.view.addSubview(loginButton)
+        self.loginButton.translatesAutoresizingMaskIntoConstraints = false
+        self.loginButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20).isActive = true
+        self.loginButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20).isActive = true
+        self.loginButton.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05).isActive = true
+        self.loginButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.2).isActive = true
+        self.loginButton.backgroundColor = UIColor.red
+        self.loginButton.setTitle("Login", for: .normal)
+        self.loginButton.addTarget(self, action: #selector(self.goToLoginScreen), for: .touchUpInside)
+    }
+    
+    func goToLoginScreen() {
+        let loginScreen = LoginViewController()
+        self.navigationController?.pushViewController(loginScreen, animated: false)
     }
 }
 
@@ -59,6 +85,8 @@ extension MapViewController: UITextFieldDelegate{
         return true
     }
 }
+
+
 
 //extension ViewController: UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
 //    

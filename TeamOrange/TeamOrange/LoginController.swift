@@ -17,14 +17,9 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 50))
-        let navItem = UINavigationItem(title: "Sign In")
+        self.view.backgroundColor = UIColor.white
         
         let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(self.donePressed))
-        navItem.rightBarButtonItem = doneItem
-        
-        navBar.setItems([navItem], animated: false)
         
         let loginWtihLabel = UILabel()
         loginWtihLabel.font = UIFont(name: loginWtihLabel.font.fontName, size: 25)
@@ -36,7 +31,6 @@ class LoginViewController: UIViewController {
         let twitterLoginBtn = LoginButton(title: "t", image: nil, backgroundColor: .cyan)
         let gmailBtn = LoginButton(title: "G", image: nil, backgroundColor: .red)
         
-        self.view.addSubview(navBar)
         self.view.addSubview(loginWtihLabel)
         self.view.addSubview(facebookLoginBtn)
         self.view.addSubview(twitterLoginBtn)
