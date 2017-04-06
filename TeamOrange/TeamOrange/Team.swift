@@ -12,28 +12,24 @@ import UIKit
 
 
 class Team {
-    let id: String
-    var name: String
-    var players: [Player]?
-    var image: UIImage?
-    var imageUrlString: String?
-    weak var homeField: Location?
-    var numberGamesPlayed: Int
-    //TODO: compute successful & unsuccessful games from this property
-    weak var captain: Player?
-    var coCaptains: [Player]?
+    
     var color: UIColor?
+    var homeField: String?
+    let id: String
+    var imageUrlString: String?
+    var image: UIImage?
+    var name: String
+    
+    // Arrays not created at initialization
+    var captain: [Player]?
+    var players: [Player]?
     
     init(id: String, dict: [String: Any]) {
         self.id = id
+        self.color = dict["color"] as? UIColor
+        self.homeField = dict["homeField"] as? String
+        self.imageUrlString = dict["imageUrlString"] as? String
         self.name = dict["name"] as? String ?? ""
-        self.players =  dict["players"] as? [Player] ?? nil
-        self.imageUrlString = dict["profPic"] as? String ?? nil
-        if let games = dict["game"] as? [String : Any] {
-            numberGamesPlayed = games.count
-        } else {numberGamesPlayed = 0}
-        self.captain = dict["captain"] as? Player
-        color = dict["color"] as? UIColor
     }
 }
 

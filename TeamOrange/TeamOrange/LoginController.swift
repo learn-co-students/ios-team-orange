@@ -18,7 +18,6 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.white
-        
         let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(self.donePressed))
         
         let loginWtihLabel = UILabel()
