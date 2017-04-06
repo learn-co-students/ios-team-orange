@@ -83,13 +83,13 @@ class FirebaseClient {
     
     // Add captain (player) to team and team to captain (player)
     class func addCaptain(withId playerId: String, toTeam teamId: String) {
-        FIRDatabase.database().reference().child("players").child(playerId).child("captainOfTeams").child(teamId).setValue(true)
+        FIRDatabase.database().reference().child("players").child(playerId).child("captainOf").child(teamId).setValue(true)
         FIRDatabase.database().reference().child("teams").child(teamId).child("captains").child(playerId).setValue(true)
     }
     
     // Add admin (player) to game and game to admin (player)
     class func addAdmin(withId playerId: String, toGame gameId: String) {
-        FIRDatabase.database().reference().child("players").child(playerId).child("adminOfGames").child(gameId).setValue(true)
+        FIRDatabase.database().reference().child("players").child(playerId).child("adminOf").child(gameId).setValue(true)
         FIRDatabase.database().reference().child("games").child(gameId).child("admins").child(playerId).setValue(true)
     }
     
@@ -274,7 +274,5 @@ extension FirebaseClient {
         })
         
     }
-
-    
 }
 

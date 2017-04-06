@@ -33,7 +33,7 @@ class LoginViewController: UIViewController {
         self.button.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.2).isActive = true
         self.button.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.3).isActive = true
         self.button.backgroundColor = UIColor.black
-        self.button.addTarget(self, action: #selector(self.getData), for: .touchUpInside)
+        self.button.addTarget(self, action: #selector(self.fillDatabase), for: .touchUpInside)
     }
     
     
