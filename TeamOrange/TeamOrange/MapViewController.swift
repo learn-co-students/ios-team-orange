@@ -19,17 +19,21 @@ class MapViewController: UIViewController {
     override func loadView() {
         super.loadView()
         self.view = mainView
-        self.mainView.searchButton.addTarget(self, action: #selector(searchButtonClicked), for: .touchUpInside)
+        self.mainView.mapView.delegate = self
+        self.mainView.mapView.setUserTrackingMode(.follow, animated: true)
+        
+        self.mainView.centerMapButton.addTarget(self, action: #selector(centerMapButtonClicked), for: .touchUpInside)
+        self.mainView.searchButton.addTarget(self, action: #selector(searchBarButtonClicked), for: .touchUpInside)
+        self.mainView.searchBarView.cancelButton.addTarget(self, action: #selector(searchBarButtonClicked), for: .touchUpInside)
+        self.mainView.searchBarView.searchBar.addTarget(self, action: #selector(searchLocationButtonClicked), for: .touchUpInside)
         mainView.searchBarView.searchBar.delegate = self
-//        mainView.searchTable.delegate = self
-//        mainView.searchTable.dataSource = self
-        //mainView.searchTable.register(SearchCell.self, forCellReuseIdentifier: "SearchCell")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Huddle"
-        
+        let sportsButton = UIBarButtonItem(title: "Sports", style: .plain, target: self, action: #selector(goToSportsPicker) )
+        self.navigationItem.setRightBarButton(sportsButton, animated: false)
         // set the nav bar to clear
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -44,8 +48,14 @@ class MapViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    func searchButtonClicked() {
+    
+    func centerMapButtonClicked(){
+        if self.mainView.mapView.userTrackingMode == .none {
+            self.mainView.mapView.userTrackingMode = .follow
+        }
+    }
+    
+    func searchBarButtonClicked() {
         self.mainView.animateSearchBar()
     }
     
@@ -66,44 +76,110 @@ class MapViewController: UIViewController {
         loginScreen.modalPresentationStyle = .overCurrentContext
         self.present(loginScreen, animated: true, completion: nil)
     }
+    
+    func goToSportsPicker() {
+        //TODO: implement sports picker view
+    }
 }
+
+extension MapViewController: CLLocationManagerDelegate, MKMapViewDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard self.mainView.mapView.userTrackingMode == .follow else {return}
+        if let clLoc = locations.last {
+            let center = clLoc.coordinate
+            let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+            let region = MKCoordinateRegion.init(center: center, span: span)
+            self.mainView.mapView.setRegion(region, animated: true)
+        }
+    }
+    
+    func mapViewWillStartRenderingMap(_ mapView: MKMapView) {
+        //probably where we will be loading games / locations
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let identifier = "Location"
+        if annotation is Location { // will only fire off for a Location
+            //this will display a standard apple annotation.
+            //add a custom annotation view here later.
+            
+            var annotationView: MKPinAnnotationView
+            
+            if let rawAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView {
+                annotationView = rawAnnotationView
+                annotationView.annotation = annotation
+            } else {
+                //this part adds an annotation view if one hasnt been dequeued for this location
+                annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                annotationView.canShowCallout = true
+                let btn = UIButton(type: .detailDisclosure)
+                //this button will call calloutAccessoryTapped
+                annotationView.rightCalloutAccessoryView = btn
+            }
+            
+           
+           
+            return annotationView
+        }
+        return nil
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        guard let location = view.annotation as? Location else { return }
+        
+        //this part gets some basic data from the location.
+        let locationName = location.name
+        var gamesString = "No game data for this location"
+        if let games = location.games?.count {
+            if games == 1 { gamesString = "One game at this location." }
+            else { gamesString = "\(games) games at this location." }
+        }//fallthrough to default gamesString if location.games == nil
+        
+        //present an alert controller with the name and message from above
+        //replace this with a different action once UI is built
+        let ac = UIAlertController(title: locationName, message: gamesString, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
+    }
+}
+
 
 extension MapViewController: UITextFieldDelegate{
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.returnKeyType = .search
     }
     
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//
-//        textFieldShouldHide(textField)
-//        return
-//    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        guard textField.text != "" else {
+        guard let text = textField.text, text != "" else {
+            searchBarButtonClicked()
             return false
         }
+        //WARNING: for right now this only seaches within the area that the map is currently showing.
+        
+        MapKitClient.requestMapSearch(with: text, within: mainView.mapView.region, completion: { locations in
+            DispatchQueue.main.async {
+                if locations.count > 0{
+                    //need to figure out stuff to do here, this is just testing purposes for right now
+                    self.mainView.mapView.addAnnotations(locations)
+                    NSLog("%@", "successfully found Locations")
+                } else {
+                    //probably throw out an alert view or something...
+                    NSLog("%@", "failed to find locations")
+                }
+            }
+        })
+        textField.text = ""
         textField.endEditing(true)
+        searchBarButtonClicked()
         return true
+    }
+    
+    func searchLocationButtonClicked(){
+        _ = self.textFieldShouldReturn(self.mainView.searchBarView.searchBar)
     }
 }
 
 
 
-//extension ViewController: UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
-//    
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 1
-//    }
-//    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = mainView.searchTable.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath) as! SearchCell
-//        cell.searchBar.delegate = self
-//        return cell
-//    }
-//    
-//    func textFieldDidBeginEditing(_ textField: UITextField) {
-//        mainView.searchTable.setEditing(true, animated: false)
-//    }
-//}
+
 

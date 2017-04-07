@@ -9,7 +9,9 @@
 import Foundation
 import FirebaseDatabase
 
-class InsertToFirebase {
+final class InsertToFirebase {
+    
+    private init() { }
     
 //MARK: Create new model in database
     

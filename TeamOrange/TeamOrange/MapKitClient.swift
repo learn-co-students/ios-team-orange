@@ -2,97 +2,73 @@
 //  MapKitClient.swift
 //  TeamOrange
 //
-//  Created by Edmund Holderbaum on 4/4/17.
+//  Created by Edmund Holderbaum on 4/6/17.
 //  Copyright © 2017 William Brancato. All rights reserved.
 //
-/*
+
 import Foundation
 import MapKit
 import CoreLocation
 
-class MapKitClient{
+final class MapKitClient {
     
-}
-
-protocol MapUpdater: CLLocationManagerDelegate, MKMapViewDelegate {
-    weak var mapView: MKMapView! {get}
+    weak var mapView: MKMapView?
+    private static var client = MapKitClient()
     
-}
-
-extension MapUpdater{
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let clLoc = locations.last {
-            let center = clLoc.coordinate
-            let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-            let region = MKCoordinateRegion.init(center: center, span: span)
-            mapView.setRegion(region, animated: true)
-        }
-    }
+    private init(){}
     
-    func mapViewWillStartRenderingMap(_ mapView: MKMapView) {
-        
-    }
-/*
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        let identifier = "Location"
-        if annotation is Location{ // will only fire off for a Location
-            //this will display a standard apple annotation.
-            //add a custom annotation view here later.
-            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as! MKPinAnnotationView
-            if annotationView.annotation == nil{
-                //this part adds an annotation view if one hasnt been dequeued for this location
-                annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-                annotationView.canShowCallout = true
-                let btn = UIButton(type: .detailDisclosure)
-                //this button will call calloutAccessoryTapped
-                annotationView.rightCalloutAccessoryView = btn
-            }else{
-                //if view for this location has been dequeued, show the annotation
-                annotationView.annotation = annotation
+    class func requestMapSearch (with text: String, within region: MKCoordinateRegion, completion: @escaping ([Location])->()) {
+        guard let mapView = client.mapView else {return}
+        let searchRequest = MKLocalSearchRequest()
+        //set search request and region for search to those received from origin
+        //we may be able to set region by converting from search radius miles to lat & long coordinate
+        searchRequest.naturalLanguageQuery = text
+        searchRequest.region = region
+        let searchProcess = MKLocalSearch(request: searchRequest)
+        searchProcess.start(completionHandler: {response, error in
+            if let response = response {
+                //unwrap the response
+                NSLog("%@", "got response, locations found")
+                var locations = [Location]()
+                response.mapItems.forEach({ mapItem in
+                    //loop over each map item in the response
+                    NSLog("%@", mapItem.name ?? "No location/name",mapItem.placemark.coordinate.latitude, ",", mapItem.placemark.coordinate.longitude)
+                    if let location = Location(id: "nil", dict: mapItem.makeDict()){
+                        NSLog("%@", "location made ",location.name, "-", location.latitude ?? "err", ",", location.longitude ?? "err")
+                        locations.append(location)
+                        //mapView.addAnnotation(location)
+                    }//map items are converted to our Location type and added in to the map directly
+                })
+                NSLog("%@","calling completion")
+                //then call completion with true 
+                completion(locations)
+            } else if response == nil {
+                NSLog("%@","got response, no locations found")
+                completion([])
+                //i have added a false completion so user can be notified that their search turned up nothing
             }
-            return annotationView
-        }
-        return nil
+            else {
+                NSLog("%@", "no response")
+                completion([])
+            }
+        })
     }
     
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        guard let location = view.annotation as? Location else { return }
-        
-        //this part gets some basic data from the location. 
-        let locationName = location.name
-        var gamesString = "No game data for this location"
-        if let games = location.games?.count {
-            if games == 1 { gamesString = "One game at this location." }
-            else { gamesString = "\(games) games at this location." }
-        }//fallthrough to default gamesString if location.games == nil
-        
-        //present an alert controller with the name and message from above
-        //replace this with a different action once UI is built
-        let ac = UIAlertController(title: locationName, message: gamesString, preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .default))
-    }
-}
-
-extension FirebaseClient {
-    
-    class func getLocationsFor(fromLatitude: Double, toLatitude: Double, fromLongitude: Double, toLonglogitude: Double) -> [Location]{
-        //this function should get ALL data for the location so that it can be displayed to the user in info views
-        return [Location]()
+    class func setMap(to mapView: MKMapView){
+        client.mapView = mapView
     }
     
 }
 
-
-extension Location: MKAnnotation{
-    public var coordinate: CLLocationCoordinate2D{
-        guard let lat = latitude, let long = longitude else{
-            NSLog("%@", "(Location): Error creating annotation, latitude and longitude empty")
-            return CLLocationCoordinate2D(latitude: 180, longitude: 180)
-        }
-        return CLLocationCoordinate2D(latitude: lat, longitude: long)
+extension MKMapItem{
+    func makeDict()->[String:Any]{
+        let dict = [
+            "name" : self.name ?? "unnamed location" ,
+            "address" : "none given",
+            "latitude" : self.placemark.coordinate.latitude,
+            "longitude" : self.placemark.coordinate.longitude
+        ] as [String : Any]
+        print (dict)
+        return dict
     }
-*/
-    
 }
-
-*/

@@ -38,17 +38,17 @@ class SearchBarView: UIView {
             view.backgroundColor = UIColor.lightGray
         })
         
-        searchBar.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.75).isActive = true
+        searchBar.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
         searchBar.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         
-        okButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.125).isActive = true
+        okButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.1).isActive = true
         okButtonConstraint = NSLayoutConstraint(item: okButton, attribute: .trailing, relatedBy: .equal, toItem: searchBar, attribute: .leading, multiplier: 1, constant: 50)
         self.addConstraint(okButtonConstraint)
         self.insertSubview(okButton, belowSubview: searchBar)
         okButton.backgroundColor = UIColor.green
         okButton.setTitle("-O", for: .normal)
         
-        cancelButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.125).isActive = true
+        cancelButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.1).isActive = true
         cancelButtonConstraint = NSLayoutConstraint(item: cancelButton, attribute: .leading, relatedBy: .equal, toItem: searchBar, attribute: .trailing, multiplier: 1, constant: -50)
         self.addConstraint(cancelButtonConstraint)
         self.insertSubview(cancelButton, belowSubview: searchBar)

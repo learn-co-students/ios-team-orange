@@ -10,12 +10,13 @@ import Foundation
 import CoreLocation
 
 final class CoreLocClient{
-    static let client = CoreLocClient()
+    private static let client = CoreLocClient()
     
     private var manager: CLLocationManager
     private var authStatus: CLAuthorizationStatus
     private var enabled: Bool
     weak var delegate: CLLocationManagerDelegate?
+    
     var authorized: Bool {
         let always = authStatus == .authorizedAlways
         let whenInUse = authStatus == .authorizedWhenInUse
@@ -30,10 +31,9 @@ final class CoreLocClient{
         manager.startUpdatingLocation()
     }
     
-    func authCheckRequest(){
-        if authorized && enabled {return}
-        let request = CLLocationManager.requestWhenInUseAuthorization(manager)
-        request()
+    class func authCheckRequest(){
+        if client.authorized && client.enabled {return}
+        self.client.manager.requestWhenInUseAuthorization()
     }
     
 }

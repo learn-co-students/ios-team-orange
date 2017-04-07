@@ -1,10 +1,10 @@
-////
-////  Location.swift
-////  TeamOrange
-////
-////  Created by William Brancato on 4/3/17.
-////  Copyright © 2017 William Brancato. All rights reserved.
-////
+//
+//  Location.swift
+//  TeamOrange
+//
+//  Created by William Brancato on 4/3/17.
+//  Copyright © 2017 William Brancato. All rights reserved.
+//
 
 
 import Foundation
@@ -28,5 +28,20 @@ class Location: NSObject {
         self.latitude = dict["latitude"] as? Double
         self.longitude = dict["longitude"] as? Double
     }
+}
+
+extension Location: MKAnnotation{
+    public var coordinate: CLLocationCoordinate2D{
+        guard let lat = latitude, let long = longitude else{
+            NSLog("%@", "(Location): Error creating annotation, latitude and longitude empty")
+            return CLLocationCoordinate2D(latitude: 180, longitude: 180)
+        }
+        return CLLocationCoordinate2D(latitude: lat, longitude: long)
+    }
+    
+    public var title: String?{
+        return name
+    }
+    
 }
 

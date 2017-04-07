@@ -13,8 +13,8 @@ enum Sport: String {
     
     static let allSports:[Sport] = [.baseball, .basketball]
     
-    case baseball = "baseball"
-    case basketball = "handball"
+    case baseball
+    case basketball
     
 }
 
