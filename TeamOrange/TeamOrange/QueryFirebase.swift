@@ -80,8 +80,8 @@ class QueryFirebase {
     
     // Get teams a player is a captain of
     class func forCaptainedTeamsFor(playerId: String, completion: @escaping ([Team]) -> Void) {
-        self.getArrayOf(.captainedTeams, from: .players, withId: playerId) { (captainnedTeams) in
-            if let captainnedTeams = captainnedTeams as? [Team] { completion(captainnedTeams) }
+        self.getArrayOf(.captainedTeams, from: .players, withId: playerId) { (captainedTeams) in
+            if let captainedTeams = captainedTeams as? [Team] { completion(captainedTeams) }
         }
     }
     
