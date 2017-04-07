@@ -26,6 +26,7 @@ class MapSearchView: UIView {
     override init(frame: CGRect){
         super.init(frame: frame)
         self.commonInit()
+        MapKitClient.setMap(to: mapView)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -33,12 +34,7 @@ class MapSearchView: UIView {
     }
     
     func commonInit(){
-        self.addSubview(mapView)
-        mapView.translatesAutoresizingMaskIntoConstraints = false
-        mapView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        mapView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        mapView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        mapView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        mapView.addAndConstrainToEdges(of: self)
         
         self.addSubview(searchButton)
         searchButton.translatesAutoresizingMaskIntoConstraints = false

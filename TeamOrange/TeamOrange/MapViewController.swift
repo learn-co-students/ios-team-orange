@@ -22,8 +22,9 @@ class MapViewController: UIViewController {
         self.mainView.mapView.setUserTrackingMode(.follow, animated: true)
         
         self.mainView.centerMapButton.addTarget(self, action: #selector(centerMapButtonClicked), for: .touchUpInside)
-        self.mainView.searchButton.addTarget(self, action: #selector(searchButtonClicked), for: .touchUpInside)
-        self.mainView.searchBarView.cancelButton.addTarget(self, action: #selector(searchButtonClicked), for: .touchUpInside)
+        self.mainView.searchButton.addTarget(self, action: #selector(searchBarButtonClicked), for: .touchUpInside)
+        self.mainView.searchBarView.cancelButton.addTarget(self, action: #selector(searchBarButtonClicked), for: .touchUpInside)
+        self.mainView.searchBarView.searchBar.addTarget(self, action: #selector(searchLocationButtonClicked), for: .touchUpInside)
         mainView.searchBarView.searchBar.delegate = self
     }
     
@@ -48,14 +49,12 @@ class MapViewController: UIViewController {
     }
     
     func centerMapButtonClicked(){
-        if self.mainView.mapView.userTrackingMode == .follow {
-            self.mainView.mapView.userTrackingMode = .none
-        } else if self.mainView.mapView.userTrackingMode == .none {
+        if self.mainView.mapView.userTrackingMode == .none {
             self.mainView.mapView.userTrackingMode = .follow
         }
     }
     
-    func searchButtonClicked() {
+    func searchBarButtonClicked() {
         self.mainView.animateSearchBar()
     }
     
@@ -95,7 +94,7 @@ extension MapViewController: CLLocationManagerDelegate, MKMapViewDelegate {
     }
     
     func mapViewWillStartRenderingMap(_ mapView: MKMapView) {
-        
+        //probably where we will be loading games / locations
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -146,14 +145,31 @@ extension MapViewController: UITextFieldDelegate{
     
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        guard textField.text != "" else {
-            searchButtonClicked()
+        guard let text = textField.text, text != "" else {
+            searchBarButtonClicked()
             return false
         }
+        //WARNING: for right now this only seaches within the area that the map is currently showing.
+        
+        MapKitClient.requestMapSearch(with: text, within: mainView.mapView.region, completion: { success in
+            DispatchQueue.main.async {
+                if success{
+                    //need to figure out stuff to do here, this is just testing purposes for right now
+                    NSLog("%@", "successfully found Locations")
+                } else {
+                    //probably throw out an alert view or something...
+                    NSLog("%@", "failed to find locations")
+                }
+            }
+        })
         textField.text = ""
         textField.endEditing(true)
-        searchButtonClicked()
+        searchBarButtonClicked()
         return true
+    }
+    
+    func searchLocationButtonClicked(){
+        _ = self.textFieldShouldReturn(self.mainView.searchBarView.searchBar)
     }
 }
 
