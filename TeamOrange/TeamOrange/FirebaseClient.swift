@@ -98,31 +98,35 @@ class FirebaseClient {
     
 //MARK: Get Info For Player
     
+    // Get games for player
     class func getGamesFor(playerId: String, completion: @escaping ([Game]) -> Void) {
         self.getArrayOf(.games, from: .players, withId: playerId) { (games) in
             if let games = games as? [Game] { completion(games) }
         }
     }
     
+    // Get teams for player
     class func getTeamsFor(playerId: String, completion: @escaping ([Team]) -> Void) {
         self.getArrayOf(.teams, from: .players, withId: playerId) { (teams) in
             if let teams = teams as? [Team] { completion(teams) }
         }
     }
 
+    // Get friends for player
     class func getFriendsFor(playerId: String, completion: @escaping ([Player]) -> Void) {
         self.getArrayOf(.friends, from: .players, withId: playerId) { (friends) in
             if let friends = friends as? [Player] { completion(friends) }
         }
     }
     
-    //TODO: This Does Not Work!
+    // Get games a player is an admin of
     class func getAdminnedGamesFor(playerId: String, completion: @escaping ([Game]) -> Void) {
         self.getArrayOf(.adminnedGames, from: .players, withId: playerId) { (adminnedGames) in
             if let adminnedGames = adminnedGames as? [Game] { completion(adminnedGames) }
         }
     }
-    //TODO: This Does Not Work!
+    
+    // Get teams a player is a captain of
     class func getCaptainedTeamsFor(playerId: String, completion: @escaping ([Team]) -> Void) {
         self.getArrayOf(.captainedTeams, from: .players, withId: playerId) { (captainnedTeams) in
             if let captainnedTeams = captainnedTeams as? [Team] { completion(captainnedTeams) }
@@ -131,12 +135,14 @@ class FirebaseClient {
     
 //MARK: Get Info For Team
     
+    // Get player for team
     class func getPlayersFor(teamId: String, completion: @escaping ([Player]) -> Void) {
         self.getArrayOf(.players, from: .teams, withId: teamId) { (players) in
             if let players = players as? [Player] { completion(players) }
         }
     }
     
+    // Get captains for team
     class func getCaptainsFor(teamId: String, completion: @escaping ([Player]) -> Void) {
         self.getArrayOf(.captains, from: .teams, withId: teamId) { (captains) in
             if let captains = captains as? [Player] { completion(captains) }
@@ -145,12 +151,14 @@ class FirebaseClient {
     
 //MARK: Get Info for Game
     
+    // Get players for game
     class func getPlayersFor(gameId: String, completion: @escaping ([Player]) -> Void) {
         self.getArrayOf(.players, from: .games, withId: gameId) { (players) in
             if let players = players as? [Player] { completion(players) }
         }
     }
     
+    // Get admins for game
     class func getAdminsFor(gameId: String, completion: @escaping ([Player]) -> Void) {
         self.getArrayOf(.admins, from: .games, withId: gameId) { (admins) in
             if let admins = admins as? [Player] { completion(admins) }
@@ -208,6 +216,7 @@ extension FirebaseClient {
     }
 }
 
+/*
 extension FirebaseClient {
     
     class func fillDatabase() {
@@ -304,4 +313,5 @@ extension FirebaseClient {
         
     }
 }
+*/
 
