@@ -17,7 +17,7 @@ final class MapKitClient {
     
     private init(){}
     
-    class func requestMapSearch (with text: String, within region: MKCoordinateRegion, completion: @escaping (Bool)->()) {
+    class func requestMapSearch (with text: String, within region: MKCoordinateRegion, completion: @escaping ([Location])->()) {
         guard let mapView = client.mapView else {return}
         let searchRequest = MKLocalSearchRequest()
         //set search request and region for search to those received from origin
@@ -29,25 +29,27 @@ final class MapKitClient {
             if let response = response {
                 //unwrap the response
                 NSLog("%@", "got response, locations found")
+                var locations = [Location]()
                 response.mapItems.forEach({ mapItem in
                     //loop over each map item in the response
                     NSLog("%@", mapItem.name ?? "No location/name",mapItem.placemark.coordinate.latitude, ",", mapItem.placemark.coordinate.longitude)
                     if let location = Location(id: "nil", dict: mapItem.makeDict()){
                         NSLog("%@", "location made ",location.name, "-", location.latitude ?? "err", ",", location.longitude ?? "err")
+                        locations.append(location)
                         //mapView.addAnnotation(location)
                     }//map items are converted to our Location type and added in to the map directly
                 })
                 NSLog("%@","calling completion")
                 //then call completion with true 
-                completion(true)
+                completion(locations)
             } else if response == nil {
                 NSLog("%@","got response, no locations found")
-                completion(false)
+                completion([])
                 //i have added a false completion so user can be notified that their search turned up nothing
             }
             else {
                 NSLog("%@", "no response")
-                completion(false)
+                completion([])
             }
         })
     }

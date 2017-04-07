@@ -99,21 +99,26 @@ extension MapViewController: CLLocationManagerDelegate, MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let identifier = "Location"
-        if annotation is Location{ // will only fire off for a Location
+        if annotation is Location { // will only fire off for a Location
             //this will display a standard apple annotation.
             //add a custom annotation view here later.
-            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as! MKPinAnnotationView
-            if annotationView.annotation == nil{
+            
+            var annotationView: MKPinAnnotationView
+            
+            if let rawAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView {
+                annotationView = rawAnnotationView
+                annotationView.annotation = annotation
+            } else {
                 //this part adds an annotation view if one hasnt been dequeued for this location
                 annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 annotationView.canShowCallout = true
                 let btn = UIButton(type: .detailDisclosure)
                 //this button will call calloutAccessoryTapped
                 annotationView.rightCalloutAccessoryView = btn
-            }else{
-                //if view for this location has been dequeued, show the annotation
-                annotationView.annotation = annotation
             }
+            
+           
+           
             return annotationView
         }
         return nil
@@ -151,10 +156,11 @@ extension MapViewController: UITextFieldDelegate{
         }
         //WARNING: for right now this only seaches within the area that the map is currently showing.
         
-        MapKitClient.requestMapSearch(with: text, within: mainView.mapView.region, completion: { success in
+        MapKitClient.requestMapSearch(with: text, within: mainView.mapView.region, completion: { locations in
             DispatchQueue.main.async {
-                if success{
+                if locations.count > 0{
                     //need to figure out stuff to do here, this is just testing purposes for right now
+                    self.mainView.mapView.addAnnotations(locations)
                     NSLog("%@", "successfully found Locations")
                 } else {
                     //probably throw out an alert view or something...
