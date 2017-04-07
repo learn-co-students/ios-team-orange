@@ -9,9 +9,9 @@
 import Foundation
 import FirebaseDatabase
 
-class QueryFirebase {
+final class QueryFirebase {
     
-    private init() {}
+    private init() { }
     
 //MARK: Look up model with information
     
@@ -87,7 +87,7 @@ class QueryFirebase {
         }
     }
     
-    //MARK: Get Info For Team
+//MARK: Get Info For Team
     
     // Get player for team
     class func forPlayersOn(team: Team, completion: @escaping ([Player]) -> Void) {
@@ -118,7 +118,6 @@ class QueryFirebase {
             if let admins = admins as? [Player] { completion(admins) }
         }
     }
-    
 }
 
 //MARK: Helper functions
