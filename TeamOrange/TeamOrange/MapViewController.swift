@@ -74,9 +74,9 @@ class MapViewController: UIViewController {
     }
     
     func goToLoginScreen() {
-        let loginScreen = LoginViewController()
+        let loginScreen = SportPickerController()
         loginScreen.modalPresentationStyle = .overCurrentContext
-        self.present(loginScreen, animated: true, completion: nil)
+        self.present(loginScreen, animated: false, completion: nil)
     }
     
     func goToSportsPicker() {

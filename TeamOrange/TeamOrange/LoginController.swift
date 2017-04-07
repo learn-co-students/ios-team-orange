@@ -45,7 +45,7 @@ class LoginViewController: UIViewController {
         self.loginStack.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         self.loginStack.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         self.loginStack.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.60).isActive = true
-        self.loginStack.heightAnchor.constraint(equalTo: self.loginStack.widthAnchor, multiplier: 1/4).isActive = true
+        self.loginStack.heightAnchor.constraint(equalTo: self.loginStack.widthAnchor, multiplier: 1/3).isActive = true
         
         exitBtn.translatesAutoresizingMaskIntoConstraints = false
         exitBtn.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true

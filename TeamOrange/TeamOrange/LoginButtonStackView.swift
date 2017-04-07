@@ -23,7 +23,7 @@ class LoginButtonStackView: UIStackView {
         self.distribution = .fillEqually
         self.buildLoginStack()
         self.alignment = .fill
-        self.spacing = 40
+//        self.spacing = 40
     }
     
     required init(coder: NSCoder) {
