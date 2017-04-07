@@ -12,84 +12,51 @@ import Firebase
 
 class LoginViewController: UIViewController {
     
-    let button = UIButton(frame:CGRect.zero)
+    let loginStack = LoginButtonStackView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        Uncomment the below for a blur effect in the background
-
+        
         var darkBlur:UIBlurEffect = UIBlurEffect()
-        darkBlur = UIBlurEffect(style: UIBlurEffectStyle.regular)
+        darkBlur = UIBlurEffect(style: UIBlurEffectStyle.dark)
         let blurView = UIVisualEffectView(effect: darkBlur)
-        blurView.frame = self.view.frame //your view that have any objects
+        blurView.frame = self.view.frame
         blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(blurView)
         
-        let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(self.donePressed))
-        
         let loginWtihLabel = UILabel()
         loginWtihLabel.font = UIFont(name: loginWtihLabel.font.fontName, size: 25)
-        loginWtihLabel.text = "-------- Login with --------"
+        loginWtihLabel.text = "Sign in with"
         
-        
-
-        let facebookLoginBtn = LoginButton(title: "f", image: nil, backgroundColor: .blue)
-        let twitterLoginBtn = LoginButton(title: "t", image: nil, backgroundColor: .cyan)
-        let gmailBtn = LoginButton(title: "G", image: nil, backgroundColor: .red)
+        let exitBtn: UIButton = UIButton()
+        exitBtn.addTarget(self, action: #selector(self.exitPressed), for: .touchUpInside)
+        exitBtn.setImage(#imageLiteral(resourceName: "exit"), for: .normal)
         
         self.view.addSubview(loginWtihLabel)
-        self.view.addSubview(facebookLoginBtn)
-        self.view.addSubview(twitterLoginBtn)
-        self.view.addSubview(gmailBtn)
+        self.view.addSubview(loginStack)
+        self.view.addSubview(exitBtn)
         
-        
-        // should be anchored atop center button
         loginWtihLabel.translatesAutoresizingMaskIntoConstraints = false
-        loginWtihLabel.bottomAnchor.constraint(equalTo: twitterLoginBtn.topAnchor, constant: -20).isActive = true
+        loginWtihLabel.bottomAnchor.constraint(equalTo: loginStack.topAnchor, constant: -50).isActive = true
         loginWtihLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
-        // left button
-        facebookLoginBtn.translatesAutoresizingMaskIntoConstraints = false
-        facebookLoginBtn.topAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        facebookLoginBtn.trailingAnchor.constraint(equalTo: twitterLoginBtn.leadingAnchor, constant: -50).isActive = true
-        facebookLoginBtn.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.077).isActive = true
-        facebookLoginBtn.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.14).isActive = true
-        facebookLoginBtn.layer.cornerRadius = 28
+        self.loginStack.translatesAutoresizingMaskIntoConstraints = false
+        self.loginStack.topAnchor.constraint(equalTo: loginWtihLabel.bottomAnchor, constant: 20).isActive = true
+        self.loginStack.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        self.loginStack.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        self.loginStack.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.60).isActive = true
+        self.loginStack.heightAnchor.constraint(equalTo: self.loginStack.widthAnchor, multiplier: 1/4).isActive = true
         
-        // middle button
-        twitterLoginBtn.translatesAutoresizingMaskIntoConstraints = false
-        twitterLoginBtn.topAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        twitterLoginBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        twitterLoginBtn.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.077).isActive = true
-        twitterLoginBtn.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.14).isActive = true
-        twitterLoginBtn.layer.cornerRadius = 29
-        
-        // right button
-        gmailBtn.translatesAutoresizingMaskIntoConstraints = false
-        gmailBtn.topAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        gmailBtn.leadingAnchor.constraint(equalTo: twitterLoginBtn.trailingAnchor, constant: 50).isActive = true
-        gmailBtn.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.077).isActive = true
-        gmailBtn.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.14).isActive = true
-        gmailBtn.layer.cornerRadius = 28
-        
-        
-//        let button = UIButton(type: .custom)
-//        button.backgroundColor = .black
-//        button.frame = CGRect(x: 160, y: 100, width: 50, height: 50)
-//        button.layer.cornerRadius = 0.5 * button.bounds.size.width
-//        button.clipsToBounds = true
-//        view.addSubview(button)
-        
-        
+        exitBtn.translatesAutoresizingMaskIntoConstraints = false
+        exitBtn.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        exitBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        exitBtn.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50).isActive = true
+        exitBtn.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.10).isActive = true
+        exitBtn.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.15).isActive = true
     }
-
-    func donePressed() {
-        print("done pressed")
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func exitPressed() {
+        self.dismiss(animated: true)
     }
     
     /*

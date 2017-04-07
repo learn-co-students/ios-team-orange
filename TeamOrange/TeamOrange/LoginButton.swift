@@ -11,14 +11,13 @@ import UIKit
 
 class LoginButton: UIButton {
     
-    let buttonImageView = UIImageView()
+    var myImageView = UIImageView()
     
-    init(title: String, image: UIImage?, backgroundColor: UIColor) {
+    init(image: UIImage?) {
         super.init(frame: CGRect.zero)
-        self.backgroundColor = backgroundColor
-        self.buttonImageView.image = image
-        self.setTitle(title, for: .normal)
+        self.myImageView.image = image
         self.addTarget(self, action: #selector(self.pressed), for: .touchUpInside)
+        self.myImageView.addAndConstrainToEdges(of: self)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -28,12 +27,4 @@ class LoginButton: UIButton {
     func pressed() {
         print("Login button pressed")
     }
-    
-    func buttonImageConstraint() {
-        
-    }
-    
 }
-
-
-
