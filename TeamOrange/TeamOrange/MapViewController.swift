@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import FirebaseDatabase
 
 class MapViewController: UIViewController {
     
@@ -64,7 +65,6 @@ class MapViewController: UIViewController {
         let loginScreen = LoginViewController()
         loginScreen.modalPresentationStyle = .overCurrentContext
         self.present(loginScreen, animated: true, completion: nil)
-
     }
 }
 
