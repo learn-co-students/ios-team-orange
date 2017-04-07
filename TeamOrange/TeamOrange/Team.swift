@@ -36,7 +36,7 @@ class Team {
 extension Team: CustomStringConvertible {
     
     var description: String {
-        return "Team: \(self.name)"
+        return "ID: \(self.id) with name of: \(self.name)\n"
     }
     
 }
