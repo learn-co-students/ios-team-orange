@@ -13,47 +13,47 @@ class InsertToFirebase {
     
 //MARK: Create new model in database
     
-    class func player(with playerInfo: [String:Any] ) {
+    class func newPlayer(with playerInfo: [String:Any] ) {
         FIRDatabase.database().reference().child("players").childByAutoId().setValue(playerInfo)
     }
     
-    class func game(with gameInfo: [String:Any]) {
+    class func newGame(with gameInfo: [String:Any]) {
         FIRDatabase.database().reference().child("games").childByAutoId().setValue(gameInfo)
     }
     
-    class func team(with teamInfo: [String:Any]) {
+    class func newTeam(with teamInfo: [String:Any]) {
         FIRDatabase.database().reference().child("teams").childByAutoId().setValue(teamInfo)
     }
     
 //MARK: Add players to other models
     
     // Add team to player & player to team
-    class func addPlayer(withId playerId: String, toTeam teamId: String) {
+    class func player(withId playerId: String, toTeam teamId: String) {
         FIRDatabase.database().reference().child("players").child(playerId).child("teams").child(teamId).setValue(true)
         FIRDatabase.database().reference().child("teams").child(teamId).child("players").child(playerId).setValue(true)
     }
     
     
     // Add game to player & player to game
-    class func addPlayer(withId playerId: String, toGame gameId: String) {
+    class func player(withId playerId: String, toGame gameId: String) {
         FIRDatabase.database().reference().child("players").child(playerId).child("games").child(gameId).setValue(true)
         FIRDatabase.database().reference().child("games").child(gameId).child("players").child(playerId).setValue(true)
     }
     
     // Add player1 to player2 Friends & player2 to player1 Friends
-    class func addPlayer(withId player1Id: String, toPlayer player2Id: String) {
+    class func player(withId player1Id: String, toPlayer player2Id: String) {
         FIRDatabase.database().reference().child("players").child(player1Id).child("friends").child(player2Id).setValue(true)
         FIRDatabase.database().reference().child("players").child(player2Id).child("friends").child(player1Id).setValue(true)
     }
     
     // Add captain (player) to team and team to captain (player)
-    class func addCaptain(withId playerId: String, toTeam teamId: String) {
+    class func captain(withId playerId: String, toTeam teamId: String) {
         FIRDatabase.database().reference().child("players").child(playerId).child("captainOf").child(teamId).setValue(true)
         FIRDatabase.database().reference().child("teams").child(teamId).child("captains").child(playerId).setValue(true)
     }
     
     // Add admin (player) to game and game to admin (player)
-    class func addAdmin(withId playerId: String, toGame gameId: String) {
+    class func admin(withId playerId: String, toGame gameId: String) {
         FIRDatabase.database().reference().child("players").child(playerId).child("adminOf").child(gameId).setValue(true)
         FIRDatabase.database().reference().child("games").child(gameId).child("admins").child(playerId).setValue(true)
     }
