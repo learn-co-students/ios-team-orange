@@ -11,6 +11,8 @@ import FirebaseDatabase
 
 class QueryFirebase {
     
+    private init() {}
+    
 //MARK: Look up model with information
     
     // Find user by displayName
@@ -51,36 +53,36 @@ class QueryFirebase {
 //MARK: Get Info For Player
     
     // Get games for player
-    class func forGamesFor(playerId: String, completion: @escaping ([Game]) -> Void) {
-        self.getArrayOf(.games, from: .players, withId: playerId) { (games) in
+    class func forGamesOf(player: Player, completion: @escaping ([Game]) -> Void) {
+        self.getArrayOf(.games, from: .players, withId: player.id) { (games) in
             if let games = games as? [Game] { completion(games) }
         }
     }
     
     // Get teams for player
-    class func forTeamsFor(playerId: String, completion: @escaping ([Team]) -> Void) {
-        self.getArrayOf(.teams, from: .players, withId: playerId) { (teams) in
+    class func forTeamsOf(player: Player, completion: @escaping ([Team]) -> Void) {
+        self.getArrayOf(.teams, from: .players, withId: player.id) { (teams) in
             if let teams = teams as? [Team] { completion(teams) }
         }
     }
     
     // Get friends for player
-    class func forFriendsFor(playerId: String, completion: @escaping ([Player]) -> Void) {
-        self.getArrayOf(.friends, from: .players, withId: playerId) { (friends) in
+    class func forFriendsOf(player: Player, completion: @escaping ([Player]) -> Void) {
+        self.getArrayOf(.friends, from: .players, withId: player.id) { (friends) in
             if let friends = friends as? [Player] { completion(friends) }
         }
     }
     
     // Get games a player is an admin of
-    class func forAdminnedGamesFor(playerId: String, completion: @escaping ([Game]) -> Void) {
-        self.getArrayOf(.adminnedGames, from: .players, withId: playerId) { (adminnedGames) in
+    class func forAdminnedGamesOf(player: Player, completion: @escaping ([Game]) -> Void) {
+        self.getArrayOf(.adminnedGames, from: .players, withId: player.id) { (adminnedGames) in
             if let adminnedGames = adminnedGames as? [Game] { completion(adminnedGames) }
         }
     }
     
     // Get teams a player is a captain of
-    class func forCaptainedTeamsFor(playerId: String, completion: @escaping ([Team]) -> Void) {
-        self.getArrayOf(.captainedTeams, from: .players, withId: playerId) { (captainedTeams) in
+    class func forCaptainedTeamsOf(player: Player, completion: @escaping ([Team]) -> Void) {
+        self.getArrayOf(.captainedTeams, from: .players, withId: player.id) { (captainedTeams) in
             if let captainedTeams = captainedTeams as? [Team] { completion(captainedTeams) }
         }
     }
@@ -88,15 +90,15 @@ class QueryFirebase {
     //MARK: Get Info For Team
     
     // Get player for team
-    class func forPlayersFor(teamId: String, completion: @escaping ([Player]) -> Void) {
-        self.getArrayOf(.players, from: .teams, withId: teamId) { (players) in
+    class func forPlayersOn(team: Team, completion: @escaping ([Player]) -> Void) {
+        self.getArrayOf(.players, from: .teams, withId: team.id) { (players) in
             if let players = players as? [Player] { completion(players) }
         }
     }
     
     // Get captains for team
-    class func forCaptainsFor(teamId: String, completion: @escaping ([Player]) -> Void) {
-        self.getArrayOf(.captains, from: .teams, withId: teamId) { (captains) in
+    class func forCaptainsOf(team: Team, completion: @escaping ([Player]) -> Void) {
+        self.getArrayOf(.captains, from: .teams, withId: team.id) { (captains) in
             if let captains = captains as? [Player] { completion(captains) }
         }
     }
@@ -104,15 +106,15 @@ class QueryFirebase {
     //MARK: Get Info for Game
     
     // Get players for game
-    class func forPlayersFor(gameId: String, completion: @escaping ([Player]) -> Void) {
-        self.getArrayOf(.players, from: .games, withId: gameId) { (players) in
+    class func forPlayersIn(game: Game, completion: @escaping ([Player]) -> Void) {
+        self.getArrayOf(.players, from: .games, withId: game.id) { (players) in
             if let players = players as? [Player] { completion(players) }
         }
     }
     
     // Get admins for game
-    class func forAdminsFor(gameId: String, completion: @escaping ([Player]) -> Void) {
-        self.getArrayOf(.admins, from: .games, withId: gameId) { (admins) in
+    class func forAdminsOf(game: Game, completion: @escaping ([Player]) -> Void) {
+        self.getArrayOf(.admins, from: .games, withId: game.id) { (admins) in
             if let admins = admins as? [Player] { completion(admins) }
         }
     }
