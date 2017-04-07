@@ -33,8 +33,10 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.title = "Huddle"
         let sportsButton = UIBarButtonItem(title: "Sports", style: .plain, target: self, action: #selector(goToSportsPicker) )
+        let friendsButton = UIBarButtonItem(title: "Friends", style: .plain, target: self, action: #selector(goToSportsPicker) )
         self.navigationItem.setRightBarButton(sportsButton, animated: false)
         // set the nav bar to clear
+        self.navigationItem.setLeftBarButton(friendsButton, animated: false)
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
