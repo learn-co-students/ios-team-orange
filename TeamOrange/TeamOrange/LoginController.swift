@@ -31,8 +31,6 @@ class LoginViewController: UIViewController {
         let loginWtihLabel = UILabel()
         loginWtihLabel.font = UIFont(name: loginWtihLabel.font.fontName, size: 25)
         loginWtihLabel.text = "-------- Login with --------"
-        
-        
 
         let facebookLoginBtn = LoginButton(title: "f", image: nil, backgroundColor: .blue)
         let twitterLoginBtn = LoginButton(title: "t", image: nil, backgroundColor: .cyan)

@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import FirebaseDatabase
 
 class MapViewController: UIViewController {
     
@@ -61,12 +62,9 @@ class MapViewController: UIViewController {
     }
     
     func goToLoginScreen() {
-        FirebaseClient.getArrayOf3(.games, category2: .players, withId: "-Kh2Wlj2YTiXwwUs8kQ4") { print($0) }
-        
-//        let loginScreen = LoginViewController()
-//        loginScreen.modalPresentationStyle = .overCurrentContext
-//        self.present(loginScreen, animated: true, completion: nil)
-
+        let loginScreen = LoginViewController()
+        loginScreen.modalPresentationStyle = .overCurrentContext
+        self.present(loginScreen, animated: true, completion: nil)
     }
 }
 

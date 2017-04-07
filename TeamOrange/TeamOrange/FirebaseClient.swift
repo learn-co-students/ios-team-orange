@@ -11,7 +11,7 @@ import FirebaseDatabase
 
 class FirebaseClient {
     
-    //MARK: Create new model in database
+//MARK: Create new model in database
     
     class func createPlayer(with playerInfo: [String:Any] ) {
         FIRDatabase.database().reference().child("players").childByAutoId().setValue(playerInfo)
@@ -25,7 +25,7 @@ class FirebaseClient {
         FIRDatabase.database().reference().child("teams").childByAutoId().setValue(teamInfo)
     }
     
-    //MARK: Look up model with information
+//MARK: Look up model with information
     
     // Find user by displayName
     class func getPlayersWith(name: String, completion: @escaping ([Player]) -> Void) {
@@ -62,7 +62,7 @@ class FirebaseClient {
         }
     }
     
-    //MARK: Add players to other models
+//MARK: Add players to other models
     
     // Add team to player & player to team
     class func addPlayer(withId playerId: String, toTeam teamId: String) {
@@ -94,53 +94,74 @@ class FirebaseClient {
         FIRDatabase.database().reference().child("players").child(playerId).child("adminOf").child(gameId).setValue(true)
         FIRDatabase.database().reference().child("games").child(gameId).child("admins").child(playerId).setValue(true)
     }
+
     
-    //MARK: Everything above this mark is tested and is working
+//MARK: Get Info For Player
     
-    //MARK: Get Info For Player
-    
-    class func getGamesFor(playerId: String) {
-        
+    class func getGamesFor(playerId: String, completion: @escaping ([Game]) -> Void) {
+        self.getArrayOf(.games, from: .players, withId: playerId) { (games) in
+            if let games = games as? [Game] { completion(games) }
+        }
     }
     
-    class func getTeamsFor(playerId: String) {
-        
+    class func getTeamsFor(playerId: String, completion: @escaping ([Team]) -> Void) {
+        self.getArrayOf(.teams, from: .players, withId: playerId) { (teams) in
+            if let teams = teams as? [Team] { completion(teams) }
+        }
+    }
+
+    class func getFriendsFor(playerId: String, completion: @escaping ([Player]) -> Void) {
+        self.getArrayOf(.friends, from: .players, withId: playerId) { (friends) in
+            if let friends = friends as? [Player] { completion(friends) }
+        }
     }
     
-    class func getFriendsFor(playerId: String) {
-        
+    //TODO: This Does Not Work!
+    class func getAdminnedGamesFor(playerId: String, completion: @escaping ([Game]) -> Void) {
+        self.getArrayOf(.adminnedGames, from: .players, withId: playerId) { (adminnedGames) in
+            if let adminnedGames = adminnedGames as? [Game] { completion(adminnedGames) }
+        }
+    }
+    //TODO: This Does Not Work!
+    class func getCaptainedTeamsFor(playerId: String, completion: @escaping ([Team]) -> Void) {
+        self.getArrayOf(.captainedTeams, from: .players, withId: playerId) { (captainnedTeams) in
+            if let captainnedTeams = captainnedTeams as? [Team] { completion(captainnedTeams) }
+        }
     }
     
-    class func getAdminGamesFor(playerId: String) {
-        
+//MARK: Get Info For Team
+    
+    class func getPlayersFor(teamId: String, completion: @escaping ([Player]) -> Void) {
+        self.getArrayOf(.players, from: .teams, withId: teamId) { (players) in
+            if let players = players as? [Player] { completion(players) }
+        }
     }
     
-    class func getCaptainedTeamsFor(playerId: String) {
-        
+    class func getCaptainsFor(teamId: String, completion: @escaping ([Player]) -> Void) {
+        self.getArrayOf(.captains, from: .teams, withId: teamId) { (captains) in
+            if let captains = captains as? [Player] { completion(captains) }
+        }
     }
     
-    //MARK: Get Info For Team
+//MARK: Get Info for Game
     
-    class func getPlayersFor(teamId: String) {
-        
+    class func getPlayersFor(gameId: String, completion: @escaping ([Player]) -> Void) {
+        self.getArrayOf(.players, from: .games, withId: gameId) { (players) in
+            if let players = players as? [Player] { completion(players) }
+        }
     }
     
-    class func getCaptainFor(teamId: String) {
-        
-    }
-    
-    //MARK: Get Info for Game
-    
-    class func getPlayersFor(gameId: String) {
-        
-    }
-    
-    class func getAdminsFor(gameId: String) {
-        
+    class func getAdminsFor(gameId: String, completion: @escaping ([Player]) -> Void) {
+        self.getArrayOf(.admins, from: .games, withId: gameId) { (admins) in
+            if let admins = admins as? [Player] { completion(admins) }
+        }
     }
 }
 
+
 extension FirebaseClient {
+
+//MARK: Helper functions
     
     fileprivate class func getArrayOf(_ category: Category, with searchField: String, of value: String, completion: @escaping ([Any]) -> Void) {
         self.getKeys(for: category.rawValue, with: searchField, of: value) { keys in
@@ -148,6 +169,14 @@ extension FirebaseClient {
         }
     }
     
+    // get array of games for players with ID
+    fileprivate class func getArrayOf(_ category1: Category, from category2: Category, withId id: String, completion: @escaping ([Any]) -> Void) {
+        FIRDatabase.database().reference().child(category2.rawValue).child(id).child(category1.rawValue).observeSingleEvent(of: .value, with: { snapshot in
+            guard let snapshot = snapshot.value as? [String:Any] else { return }
+            let keys = Array(snapshot.keys)
+            self.buildArrayOf(category1, for: keys) { completion($0) }
+        })
+    }
     
     private class func getKeys(for root: String, with searchField: String, of lookupItem: String, completion: @escaping ([String]) -> Void ) {
         var array: [String] = []
@@ -162,24 +191,15 @@ extension FirebaseClient {
         })
     }
     
-    // get array of games for players with ID
-    class func getArrayOf3(_ category1: Category, category2: Category, withId id: String, completion: @escaping ([Any]) -> Void) {
-        FIRDatabase.database().reference().child(category2.rawValue).child(id).child(category1.rawValue).observeSingleEvent(of: .value, with: { snapshot in
-            guard let snapshot = snapshot.value as? [String:Any] else { return }
-            let keys = Array(snapshot.keys)
-            self.buildArrayOf(category1, for: keys) { completion($0) }
-        })
-    }
-    
-    class func buildArrayOf(_ category: Category, for keys: [String], completion: @escaping ([Any]) -> Void) {
+    private class func buildArrayOf(_ category: Category, for keys: [String], completion: @escaping ([Any]) -> Void) {
         var array = [Any]()
         for key in keys {
-            FIRDatabase.database().reference().child(category.rawValue).child(key).observeSingleEvent(of: .value, with: { snapshot in
+            FIRDatabase.database().reference().child(category.type).child(key).observeSingleEvent(of: .value, with: { snapshot in
                 if let info = snapshot.value as? [String:Any] {
-                    switch category {
-                    case .players: array.append(Player(id: snapshot.key, dict: info))
-                    case .teams: array.append(Team(id: snapshot.key, dict: info))
-                    case .games: array.append(Game(id: snapshot.key, dict: info))
+                    switch category.type {
+                    case "teams": array.append(Team(id: snapshot.key, dict: info))
+                    case "games": array.append(Game(id: snapshot.key, dict: info))
+                    default: array.append(Player(id: snapshot.key, dict: info))
                     }
                     if array.count == keys.count { completion(array) }
                 }
