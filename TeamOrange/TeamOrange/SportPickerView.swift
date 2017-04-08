@@ -67,22 +67,10 @@ class SportPickerView: UIView {
         self.bottomViewConstraints = [self.bottomViewTopAnchorVisible, self.bottomViewBottomAnchorVisible, self.bottomViewTopAnchorInvisible, self.bottomViewBottomAnchorInvisible]
     }
     
-    func collapse() {
+    func animate() {
         self.flipConstraints(constraints: self.bottomViewConstraints)
         self.flipConstraints(constraints: self.topViewConstraints)
         UIView.animate(withDuration: 0.25) {
-//            self.topView.alpha = 0
-//            self.bottomView.alpha = 0
-            self.layoutIfNeeded()
-        }
-    }
-    
-    func build() {
-        self.flipConstraints(constraints: self.bottomViewConstraints)
-        self.flipConstraints(constraints: self.topViewConstraints)
-        UIView.animate(withDuration: 0.25) {
-//            self.topView.alpha = 1
-//            self.bottomView.alpha = 1
             self.layoutIfNeeded()
         }
     }

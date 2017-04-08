@@ -41,6 +41,6 @@ class SportPickerController: UIViewController {
         self.leadingConstraint.isActive = false
         self.myView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
         UIView.animate(withDuration: 0.25, animations: { self.view.layoutIfNeeded() }
-                                         , completion: { _ in self.myView.build() })
+                                         , completion: { _ in self.myView.animate() })
     }
 }
