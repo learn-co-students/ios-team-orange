@@ -11,7 +11,7 @@ import Foundation
 
 enum Sport: String {
     
-    static let allSports:[Sport] = [.baseball, .basketball, .volleyball, .tennis, .handball, .pingPong, .bowling, .flagFootball, .soccer, .iceHockey, .fieldHockey]
+    static let all:[Sport] = [.baseball, .basketball, .volleyball, .tennis, .handball, .pingPong, .bowling, .flagFootball, .soccer, .iceHockey, .fieldHockey]
     
     case baseball = "Baseball"
     case basketball = "Basketball"
@@ -43,17 +43,17 @@ enum Sport: String {
     
     var image: ClickableImage {
         switch self {
-        case .baseball: return ClickableImage(#imageLiteral(resourceName: "football"))
-        case .basketball: return ClickableImage(#imageLiteral(resourceName: "basketball"))
-        case .volleyball: return ClickableImage(#imageLiteral(resourceName: "volleyball"))
-        case .tennis: return ClickableImage(#imageLiteral(resourceName: "tennis"))
-        case .handball: return ClickableImage(#imageLiteral(resourceName: "handball"))
-        case .pingPong: return ClickableImage(#imageLiteral(resourceName: "pingPong"))
-        case .iceHockey: return ClickableImage(#imageLiteral(resourceName: "iceHockey"))
-        case .fieldHockey: return ClickableImage(#imageLiteral(resourceName: "fieldHockey"))
-        case .bowling: return ClickableImage(#imageLiteral(resourceName: "bowling"))
-        case .flagFootball: return ClickableImage(#imageLiteral(resourceName: "flagFootball"))
-        case .soccer: return ClickableImage(#imageLiteral(resourceName: "soccer"))
+        case .baseball: return ClickableImage(sport: self, image: #imageLiteral(resourceName: "baseball"))
+        case .basketball: return ClickableImage(sport: self, image: #imageLiteral(resourceName: "basketball"))
+        case .volleyball: return ClickableImage(sport: self, image: #imageLiteral(resourceName: "volleyball"))
+        case .tennis: return ClickableImage(sport: self, image: #imageLiteral(resourceName: "tennis"))
+        case .handball: return ClickableImage(sport: self, image: #imageLiteral(resourceName: "handball"))
+        case .pingPong: return ClickableImage(sport: self, image: #imageLiteral(resourceName: "pingPong"))
+        case .iceHockey: return ClickableImage(sport: self, image: #imageLiteral(resourceName: "iceHockey"))
+        case .fieldHockey: return ClickableImage(sport: self, image: #imageLiteral(resourceName: "fieldHockey"))
+        case .bowling: return ClickableImage(sport: self, image: #imageLiteral(resourceName: "bowling"))
+        case .flagFootball: return ClickableImage(sport: self, image: #imageLiteral(resourceName: "flagFootball"))
+        case .soccer: return ClickableImage(sport: self, image: #imageLiteral(resourceName: "soccer"))
         }
     }
     

@@ -9,10 +9,13 @@
 import Foundation
 import UIKit
 
-class SportPickerCenterView: UIView {
+class SportPickerCenterView: BlurView {
     
-    init() {
-        super.init(frame: CGRect.zero)
+    let sportScroller = SportIconScroll()
+    
+    override init(blurEffect: UIBlurEffectStyle) {
+        super.init(blurEffect: blurEffect)
+        self.sportScroller.addAndConstrainToEdges(of: self)
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -12,8 +12,10 @@ import UIKit
 class ClickableImage: UIImageView {
     
     var gestureRecognizer: UITapGestureRecognizer!
+    let sport: Sport
     
-    override init(_ image: UIImage?) {
+    init(sport: Sport, image: UIImage?) {
+        self.sport = sport
         super.init(image: image)
         self.image = image
         self.isUserInteractionEnabled = true
@@ -26,7 +28,7 @@ class ClickableImage: UIImageView {
     }
     
     func tapped() {
-        print("I've Been Tapped")
+        print(self.sport.rawValue)
     }
     
 }

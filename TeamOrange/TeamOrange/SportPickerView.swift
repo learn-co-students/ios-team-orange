@@ -12,7 +12,7 @@ import UIKit
 class SportPickerView: UIView {
     
     let topView = SportPickerTopView(blurEffect: .light)
-    let centerView = SportPickerCenterView()
+    let centerView = SportPickerCenterView(blurEffect: .light)
     let bottomView = SportPickerBottomView(blurEffect: .light)
     
     var topViewTopAnchorInvisible: NSLayoutConstraint!
@@ -32,8 +32,8 @@ class SportPickerView: UIView {
         super.init(frame: CGRect.zero)
         self.buildView()
         self.initializeConstraints()
-        self.topView.alpha = 0
-        self.bottomView.alpha = 0
+        //        self.topView.alpha = 0
+        //        self.bottomView.alpha = 0
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -71,8 +71,8 @@ class SportPickerView: UIView {
         self.flipConstraints(constraints: self.bottomViewConstraints)
         self.flipConstraints(constraints: self.topViewConstraints)
         UIView.animate(withDuration: 0.25) {
-        self.topView.alpha = 0
-            self.bottomView.alpha = 0
+//            self.topView.alpha = 0
+//            self.bottomView.alpha = 0
             self.layoutIfNeeded()
         }
     }
@@ -81,8 +81,8 @@ class SportPickerView: UIView {
         self.flipConstraints(constraints: self.bottomViewConstraints)
         self.flipConstraints(constraints: self.topViewConstraints)
         UIView.animate(withDuration: 0.25) {
-            self.topView.alpha = 1
-            self.bottomView.alpha = 1
+//            self.topView.alpha = 1
+//            self.bottomView.alpha = 1
             self.layoutIfNeeded()
         }
     }
