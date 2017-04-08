@@ -32,8 +32,8 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Huddle"
-        let sportsButton = UIBarButtonItem(title: "Sports", style: .plain, target: self, action: #selector(goToSportsPicker) )
-        let friendsButton = UIBarButtonItem(title: "Friends", style: .plain, target: self, action: #selector(goToSportsPicker) )
+        let sportsButton = UIBarButtonItem(title: "Sports", style: .plain, target: self, action: #selector(goToSportPicker) )
+        let friendsButton = UIBarButtonItem(title: "Friends", style: .plain, target: self, action: #selector(goToSportPicker) )
         self.navigationItem.setRightBarButton(sportsButton, animated: false)
         // set the nav bar to clear
         self.navigationItem.setLeftBarButton(friendsButton, animated: false)
@@ -74,13 +74,15 @@ class MapViewController: UIViewController {
     }
     
     func goToLoginScreen() {
-        let loginScreen = SportPickerController()
+        let loginScreen = LoginViewController()
         loginScreen.modalPresentationStyle = .overCurrentContext
         self.present(loginScreen, animated: false, completion: nil)
     }
     
-    func goToSportsPicker() {
-        //TODO: implement sports picker view
+    func goToSportPicker() {
+        let sportsPicker = SportPickerController()
+        sportsPicker.modalPresentationStyle = .overCurrentContext
+        self.present(sportsPicker, animated: false, completion: nil)
     }
 }
 

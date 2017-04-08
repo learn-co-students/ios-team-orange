@@ -18,7 +18,11 @@ class SportPickerController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.buildView()
-        self.buildButton()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.slideViewIn()
     }
     
     
@@ -34,7 +38,6 @@ class SportPickerController: UIViewController {
     }
     
     func slideViewIn() {
-        self.view.layoutIfNeeded()
         self.leadingConstraint.isActive = false
         self.myView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
         UIView.animate(withDuration: 0.5, animations: {

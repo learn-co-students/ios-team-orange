@@ -25,6 +25,9 @@
 		5639B47E1E9816CF008FD173 /* SportPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5639B47D1E9816CF008FD173 /* SportPickerController.swift */; };
 		5639B4801E98171D008FD173 /* SportPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5639B47F1E98171D008FD173 /* SportPickerView.swift */; };
 		568D5B5F1E97CD4F009CA1C7 /* QueryFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568D5B5E1E97CD4F009CA1C7 /* QueryFirebase.swift */; };
+		56BB7B891E99655D001C75E9 /* SportPickerTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BB7B881E99655D001C75E9 /* SportPickerTopView.swift */; };
+		56BB7B8B1E996568001C75E9 /* SportPickerBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BB7B8A1E996568001C75E9 /* SportPickerBottomView.swift */; };
+		56BB7B8D1E9966CA001C75E9 /* SportsPickerCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BB7B8C1E9966CA001C75E9 /* SportsPickerCenterView.swift */; };
 		56FDCD371E9431AE00FE5AA9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56FDCD361E9431AE00FE5AA9 /* GoogleService-Info.plist */; };
 		56FDCD391E9557CC00FE5AA9 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FDCD381E9557CC00FE5AA9 /* Category.swift */; };
 		887987E11E93E7D100F5C540 /* CoreLocClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887987E01E93E7D100F5C540 /* CoreLocClient.swift */; };
@@ -56,6 +59,9 @@
 		5639B47D1E9816CF008FD173 /* SportPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportPickerController.swift; sourceTree = "<group>"; };
 		5639B47F1E98171D008FD173 /* SportPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportPickerView.swift; sourceTree = "<group>"; };
 		568D5B5E1E97CD4F009CA1C7 /* QueryFirebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryFirebase.swift; sourceTree = "<group>"; };
+		56BB7B881E99655D001C75E9 /* SportPickerTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportPickerTopView.swift; sourceTree = "<group>"; };
+		56BB7B8A1E996568001C75E9 /* SportPickerBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportPickerBottomView.swift; sourceTree = "<group>"; };
+		56BB7B8C1E9966CA001C75E9 /* SportsPickerCenterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportsPickerCenterView.swift; sourceTree = "<group>"; };
 		56FDCD361E9431AE00FE5AA9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		56FDCD381E9557CC00FE5AA9 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		887987E01E93E7D100F5C540 /* CoreLocClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreLocClient.swift; sourceTree = "<group>"; };
@@ -106,6 +112,9 @@
 				887987EA1E943DC700F5C540 /* MapSearchView.swift */,
 				887987EC1E94653000F5C540 /* SearchBarView.swift */,
 				5639B47F1E98171D008FD173 /* SportPickerView.swift */,
+				56BB7B881E99655D001C75E9 /* SportPickerTopView.swift */,
+				56BB7B8A1E996568001C75E9 /* SportPickerBottomView.swift */,
+				56BB7B8C1E9966CA001C75E9 /* SportsPickerCenterView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -344,11 +353,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56BB7B8D1E9966CA001C75E9 /* SportsPickerCenterView.swift in Sources */,
 				887987E11E93E7D100F5C540 /* CoreLocClient.swift in Sources */,
 				887987E51E9426DA00F5C540 /* Game.swift in Sources */,
 				5624F0011E92C04B00BB2662 /* Sport.swift in Sources */,
 				887987E31E93EC3000F5C540 /* MapKitClient.swift in Sources */,
 				5624EFFA1E92BD7200BB2662 /* Team.swift in Sources */,
+				56BB7B8B1E996568001C75E9 /* SportPickerBottomView.swift in Sources */,
 				4C885E461E93F99C00B80EA4 /* LoginButton.swift in Sources */,
 				5624EFE91E92BBED00BB2662 /* TeamOrange.xcdatamodeld in Sources */,
 				56FDCD391E9557CC00FE5AA9 /* Category.swift in Sources */,
@@ -359,6 +370,7 @@
 				568D5B5F1E97CD4F009CA1C7 /* QueryFirebase.swift in Sources */,
 				5624F00B1E92F43100BB2662 /* GameState.swift in Sources */,
 				4CE02D271E95A1BD0068190C /* LoginButtonStackView.swift in Sources */,
+				56BB7B891E99655D001C75E9 /* SportPickerTopView.swift in Sources */,
 				5624F00D1E92F44400BB2662 /* InsertToFirebase.swift in Sources */,
 				5624EFFE1E92BD8E00BB2662 /* Location.swift in Sources */,
 				88798E261E95B60900F5C540 /* MapViewController.swift in Sources */,

@@ -13,7 +13,12 @@ class SportPickerView: UIView {
     
     init() {
         super.init(frame: CGRect.zero)
-        self.backgroundColor = UIColor.red
+        var darkBlur:UIBlurEffect = UIBlurEffect()
+        darkBlur = UIBlurEffect(style: UIBlurEffectStyle.light)
+        let blurView = UIVisualEffectView(effect: darkBlur)
+        blurView.frame = self.frame
+        blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.addSubview(blurView)
     }
     
     required init?(coder aDecoder: NSCoder) {
