@@ -9,11 +9,10 @@
 import Foundation
 import UIKit
 
-class SportPickerTopView: UIView {
+class SportPickerTopView: BlurView {
     
-    init() {
-        super.init(frame: CGRect.zero)
-        self.backgroundColor = UIColor.red
+    override init(blurEffect: UIBlurEffectStyle) {
+        super.init(blurEffect: blurEffect)
     }
     
     required init?(coder aDecoder: NSCoder) {

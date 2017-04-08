@@ -11,7 +11,7 @@ import Foundation
 
 enum Sport: String {
     
-    static let allSports:[Sport] = [.baseball, .basketball, .volleyball, .tennis, .handball, .pingPong, .bowling, .flagFootball, .soccer, .iceHockey, .fieldHockeygit]
+    static let allSports:[Sport] = [.baseball, .basketball, .volleyball, .tennis, .handball, .pingPong, .bowling, .flagFootball, .soccer, .iceHockey, .fieldHockey]
     
     case baseball = "Baseball"
     case basketball = "Basketball"
@@ -38,6 +38,22 @@ enum Sport: String {
         case .bowling: return "🎳"
         case .flagFootball: return"🏈"
         case .soccer: return "⚽"
+        }
+    }
+    
+    var image: ClickableImage {
+        switch self {
+        case .baseball: return ClickableImage(#imageLiteral(resourceName: "football"))
+        case .basketball: return ClickableImage(#imageLiteral(resourceName: "basketball"))
+        case .volleyball: return ClickableImage(#imageLiteral(resourceName: "volleyball"))
+        case .tennis: return ClickableImage(#imageLiteral(resourceName: "tennis"))
+        case .handball: return ClickableImage(#imageLiteral(resourceName: "handball"))
+        case .pingPong: return ClickableImage(#imageLiteral(resourceName: "pingPong"))
+        case .iceHockey: return ClickableImage(#imageLiteral(resourceName: "iceHockey"))
+        case .fieldHockey: return ClickableImage(#imageLiteral(resourceName: "fieldHockey"))
+        case .bowling: return ClickableImage(#imageLiteral(resourceName: "bowling"))
+        case .flagFootball: return ClickableImage(#imageLiteral(resourceName: "flagFootball"))
+        case .soccer: return ClickableImage(#imageLiteral(resourceName: "soccer"))
         }
     }
     

@@ -40,22 +40,7 @@ class SportPickerController: UIViewController {
     func slideViewIn() {
         self.leadingConstraint.isActive = false
         self.myView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        UIView.animate(withDuration: 0.5, animations: {
-            self.view.layoutIfNeeded()
-        }, completion: { _ in
-            print("Done")
-        })
+        UIView.animate(withDuration: 0.25, animations: { self.view.layoutIfNeeded() }
+                                         , completion: { _ in self.myView.build() })
     }
-    
-    func buildButton() {
-        self.view.addSubview(button)
-        self.button.translatesAutoresizingMaskIntoConstraints = false
-        self.button.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-        self.button.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        self.button.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.1).isActive = true
-        self.button.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.2).isActive = true
-        self.button.backgroundColor = UIColor.red
-        self.button.addTarget(self, action: #selector(self.slideViewIn), for: .touchUpInside)
-    }
-    
 }

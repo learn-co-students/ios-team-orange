@@ -7,3 +7,15 @@
 //
 
 import Foundation
+import UIKit
+
+class SportPickerBottomView: BlurView {
+    
+    override init(blurEffect: UIBlurEffectStyle) {
+        super.init(blurEffect: blurEffect)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
