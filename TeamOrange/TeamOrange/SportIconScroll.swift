@@ -19,6 +19,7 @@ class SportIconScroll: UIScrollView {
         Sport.all.forEach { self.sportIcons.append($0.image) }
         self.setupStack()
         self.isPagingEnabled = true
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -11,9 +11,9 @@ import UIKit
 
 class SportPickerView: UIView {
     
-    let topView = SportPickerTopView(blurEffect: .light)
-    let centerView = SportPickerCenterView(blurEffect: .light)
-    let bottomView = SportPickerBottomView(blurEffect: .light)
+    let topView = SportPickerTopView(blurEffect: .regular)
+    let centerView = SportPickerCenterView(blurEffect: .regular)
+    let bottomView = SportPickerBottomView(blurEffect: .regular)
     
     var topViewTopAnchorInvisible: NSLayoutConstraint!
     var topViewBottomAnchorInvisible: NSLayoutConstraint!
@@ -32,8 +32,8 @@ class SportPickerView: UIView {
         super.init(frame: CGRect.zero)
         self.buildView()
         self.initializeConstraints()
-        //        self.topView.alpha = 0
-        //        self.bottomView.alpha = 0
+                self.topView.alpha = 0
+                self.bottomView.alpha = 0
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -67,12 +67,27 @@ class SportPickerView: UIView {
         self.bottomViewConstraints = [self.bottomViewTopAnchorVisible, self.bottomViewBottomAnchorVisible, self.bottomViewTopAnchorInvisible, self.bottomViewBottomAnchorInvisible]
     }
     
-    func animate() {
+    func build() {
         self.flipConstraints(constraints: self.bottomViewConstraints)
         self.flipConstraints(constraints: self.topViewConstraints)
-        UIView.animate(withDuration: 0.25) {
+        UIView.animate(withDuration: 0.25, animations: {
+            self.topView.alpha = 1
+            self.bottomView.alpha = 1
             self.layoutIfNeeded()
-        }
+        })
+    }
+    
+    func collapse() {
+        self.flipConstraints(constraints: self.bottomViewConstraints)
+        self.flipConstraints(constraints: self.topViewConstraints)
+        UIView.animate(withDuration: 0.25, animations: {
+            self.topView.alpha = 0
+            self.bottomView.alpha = 0
+            self.layoutIfNeeded()
+        }, completion: { _ in
+                let notification = Notification(name: Notification.Name("Picker Collapsed"), object: nil, userInfo: nil)
+                NotificationCenter.default.post(notification)
+        })
     }
     
     func flipConstraints(constraints: [NSLayoutConstraint]) {
