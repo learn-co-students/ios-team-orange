@@ -28,7 +28,8 @@ class ClickableImage: UIImageView {
     }
     
     func tapped() {
-        print(self.sport.rawValue)
+        let notification = Notification(name: Notification.Name("Sport Chosen"), object: self.sport, userInfo: nil)
+        NotificationCenter.default.post(notification)
     }
     
 }

@@ -11,6 +11,8 @@ import UIKit
 
 class SportPickerController: UIViewController {
     
+    var chosenSports: [Sport] = [] { didSet { self.myView.topView.tableView.reloadData() } }
+    
     let myView = SportPickerView()
     var leadingConstraint: NSLayoutConstraint!
     let button = UIButton()
@@ -18,11 +20,14 @@ class SportPickerController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.buildView()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.addChosenSport), name: Notification.Name("Sport Chosen"), object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.slideViewIn()
+        self.myView.topView.tableView.delegate = self
+        self.myView.topView.tableView.dataSource = self
     }
     
     
@@ -43,4 +48,24 @@ class SportPickerController: UIViewController {
         UIView.animate(withDuration: 0.25, animations: { self.view.layoutIfNeeded() }
                                          , completion: { _ in self.myView.animate() })
     }
+    
+    func addChosenSport(notification: Notification) {
+        guard let sport = notification.object as? Sport else { return }
+        self.chosenSports.append(sport)
+    }
+    
+}
+
+extension SportPickerController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.chosenSports.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "sportCell", for: indexPath) as! ChosenSportTableCell
+        cell.sport = self.chosenSports[indexPath.row]
+        return cell
+    }
+    
 }
