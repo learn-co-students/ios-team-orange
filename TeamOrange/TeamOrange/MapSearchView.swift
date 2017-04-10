@@ -79,6 +79,7 @@ class MapSearchView: UIView {
                 UIView.animate(withDuration: 0.5, animations: {
                     self.layoutIfNeeded()
                     self.searchBarViewActive = false
+                    self.searchBarView.searchBar.resignFirstResponder()
                 })
             })
         } else {
@@ -87,7 +88,8 @@ class MapSearchView: UIView {
             UIView.animate(withDuration: 0.5, animations: {
                 self.layoutIfNeeded()
             }, completion: { _ in
-                self.searchBarView.activateButtons(state: true, completion: {})
+                self.searchBarView.activateButtons(state: true, completion: {
+                    self.searchBarView.becomeFirstResponder()})
                 self.searchBarViewActive = true
             })
         }

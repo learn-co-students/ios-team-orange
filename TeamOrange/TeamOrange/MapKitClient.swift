@@ -54,7 +54,7 @@ final class MapKitClient {
         })
     }
     
-    class func setMap(to mapView: MKMapView){
+    class func setMap(to mapView: MKMapView) {
         client.mapView = mapView
     }
     
