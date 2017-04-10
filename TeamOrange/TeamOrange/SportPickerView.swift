@@ -11,9 +11,9 @@ import UIKit
 
 class SportPickerView: UIView {
     
-    let topView = SportPickerTopView(blurEffect: .light)
-    let centerView = SportPickerCenterView(blurEffect: .light)
-    let bottomView = SportPickerBottomView(blurEffect: .light)
+    let topView = SportPickerTopView()
+    let centerView = SportPickerCenterView()
+    let bottomView = SportPickerBottomView()
     
     var topViewTopAnchorInvisible: NSLayoutConstraint!
     var topViewBottomAnchorInvisible: NSLayoutConstraint!

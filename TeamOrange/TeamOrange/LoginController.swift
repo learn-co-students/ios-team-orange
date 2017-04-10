@@ -17,11 +17,15 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        let blue = BlurView(blurEffect: .dark)
+//        self.view.addSubview(blurView)
+        
         var darkBlur:UIBlurEffect = UIBlurEffect()
         darkBlur = UIBlurEffect(style: UIBlurEffectStyle.dark)
         let blurView = UIVisualEffectView(effect: darkBlur)
         blurView.frame = self.view.frame
         blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blurView.alpha = 0.5
         view.addSubview(blurView)
         
         let loginWtihLabel = UILabel()

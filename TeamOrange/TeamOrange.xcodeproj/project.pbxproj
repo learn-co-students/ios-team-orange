@@ -26,7 +26,6 @@
 		5639B47E1E9816CF008FD173 /* SportPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5639B47D1E9816CF008FD173 /* SportPickerController.swift */; };
 		5639B4801E98171D008FD173 /* SportPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5639B47F1E98171D008FD173 /* SportPickerView.swift */; };
 		5649440E1E999C6C00E56F41 /* SportIconScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5649440D1E999C6C00E56F41 /* SportIconScroll.swift */; };
-		564F0AFE1E9BD90200A48E43 /* ChosenSportCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564F0AFD1E9BD90200A48E43 /* ChosenSportCollectionCell.swift */; };
 		568D5B5F1E97CD4F009CA1C7 /* QueryFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568D5B5E1E97CD4F009CA1C7 /* QueryFirebase.swift */; };
 		569F05CE1E99AAD5008C82B8 /* ChosenSportTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569F05CD1E99AAD5008C82B8 /* ChosenSportTableCell.swift */; };
 		56BB7B891E99655D001C75E9 /* SportPickerTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BB7B881E99655D001C75E9 /* SportPickerTopView.swift */; };
@@ -65,7 +64,6 @@
 		5639B47D1E9816CF008FD173 /* SportPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportPickerController.swift; sourceTree = "<group>"; };
 		5639B47F1E98171D008FD173 /* SportPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportPickerView.swift; sourceTree = "<group>"; };
 		5649440D1E999C6C00E56F41 /* SportIconScroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportIconScroll.swift; sourceTree = "<group>"; };
-		564F0AFD1E9BD90200A48E43 /* ChosenSportCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChosenSportCollectionCell.swift; sourceTree = "<group>"; };
 		568D5B5E1E97CD4F009CA1C7 /* QueryFirebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryFirebase.swift; sourceTree = "<group>"; };
 		569F05CD1E99AAD5008C82B8 /* ChosenSportTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChosenSportTableCell.swift; sourceTree = "<group>"; };
 		56BB7B881E99655D001C75E9 /* SportPickerTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportPickerTopView.swift; sourceTree = "<group>"; };
@@ -204,7 +202,6 @@
 				56BB7B881E99655D001C75E9 /* SportPickerTopView.swift */,
 				5649440D1E999C6C00E56F41 /* SportIconScroll.swift */,
 				569F05CD1E99AAD5008C82B8 /* ChosenSportTableCell.swift */,
-				564F0AFD1E9BD90200A48E43 /* ChosenSportCollectionCell.swift */,
 			);
 			name = "Sport Picker";
 			sourceTree = "<group>";
@@ -401,7 +398,6 @@
 				5624F00D1E92F44400BB2662 /* InsertToFirebase.swift in Sources */,
 				5624EFFE1E92BD8E00BB2662 /* Location.swift in Sources */,
 				88798E261E95B60900F5C540 /* MapViewController.swift in Sources */,
-				564F0AFE1E9BD90200A48E43 /* ChosenSportCollectionCell.swift in Sources */,
 				5624EFF71E92BD3D00BB2662 /* Player.swift in Sources */,
 				4C885E3F1E93EB9700B80EA4 /* LoginController.swift in Sources */,
 				887987ED1E94653000F5C540 /* SearchBarView.swift in Sources */,

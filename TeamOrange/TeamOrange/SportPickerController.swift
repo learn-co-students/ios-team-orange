@@ -11,7 +11,7 @@ import UIKit
 
 class SportPickerController: UIViewController {
     
-    var chosenSports: [Sport] = [] { didSet { self.myView.topView.collectionView.reloadData() } }
+    var chosenSports: [Sport] = []
     
     let myView = SportPickerView()
     var leadingConstraintVisible: NSLayoutConstraint!
@@ -29,8 +29,6 @@ class SportPickerController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.slideViewIn()   
-        self.myView.topView.collectionView.delegate = self
-        self.myView.topView.collectionView.dataSource = self
     }
     
     
@@ -64,17 +62,4 @@ class SportPickerController: UIViewController {
         self.chosenSports.append(sport)
     }
     
-}
-
-extension SportPickerController: UICollectionViewDelegate, UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.chosenSports.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "sportCell", for: indexPath) as! ChosenSportCollectionCell
-        cell.sport = self.chosenSports[indexPath.row]
-        return cell
-    }
 }

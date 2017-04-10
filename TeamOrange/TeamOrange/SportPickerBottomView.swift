@@ -9,12 +9,14 @@
 import Foundation
 import UIKit
 
-class SportPickerBottomView: BlurView {
+class SportPickerBottomView: UIView {
     
     let backButton = UIButton()
+    let blur = BlurView(blurEffect: .dark)
     
-    override init(blurEffect: UIBlurEffectStyle) {
-        super.init(blurEffect: blurEffect)
+     init() {
+    super.init(frame: CGRect.zero)
+        self.blur.addAndConstrainToEdges(of: self)
         self.buildBackButton()
     }
     
