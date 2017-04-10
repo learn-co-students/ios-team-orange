@@ -64,3 +64,17 @@ extension CLPlacemark{
     }
 }
 
+extension MKMapItem{
+    //for use when creating Locations
+    func makeDict()->[String:Any]{
+        let dict = [
+            "name" : self.name ?? "unnamed location" ,
+            "address" : "none given",
+            "latitude" : self.placemark.coordinate.latitude,
+            "longitude" : self.placemark.coordinate.longitude
+            ] as [String : Any]
+        print (dict)
+        return dict
+    }
+}
+

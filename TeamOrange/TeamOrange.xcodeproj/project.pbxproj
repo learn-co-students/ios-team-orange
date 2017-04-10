@@ -41,6 +41,7 @@
 		887987EB1E943DC700F5C540 /* MapSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887987EA1E943DC700F5C540 /* MapSearchView.swift */; };
 		887987ED1E94653000F5C540 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887987EC1E94653000F5C540 /* SearchBarView.swift */; };
 		88798E261E95B60900F5C540 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88798E251E95B60900F5C540 /* MapViewController.swift */; };
+		889C529C1E9BFDAC00B4E550 /* LocSearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889C529B1E9BFDAC00B4E550 /* LocSearchClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +81,7 @@
 		887987EA1E943DC700F5C540 /* MapSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapSearchView.swift; sourceTree = "<group>"; };
 		887987EC1E94653000F5C540 /* SearchBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		88798E251E95B60900F5C540 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		889C529B1E9BFDAC00B4E550 /* LocSearchClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocSearchClient.swift; sourceTree = "<group>"; };
 		AAEF8389E9CBFCA746229A38 /* Pods_TeamOrange.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeamOrange.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8EA57988E1A6ABDDCAF32E9 /* Pods-TeamOrange.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamOrange.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TeamOrange/Pods-TeamOrange.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -102,6 +104,8 @@
 				4C885E3E1E93EB9700B80EA4 /* LoginController.swift */,
 				88798E251E95B60900F5C540 /* MapViewController.swift */,
 				5639B47D1E9816CF008FD173 /* SportPickerController.swift */,
+				889C529B1E9BFDAC00B4E550 /* LocSearchClient.swift */,
+				887987E21E93EC3000F5C540 /* MapKitClient.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -214,7 +218,6 @@
 			children = (
 				568D5B5D1E97CD38009CA1C7 /* Firebase Client */,
 				887987E01E93E7D100F5C540 /* CoreLocClient.swift */,
-				887987E21E93EC3000F5C540 /* MapKitClient.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				56BB7B8D1E9966CA001C75E9 /* SportPickerCenterView.swift in Sources */,
+				889C529C1E9BFDAC00B4E550 /* LocSearchClient.swift in Sources */,
 				887987E11E93E7D100F5C540 /* CoreLocClient.swift in Sources */,
 				887987E51E9426DA00F5C540 /* Game.swift in Sources */,
 				5624F0011E92C04B00BB2662 /* Sport.swift in Sources */,

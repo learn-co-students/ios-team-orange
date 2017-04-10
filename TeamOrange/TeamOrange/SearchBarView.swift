@@ -16,6 +16,8 @@ class SearchBarView: UIView {
     var okButtonConstraint = NSLayoutConstraint()
     lazy var cancelButton = UIButton()
     var cancelButtonConstraint = NSLayoutConstraint()
+    lazy var tableView = UITableView()
+    var tableViewConstraint = NSLayoutConstraint()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,12 +36,13 @@ class SearchBarView: UIView {
             self.addSubview(view)
             view.translatesAutoresizingMaskIntoConstraints = false
             view.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-            view.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
+            view.heightAnchor.constraint(equalToConstant: 25).isActive = true
             view.backgroundColor = UIColor.lightGray
         })
         
         searchBar.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
         searchBar.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        searchBar.returnKeyType = .search
         
         okButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.1).isActive = true
         okButtonConstraint = NSLayoutConstraint(item: okButton, attribute: .trailing, relatedBy: .equal, toItem: searchBar, attribute: .leading, multiplier: 1, constant: 50)
@@ -54,20 +57,40 @@ class SearchBarView: UIView {
         self.insertSubview(cancelButton, belowSubview: searchBar)
         cancelButton.backgroundColor = UIColor.red
         cancelButton.setTitle("X", for: .normal)
+        
+        self.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableViewConstraint = NSLayoutConstraint(item: tableView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0)
+        self.addConstraint(tableViewConstraint)
+        tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 0).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: okButton.leadingAnchor, constant: 0).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: cancelButton.trailingAnchor, constant: 0).isActive = true
+        
     }
     
-    func activateButtons(state: Bool, completion: @escaping ()->()) {
-        if state == true{
-            self.okButtonConstraint.constant = 0
-            self.cancelButtonConstraint.constant = 0
-        } else {
-            self.okButtonConstraint.constant = 50
-            self.cancelButtonConstraint.constant = -50
-        }
-        UIView.animate(withDuration: 0.5, animations: {
+    func animateSelf(state: Bool, completion: @escaping ()->()) {
+        UIView.animate(withDuration: 0.25, animations: {
             self.layoutIfNeeded()
         }, completion: { done in
-            completion()
+            if state == true{
+                self.tableViewConstraint.constant = 300
+            } else {
+                self.tableViewConstraint.constant = 0
+            }
+            UIView.animate(withDuration: 0.25, animations: { self.layoutIfNeeded() }, completion: { _ in completion ()})
         })
+    }
+    
+    func activateSelf(completion: @escaping ()->()){
+        self.searchBar.text = ""
+        self.okButtonConstraint.constant = 0
+        self.cancelButtonConstraint.constant = 0
+        animateSelf(state: true, completion: {completion()})
+    }
+    
+    func deactivateSelf(completion: @escaping ()->()){
+        self.okButtonConstraint.constant = 25
+        self.cancelButtonConstraint.constant = -25
+        animateSelf(state: false, completion: {completion()})
     }
 }

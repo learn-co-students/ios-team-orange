@@ -63,9 +63,9 @@ class MapSearchView: UIView {
         
         self.addSubview(searchBarView)
         searchBarView.translatesAutoresizingMaskIntoConstraints = false
-        searchBarView.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        searchBarView.heightAnchor.constraint(equalToConstant: 325).isActive = true
         searchBarView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.75).isActive = true
-        searchBarConstraint = NSLayoutConstraint(item: searchBarView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: -50)
+        searchBarConstraint = NSLayoutConstraint(item: searchBarView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: -350)
         self.addConstraint(searchBarConstraint)
         searchBarView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         self.insertSubview(searchBarView, aboveSubview: mapView)
@@ -73,8 +73,8 @@ class MapSearchView: UIView {
     
     func animateSearchBar(){
         if searchBarViewActive{
-            searchBarView.activateButtons(state: false, completion: {
-                self.searchBarConstraint.constant = -50
+            searchBarView.deactivateSelf(completion: {
+                self.searchBarConstraint.constant = -350
                 self.searchButtonConstraint.constant = -10
                 UIView.animate(withDuration: 0.5, animations: {
                     self.layoutIfNeeded()
@@ -83,14 +83,15 @@ class MapSearchView: UIView {
                 })
             })
         } else {
-            self.searchBarConstraint.constant = 64
-            self.searchButtonConstraint.constant = 50
-            UIView.animate(withDuration: 0.5, animations: {
-                self.layoutIfNeeded()
-            }, completion: { _ in
-                self.searchBarView.activateButtons(state: true, completion: {
-                    self.searchBarView.becomeFirstResponder()})
-                self.searchBarViewActive = true
+            searchBarView.activateSelf(completion: {
+                self.searchBarConstraint.constant = 64
+                self.searchButtonConstraint.constant = 50
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.layoutIfNeeded()
+                } , completion: { _ in
+                    self.searchBarView.becomeFirstResponder()
+                    self.searchBarViewActive = true
+                })
             })
         }
     }
