@@ -17,7 +17,6 @@ class Location: NSObject {
     let name: String
     var games: [Game]?
     let address: String
-    var users:[Player]?
     
     init?(id: String, dict: [String: Any]) {
         self.id = id
@@ -43,5 +42,25 @@ extension Location: MKAnnotation{
         return name
     }
     
+}
+
+extension CLPlacemark{
+    func convertToLocation()-> Location? {
+        if let street = self.addressDictionary?["Street"],
+        let zip = self.addressDictionary?["ZIP"],
+        let name = self.name,
+        let latitude = self.location?.coordinate.latitude,
+        let longitude = self.location?.coordinate.longitude {
+            let address = "\(street), \(zip)"
+            let dict: [String: Any] = [
+                "name": name,
+                "address" : address,
+                "latitude" : latitude,
+                "longitude" : longitude
+            ]
+            return Location(id: "none", dict: dict)
+        }
+        return nil
+    }
 }
 

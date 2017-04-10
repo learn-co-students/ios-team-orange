@@ -11,8 +11,6 @@ import UIKit
 
 class ChosenSportTableCell: UITableViewCell {
     
-    let blurView = BlurView(blurEffect: .light)
-    
     var sport: Sport? {
         didSet {
             if let imageView = self.imageView {

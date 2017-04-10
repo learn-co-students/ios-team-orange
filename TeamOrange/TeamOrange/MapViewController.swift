@@ -25,7 +25,7 @@ class MapViewController: UIViewController {
         self.mainView.centerMapButton.addTarget(self, action: #selector(centerMapButtonClicked), for: .touchUpInside)
         self.mainView.searchButton.addTarget(self, action: #selector(searchBarButtonClicked), for: .touchUpInside)
         self.mainView.searchBarView.cancelButton.addTarget(self, action: #selector(searchBarButtonClicked), for: .touchUpInside)
-        self.mainView.searchBarView.searchBar.addTarget(self, action: #selector(searchLocationButtonClicked), for: .touchUpInside)
+        self.mainView.searchBarView.okButton.addTarget(self, action: #selector(searchLocationButtonClicked), for: .touchUpInside)
         mainView.searchBarView.searchBar.delegate = self
     }
     
@@ -58,6 +58,7 @@ class MapViewController: UIViewController {
     }
     
     func searchBarButtonClicked() {
+        self.mainView.searchBarView.searchBar.text = ""
         self.mainView.animateSearchBar()
     }
     
@@ -159,12 +160,15 @@ extension MapViewController: UITextFieldDelegate{
             return false
         }
         //WARNING: for right now this only seaches within the area that the map is currently showing.
-        
-        MapKitClient.requestMapSearch(with: text, within: mainView.mapView.region, completion: { locations in
+        mainView.mapView.removeAnnotations(mainView.mapView.annotations)
+        CoreLocClient.forwardGeocode(address: text, completion: {placemark in
             DispatchQueue.main.async {
-                if locations.count > 0{
+                if placemark != nil{
                     //need to figure out stuff to do here, this is just testing purposes for right now
-                    self.mainView.mapView.addAnnotations(locations)
+                    if let location = placemark?.convertToLocation(){
+                        self.mainView.mapView.addAnnotation(location)
+                        self.mainView.mapView.setCenter(location.coordinate, animated: true)
+                    }
                     NSLog("%@", "successfully found Locations")
                 } else {
                     //probably throw out an alert view or something...
@@ -172,7 +176,6 @@ extension MapViewController: UITextFieldDelegate{
                 }
             }
         })
-        textField.text = ""
         textField.endEditing(true)
         searchBarButtonClicked()
         return true

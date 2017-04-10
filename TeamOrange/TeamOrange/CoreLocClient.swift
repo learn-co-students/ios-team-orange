@@ -31,11 +31,26 @@ final class CoreLocClient{
         manager.startUpdatingLocation()
     }
     
-    class func authCheckRequest(){
+    class func authCheckRequest() {
         if client.authorized && client.enabled {return}
         self.client.manager.requestWhenInUseAuthorization()
     }
     
+    class func forwardGeocode(address: String, completion: @escaping (CLPlacemark?)->()) {
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(address) { placemark, error in
+            completion(placemark?.first)
+        }
+    }
+    
+    class func reverseGeocode(latitude: Double, longitude: Double, completion: @escaping (CLPlacemark?)->()) {
+        let geocoder = CLGeocoder()
+        let location = CLLocation(latitude: latitude, longitude: longitude)
+        geocoder.reverseGeocodeLocation(location, completionHandler: { placemark, error in
+            completion(placemark?.first)
+        })
+        
+    }
 }
 
 
