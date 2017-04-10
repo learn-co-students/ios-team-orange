@@ -31,9 +31,13 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Huddle"
+        let font = UIFont(name: "SFSportsNight", size: 20)
+        self.navigationItem.title = ""
+        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: font]
         let sportsButton = UIBarButtonItem(title: "Sports", style: .plain, target: self, action: #selector(goToSportPicker) )
-        let friendsButton = UIBarButtonItem(title: "Friends", style: .plain, target: self, action: #selector(goToSportPicker) )
+        sportsButton.setTitleTextAttributes([NSFontAttributeName : font], for: .normal)
+        let friendsButton = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(goToSportPicker) )
+        friendsButton.setTitleTextAttributes([NSFontAttributeName : font], for: .normal)
         self.navigationItem.setRightBarButton(sportsButton, animated: false)
         // set the nav bar to clear
         self.navigationItem.setLeftBarButton(friendsButton, animated: false)
