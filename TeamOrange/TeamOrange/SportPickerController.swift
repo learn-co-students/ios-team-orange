@@ -11,7 +11,7 @@ import UIKit
 
 class SportPickerController: UIViewController {
     
-    var chosenSports: [Sport] = [] { didSet { self.myView.topView.tableView.reloadData() } }
+    var chosenSports: [Sport] = [] { didSet { self.myView.topView.collectionView.reloadData() } }
     
     let myView = SportPickerView()
     var leadingConstraintVisible: NSLayoutConstraint!
@@ -29,8 +29,8 @@ class SportPickerController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.slideViewIn()   
-        self.myView.topView.tableView.delegate = self
-        self.myView.topView.tableView.dataSource = self
+        self.myView.topView.collectionView.delegate = self
+        self.myView.topView.collectionView.dataSource = self
     }
     
     
@@ -66,16 +66,15 @@ class SportPickerController: UIViewController {
     
 }
 
-extension SportPickerController: UITableViewDelegate, UITableViewDataSource {
+extension SportPickerController: UICollectionViewDelegate, UICollectionViewDataSource {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.chosenSports.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "sportCell", for: indexPath) as! ChosenSportTableCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "sportCell", for: indexPath) as! ChosenSportCollectionCell
         cell.sport = self.chosenSports[indexPath.row]
         return cell
     }
-    
 }
