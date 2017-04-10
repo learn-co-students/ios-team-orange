@@ -21,6 +21,7 @@ class ClickableImage: UIImageView {
         self.isUserInteractionEnabled = true
         self.gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tapped))
         self.addGestureRecognizer(gestureRecognizer)
+        self.alpha = 0.5
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -28,6 +29,8 @@ class ClickableImage: UIImageView {
     }
     
     func tapped() {
+        if self.alpha < 1 { self.alpha = 1 }
+        else { self.alpha = 0.5 }
         let notification = Notification(name: Notification.Name("Sport Chosen"), object: self.sport, userInfo: nil)
         NotificationCenter.default.post(notification)
     }

@@ -17,6 +17,7 @@ class BlurView: UIView {
         let blurEffect = UIBlurEffect(style: blurEffect)
         self.blurView = UIVisualEffectView(effect: blurEffect)
         super.init(frame: CGRect.zero)
+        self.alpha = 0.5
         self.buildBlur()
     }
     

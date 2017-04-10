@@ -11,7 +11,7 @@ import UIKit
 
 class SportPickerController: UIViewController {
     
-    var chosenSports: [Sport] = [] { didSet { self.myView.topView.collectionView.reloadData() } }
+    var chosenSports: [Sport] = []
     
     let myView = SportPickerView()
     var leadingConstraintVisible: NSLayoutConstraint!
@@ -21,7 +21,7 @@ class SportPickerController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.buildView()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.addChosenSport), name: Notification.Name("Sport Chosen"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.sportChosen), name: Notification.Name("Sport Chosen"), object: nil)
         NotificationCenter.default.addObserver(self.myView, selector: #selector(self.myView.collapse), name: Notification.Name("Collapse Picker"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.slideViewOut), name: Notification.Name("Picker Collapsed"), object: nil)
     }
@@ -29,8 +29,6 @@ class SportPickerController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.slideViewIn()   
-        self.myView.topView.collectionView.delegate = self
-        self.myView.topView.collectionView.dataSource = self
     }
     
     
@@ -59,22 +57,19 @@ class SportPickerController: UIViewController {
                                          , completion: { _ in self.dismiss(animated: false) })
     }
     
-    func addChosenSport(notification: Notification) {
+    func sportChosen(notification: Notification) {
         guard let sport = notification.object as? Sport else { return }
-        self.chosenSports.append(sport)
+        if self.chosenSports.contains(sport) {
+            for index in 0..<self.chosenSports.count {
+                if self.chosenSports[index] == sport {
+                    self.chosenSports.remove(at: index)
+                    break
+                }
+            }
+        } else {
+            self.chosenSports.append(sport)
+        }
+        self.myView.bottomView.sportsNumberLabel.text = String(self.chosenSports.count)
     }
     
-}
-
-extension SportPickerController: UICollectionViewDelegate, UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.chosenSports.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "sportCell", for: indexPath) as! ChosenSportCollectionCell
-        cell.sport = self.chosenSports[indexPath.row]
-        return cell
-    }
 }
