@@ -21,7 +21,7 @@ class SportPickerController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.buildView()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.addChosenSport), name: Notification.Name("Sport Chosen"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.sportChosen), name: Notification.Name("Sport Chosen"), object: nil)
         NotificationCenter.default.addObserver(self.myView, selector: #selector(self.myView.collapse), name: Notification.Name("Collapse Picker"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.slideViewOut), name: Notification.Name("Picker Collapsed"), object: nil)
     }
@@ -57,9 +57,19 @@ class SportPickerController: UIViewController {
                                          , completion: { _ in self.dismiss(animated: false) })
     }
     
-    func addChosenSport(notification: Notification) {
+    func sportChosen(notification: Notification) {
         guard let sport = notification.object as? Sport else { return }
-        self.chosenSports.append(sport)
+        if self.chosenSports.contains(sport) {
+            for index in 0..<self.chosenSports.count {
+                if self.chosenSports[index] == sport {
+                    self.chosenSports.remove(at: index)
+                    break
+                }
+            }
+        } else {
+            self.chosenSports.append(sport)
+        }
+        self.myView.bottomView.sportsNumberLabel.text = String(self.chosenSports.count)
     }
     
 }

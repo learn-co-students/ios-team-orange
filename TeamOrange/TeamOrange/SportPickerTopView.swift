@@ -11,7 +11,7 @@ import UIKit
 
 class SportPickerTopView: UIView {
 
-    let label = UILabel()
+    let label = WhiteFontLabel(withTitle: "Select Your Sport(s)")
     let blur = BlurView(blurEffect: .dark)
     
     init() {
@@ -29,10 +29,5 @@ class SportPickerTopView: UIView {
         self.label.translatesAutoresizingMaskIntoConstraints = false
         self.label.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         self.label.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        self.label.text = "Select Your Sport(s)"
-        self.label.textColor = UIColor.white
-        self.label.font = self.label.font.withSize(15)
-        self.label.numberOfLines = 0
-        self.label.lineBreakMode = .byWordWrapping
     }
 }
