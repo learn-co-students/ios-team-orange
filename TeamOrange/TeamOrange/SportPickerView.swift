@@ -32,8 +32,8 @@ class SportPickerView: UIView {
         super.init(frame: CGRect.zero)
         self.buildView()
         self.initializeConstraints()
-                self.topView.alpha = 0
-                self.bottomView.alpha = 0
+//        self.topView.alpha = 0
+//        self.bottomView.alpha = 0
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -41,7 +41,7 @@ class SportPickerView: UIView {
     }
     
     func buildView() {
-        let views: [UIView] = [self.topView, self.centerView, self.bottomView]
+        let views: [UIView] = [self.bottomView, self.centerView, self.topView]
         views.forEach {
             self.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -53,40 +53,40 @@ class SportPickerView: UIView {
     }
     
     func initializeConstraints() {
-        self.topViewTopAnchorVisible = self.topView.topAnchor.constraint(equalTo: self.topAnchor); self.topViewTopAnchorVisible.isActive = false
-        self.topViewBottomAnchorVisible = self.topView.bottomAnchor.constraint(equalTo: self.centerView.topAnchor); self.topViewBottomAnchorVisible.isActive = false
-        self.bottomViewTopAnchorVisible = self.bottomView.topAnchor.constraint(equalTo: self.centerView.bottomAnchor); self.bottomViewTopAnchorVisible.isActive = false
-        self.bottomViewBottomAnchorVisible = self.bottomView.bottomAnchor.constraint(equalTo: self.bottomAnchor); self.bottomViewBottomAnchorVisible.isActive = false
-        
         self.topViewTopAnchorInvisible = self.topView.topAnchor.constraint(equalTo: self.centerView.topAnchor); self.topViewTopAnchorInvisible.isActive = true
         self.topViewBottomAnchorInvisible = self.topView.bottomAnchor.constraint(equalTo: self.centerView.bottomAnchor); self.topViewBottomAnchorInvisible.isActive = true
         self.bottomViewTopAnchorInvisible = self.bottomView.topAnchor.constraint(equalTo: self.centerView.topAnchor); self.bottomViewTopAnchorInvisible.isActive = true
         self.bottomViewBottomAnchorInvisible = self.bottomView.bottomAnchor.constraint(equalTo: self.centerView.bottomAnchor); self.bottomViewBottomAnchorInvisible.isActive = true
+        
+        self.topViewTopAnchorVisible = self.topView.topAnchor.constraint(equalTo: self.topAnchor); self.topViewTopAnchorVisible.isActive = false
+        self.topViewBottomAnchorVisible = self.topView.bottomAnchor.constraint(equalTo: self.centerView.topAnchor); self.topViewBottomAnchorVisible.isActive = false
+        self.bottomViewTopAnchorVisible = self.bottomView.topAnchor.constraint(equalTo: self.centerView.bottomAnchor); self.bottomViewTopAnchorVisible.isActive = false
+        self.bottomViewBottomAnchorVisible = self.bottomView.bottomAnchor.constraint(equalTo: self.bottomAnchor); self.bottomViewBottomAnchorVisible.isActive = false
         
         self.topViewConstraints = [self.topViewTopAnchorVisible, self.topViewBottomAnchorVisible, self.topViewTopAnchorInvisible, self.topViewBottomAnchorInvisible]
         self.bottomViewConstraints = [self.bottomViewTopAnchorVisible, self.bottomViewBottomAnchorVisible, self.bottomViewTopAnchorInvisible, self.bottomViewBottomAnchorInvisible]
     }
     
     func build() {
-        self.flipConstraints(constraints: self.bottomViewConstraints)
         self.flipConstraints(constraints: self.topViewConstraints)
+        self.flipConstraints(constraints: self.bottomViewConstraints)
         UIView.animate(withDuration: 0.25, animations: {
-            self.topView.alpha = 1
-            self.bottomView.alpha = 1
+//            self.topView.alpha = 1
+//            self.bottomView.alpha = 1
             self.layoutIfNeeded()
         })
     }
     
     func collapse() {
-        self.flipConstraints(constraints: self.bottomViewConstraints)
         self.flipConstraints(constraints: self.topViewConstraints)
+        self.flipConstraints(constraints: self.bottomViewConstraints)
         UIView.animate(withDuration: 0.25, animations: {
-            self.topView.alpha = 0
-            self.bottomView.alpha = 0
+//            self.topView.alpha = 0
+//            self.bottomView.alpha = 0
             self.layoutIfNeeded()
         }, completion: { _ in
-                let notification = Notification(name: Notification.Name("Picker Collapsed"), object: nil, userInfo: nil)
-                NotificationCenter.default.post(notification)
+            let notification = Notification(name: Notification.Name("Picker Collapsed"), object: nil, userInfo: nil)
+            NotificationCenter.default.post(notification)
         })
     }
     
