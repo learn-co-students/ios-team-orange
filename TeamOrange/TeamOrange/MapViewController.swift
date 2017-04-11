@@ -41,6 +41,7 @@ class MapViewController: UIViewController {
         self.navigationItem.setRightBarButton(sportsButton, animated: false)
         // set the nav bar to clear
         self.navigationItem.setLeftBarButton(friendsButton, animated: false)
+        
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
