@@ -29,6 +29,11 @@ final class InsertToFirebase {
     
 //MARK: Add players to other models
     
+    
+    class func test() {
+        let geofire = GeoFire(firebaseRef: FIRDatabase.database().reference().child(""))
+        
+    }
     // Add team to player & player to team
     class func player(withId playerId: String, toTeam teamId: String) {
         FIRDatabase.database().reference().child("players").child(playerId).child("teams").child(teamId).setValue(true)

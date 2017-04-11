@@ -18,6 +18,7 @@ class MapViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
+        GeoFireClient.test()
         self.view = mainView
         self.mainView.mapView.setUserTrackingMode(.follow, animated: true)
         MapKitClient.setMap(to: self.mainView.mapView)

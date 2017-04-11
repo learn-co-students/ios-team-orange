@@ -1,0 +1,3 @@
+[submodule "TeamOrange/geofire-objc-master/Frameworks/Frameworks/GeoFire"]
+	path = TeamOrange/geofire-objc-master/Frameworks/Frameworks/GeoFire
+	url = git@github.com:firebase/geofire-objc.git

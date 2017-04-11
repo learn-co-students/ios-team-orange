@@ -10,12 +10,17 @@ import UIKit
 import Firebase
 
 
+
+
+
 class LoginViewController: UIViewController {
     
     let loginStack = LoginButtonStackView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let geo = GeoFire()
+        
         
 //        let blue = BlurView(blurEffect: .dark)
 //        self.view.addSubview(blurView)
