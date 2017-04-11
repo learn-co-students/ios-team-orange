@@ -86,7 +86,6 @@
 		88798E251E95B60900F5C540 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		889C529B1E9BFDAC00B4E550 /* LocSearchClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocSearchClient.swift; sourceTree = "<group>"; };
 		889C529D1E9D2DEB00B4E550 /* GeoFireClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoFireClient.swift; sourceTree = "<group>"; };
-		889C529F1E9D2FF800B4E550 /* GeoFire.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GeoFire.h; path = TeamOrange/GeoFire.h; sourceTree = "<group>"; };
 		AAEF8389E9CBFCA746229A38 /* Pods_TeamOrange.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeamOrange.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8EA57988E1A6ABDDCAF32E9 /* Pods-TeamOrange.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamOrange.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TeamOrange/Pods-TeamOrange.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -188,7 +187,6 @@
 			children = (
 				5624EFE01E92BBED00BB2662 /* AppDelegate.swift */,
 				5624EFE71E92BBED00BB2662 /* TeamOrange.xcdatamodeld */,
-				889C529F1E9D2FF800B4E550 /* GeoFire.h */,
 				5624EFEA1E92BBED00BB2662 /* Assets.xcassets */,
 				5624EFEF1E92BBED00BB2662 /* Info.plist */,
 				56FDCD361E9431AE00FE5AA9 /* GoogleService-Info.plist */,
@@ -542,7 +540,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.TeamOrange.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "geofire-objc-master/GeoFire/API/GeoFire.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -559,7 +557,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.TeamOrange.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "geofire-objc-master/GeoFire/API/GeoFire.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
