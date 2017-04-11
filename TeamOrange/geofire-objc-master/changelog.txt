@@ -1,1 +1,0 @@
-changed - Updated `GFEventType` to an `NS_ENUM` for better Swift compatibility.
