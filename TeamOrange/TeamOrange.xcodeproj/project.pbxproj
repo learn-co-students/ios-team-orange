@@ -43,6 +43,7 @@
 		887987ED1E94653000F5C540 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887987EC1E94653000F5C540 /* SearchBarView.swift */; };
 		88798E261E95B60900F5C540 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88798E251E95B60900F5C540 /* MapViewController.swift */; };
 		889C529C1E9BFDAC00B4E550 /* LocSearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889C529B1E9BFDAC00B4E550 /* LocSearchClient.swift */; };
+		889C529E1E9D2DEB00B4E550 /* GeoFireClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889C529D1E9D2DEB00B4E550 /* GeoFireClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +85,8 @@
 		887987EC1E94653000F5C540 /* SearchBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		88798E251E95B60900F5C540 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		889C529B1E9BFDAC00B4E550 /* LocSearchClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocSearchClient.swift; sourceTree = "<group>"; };
+		889C529D1E9D2DEB00B4E550 /* GeoFireClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoFireClient.swift; sourceTree = "<group>"; };
+		889C529F1E9D2FF800B4E550 /* GeoFire.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GeoFire.h; path = TeamOrange/GeoFire.h; sourceTree = "<group>"; };
 		AAEF8389E9CBFCA746229A38 /* Pods_TeamOrange.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeamOrange.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8EA57988E1A6ABDDCAF32E9 /* Pods-TeamOrange.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamOrange.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TeamOrange/Pods-TeamOrange.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -185,6 +188,7 @@
 			children = (
 				5624EFE01E92BBED00BB2662 /* AppDelegate.swift */,
 				5624EFE71E92BBED00BB2662 /* TeamOrange.xcdatamodeld */,
+				889C529F1E9D2FF800B4E550 /* GeoFire.h */,
 				5624EFEA1E92BBED00BB2662 /* Assets.xcassets */,
 				5624EFEF1E92BBED00BB2662 /* Info.plist */,
 				56FDCD361E9431AE00FE5AA9 /* GoogleService-Info.plist */,
@@ -229,6 +233,7 @@
 			children = (
 				568D5B5D1E97CD38009CA1C7 /* Firebase Client */,
 				887987E01E93E7D100F5C540 /* CoreLocClient.swift */,
+				889C529D1E9D2DEB00B4E550 /* GeoFireClient.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -399,6 +404,7 @@
 				887987E31E93EC3000F5C540 /* MapKitClient.swift in Sources */,
 				56BB7B8F1E996C8D001C75E9 /* BlurView.swift in Sources */,
 				5624EFFA1E92BD7200BB2662 /* Team.swift in Sources */,
+				889C529E1E9D2DEB00B4E550 /* GeoFireClient.swift in Sources */,
 				564F0B001E9C051300A48E43 /* WhiteFontLabel.swift in Sources */,
 				56BB7B8B1E996568001C75E9 /* SportPickerBottomView.swift in Sources */,
 				4C885E461E93F99C00B80EA4 /* LoginButton.swift in Sources */,
@@ -454,6 +460,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -504,6 +511,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -527,12 +535,14 @@
 			baseConfigurationReference = D8EA57988E1A6ABDDCAF32E9 /* Pods-TeamOrange.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = X6M58BL6UT;
 				INFOPLIST_FILE = TeamOrange/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.TeamOrange.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "geofire-objc-master/GeoFire/API/GeoFire.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -542,12 +552,14 @@
 			baseConfigurationReference = 40B865929CF74C03A91BAF9F /* Pods-TeamOrange.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = X6M58BL6UT;
 				INFOPLIST_FILE = TeamOrange/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.TeamOrange.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "geofire-objc-master/GeoFire/API/GeoFire.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

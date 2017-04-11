@@ -83,12 +83,12 @@ class MapSearchView: UIView {
                 })
             })
         } else {
-            searchBarView.activateSelf(completion: {
-                self.searchBarConstraint.constant = 64
-                self.searchButtonConstraint.constant = 50
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.layoutIfNeeded()
-                } , completion: { _ in
+            searchBarConstraint.constant = 64
+            searchButtonConstraint.constant = 50
+            UIView.animate(withDuration: 0.5, animations: {
+                self.layoutIfNeeded()
+            } , completion: { _ in
+                self.searchBarView.activateSelf(completion: {
                     self.searchBarView.becomeFirstResponder()
                     self.searchBarViewActive = true
                 })

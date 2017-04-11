@@ -60,12 +60,14 @@ class SearchBarView: UIView {
         
         self.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableViewConstraint = NSLayoutConstraint(item: tableView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0)
+        tableViewConstraint = NSLayoutConstraint(item: tableView, attribute: .bottom, relatedBy: .equal, toItem: searchBar, attribute: .bottom, multiplier: 1, constant: 0)
         self.addConstraint(tableViewConstraint)
         tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 0).isActive = true
         tableView.leadingAnchor.constraint(equalTo: okButton.leadingAnchor, constant: 0).isActive = true
         tableView.trailingAnchor.constraint(equalTo: cancelButton.trailingAnchor, constant: 0).isActive = true
-        
+        tableView.backgroundView = BlurView(blurEffect: .dark)
+        tableView.backgroundView?.alpha = 0.5
+        tableView.backgroundColor = UIColor.clear
     }
     
     func animateSelf(state: Bool, completion: @escaping ()->()) {
