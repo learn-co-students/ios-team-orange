@@ -12,6 +12,7 @@
 		4C885E421E93F3C000B80EA4 /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E411E93F3C000B80EA4 /* Constraints.swift */; };
 		4C885E461E93F99C00B80EA4 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E451E93F99C00B80EA4 /* LoginButton.swift */; };
 		4CE02D271E95A1BD0068190C /* LoginButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE02D261E95A1BD0068190C /* LoginButtonStackView.swift */; };
+		561B2ADD1E9EA61F00A3C95B /* MapGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561B2ADC1E9EA61F00A3C95B /* MapGradientView.swift */; };
 		562358181E9994F300B58A32 /* ClickableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562358171E9994F300B58A32 /* ClickableImageView.swift */; };
 		5624EFE11E92BBED00BB2662 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5624EFE01E92BBED00BB2662 /* AppDelegate.swift */; };
 		5624EFE91E92BBED00BB2662 /* TeamOrange.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5624EFE71E92BBED00BB2662 /* TeamOrange.xcdatamodeld */; };
@@ -60,6 +61,7 @@
 		4C885E411E93F3C000B80EA4 /* Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
 		4C885E451E93F99C00B80EA4 /* LoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
 		4CE02D261E95A1BD0068190C /* LoginButtonStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButtonStackView.swift; sourceTree = "<group>"; };
+		561B2ADC1E9EA61F00A3C95B /* MapGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapGradientView.swift; sourceTree = "<group>"; };
 		562358171E9994F300B58A32 /* ClickableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClickableImageView.swift; sourceTree = "<group>"; };
 		5624EFDD1E92BBED00BB2662 /* TeamOrange.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeamOrange.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5624EFE01E92BBED00BB2662 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = TeamOrange/AppDelegate.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				56BB7B8E1E996C8D001C75E9 /* BlurView.swift */,
 				562358171E9994F300B58A32 /* ClickableImageView.swift */,
 				5638E8DB1E9D714A00058672 /* GamePeakView.swift */,
+				561B2ADC1E9EA61F00A3C95B /* MapGradientView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -454,6 +457,7 @@
 				887987E11E93E7D100F5C540 /* CoreLocClient.swift in Sources */,
 				5638E8DA1E9D5F6C00058672 /* GFQuery.m in Sources */,
 				887987E51E9426DA00F5C540 /* Game.swift in Sources */,
+				561B2ADD1E9EA61F00A3C95B /* MapGradientView.swift in Sources */,
 				5638E8D71E9D5F6C00058672 /* GFBase32Utils.m in Sources */,
 				5638E8D91E9D5F6C00058672 /* GFGeoHashQuery.m in Sources */,
 				5624F0011E92C04B00BB2662 /* Sport.swift in Sources */,
