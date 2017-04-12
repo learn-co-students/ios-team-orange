@@ -15,7 +15,7 @@ final class GeoFireClient {
     class func addLocation(game id: String, coordinate: CLLocationCoordinate2D) {
         let loc  = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
         geo?.setLocation(loc, forKey: id, withCompletionBlock:{ error in
-            NSLog("%@", "added location at (\(coordinate.latitude), \() ")
+            NSLog("%@", "added location at (\(coordinate.latitude), \(coordinate.longitude) ")
             if let error = error{ print (error.localizedDescription) }
         })
         
