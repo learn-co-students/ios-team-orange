@@ -18,16 +18,8 @@ class MapViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        self.view = mainView
-        self.mainView.mapView.setUserTrackingMode(.follow, animated: true)
-        MapKitClient.setMap(to: self.mainView.mapView)
-        LocSearchClient.setFieldAndTable(from: mainView.searchBarView)
-        self.mainView.centerMapButton.addTarget(self, action: #selector(centerMapButtonClicked), for: .touchUpInside)
-        self.mainView.searchBarView.okButton.addTarget(self, action: #selector(searchBarButtonClicked), for: .touchUpInside)
-        self.mainView.searchButton.addTarget(self, action: #selector(toggleSearchView), for: .touchUpInside)
-        self.mainView.searchBarView.cancelButton.addTarget(self, action: #selector(toggleSearchView), for: .touchUpInside)
-        LocSearchClient.setDismissal(to: toggleSearchView)
-    }
+        UIApplication.shared.statusBarStyle = .lightContent
+        }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +40,31 @@ class MapViewController: UIViewController {
         self.navigationController?.view.backgroundColor = .clear
         
         self.buildLoginButton()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        self.view.addSubview(self.mainView)
+        self.mainView.translatesAutoresizingMaskIntoConstraints = false
+        self.mainView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: UIApplication.shared.statusBarFrame.height).isActive = true
+        self.mainView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        self.mainView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        self.mainView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.mainView.mapView.setUserTrackingMode(.follow, animated: true)
+        MapKitClient.setMap(to: self.mainView.mapView)
+        LocSearchClient.setFieldAndTable(from: mainView.searchBarView)
+        self.mainView.centerMapButton.addTarget(self, action: #selector(centerMapButtonClicked), for: .touchUpInside)
+        self.mainView.searchBarView.okButton.addTarget(self, action: #selector(searchBarButtonClicked), for: .touchUpInside)
+        self.mainView.searchButton.addTarget(self, action: #selector(toggleSearchView), for: .touchUpInside)
+        self.mainView.searchBarView.cancelButton.addTarget(self, action: #selector(toggleSearchView), for: .touchUpInside)
+        LocSearchClient.setDismissal(to: toggleSearchView)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
     
     func centerMapButtonClicked(){
@@ -78,9 +94,17 @@ class MapViewController: UIViewController {
     }
     
     func goToLoginScreen() {
-        let loginScreen = LoginViewController()
+        self.view.layer.cornerRadius = 10
+        self.view.clipsToBounds = true
+        UIView.animate(withDuration: 0.25, animations: {
+            self.view.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+        })
+        let loginScreen = GamePeakController()
         loginScreen.modalPresentationStyle = .overCurrentContext
         self.present(loginScreen, animated: false, completion: nil)
+        //        let loginScreen = LoginViewController()
+        //        loginScreen.modalPresentationStyle = .overCurrentContext
+        //        self.present(loginScreen, animated: false, completion: nil)
     }
     
     func goToSportPicker() {

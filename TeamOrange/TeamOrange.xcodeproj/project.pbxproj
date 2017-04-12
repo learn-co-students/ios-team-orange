@@ -28,6 +28,9 @@
 		5638E8D81E9D5F6C00058672 /* GFGeoHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 5638E8D11E9D5F6C00058672 /* GFGeoHash.m */; };
 		5638E8D91E9D5F6C00058672 /* GFGeoHashQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 5638E8D31E9D5F6C00058672 /* GFGeoHashQuery.m */; };
 		5638E8DA1E9D5F6C00058672 /* GFQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 5638E8D41E9D5F6C00058672 /* GFQuery.m */; };
+		5638E8DC1E9D714A00058672 /* GamePeakView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5638E8DB1E9D714A00058672 /* GamePeakView.swift */; };
+		5638E8DE1E9D7A3000058672 /* GamePeakController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5638E8DD1E9D7A3000058672 /* GamePeakController.swift */; };
+		5638E8E01E9E774900058672 /* RoundSingleCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5638E8DF1E9E774900058672 /* RoundSingleCorners.swift */; };
 		5639B47E1E9816CF008FD173 /* SportPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5639B47D1E9816CF008FD173 /* SportPickerController.swift */; };
 		5639B4801E98171D008FD173 /* SportPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5639B47F1E98171D008FD173 /* SportPickerView.swift */; };
 		5649440E1E999C6C00E56F41 /* SportIconScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5649440D1E999C6C00E56F41 /* SportIconScroll.swift */; };
@@ -86,6 +89,9 @@
 		5638E8D31E9D5F6C00058672 /* GFGeoHashQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFGeoHashQuery.m; sourceTree = "<group>"; };
 		5638E8D41E9D5F6C00058672 /* GFQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFQuery.m; sourceTree = "<group>"; };
 		5638E8D51E9D5F6C00058672 /* GFQuery+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GFQuery+Private.h"; sourceTree = "<group>"; };
+		5638E8DB1E9D714A00058672 /* GamePeakView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePeakView.swift; sourceTree = "<group>"; };
+		5638E8DD1E9D7A3000058672 /* GamePeakController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePeakController.swift; sourceTree = "<group>"; };
+		5638E8DF1E9E774900058672 /* RoundSingleCorners.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundSingleCorners.swift; sourceTree = "<group>"; };
 		5639B47D1E9816CF008FD173 /* SportPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportPickerController.swift; sourceTree = "<group>"; };
 		5639B47F1E98171D008FD173 /* SportPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportPickerView.swift; sourceTree = "<group>"; };
 		5649440D1E999C6C00E56F41 /* SportIconScroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportIconScroll.swift; sourceTree = "<group>"; };
@@ -131,6 +137,7 @@
 				5639B47D1E9816CF008FD173 /* SportPickerController.swift */,
 				889C529B1E9BFDAC00B4E550 /* LocSearchClient.swift */,
 				887987E21E93EC3000F5C540 /* MapKitClient.swift */,
+				5638E8DD1E9D7A3000058672 /* GamePeakController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -139,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				4C885E411E93F3C000B80EA4 /* Constraints.swift */,
+				5638E8DF1E9E774900058672 /* RoundSingleCorners.swift */,
 			);
 			name = "Apple Class Extensions";
 			sourceTree = "<group>";
@@ -153,6 +161,7 @@
 				887987EC1E94653000F5C540 /* SearchBarView.swift */,
 				56BB7B8E1E996C8D001C75E9 /* BlurView.swift */,
 				562358171E9994F300B58A32 /* ClickableImageView.swift */,
+				5638E8DB1E9D714A00058672 /* GamePeakView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -450,6 +459,7 @@
 				5624F0011E92C04B00BB2662 /* Sport.swift in Sources */,
 				887987E31E93EC3000F5C540 /* MapKitClient.swift in Sources */,
 				56BB7B8F1E996C8D001C75E9 /* BlurView.swift in Sources */,
+				5638E8DE1E9D7A3000058672 /* GamePeakController.swift in Sources */,
 				5624EFFA1E92BD7200BB2662 /* Team.swift in Sources */,
 				889C529E1E9D2DEB00B4E550 /* GeoFireClient.swift in Sources */,
 				564F0B001E9C051300A48E43 /* WhiteFontLabel.swift in Sources */,
@@ -477,6 +487,8 @@
 				4C885E3F1E93EB9700B80EA4 /* LoginController.swift in Sources */,
 				887987ED1E94653000F5C540 /* SearchBarView.swift in Sources */,
 				5639B47E1E9816CF008FD173 /* SportPickerController.swift in Sources */,
+				5638E8E01E9E774900058672 /* RoundSingleCorners.swift in Sources */,
+				5638E8DC1E9D714A00058672 /* GamePeakView.swift in Sources */,
 				887987EB1E943DC700F5C540 /* MapSearchView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -584,19 +596,15 @@
 			baseConfigurationReference = D8EA57988E1A6ABDDCAF32E9 /* Pods-TeamOrange.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-
 				CLANG_ENABLE_MODULES = YES;
-
 				DEVELOPMENT_TEAM = X6M58BL6UT;
 				INFOPLIST_FILE = TeamOrange/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.TeamOrange.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-
 				SWIFT_OBJC_BRIDGING_HEADER = "TeamOrange/TeamOrange-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -606,18 +614,14 @@
 			baseConfigurationReference = 40B865929CF74C03A91BAF9F /* Pods-TeamOrange.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-
 				CLANG_ENABLE_MODULES = YES;
-
 				DEVELOPMENT_TEAM = X6M58BL6UT;
 				INFOPLIST_FILE = TeamOrange/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.TeamOrange.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-
 				SWIFT_OBJC_BRIDGING_HEADER = "TeamOrange/TeamOrange-Bridging-Header.h";
-
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

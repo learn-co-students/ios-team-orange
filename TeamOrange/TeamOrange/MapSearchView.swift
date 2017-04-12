@@ -33,6 +33,11 @@ class MapSearchView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.roundCorners(corners: [.topLeft, .topRight], radius: 10)
+    }
+    
     func commonInit(){
         mapView.addAndConstrainToEdges(of: self)
         
