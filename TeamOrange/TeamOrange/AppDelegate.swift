@@ -25,6 +25,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
         
+<<<<<<< HEAD
+=======
+        //GeoFireClient.addLocation(game: "testGame", coordinate: CLLocationCoordinate2D(latitude: 40.8713, longitude: 73.9169))
+        
+>>>>>>> master
         return true
     }
     
