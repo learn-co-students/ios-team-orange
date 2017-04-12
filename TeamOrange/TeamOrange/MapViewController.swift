@@ -48,6 +48,7 @@ class MapViewController: UIViewController {
         self.navigationController?.view.backgroundColor = .clear
         
         self.buildLoginButton()
+        self.makeCreateLocationButton()
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -90,7 +91,27 @@ class MapViewController: UIViewController {
     }
 }
 
-
+// MARK: temporary create location entry at map center button
+extension MapViewController {
+    func makeCreateLocationButton () {
+        let button = UIButton()
+        self.mainView.addSubview(button)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        button.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        button.bottomAnchor.constraint(equalTo: self.mainView.bottomAnchor).isActive = true
+        button.leadingAnchor.constraint(equalTo: self.mainView.leadingAnchor).isActive = true
+        button.addTarget(self, action: #selector(makeLocationAtCenter), for: .touchUpInside)
+        button.backgroundColor = UIColor.cyan
+    }
+    
+    
+    
+    func makeLocationAtCenter () {
+        let id = arc4random()
+        GeoFireClient.addLocation(game: "testGame-\(id)", coordinate: self.mainView.mapView.centerCoordinate)
+    }
+}
 
 
 

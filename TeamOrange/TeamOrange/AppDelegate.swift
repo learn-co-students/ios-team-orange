@@ -27,9 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
         
-//        let geo = GeoFire(firebaseRef: FIRDatabase.database().reference().child("locations"))
-//        var loc = CLLocation(latitude: 40.8713, longitude: 73.9169)
-//        geo?.setLocation(loc, forKey: "Key")
+        //GeoFireClient.addLocation(game: "testGame", coordinate: CLLocationCoordinate2D(latitude: 40.8713, longitude: 73.9169))
         
         return true
     }

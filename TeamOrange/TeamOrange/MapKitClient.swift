@@ -19,16 +19,11 @@ final class MapKitClient: NSObject {
         super.init()
     }
     
-    class func removeAnnotations() {
+    class func goTo(place: CLPlacemark) {
+        let annotation = MKPlacemark(placemark: place)
         client.mapView.removeAnnotations(client.mapView.annotations)
-    }
-    
-    class func addAnnotations(locations: [Location]) {
-        client.mapView.addAnnotations(locations)
-    }
-    
-    class func centerMap(coordinate: CLLocationCoordinate2D){
-        client.mapView.setCenter(coordinate, animated: true )
+        client.mapView.addAnnotation(annotation)
+        client.mapView.setCenter(annotation.coordinate, animated: true)
     }
 }
 
@@ -36,6 +31,8 @@ extension MapKitClient: CLLocationManagerDelegate, MKMapViewDelegate {
     class func setMap(to mapView: MKMapView) {
         client.mapView = mapView
         mapView.delegate = client
+        mapView.isRotateEnabled = false
+        mapView.showsPointsOfInterest = false
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -48,32 +45,26 @@ extension MapKitClient: CLLocationManagerDelegate, MKMapViewDelegate {
         }
     }
     
-    func mapViewWillStartRenderingMap(_ mapView: MKMapView) {
-        //probably where we will be loading games / locations
-    }
-    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let identifier = "Location"
-        if annotation is Location { // will only fire off for a Location
-            //this will display a standard apple annotation.
-            //add a custom annotation view here later.
-            
-            var annotationView: MKPinAnnotationView
-            
-            if let rawAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView {
-                annotationView = rawAnnotationView
-                annotationView.annotation = annotation
-            } else {
-                //this part adds an annotation view if one hasnt been dequeued for this location
-                annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-                annotationView.canShowCallout = true
-                let btn = UIButton(type: .detailDisclosure)
-                //this button will call calloutAccessoryTapped
-                annotationView.rightCalloutAccessoryView = btn
-            }
-            return annotationView
+        //this will display a standard apple annotation.
+        //add a custom annotation view here later.
+        
+        var annotationView: MKPinAnnotationView
+        if let rawAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView {
+            annotationView = rawAnnotationView
+            annotationView.annotation = annotation
+        } else {
+            //this part adds an annotation view if one hasnt been dequeued for this location
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView.canShowCallout = true
+            let btn = UIButton(type: .detailDisclosure)
+            //this button will call calloutAccessoryTapped
+            annotationView.rightCalloutAccessoryView = btn
+            if annotation is Location { annotationView.pinTintColor = UIColor.cyan }
+            else { annotationView.pinTintColor = UIColor.purple }
         }
-        return nil
+        return annotationView
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
@@ -91,6 +82,15 @@ extension MapKitClient: CLLocationManagerDelegate, MKMapViewDelegate {
         //replace this with a different action once UI is built
         let ac = UIAlertController(title: locationName, message: gamesString, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default))
+    }
+    
+    func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
+        GeoFireClient.queryLocations(within: mapView.region, response: { response in
+            DispatchQueue.main.async {
+                let location = Location(name: response.0, coordinate: response.1.coordinate)
+                mapView.addAnnotation(location)
+            }
+        })
     }
 }
 
