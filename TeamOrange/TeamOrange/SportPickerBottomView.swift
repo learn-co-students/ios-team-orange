@@ -18,15 +18,17 @@ class SportPickerBottomView: UIView {
     let radiusSlider = UISlider()
     let radiusTextLabel = WhiteFontLabel(withTitle: "Search Radius")
     let radiusNumberLabel = WhiteFontLabel(withTitle: "5")
+    var viewArray: [UIView] = []
     
-    
-     init() {
-    super.init(frame: CGRect.zero)
+    init() {
+        super.init(frame: CGRect.zero)
+        self.viewArray = [self.sportsTextLabel, self.backButton, self.sportsNumberLabel, self.radiusSlider, self.radiusTextLabel, self.radiusNumberLabel]
         self.blur.addAndConstrainToEdges(of: self)
         self.buildNumSportsLabels()
         self.buildBackButton()
         self.buildRadiusSlider()
         self.buildRadiusLabels()
+        self.viewArray.forEach{ $0.alpha = 0 }
     }
     
     required init?(coder aDecoder: NSCoder) {

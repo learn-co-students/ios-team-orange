@@ -33,6 +33,16 @@ class MapSearchView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+//        let gradient = CAGradientLayer()
+//        gradient.startPoint = CGPoint(x: 0, y: 0)
+//        gradient.endPoint = CGPoint(x: 100, y: 100)
+//        gradient.backgroundColor = UIColor.blue.cgColor
+//        self.layer.mask = gradient
+        self.roundCorners(corners: [.topLeft, .topRight], radius: 10)
+    }
+    
     func commonInit(){
         mapView.addAndConstrainToEdges(of: self)
         
