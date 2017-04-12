@@ -11,7 +11,7 @@ import UIKit
 
 extension UINavigationController {
     
-    func makeButton() {
+    func buildMapButton() {
         let font = UIFont(name: "SFSportsNight", size: 20)
         self.navigationBar.titleTextAttributes = [NSFontAttributeName: font]
         let sportsButton = UIBarButtonItem(title: "Sports", style: .plain, target: self, action: #selector(goToSportPicker) )
