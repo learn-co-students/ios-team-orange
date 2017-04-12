@@ -14,24 +14,22 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let navigationController = UINavigationController(rootViewController: MapViewController())
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FIRApp.configure()
         
         CoreLocClient.authCheckRequest()
         
-        let navigationController = UINavigationController(rootViewController: MapViewController())
-        
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
         
-//        let geo = GeoFire(firebaseRef: FIRDatabase.database().reference().child("locations"))
-//        var loc = CLLocation(latitude: 40.8713, longitude: 73.9169)
-//        geo?.setLocation(loc, forKey: "Key")
-        
         return true
+    }
+    
+    func goToSportPicker() {
+        print("HI")
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

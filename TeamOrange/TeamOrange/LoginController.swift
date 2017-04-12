@@ -57,6 +57,9 @@ class LoginViewController: UIViewController {
         exitBtn.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50).isActive = true
         exitBtn.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.10).isActive = true
         exitBtn.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.15).isActive = true
+        
+        self.navigationController?.makeButton()
+        
     }
     
     func exitPressed() {
