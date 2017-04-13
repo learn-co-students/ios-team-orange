@@ -33,6 +33,16 @@ class MapSearchView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+//        let gradient = CAGradientLayer()
+//        gradient.startPoint = CGPoint(x: 0, y: 0)
+//        gradient.endPoint = CGPoint(x: 100, y: 100)
+//        gradient.backgroundColor = UIColor.blue.cgColor
+//        self.layer.mask = gradient
+        self.roundCorners(corners: [.topLeft, .topRight], radius: 10)
+    }
+    
     func commonInit(){
         mapView.addAndConstrainToEdges(of: self)
         
@@ -83,12 +93,12 @@ class MapSearchView: UIView {
                 })
             })
         } else {
-            searchBarView.activateSelf(completion: {
-                self.searchBarConstraint.constant = 64
-                self.searchButtonConstraint.constant = 50
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.layoutIfNeeded()
-                } , completion: { _ in
+            searchBarConstraint.constant = 64
+            searchButtonConstraint.constant = 50
+            UIView.animate(withDuration: 0.5, animations: {
+                self.layoutIfNeeded()
+            } , completion: { _ in
+                self.searchBarView.activateSelf(completion: {
                     self.searchBarView.becomeFirstResponder()
                     self.searchBarViewActive = true
                 })

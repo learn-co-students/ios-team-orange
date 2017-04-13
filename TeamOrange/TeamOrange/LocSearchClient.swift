@@ -12,10 +12,9 @@ final class LocSearchClient: NSObject {
     
     lazy var textField = UITextField()
     lazy var tableView = UITableView()
-    var dismiss: ()->()
+    var dismiss: ()->() = {}
     fileprivate static var client = LocSearchClient()
     override init(){
-        dismiss = {}
         super.init()
     }
     
@@ -48,16 +47,11 @@ extension LocSearchClient: UITextFieldDelegate{
         guard let text = textField.text, text != "" else {
             return false
         }
-        //WARNING: for right now this only seaches within the area that the map is currently showing.
-        MapKitClient.removeAnnotations()
         CoreLocClient.forwardGeocode(address: text, completion: {placemark in
             DispatchQueue.main.async {
-                if placemark != nil{
+                if let placemark = placemark{
                     //need to figure out stuff to do here, this is just testing purposes for right now
-                    if let location = placemark?.convertToLocation(){
-                        MapKitClient.addAnnotations(locations: [location])
-                        MapKitClient.centerMap(coordinate: location.coordinate)
-                    }
+                    MapKitClient.goTo(place: placemark)
                     NSLog("%@", "successfully found Locations")
                 } else {
                     //probably throw out an alert view or something...
