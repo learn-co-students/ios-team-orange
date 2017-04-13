@@ -11,16 +11,32 @@ import UIKit
 
 extension UINavigationController {
     
+    override open func viewDidLoad() {
+        self.buildStaticNavBar()
+    }
+    
+    func buildStaticNavBar() {
+        self.buildMapButton()
+        self.setNavBarTitle()
+    }
+    
     func buildMapButton() {
-        let font = UIFont(name: "SFSportsNight", size: 20)
-        self.navigationBar.titleTextAttributes = [NSFontAttributeName: font]
+        let mikesFavFont = UIFont(name: "SFSportsNight", size: 20)
+        self.navigationBar.titleTextAttributes = [NSFontAttributeName: mikesFavFont]
         let sportsButton = UIBarButtonItem(title: "Sports", style: .plain, target: self, action: #selector(goToSportPicker) )
-        sportsButton.setTitleTextAttributes([NSFontAttributeName : font], for: .normal)
+        sportsButton.setTitleTextAttributes([NSFontAttributeName : mikesFavFont], for: .normal)
         self.topViewController?.navigationItem.setRightBarButton(sportsButton, animated: false)
+    }
+    
+    func setNavBarTitle() {
+        let mikesFavFont = UIFont(name: "SFSportsNight", size: 20)
+        self.navigationBar.titleTextAttributes = [NSFontAttributeName: mikesFavFont]
+        self.title = "Team Up"
+        self.navigationItem.title = "anything"
+        print("I tried to set the title, hope it worked")
     }
     
     func goToSportPicker() {
         self.popToRootViewController(animated: false)
     }
-    
 }

@@ -14,6 +14,7 @@ class SportPickerView: UIView {
     let topView = SportPickerTopView()
     let centerView = SportPickerCenterView()
     let bottomView = SportPickerBottomView()
+    let gestureView = UIView()
     
     var topViewTopAnchorInvisible: NSLayoutConstraint!
     var topViewTopAnchorVisible: NSLayoutConstraint!
@@ -33,6 +34,43 @@ class SportPickerView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func build() {
+        self.flipConstraints(constraints: self.topViewConstraints)
+        self.flipConstraints(constraints: self.bottomViewConstraints)
+        
+        UIView.animate(withDuration: 0.25, animations: {
+            self.topView.viewArray.forEach{ $0.alpha = 1 }
+            self.bottomView.viewArray.forEach{ $0.alpha = 1 }
+            self.layoutIfNeeded()
+        }, completion: { _ in
+        })
+    }
+    
+    // animates the collapse like the open, not currently being used
+    func collapse() {
+        self.flipConstraints(constraints: self.topViewConstraints)
+        self.flipConstraints(constraints: self.bottomViewConstraints)
+        UIView.animate(withDuration: 0.25, animations: {
+            self.topView.viewArray.forEach{ $0.alpha = 0 }
+            self.bottomView.viewArray.forEach{ $0.alpha = 0 }
+            self.layoutIfNeeded()
+        }, completion: { _ in
+            let notification = Notification(name: Notification.Name("Picker Collapsed"), object: nil, userInfo: nil)
+            NotificationCenter.default.post(notification)
+        })
+    }
+    
+    func flipConstraints(constraints: [NSLayoutConstraint]) {
+        constraints.forEach {
+            if $0.isActive == true { $0.isActive = false }
+            else { $0.isActive = true }
+        }
+    }
+}
+
+//MARK: Set Constraints
+extension SportPickerView {
     
     func buildView() {
         let views: [UIView] = [self.bottomView, self.centerView, self.topView]
@@ -58,38 +96,5 @@ class SportPickerView: UIView {
         
         self.topViewConstraints = [self.topViewTopAnchorVisible, self.topViewTopAnchorInvisible]
         self.bottomViewConstraints = [self.bottomViewBottomAnchorVisible, self.bottomViewBottomAnchorInvisible]
-    }
-    
-    
-    func build() {
-        self.flipConstraints(constraints: self.topViewConstraints)
-        self.flipConstraints(constraints: self.bottomViewConstraints)
-        
-        UIView.animate(withDuration: 0.25, animations: {
-            self.topView.viewArray.forEach{ $0.alpha = 1 }
-            self.bottomView.viewArray.forEach{ $0.alpha = 1 }
-            self.layoutIfNeeded()
-        }, completion: { _ in
-        })
-    }
-    
-    func collapse() {
-        self.flipConstraints(constraints: self.topViewConstraints)
-        self.flipConstraints(constraints: self.bottomViewConstraints)
-        UIView.animate(withDuration: 0.25, animations: {
-            self.topView.viewArray.forEach{ $0.alpha = 0 }
-            self.bottomView.viewArray.forEach{ $0.alpha = 0 }
-            self.layoutIfNeeded()
-        }, completion: { _ in
-            let notification = Notification(name: Notification.Name("Picker Collapsed"), object: nil, userInfo: nil)
-            NotificationCenter.default.post(notification)
-        })
-    }
-    
-    func flipConstraints(constraints: [NSLayoutConstraint]) {
-        constraints.forEach {
-            if $0.isActive == true { $0.isActive = false }
-            else { $0.isActive = true }
-        }
     }
 }
