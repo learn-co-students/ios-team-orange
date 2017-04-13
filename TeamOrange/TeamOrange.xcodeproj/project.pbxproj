@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2099EEF48E437A15D0A1FDC1 /* Pods_TeamOrange.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAEF8389E9CBFCA746229A38 /* Pods_TeamOrange.framework */; };
+		4C2E7EFA1E9D61EE008510F6 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E7EF91E9D61EE008510F6 /* SWRevealViewController.m */; };
+		4C2E7EFC1E9D681A008510F6 /* HomeRearViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E7EFB1E9D681A008510F6 /* HomeRearViewController.swift */; };
 		4C885E3F1E93EB9700B80EA4 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E3E1E93EB9700B80EA4 /* LoginController.swift */; };
 		4C885E421E93F3C000B80EA4 /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E411E93F3C000B80EA4 /* Constraints.swift */; };
 		4C885E461E93F99C00B80EA4 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E451E93F99C00B80EA4 /* LoginButton.swift */; };
@@ -47,6 +49,10 @@
 
 /* Begin PBXFileReference section */
 		40B865929CF74C03A91BAF9F /* Pods-TeamOrange.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamOrange.release.xcconfig"; path = "Pods/Target Support Files/Pods-TeamOrange/Pods-TeamOrange.release.xcconfig"; sourceTree = "<group>"; };
+		4C2E7EF71E9D61ED008510F6 /* TeamOrange-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TeamOrange-Bridging-Header.h"; sourceTree = "<group>"; };
+		4C2E7EF81E9D61EE008510F6 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		4C2E7EF91E9D61EE008510F6 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		4C2E7EFB1E9D681A008510F6 /* HomeRearViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRearViewController.swift; sourceTree = "<group>"; };
 		4C885E3E1E93EB9700B80EA4 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		4C885E411E93F3C000B80EA4 /* Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
 		4C885E451E93F99C00B80EA4 /* LoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
@@ -108,6 +114,7 @@
 				5639B47D1E9816CF008FD173 /* SportPickerController.swift */,
 				889C529B1E9BFDAC00B4E550 /* LocSearchClient.swift */,
 				887987E21E93EC3000F5C540 /* MapKitClient.swift */,
+				4C2E7EFB1E9D681A008510F6 /* HomeRearViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -229,6 +236,9 @@
 			children = (
 				568D5B5D1E97CD38009CA1C7 /* Firebase Client */,
 				887987E01E93E7D100F5C540 /* CoreLocClient.swift */,
+				4C2E7EF81E9D61EE008510F6 /* SWRevealViewController.h */,
+				4C2E7EF91E9D61EE008510F6 /* SWRevealViewController.m */,
+				4C2E7EF71E9D61ED008510F6 /* TeamOrange-Bridging-Header.h */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -303,6 +313,7 @@
 					5624EFDC1E92BBED00BB2662 = {
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = X6M58BL6UT;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -396,9 +407,11 @@
 				887987E11E93E7D100F5C540 /* CoreLocClient.swift in Sources */,
 				887987E51E9426DA00F5C540 /* Game.swift in Sources */,
 				5624F0011E92C04B00BB2662 /* Sport.swift in Sources */,
+				4C2E7EFC1E9D681A008510F6 /* HomeRearViewController.swift in Sources */,
 				887987E31E93EC3000F5C540 /* MapKitClient.swift in Sources */,
 				56BB7B8F1E996C8D001C75E9 /* BlurView.swift in Sources */,
 				5624EFFA1E92BD7200BB2662 /* Team.swift in Sources */,
+				4C2E7EFA1E9D61EE008510F6 /* SWRevealViewController.m in Sources */,
 				564F0B001E9C051300A48E43 /* WhiteFontLabel.swift in Sources */,
 				56BB7B8B1E996568001C75E9 /* SportPickerBottomView.swift in Sources */,
 				4C885E461E93F99C00B80EA4 /* LoginButton.swift in Sources */,
@@ -527,12 +540,15 @@
 			baseConfigurationReference = D8EA57988E1A6ABDDCAF32E9 /* Pods-TeamOrange.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = X6M58BL6UT;
 				INFOPLIST_FILE = TeamOrange/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.TeamOrange.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TeamOrange/TeamOrange-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -542,12 +558,14 @@
 			baseConfigurationReference = 40B865929CF74C03A91BAF9F /* Pods-TeamOrange.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = X6M58BL6UT;
 				INFOPLIST_FILE = TeamOrange/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.TeamOrange.iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TeamOrange/TeamOrange-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

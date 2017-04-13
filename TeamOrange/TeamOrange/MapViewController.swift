@@ -47,7 +47,6 @@ class MapViewController: UIViewController {
         self.navigationController?.view.backgroundColor = .clear
         
         self.buildLoginButton()
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     func centerMapButtonClicked(){
@@ -68,18 +67,20 @@ class MapViewController: UIViewController {
         self.view.addSubview(loginButton)
         self.loginButton.translatesAutoresizingMaskIntoConstraints = false
         self.loginButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20).isActive = true
-        self.loginButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20).isActive = true
+        self.loginButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
         self.loginButton.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05).isActive = true
         self.loginButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.2).isActive = true
         self.loginButton.backgroundColor = UIColor.red
         self.loginButton.setTitle("Login", for: .normal)
-        self.loginButton.addTarget(self, action: #selector(self.goToLoginScreen), for: .touchUpInside)
+        self.loginButton.addTarget(self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
     }
     
     func goToLoginScreen() {
-        let loginScreen = LoginViewController()
-        loginScreen.modalPresentationStyle = .overCurrentContext
-        self.present(loginScreen, animated: false, completion: nil)
+        print("I've been clicked")
+        
+        //        let loginScreen = LoginViewController()
+        //        loginScreen.modalPresentationStyle = .overCurrentContext
+        //        self.present(loginScreen, animated: false, completion: nil)
     }
     
     func goToSportPicker() {
@@ -87,6 +88,7 @@ class MapViewController: UIViewController {
         sportsPicker.modalPresentationStyle = .overCurrentContext
         self.present(sportsPicker, animated: false, completion: nil)
     }
+    
 }
 
 
