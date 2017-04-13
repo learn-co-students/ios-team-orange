@@ -23,6 +23,7 @@ final class GeoFireClient {
     
     class func queryLocations(within region: MKCoordinateRegion, response: @escaping (String, CLLocation)->()){
         //remove locations from map first!
+        
         let query = geo?.query(with: region)
         query?.observe(.keyEntered, with: { key, location in
             //key is game id
@@ -32,5 +33,5 @@ final class GeoFireClient {
             response(key, location)
         })
     }
-       
+    
 }

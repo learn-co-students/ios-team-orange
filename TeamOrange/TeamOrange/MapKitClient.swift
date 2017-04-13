@@ -86,7 +86,7 @@ extension MapKitClient: CLLocationManagerDelegate, MKMapViewDelegate {
         
         //present an alert controller with the name and message from above
         //replace this with a different action once UI is built
-        let ac = UIAlertController(title: "gameLocation", message: location.name, preferredStyle: .alert)
+        let ac = UIAlertController(title: location.address, message: location.locationText, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default))
     }
     
@@ -102,7 +102,9 @@ extension MapKitClient: CLLocationManagerDelegate, MKMapViewDelegate {
                         return
                     }
                 }
-                mapView.addAnnotation( Location(gameID: response.0, coordinate: response.1.coordinate) )
+                let newLocation = Location(gameID: response.0, coordinate: response.1.coordinate)
+                mapView.addAnnotation(newLocation)
+                newLocation.lookUpAddress()
             }
         })
     }

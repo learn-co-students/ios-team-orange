@@ -124,7 +124,7 @@ class MapViewController: UIViewController {
     }
     
     
-    func goToGamePeakView() {
+    func goToGamePeekView() {
         self.view.layer.cornerRadius = 10
         self.view.clipsToBounds = true
         UIView.animate(withDuration: 0.25, animations: {
@@ -152,6 +152,10 @@ extension MapViewController {
     func makeLocationAtCenter () {
         let id = arc4random()
         GeoFireClient.addLocation(game: "testGame-\(id)", coordinate: self.mainView.mapView.centerCoordinate)
+        self.mainView.mapView.annotations.forEach({ locaiton in
+            guard let loc = locaiton as? Location else {return}
+            print (loc.address)
+        })
     }
 }
 

@@ -11,7 +11,7 @@ import UIKit
 
 class GamePeakController: UIViewController {
     
-    let myView = GamePeakView()
+    let myView = GamePeekView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
