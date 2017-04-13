@@ -18,6 +18,7 @@ class MapViewController: UIViewController {
     let mikesFavFont = UIFont(name: "SFSportsNight", size: 20)
     let profileButton = UIButton()
     let sportsButton = UIButton()
+    let loginButton = UIButton()
     
     override func loadView() {
         super.loadView()
@@ -32,6 +33,7 @@ class MapViewController: UIViewController {
         self.setNavBarToClear()
         self.buildProfileButton()
         self.buildSportsButton()
+        self.buildLoginButton()
 //        self.navigationController?.setNavBarTitle()
 
     }
@@ -88,7 +90,6 @@ class MapViewController: UIViewController {
     }
     
     func goToLoginScreen() {
-        print("I've been clicked")
         let loginScreen = LoginViewController()
         self.navigationController?.pushViewController(loginScreen, animated: false)
         loginScreen.modalPresentationStyle = .overCurrentContext
@@ -126,6 +127,20 @@ class MapViewController: UIViewController {
         self.sportsButton.setTitleColor(UIColor.red, for: .normal)
         self.sportsButton.addTarget(self, action: #selector(self.goToGamePeekView), for: .touchUpInside)
         self.sportsButton.titleLabel?.font = self.mikesFavFont
+    }
+    
+    func buildLoginButton() {
+        self.view.addSubview(self.loginButton)
+        self.loginButton.translatesAutoresizingMaskIntoConstraints = false
+        self.loginButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
+        self.loginButton.bottomAnchor.constraint(equalTo: self.profileButton.topAnchor, constant: -20).isActive = true
+        self.loginButton.heightAnchor.constraint(equalTo: self.profileButton.heightAnchor).isActive = true
+        self.loginButton.widthAnchor.constraint(equalTo: self.profileButton.widthAnchor).isActive = true
+        self.loginButton.setTitle("Login", for: .normal)
+        self.loginButton.setTitleColor(UIColor.red, for: .normal)
+        self.loginButton.addTarget(self, action: #selector(self.goToLoginScreen), for: .touchUpInside)
+        self.loginButton.titleLabel?.font = self.mikesFavFont
+        
     }
     
     func goToGamePeekView() {
