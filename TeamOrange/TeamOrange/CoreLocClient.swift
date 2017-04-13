@@ -43,6 +43,24 @@ final class CoreLocClient{
         }
     }
     
+    class func forwardGeocodeAutoCompletions(text: String, completion: @escaping ([String])->()) {
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(text, completionHandler: { placemarks, error in
+            var completions = [String]()
+            if  let placemarks = placemarks {
+                placemarks.forEach({
+                    if let dict = $0.addressDictionary,
+                        let street = dict ["Street"] as? String,
+                        let city = dict ["City"] as? String,
+                        let zip = dict ["ZIP"] as? String{
+                        completions.append("\(street), \(city), \(zip)")
+                    }
+                })
+            }
+            DispatchQueue.main.async {completion(completions)}
+        })
+    }
+    
     class func reverseGeocode(latitude: Double, longitude: Double, completion: @escaping (CLPlacemark?)->()) {
         let geocoder = CLGeocoder()
         let location = CLLocation(latitude: latitude, longitude: longitude)

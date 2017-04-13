@@ -26,12 +26,14 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         self.makeCreateLocationButton()
         self.buildMainView()
         self.setNavBarToClear()
         self.buildProfileButton()
         self.buildSportsButton()
-        self.navigationController?.setNavBarTitle()
+//        self.navigationController?.setNavBarTitle()
+
     }
     
     
@@ -50,6 +52,7 @@ class MapViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
     }
     
     func centerMapButtonClicked(){
@@ -65,7 +68,7 @@ class MapViewController: UIViewController {
     func toggleSearchView(){
         self.mainView.animateSearchBar()
     }
-    
+
     func buildMainView() {
         self.view.addSubview(self.mainView)
         self.mainView.translatesAutoresizingMaskIntoConstraints = false
@@ -81,13 +84,15 @@ class MapViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear
+
     }
     
     func goToLoginScreen() {
+        print("I've been clicked")
         let loginScreen = LoginViewController()
         self.navigationController?.pushViewController(loginScreen, animated: false)
-//        loginScreen.modalPresentationStyle = .overCurrentContext
-//        self.present(loginScreen, animated: false, completion: nil)
+        loginScreen.modalPresentationStyle = .overCurrentContext
+        self.present(loginScreen, animated: false, completion: nil)
     }
     
     func goToSportPicker() {
@@ -106,7 +111,7 @@ class MapViewController: UIViewController {
         self.profileButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
         self.profileButton.setTitle("Profile", for: .normal)
         self.profileButton.setTitleColor(UIColor.red, for: .normal)
-        self.profileButton.addTarget(self, action: #selector(self.goToLoginScreen), for: .touchUpInside)
+        self.profileButton.addTarget(self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
         self.profileButton.titleLabel?.font = self.mikesFavFont
     }
     
@@ -122,7 +127,6 @@ class MapViewController: UIViewController {
         self.sportsButton.addTarget(self, action: #selector(self.goToGamePeekView), for: .touchUpInside)
         self.sportsButton.titleLabel?.font = self.mikesFavFont
     }
-    
     
     func goToGamePeekView() {
         self.view.layer.cornerRadius = 10
@@ -140,7 +144,9 @@ class MapViewController: UIViewController {
             self.view.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
         })
     }
+    
 }
+
 
 // MARK: temporary create location entry at map center button
 extension MapViewController {

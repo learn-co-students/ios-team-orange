@@ -34,4 +34,9 @@ final class GeoFireClient {
         })
     }
     
+    class func removeFromLocationId(game id: String, completion: @escaping (Bool)->()){
+        geo?.removeKey(id, withCompletionBlock: { error in
+            completion(error == nil)
+        })
+    }
 }
