@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class GamePeakView: UIView {
+class GamePeekView: UIView {
     
     let blurView = BlurView(blurEffect: .dark)
     

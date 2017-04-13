@@ -14,10 +14,9 @@ class Location: NSObject {
     let latitude: Double
     let longitude: Double
     var games: [Game]
-    let address: String?
+    var address: String?
     
-    var name: String {
-        
+    var locationText: String {
         var gamesString: String
         let gameNum = games.count
         if gameNum == 1 { gamesString = "One game at this location." }
@@ -36,7 +35,10 @@ class Location: NSObject {
 //    }
     
     init(gameID: String, coordinate: CLLocationCoordinate2D){
+        // TODO: Games should be grabbed from firebase and not made here.
+        ////THIS FUNCTION WILL NEED TO BE CHANGED
         let firstGame = Game(id: gameID, dict: [:])
+        ////GAMES MUST BE GRABBED FROM FIREBASE NOT CREATED HERE
         games = [firstGame]
         self.latitude = coordinate.latitude
         self.longitude = coordinate.longitude
@@ -47,6 +49,18 @@ class Location: NSObject {
         let newGame = Game(id: id, dict: [:])
         self.games.append(newGame)
     }
+    func lookUpAddress(){
+        CoreLocClient.reverseGeocode(latitude: self.latitude, longitude: self.longitude, completion: { placemark in
+            DispatchQueue.main.async {
+                if let placemark = placemark{
+                    if let street = placemark.addressDictionary?["Street"] as! String?,
+                        let zip = placemark.addressDictionary?["ZIP"] as! String?{
+                        self.address = "\(street), \(zip)"
+                    }
+                }
+            }
+        })
+    }
     
 }
 
@@ -56,14 +70,14 @@ extension Location: MKAnnotation{
     }
     
     public var title: String?{
-        return name
+        return locationText
     }
     
     var allGameIDs: String{
         let ids = games.map({$0.id})
         let desc = ids.joined(separator: ", ")
         return desc
-    }
+    }//for debugging.
     
 }
 
