@@ -33,6 +33,7 @@ extension MapKitClient: CLLocationManagerDelegate, MKMapViewDelegate {
         mapView.delegate = client
         mapView.isRotateEnabled = false
         mapView.showsPointsOfInterest = false
+        //mapView.mapType = .hybrid
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -61,8 +62,19 @@ extension MapKitClient: CLLocationManagerDelegate, MKMapViewDelegate {
             let btn = UIButton(type: .detailDisclosure)
             //this button will call calloutAccessoryTapped
             annotationView.rightCalloutAccessoryView = btn
-            if annotation is Location { annotationView.pinTintColor = UIColor.cyan }
-            else { annotationView.pinTintColor = UIColor.purple }
+            //if let _ = annotation as? Location { annotationView.pinTintColor = UIColor.cyan }
+            //else { annotationView.pinTintColor = UIColor.purple }
+            switch annotation{
+                // conclusion: this function is currently dequeueing the wrong annotationView after repeated location searches.
+                // TODO: investigate the source of this bug. 
+            case is MKPlacemark, is MKUserLocation:
+                break
+            case is Location :
+                annotationView.pinTintColor = UIColor.cyan
+                break
+            default:
+                annotationView.pinTintColor = UIColor.green
+            }
         }
         return annotationView
     }
@@ -71,27 +83,30 @@ extension MapKitClient: CLLocationManagerDelegate, MKMapViewDelegate {
         guard let location = view.annotation as? Location else { return }
         
         //this part gets some basic data from the location.
-        let locationName = location.name
-        var gamesString = "No game data for this location"
-        if let games = location.games?.count {
-            if games == 1 { gamesString = "One game at this location." }
-            else { gamesString = "\(games) games at this location." }
-        }//fallthrough to default gamesString if location.games == nil
         
         //present an alert controller with the name and message from above
         //replace this with a different action once UI is built
-        let ac = UIAlertController(title: locationName, message: gamesString, preferredStyle: .alert)
+        let ac = UIAlertController(title: "gameLocation", message: location.name, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default))
     }
     
     func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
         GeoFireClient.queryLocations(within: mapView.region, response: { response in
             DispatchQueue.main.async {
-                let location = Location(name: response.0, coordinate: response.1.coordinate)
-                mapView.addAnnotation(location)
+                
+                for annotation in mapView.annotations{
+                    guard let location = annotation as? Location else {continue}
+                    //print("ck: \(location.coordinate), \(response.1.coordinate)")
+                    if location.coordinate == response.1.coordinate{
+                        location.addGame(id: response.0)
+                        return
+                    }
+                }
+                mapView.addAnnotation( Location(gameID: response.0, coordinate: response.1.coordinate) )
             }
         })
     }
+    
 }
 
 

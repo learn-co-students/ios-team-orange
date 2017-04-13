@@ -25,7 +25,7 @@ import Foundation
         return players.count
     }
     
-    // Arrats not created at initialization
+    // Arrays not created at initialization
     var admins: [Player]?
     var players: [Player]?
     

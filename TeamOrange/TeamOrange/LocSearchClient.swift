@@ -12,10 +12,9 @@ final class LocSearchClient: NSObject {
     
     lazy var textField = UITextField()
     lazy var tableView = UITableView()
-    var dismiss: ()->()
+    var dismiss: ()->() = {}
     fileprivate static var client = LocSearchClient()
     override init(){
-        dismiss = {}
         super.init()
     }
     

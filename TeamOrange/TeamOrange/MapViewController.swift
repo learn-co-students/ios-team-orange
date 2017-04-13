@@ -46,6 +46,7 @@ class MapViewController: UIViewController {
         self.mainView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         self.mainView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         self.mainView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        self.mainView.mapView.setUserTrackingMode(.follow, animated: true)
         
         self.buildLoginButton()
         
@@ -56,8 +57,6 @@ class MapViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        self.mainView.mapView.setUserTrackingMode(.follow, animated: true)
         MapKitClient.setMap(to: self.mainView.mapView)
         LocSearchClient.setFieldAndTable(from: mainView.searchBarView)
         self.mainView.centerMapButton.addTarget(self, action: #selector(centerMapButtonClicked), for: .touchUpInside)
