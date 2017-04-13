@@ -1,5 +1,5 @@
 //
-//  GamePeakScroller.swift
+//  GamePeekScroller.swift
 //  TeamOrange
 //
 //  Created by William Brancato on 4/13/17.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class GamePeakScroll: UIScrollView {
+class GamePeekScroll: UIScrollView {
     
 //    var gameStack: UIStackView!
 //    var games: [Game] = []

@@ -1,5 +1,5 @@
 //
-//  GamePeakController.swift
+//  GamepeekController.swift
 //  TeamOrange
 //
 //  Created by William Brancato on 4/11/17.
@@ -9,17 +9,10 @@
 import Foundation
 import UIKit
 
-class GamePeakController: UIViewController {
+class GamePeekController: UIViewController {
     
     let myView = GamePeekView()
-    
-    init(location: Location) {
-        super.init(nibName: "GamePeak", bundle: nil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    var location: Location!
     
     override func viewDidLoad() {
         super.viewDidLoad()
