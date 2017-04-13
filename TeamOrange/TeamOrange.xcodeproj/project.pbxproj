@@ -176,6 +176,25 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		4C9F8FF21EA01D2C00EE70D6 /* Obj C Files */ = {
+			isa = PBXGroup;
+			children = (
+				4C2E7EF71E9D61ED008510F6 /* TeamOrange-Bridging-Header.h */,
+				4C9F8FF31EA01D4500EE70D6 /* Reveal View */,
+				5638E8C51E9D5F2500058672 /* GeoFire */,
+			);
+			name = "Obj C Files";
+			sourceTree = "<group>";
+		};
+		4C9F8FF31EA01D4500EE70D6 /* Reveal View */ = {
+			isa = PBXGroup;
+			children = (
+				4C2E7EF81E9D61EE008510F6 /* SWRevealViewController.h */,
+				4C2E7EF91E9D61EE008510F6 /* SWRevealViewController.m */,
+			);
+			name = "Reveal View";
+			sourceTree = "<group>";
+		};
 		5624EFD41E92BBED00BB2662 = {
 			isa = PBXGroup;
 			children = (
@@ -197,6 +216,7 @@
 		5624EFDF1E92BBED00BB2662 /* TeamOrange */ = {
 			isa = PBXGroup;
 			children = (
+				4C9F8FF21EA01D2C00EE70D6 /* Obj C Files */,
 				56F8C6F61E9C1CE10022A695 /* Fonts */,
 				5624EFF81E92BD4600BB2662 /* Models */,
 				4C885E441E93F8DB00B80EA4 /* Views */,
@@ -204,7 +224,6 @@
 				4C885E401E93F2D200B80EA4 /* Apple Class Extensions */,
 				56FDCD341E941E4400FE5AA9 /* Enums */,
 				5624EFFF1E92BF3500BB2662 /* Essential Files */,
-				5638E8C51E9D5F2500058672 /* GeoFire Obj C Files */,
 				56FDCD351E941E8D00FE5AA9 /* Protocols */,
 				56FDCD331E941E1600FE5AA9 /* Utilities */,
 			);
@@ -236,7 +255,7 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		5638E8C51E9D5F2500058672 /* GeoFire Obj C Files */ = {
+		5638E8C51E9D5F2500058672 /* GeoFire */ = {
 			isa = PBXGroup;
 			children = (
 				5638E8C61E9D5F4B00058672 /* GeoFire.h */,
@@ -255,7 +274,7 @@
 				5638E8D41E9D5F6C00058672 /* GFQuery.m */,
 				5638E8D51E9D5F6C00058672 /* GFQuery+Private.h */,
 			);
-			name = "GeoFire Obj C Files";
+			name = GeoFire;
 			sourceTree = "<group>";
 		};
 		568D5B5D1E97CD38009CA1C7 /* Firebase Client */ = {
@@ -294,9 +313,6 @@
 			children = (
 				568D5B5D1E97CD38009CA1C7 /* Firebase Client */,
 				887987E01E93E7D100F5C540 /* CoreLocClient.swift */,
-				4C2E7EF81E9D61EE008510F6 /* SWRevealViewController.h */,
-				4C2E7EF91E9D61EE008510F6 /* SWRevealViewController.m */,
-				4C2E7EF71E9D61ED008510F6 /* TeamOrange-Bridging-Header.h */,
 				889C529B1E9BFDAC00B4E550 /* LocSearchClient.swift */,
 				887987E21E93EC3000F5C540 /* MapKitClient.swift */,
 				889C529D1E9D2DEB00B4E550 /* GeoFireClient.swift */,
