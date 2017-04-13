@@ -31,7 +31,7 @@ class MapViewController: UIViewController {
         self.setNavBarToClear()
         self.buildProfileButton()
         self.buildSportsButton()
-//        self.navigationController?.setNavBarTitle()
+        self.navigationController?.setNavBarTitle()
     }
     
     
@@ -119,7 +119,7 @@ class MapViewController: UIViewController {
         self.sportsButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
         self.sportsButton.setTitle("Sports", for: .normal)
         self.sportsButton.setTitleColor(UIColor.red, for: .normal)
-        self.sportsButton.addTarget(self, action: #selector(self.goToSportPicker), for: .touchUpInside)
+        self.sportsButton.addTarget(self, action: #selector(self.goToGamePeekView), for: .touchUpInside)
         self.sportsButton.titleLabel?.font = self.mikesFavFont
     }
     
@@ -127,6 +127,15 @@ class MapViewController: UIViewController {
     func goToGamePeekView() {
         self.view.layer.cornerRadius = 10
         self.view.clipsToBounds = true
+        let coordinates = CLLocationCoordinate2D(latitude: 37.77971275757405, longitude: -122.4074749280276)
+        let location = Location(gameID: "-Kh2Wlj0Cm7Cx3ZoM0bm", coordinate: coordinates)
+        location.games.append("-Kh2Wlj154CmYfGDI4SW")
+        location.games.append("-Kh2Wlj0Cm7Cx3ZoM0bp")
+        location.games.append("-Kh2Wlj3US5xYAypY1Az")
+        location.games.append("-Kh2Wlj3US5xYAypY1B1")
+        let gamePeak = GamePeakController(location: location)
+        gamePeak.modalPresentationStyle = .overCurrentContext
+        self.present(gamePeak, animated: false, completion: nil)
         UIView.animate(withDuration: 0.25, animations: {
             self.view.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
         })
