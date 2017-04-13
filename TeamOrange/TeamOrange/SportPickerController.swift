@@ -17,9 +17,12 @@ class SportPickerController: UIViewController {
     var leadingConstraintVisible: NSLayoutConstraint!
     var leadingConstraintInvisible: NSLayoutConstraint!
     let button = UIButton()
+    var gestureRecognizer: UITapGestureRecognizer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.slideViewOut))
+        self.view.addGestureRecognizer(gestureRecognizer)
         self.buildView()
         NotificationCenter.default.addObserver(self, selector: #selector(self.sportChosen), name: Notification.Name("Sport Chosen"), object: nil)
         NotificationCenter.default.addObserver(self.myView, selector: #selector(self.myView.collapse), name: Notification.Name("Collapse Picker"), object: nil)

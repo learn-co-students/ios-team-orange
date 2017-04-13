@@ -26,13 +26,7 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         let font = UIFont(name: "SFSportsNight", size: 20)
         self.navigationItem.title = ""
-//        let friendsButton = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(goToSportPicker) )
-//        friendsButton.setTitleTextAttributes([NSFontAttributeName : font], for: .normal)
-
-//        self.navigationItem.setLeftBarButton(friendsButton, animated: false)
-
-        
-//        set the nav bar to clear
+        // set the nav bar to clear
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
@@ -48,8 +42,6 @@ class MapViewController: UIViewController {
         self.mainView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
         
         self.buildLoginButton()
-        
-        self.navigationController?.isNavigationBarHidden = false
         
     }
     
@@ -94,7 +86,7 @@ class MapViewController: UIViewController {
         self.loginButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.2).isActive = true
         self.loginButton.backgroundColor = UIColor.red
         self.loginButton.setTitle("Login", for: .normal)
-        self.loginButton.addTarget(self, action: #selector(self.goToLoginScreen), for: .touchUpInside)
+        self.loginButton.addTarget(self, action: #selector(self.goToSportPicker), for: .touchUpInside)
     }
     
     func goToLoginScreen() {
