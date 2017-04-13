@@ -147,11 +147,8 @@
 				5639B47D1E9816CF008FD173 /* SportPickerController.swift */,
 				889C529B1E9BFDAC00B4E550 /* LocSearchClient.swift */,
 				887987E21E93EC3000F5C540 /* MapKitClient.swift */,
-
 				4C2E7EFB1E9D681A008510F6 /* HomeRearViewController.swift */,
-
 				5638E8DD1E9D7A3000058672 /* GamePeekController.swift */,
-
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -301,13 +298,10 @@
 			children = (
 				568D5B5D1E97CD38009CA1C7 /* Firebase Client */,
 				887987E01E93E7D100F5C540 /* CoreLocClient.swift */,
-
 				4C2E7EF81E9D61EE008510F6 /* SWRevealViewController.h */,
 				4C2E7EF91E9D61EE008510F6 /* SWRevealViewController.m */,
 				4C2E7EF71E9D61ED008510F6 /* TeamOrange-Bridging-Header.h */,
-
 				889C529D1E9D2DEB00B4E550 /* GeoFireClient.swift */,
-
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -381,7 +375,7 @@
 				TargetAttributes = {
 					5624EFDC1E92BBED00BB2662 = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = X6M58BL6UT;
+						DevelopmentTeam = GP3Y7UT49E;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
@@ -485,11 +479,8 @@
 				56BB7B8F1E996C8D001C75E9 /* BlurView.swift in Sources */,
 				5638E8DE1E9D7A3000058672 /* GamePeekController.swift in Sources */,
 				5624EFFA1E92BD7200BB2662 /* Team.swift in Sources */,
-
 				4C2E7EFA1E9D61EE008510F6 /* SWRevealViewController.m in Sources */,
-
 				889C529E1E9D2DEB00B4E550 /* GeoFireClient.swift in Sources */,
-
 				564F0B001E9C051300A48E43 /* WhiteFontLabel.swift in Sources */,
 				56BB7B8B1E996568001C75E9 /* SportPickerBottomView.swift in Sources */,
 				4C885E461E93F99C00B80EA4 /* LoginButton.swift in Sources */,
@@ -626,7 +617,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = X6M58BL6UT;
+				DEVELOPMENT_TEAM = GP3Y7UT49E;
 				INFOPLIST_FILE = TeamOrange/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -644,7 +635,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = X6M58BL6UT;
+				DEVELOPMENT_TEAM = GP3Y7UT49E;
 				INFOPLIST_FILE = TeamOrange/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

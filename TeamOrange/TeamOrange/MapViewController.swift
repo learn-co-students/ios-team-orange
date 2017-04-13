@@ -26,20 +26,19 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         let font = UIFont(name: "SFSportsNight", size: 20)
         self.navigationItem.title = ""
-//        let friendsButton = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(goToSportPicker) )
-//        friendsButton.setTitleTextAttributes([NSFontAttributeName : font], for: .normal)
-
-//        self.navigationItem.setLeftBarButton(friendsButton, animated: false)
-
+        let friendsButton = UIBarButtonItem(title: "Sports", style: .plain, target: self, action: #selector(goToSportPicker) )
+        friendsButton.setTitleTextAttributes([NSFontAttributeName : font], for: .normal)
+        self.navigationItem.setLeftBarButton(friendsButton, animated: false)
         
-//        set the nav bar to clear
+        
+        //      set the nav bar to clear
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear
-
+        
         self.makeCreateLocationButton()
-
+        
         self.view.addSubview(self.mainView)
         self.mainView.translatesAutoresizingMaskIntoConstraints = false
         self.mainView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: UIApplication.shared.statusBarFrame.height).isActive = true
@@ -49,7 +48,7 @@ class MapViewController: UIViewController {
         self.mainView.mapView.setUserTrackingMode(.follow, animated: true)
         
         self.buildLoginButton()
-
+        
         
         self.navigationController?.isNavigationBarHidden = false
         
@@ -69,7 +68,7 @@ class MapViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
+        
     }
     
     func centerMapButtonClicked(){
@@ -99,16 +98,11 @@ class MapViewController: UIViewController {
     }
     
     func goToLoginScreen() {
-
         print("I've been clicked")
-        
-        //        let loginScreen = LoginViewController()
-        //        loginScreen.modalPresentationStyle = .overCurrentContext
-        //        self.present(loginScreen, animated: false, completion: nil)
         let loginScreen = LoginViewController()
         self.navigationController?.pushViewController(loginScreen, animated: false)
-//        loginScreen.modalPresentationStyle = .overCurrentContext
-//        self.present(loginScreen, animated: false, completion: nil)
+        loginScreen.modalPresentationStyle = .overCurrentContext
+        self.present(loginScreen, animated: false, completion: nil)
     }
     
     func goToSportPicker() {

@@ -12,7 +12,7 @@ import MapKit
 class MapSearchView: UIView {
     /*
      IMPORTANT!!!!!
-     assign MapSearchView.mapView to "weak var mapView!" in VC and adopt the MapUpdater protocol!
+     assign MapSearchView.mapView to "weak var mapView!" in VC a nd adopt the MapUpdater protocol!
      
      */
     lazy var mapView = MKMapView()
