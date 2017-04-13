@@ -15,7 +15,9 @@ class MapViewController: UIViewController {
     
     
     lazy var mainView: MapSearchView = MapSearchView()
-    let loginButton = UIButton()
+    let mikesFavFont = UIFont(name: "SFSportsNight", size: 20)
+    let profileButton = UIButton()
+    let sportsButton = UIButton()
     
     override func loadView() {
         super.loadView()
@@ -24,34 +26,12 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let font = UIFont(name: "SFSportsNight", size: 20)
-        self.navigationItem.title = ""
-//        let friendsButton = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(goToSportPicker) )
-//        friendsButton.setTitleTextAttributes([NSFontAttributeName : font], for: .normal)
-
-//        self.navigationItem.setLeftBarButton(friendsButton, animated: false)
-
-        
-//        set the nav bar to clear
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.view.backgroundColor = .clear
-
         self.makeCreateLocationButton()
-
-        self.view.addSubview(self.mainView)
-        self.mainView.translatesAutoresizingMaskIntoConstraints = false
-        self.mainView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: UIApplication.shared.statusBarFrame.height).isActive = true
-        self.mainView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-        self.mainView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        self.mainView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        self.mainView.mapView.setUserTrackingMode(.follow, animated: true)
-        
-        self.buildLoginButton()
-        
-        self.navigationController?.isNavigationBarHidden = false
-        
+        self.buildMainView()
+        self.setNavBarToClear()
+        self.buildProfileButton()
+        self.buildSportsButton()
+//        self.navigationController?.setNavBarTitle()
     }
     
     
@@ -59,11 +39,13 @@ class MapViewController: UIViewController {
         super.viewWillAppear(animated)
         MapKitClient.setMap(to: self.mainView.mapView)
         LocSearchClient.setFieldAndTable(from: mainView.searchBarView)
+        LocSearchClient.setDismissal(to: toggleSearchView)
+        
+        //TODO: these buttons need to be pharmed out to the correct locations as the below four functions should not live on the controller
         self.mainView.centerMapButton.addTarget(self, action: #selector(centerMapButtonClicked), for: .touchUpInside)
         self.mainView.searchBarView.okButton.addTarget(self, action: #selector(searchBarButtonClicked), for: .touchUpInside)
         self.mainView.searchButton.addTarget(self, action: #selector(toggleSearchView), for: .touchUpInside)
         self.mainView.searchBarView.cancelButton.addTarget(self, action: #selector(toggleSearchView), for: .touchUpInside)
-        LocSearchClient.setDismissal(to: toggleSearchView)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -84,16 +66,21 @@ class MapViewController: UIViewController {
         self.mainView.animateSearchBar()
     }
     
-    func buildLoginButton() {
-        self.view.addSubview(self.loginButton)
-        self.loginButton.translatesAutoresizingMaskIntoConstraints = false
-        self.loginButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20).isActive = true
-        self.loginButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20).isActive = true
-        self.loginButton.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05).isActive = true
-        self.loginButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.2).isActive = true
-        self.loginButton.backgroundColor = UIColor.red
-        self.loginButton.setTitle("Login", for: .normal)
-        self.loginButton.addTarget(self, action: #selector(self.goToLoginScreen), for: .touchUpInside)
+    func buildMainView() {
+        self.view.addSubview(self.mainView)
+        self.mainView.translatesAutoresizingMaskIntoConstraints = false
+        self.mainView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: UIApplication.shared.statusBarFrame.height).isActive = true
+        self.mainView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        self.mainView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        self.mainView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        self.mainView.mapView.setUserTrackingMode(.follow, animated: true)
+    }
+    
+    func setNavBarToClear() {
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
     }
     
     func goToLoginScreen() {
@@ -110,6 +97,31 @@ class MapViewController: UIViewController {
         self.present(sportsPicker, animated: false, completion: nil)
     }
     
+    func buildProfileButton() {
+        self.view.addSubview(self.profileButton)
+        self.profileButton.translatesAutoresizingMaskIntoConstraints = false
+        self.profileButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20).isActive = true
+        self.profileButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
+        self.profileButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        self.profileButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        self.profileButton.setTitle("Profile", for: .normal)
+        self.profileButton.setTitleColor(UIColor.red, for: .normal)
+        self.profileButton.addTarget(self, action: #selector(self.goToLoginScreen), for: .touchUpInside)
+        self.profileButton.titleLabel?.font = self.mikesFavFont
+    }
+    
+    func buildSportsButton() {
+        self.view.addSubview(self.sportsButton)
+        self.sportsButton.translatesAutoresizingMaskIntoConstraints = false
+        self.sportsButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20).isActive = true
+        self.sportsButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20).isActive = true
+        self.sportsButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        self.sportsButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        self.sportsButton.setTitle("Sports", for: .normal)
+        self.sportsButton.setTitleColor(UIColor.red, for: .normal)
+        self.sportsButton.addTarget(self, action: #selector(self.goToSportPicker), for: .touchUpInside)
+        self.sportsButton.titleLabel?.font = self.mikesFavFont
+    }
     
     
     func goToGamePeakView() {
