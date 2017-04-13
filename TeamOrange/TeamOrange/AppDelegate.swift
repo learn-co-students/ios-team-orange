@@ -25,13 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CoreLocClient.authCheckRequest()
 
         let navigationController = UINavigationController(rootViewController: MapViewController())
+        
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
+        
         self.createSlidingMenu()
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = navigationController
-        self.window?.makeKeyAndVisible()
         return true
     }
     

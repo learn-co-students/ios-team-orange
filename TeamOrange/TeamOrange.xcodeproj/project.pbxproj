@@ -88,7 +88,6 @@
 		5638E8C81E9D5F4B00058672 /* GFQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GFQuery.h; sourceTree = "<group>"; };
 		5638E8C91E9D5F4B00058672 /* GFRegionQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GFRegionQuery.h; sourceTree = "<group>"; };
 		5638E8CA1E9D5F6000058672 /* GeoFire-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GeoFire-Prefix.pch"; sourceTree = "<group>"; };
-		5638E8CB1E9D5F6C00058672 /* TeamOrange-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TeamOrange-Bridging-Header.h"; sourceTree = "<group>"; };
 		5638E8CC1E9D5F6C00058672 /* GeoFire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoFire.m; sourceTree = "<group>"; };
 		5638E8CD1E9D5F6C00058672 /* GeoFire+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GeoFire+Private.h"; sourceTree = "<group>"; };
 		5638E8CE1E9D5F6C00058672 /* GFBase32Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFBase32Utils.h; sourceTree = "<group>"; };
@@ -145,11 +144,7 @@
 				4C885E3E1E93EB9700B80EA4 /* LoginController.swift */,
 				88798E251E95B60900F5C540 /* MapViewController.swift */,
 				5639B47D1E9816CF008FD173 /* SportPickerController.swift */,
-
-				889C529B1E9BFDAC00B4E550 /* LocSearchClient.swift */,
-				887987E21E93EC3000F5C540 /* MapKitClient.swift */,
 				4C2E7EFB1E9D681A008510F6 /* HomeRearViewController.swift */,
-
 				5638E8DD1E9D7A3000058672 /* GamePeekController.swift */,
 			);
 			name = Controllers;
@@ -259,7 +254,6 @@
 				5638E8D31E9D5F6C00058672 /* GFGeoHashQuery.m */,
 				5638E8D41E9D5F6C00058672 /* GFQuery.m */,
 				5638E8D51E9D5F6C00058672 /* GFQuery+Private.h */,
-				5638E8CB1E9D5F6C00058672 /* TeamOrange-Bridging-Header.h */,
 			);
 			name = "GeoFire Obj C Files";
 			sourceTree = "<group>";
@@ -300,14 +294,11 @@
 			children = (
 				568D5B5D1E97CD38009CA1C7 /* Firebase Client */,
 				887987E01E93E7D100F5C540 /* CoreLocClient.swift */,
-
 				4C2E7EF81E9D61EE008510F6 /* SWRevealViewController.h */,
 				4C2E7EF91E9D61EE008510F6 /* SWRevealViewController.m */,
 				4C2E7EF71E9D61ED008510F6 /* TeamOrange-Bridging-Header.h */,
-
 				889C529B1E9BFDAC00B4E550 /* LocSearchClient.swift */,
 				887987E21E93EC3000F5C540 /* MapKitClient.swift */,
-
 				889C529D1E9D2DEB00B4E550 /* GeoFireClient.swift */,
 			);
 			name = Utilities;

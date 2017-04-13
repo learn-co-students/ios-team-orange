@@ -111,7 +111,7 @@ class MapViewController: UIViewController {
         self.profileButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
         self.profileButton.setTitle("Profile", for: .normal)
         self.profileButton.setTitleColor(UIColor.red, for: .normal)
-        self.profileButton.addTarget(self, action: #selector(self.goToLoginScreen), for: .touchUpInside)
+        self.profileButton.addTarget(self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
         self.profileButton.titleLabel?.font = self.mikesFavFont
     }
     
