@@ -14,7 +14,7 @@ class GamePeakController: UIViewController {
     let myView = GamePeekView()
     
     init(location: Location) {
-        super.init(nibName: "Main", bundle: nil)
+        super.init(nibName: "GamePeak", bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
