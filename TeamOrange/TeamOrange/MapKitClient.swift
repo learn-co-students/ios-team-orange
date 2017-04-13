@@ -68,11 +68,14 @@ extension MapKitClient: CLLocationManagerDelegate, MKMapViewDelegate {
                 // conclusion: this function is currently dequeueing the wrong annotationView after repeated location searches.
                 // TODO: investigate the source of this bug. 
             case is MKPlacemark, is MKUserLocation:
+                print(annotation, "\nred")
                 break
             case is Location :
+                print(annotation, "\ncyan")
                 annotationView.pinTintColor = UIColor.cyan
                 break
             default:
+                print(annotation, "\ngreen")
                 annotationView.pinTintColor = UIColor.green
             }
         }

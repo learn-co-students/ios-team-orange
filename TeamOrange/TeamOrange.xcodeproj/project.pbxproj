@@ -145,9 +145,11 @@
 				4C885E3E1E93EB9700B80EA4 /* LoginController.swift */,
 				88798E251E95B60900F5C540 /* MapViewController.swift */,
 				5639B47D1E9816CF008FD173 /* SportPickerController.swift */,
+
 				889C529B1E9BFDAC00B4E550 /* LocSearchClient.swift */,
 				887987E21E93EC3000F5C540 /* MapKitClient.swift */,
 				4C2E7EFB1E9D681A008510F6 /* HomeRearViewController.swift */,
+
 				5638E8DD1E9D7A3000058672 /* GamePeekController.swift */,
 			);
 			name = Controllers;
@@ -298,9 +300,14 @@
 			children = (
 				568D5B5D1E97CD38009CA1C7 /* Firebase Client */,
 				887987E01E93E7D100F5C540 /* CoreLocClient.swift */,
+
 				4C2E7EF81E9D61EE008510F6 /* SWRevealViewController.h */,
 				4C2E7EF91E9D61EE008510F6 /* SWRevealViewController.m */,
 				4C2E7EF71E9D61ED008510F6 /* TeamOrange-Bridging-Header.h */,
+
+				889C529B1E9BFDAC00B4E550 /* LocSearchClient.swift */,
+				887987E21E93EC3000F5C540 /* MapKitClient.swift */,
+
 				889C529D1E9D2DEB00B4E550 /* GeoFireClient.swift */,
 			);
 			name = Utilities;
