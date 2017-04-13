@@ -48,6 +48,7 @@ final class CoreLocClient{
         geocoder.geocodeAddressString(text, completionHandler: { placemarks, error in
             var completions = [String]()
             if  let placemarks = placemarks {
+                print (placemarks.count)
                 placemarks.forEach({
                     if let dict = $0.addressDictionary,
                         let street = dict ["Street"] as? String,

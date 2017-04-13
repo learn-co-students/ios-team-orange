@@ -65,15 +65,15 @@ class SearchBarView: UIView {
         tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 0).isActive = true
         tableView.leadingAnchor.constraint(equalTo: okButton.leadingAnchor, constant: 0).isActive = true
         tableView.trailingAnchor.constraint(equalTo: cancelButton.trailingAnchor, constant: 0).isActive = true
-        tableView.backgroundView = BlurView(blurEffect: .dark)
-        tableView.backgroundView?.alpha = 0.5
         tableView.backgroundColor = UIColor.clear
+        tableView.register(CompletionCell.self, forCellReuseIdentifier: "completionCell")
     }
     
     func animateSelf(state: Bool, completion: @escaping ()->()) {
         UIView.animate(withDuration: 0.25, animations: {
             self.layoutIfNeeded()
         }, completion: { done in
+            self.searchBar.text = ""
             if state == true{
                 self.tableViewConstraint.constant = 300
             } else {
@@ -83,14 +83,13 @@ class SearchBarView: UIView {
         })
     }
     
-    func activateSelf(completion: @escaping ()->()){
-        self.searchBar.text = ""
+    func activateSelf(completion: @escaping ()->()) {
         self.okButtonConstraint.constant = 0
         self.cancelButtonConstraint.constant = 0
         animateSelf(state: true, completion: {completion()})
     }
     
-    func deactivateSelf(completion: @escaping ()->()){
+    func deactivateSelf(completion: @escaping ()->()) {
         self.okButtonConstraint.constant = 25
         self.cancelButtonConstraint.constant = -25
         animateSelf(state: false, completion: {completion()})

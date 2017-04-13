@@ -46,6 +46,7 @@
 		56F8C6F81E9C1D6D0022A695 /* SFSportsNight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56F8C6F71E9C1CF10022A695 /* SFSportsNight.ttf */; };
 		56FDCD371E9431AE00FE5AA9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56FDCD361E9431AE00FE5AA9 /* GoogleService-Info.plist */; };
 		56FDCD391E9557CC00FE5AA9 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FDCD381E9557CC00FE5AA9 /* Category.swift */; };
+		881D88E71EA02114006D5F44 /* CompletionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881D88E61EA02114006D5F44 /* CompletionCell.swift */; };
 		887987E11E93E7D100F5C540 /* CoreLocClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887987E01E93E7D100F5C540 /* CoreLocClient.swift */; };
 		887987E31E93EC3000F5C540 /* MapKitClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887987E21E93EC3000F5C540 /* MapKitClient.swift */; };
 		887987E51E9426DA00F5C540 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887987E41E9426DA00F5C540 /* Game.swift */; };
@@ -109,6 +110,7 @@
 		56F8C6F71E9C1CF10022A695 /* SFSportsNight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFSportsNight.ttf; sourceTree = "<group>"; };
 		56FDCD361E9431AE00FE5AA9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		56FDCD381E9557CC00FE5AA9 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		881D88E61EA02114006D5F44 /* CompletionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletionCell.swift; sourceTree = "<group>"; };
 		887987E01E93E7D100F5C540 /* CoreLocClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreLocClient.swift; sourceTree = "<group>"; };
 		887987E21E93EC3000F5C540 /* MapKitClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapKitClient.swift; sourceTree = "<group>"; };
 		887987E41E9426DA00F5C540 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				562358171E9994F300B58A32 /* ClickableImageView.swift */,
 				5638E8DB1E9D714A00058672 /* GamePeekView.swift */,
 				561B2ADC1E9EA61F00A3C95B /* MapGradientView.swift */,
+				881D88E61EA02114006D5F44 /* CompletionCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -484,6 +487,7 @@
 				562358181E9994F300B58A32 /* ClickableImageView.swift in Sources */,
 				5624F00B1E92F43100BB2662 /* GameState.swift in Sources */,
 				569F05CE1E99AAD5008C82B8 /* ChosenSportTableCell.swift in Sources */,
+				881D88E71EA02114006D5F44 /* CompletionCell.swift in Sources */,
 				4CE02D271E95A1BD0068190C /* LoginButtonStackView.swift in Sources */,
 				5638E8D61E9D5F6C00058672 /* GeoFire.m in Sources */,
 				56BB7B891E99655D001C75E9 /* SportPickerTopView.swift in Sources */,

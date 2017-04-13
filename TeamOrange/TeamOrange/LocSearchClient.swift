@@ -12,7 +12,10 @@ final class LocSearchClient: NSObject {
     
     lazy var textField = UITextField()
     lazy var tableView = UITableView()
+    
+    var completions = [String]()
     var dismiss: ()->() = {}
+    
     fileprivate static var client = LocSearchClient()
     override init(){
         super.init()
@@ -31,18 +34,34 @@ final class LocSearchClient: NSObject {
     }
 }
 
-//extension LocSearchClient:  UITableViewDelegate, UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 5
-//    }
-//    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "completionCell", for: indexPath)
-//        return cell
-//    }
-//}
+extension LocSearchClient:  UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return completions.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "completionCell", for: indexPath)
+        cell.textLabel?.text = completions[indexPath.row]
+        return cell
+    }
+}
 
 extension LocSearchClient: UITextFieldDelegate{
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        tableView.reloadData()
+        if let text = textField.text{
+            CoreLocClient.forwardGeocodeAutoCompletions(text: text, completion: { completionArray in
+                DispatchQueue.main.async {
+                    print(completionArray)
+                    self.completions = completionArray
+                    self.tableView.reloadData()
+                }
+            })
+        }
+        return true
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard let text = textField.text, text != "" else {
             return false
