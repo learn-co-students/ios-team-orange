@@ -98,7 +98,6 @@ class MapViewController: UIViewController {
     
     func goToSportPicker() {
         let sportsPicker = SportPickerController()
-        
         sportsPicker.modalPresentationStyle = .overCurrentContext
         self.present(sportsPicker, animated: false, completion: nil)
     }
@@ -125,7 +124,7 @@ class MapViewController: UIViewController {
         self.sportsButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
         self.sportsButton.setTitle("Sports", for: .normal)
         self.sportsButton.setTitleColor(UIColor.red, for: .normal)
-        self.sportsButton.addTarget(self, action: #selector(self.goToGamePeekView), for: .touchUpInside)
+        self.sportsButton.addTarget(self, action: #selector(self.goToSportPicker), for: .touchUpInside)
         self.sportsButton.titleLabel?.font = self.mikesFavFont
     }
     
