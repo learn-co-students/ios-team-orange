@@ -37,11 +37,7 @@ import Foundation
         self.success = dict["success"] as? Bool ?? false //TODO: Should we be defaulting to false?
         self.over = dict["over"] as? Bool ?? false //TODO: Should we ve defaulting to false?
         self.state = dict["gameState"] as? GameState
-        
-        
-        
     }
-    
  }
 
 extension Game: CustomStringConvertible {

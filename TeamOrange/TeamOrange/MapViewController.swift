@@ -18,6 +18,7 @@ class MapViewController: UIViewController {
     let mikesFavFont = UIFont(name: "SFSportsNight", size: 20)
     let profileButton = UIButton()
     let sportsButton = UIButton()
+    let loginButton = UIButton()
     
     override func loadView() {
         super.loadView()
@@ -32,6 +33,7 @@ class MapViewController: UIViewController {
         self.setNavBarToClear()
         self.buildProfileButton()
         self.buildSportsButton()
+        self.buildLoginButton()
 //        self.navigationController?.setNavBarTitle()
 
     }
@@ -88,7 +90,6 @@ class MapViewController: UIViewController {
     }
     
     func goToLoginScreen() {
-        print("I've been clicked")
         let loginScreen = LoginViewController()
         self.navigationController?.pushViewController(loginScreen, animated: false)
         loginScreen.modalPresentationStyle = .overCurrentContext
@@ -97,7 +98,6 @@ class MapViewController: UIViewController {
     
     func goToSportPicker() {
         let sportsPicker = SportPickerController()
-        
         sportsPicker.modalPresentationStyle = .overCurrentContext
         self.present(sportsPicker, animated: false, completion: nil)
     }
@@ -128,9 +128,32 @@ class MapViewController: UIViewController {
         self.sportsButton.titleLabel?.font = self.mikesFavFont
     }
     
+    func buildLoginButton() {
+        self.view.addSubview(self.loginButton)
+        self.loginButton.translatesAutoresizingMaskIntoConstraints = false
+        self.loginButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
+        self.loginButton.bottomAnchor.constraint(equalTo: self.profileButton.topAnchor, constant: -20).isActive = true
+        self.loginButton.heightAnchor.constraint(equalTo: self.profileButton.heightAnchor).isActive = true
+        self.loginButton.widthAnchor.constraint(equalTo: self.profileButton.widthAnchor).isActive = true
+        self.loginButton.setTitle("Login", for: .normal)
+        self.loginButton.setTitleColor(UIColor.red, for: .normal)
+        self.loginButton.addTarget(self, action: #selector(self.goToLoginScreen), for: .touchUpInside)
+        self.loginButton.titleLabel?.font = self.mikesFavFont
+        
+    }
+    
     func goToGamePeekView() {
         self.view.layer.cornerRadius = 10
         self.view.clipsToBounds = true
+        let coordinates = CLLocationCoordinate2D(latitude: 37.77971275757405, longitude: -122.4074749280276)
+        let location = Location(gameID: "-Kh2Wlj0Cm7Cx3ZoM0bm", coordinate: coordinates)
+        location.games.append("-Kh2Wlj154CmYfGDI4SW")
+        location.games.append("-Kh2Wlj0Cm7Cx3ZoM0bp")
+        location.games.append("-Kh2Wlj3US5xYAypY1Az")
+        location.games.append("-Kh2Wlj3US5xYAypY1B1")
+        let gamePeak = GamePeakController(location: location)
+        gamePeak.modalPresentationStyle = .overCurrentContext
+        self.present(gamePeak, animated: false, completion: nil)
         UIView.animate(withDuration: 0.25, animations: {
             self.view.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
         })
