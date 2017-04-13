@@ -8,5 +8,6 @@ target 'TeamOrange' do
   pod 'FirebaseDatabase'
   pod 'FirebaseAuth'
   pod 'Firebase'
+  pod 'SWRevealViewController', '~> 2.3'
 
 end

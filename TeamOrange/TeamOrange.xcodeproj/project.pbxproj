@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2099EEF48E437A15D0A1FDC1 /* Pods_TeamOrange.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAEF8389E9CBFCA746229A38 /* Pods_TeamOrange.framework */; };
+		4C2E7EFA1E9D61EE008510F6 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E7EF91E9D61EE008510F6 /* SWRevealViewController.m */; };
+		4C2E7EFC1E9D681A008510F6 /* HomeRearViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E7EFB1E9D681A008510F6 /* HomeRearViewController.swift */; };
 		4C885E3F1E93EB9700B80EA4 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E3E1E93EB9700B80EA4 /* LoginController.swift */; };
 		4C885E421E93F3C000B80EA4 /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E411E93F3C000B80EA4 /* Constraints.swift */; };
 		4C885E461E93F99C00B80EA4 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E451E93F99C00B80EA4 /* LoginButton.swift */; };
@@ -59,6 +61,10 @@
 
 /* Begin PBXFileReference section */
 		40B865929CF74C03A91BAF9F /* Pods-TeamOrange.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamOrange.release.xcconfig"; path = "Pods/Target Support Files/Pods-TeamOrange/Pods-TeamOrange.release.xcconfig"; sourceTree = "<group>"; };
+		4C2E7EF71E9D61ED008510F6 /* TeamOrange-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TeamOrange-Bridging-Header.h"; sourceTree = "<group>"; };
+		4C2E7EF81E9D61EE008510F6 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		4C2E7EF91E9D61EE008510F6 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		4C2E7EFB1E9D681A008510F6 /* HomeRearViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRearViewController.swift; sourceTree = "<group>"; };
 		4C885E3E1E93EB9700B80EA4 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		4C885E411E93F3C000B80EA4 /* Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
 		4C885E451E93F99C00B80EA4 /* LoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
@@ -83,7 +89,6 @@
 		5638E8C81E9D5F4B00058672 /* GFQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GFQuery.h; sourceTree = "<group>"; };
 		5638E8C91E9D5F4B00058672 /* GFRegionQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GFRegionQuery.h; sourceTree = "<group>"; };
 		5638E8CA1E9D5F6000058672 /* GeoFire-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GeoFire-Prefix.pch"; sourceTree = "<group>"; };
-		5638E8CB1E9D5F6C00058672 /* TeamOrange-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TeamOrange-Bridging-Header.h"; sourceTree = "<group>"; };
 		5638E8CC1E9D5F6C00058672 /* GeoFire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoFire.m; sourceTree = "<group>"; };
 		5638E8CD1E9D5F6C00058672 /* GeoFire+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GeoFire+Private.h"; sourceTree = "<group>"; };
 		5638E8CE1E9D5F6C00058672 /* GFBase32Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFBase32Utils.h; sourceTree = "<group>"; };
@@ -141,6 +146,7 @@
 				4C885E3E1E93EB9700B80EA4 /* LoginController.swift */,
 				88798E251E95B60900F5C540 /* MapViewController.swift */,
 				5639B47D1E9816CF008FD173 /* SportPickerController.swift */,
+				4C2E7EFB1E9D681A008510F6 /* HomeRearViewController.swift */,
 				5638E8DD1E9D7A3000058672 /* GamePeekController.swift */,
 			);
 			name = Controllers;
@@ -173,6 +179,25 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		4C9F8FF21EA01D2C00EE70D6 /* Obj C Files */ = {
+			isa = PBXGroup;
+			children = (
+				4C2E7EF71E9D61ED008510F6 /* TeamOrange-Bridging-Header.h */,
+				4C9F8FF31EA01D4500EE70D6 /* Reveal View */,
+				5638E8C51E9D5F2500058672 /* GeoFire */,
+			);
+			name = "Obj C Files";
+			sourceTree = "<group>";
+		};
+		4C9F8FF31EA01D4500EE70D6 /* Reveal View */ = {
+			isa = PBXGroup;
+			children = (
+				4C2E7EF81E9D61EE008510F6 /* SWRevealViewController.h */,
+				4C2E7EF91E9D61EE008510F6 /* SWRevealViewController.m */,
+			);
+			name = "Reveal View";
+			sourceTree = "<group>";
+		};
 		5624EFD41E92BBED00BB2662 = {
 			isa = PBXGroup;
 			children = (
@@ -194,6 +219,7 @@
 		5624EFDF1E92BBED00BB2662 /* TeamOrange */ = {
 			isa = PBXGroup;
 			children = (
+				4C9F8FF21EA01D2C00EE70D6 /* Obj C Files */,
 				56F8C6F61E9C1CE10022A695 /* Fonts */,
 				5624EFF81E92BD4600BB2662 /* Models */,
 				4C885E441E93F8DB00B80EA4 /* Views */,
@@ -201,7 +227,6 @@
 				4C885E401E93F2D200B80EA4 /* Apple Class Extensions */,
 				56FDCD341E941E4400FE5AA9 /* Enums */,
 				5624EFFF1E92BF3500BB2662 /* Essential Files */,
-				5638E8C51E9D5F2500058672 /* GeoFire Obj C Files */,
 				56FDCD351E941E8D00FE5AA9 /* Protocols */,
 				56FDCD331E941E1600FE5AA9 /* Utilities */,
 			);
@@ -233,7 +258,7 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		5638E8C51E9D5F2500058672 /* GeoFire Obj C Files */ = {
+		5638E8C51E9D5F2500058672 /* GeoFire */ = {
 			isa = PBXGroup;
 			children = (
 				5638E8C61E9D5F4B00058672 /* GeoFire.h */,
@@ -251,9 +276,8 @@
 				5638E8D31E9D5F6C00058672 /* GFGeoHashQuery.m */,
 				5638E8D41E9D5F6C00058672 /* GFQuery.m */,
 				5638E8D51E9D5F6C00058672 /* GFQuery+Private.h */,
-				5638E8CB1E9D5F6C00058672 /* TeamOrange-Bridging-Header.h */,
 			);
-			name = "GeoFire Obj C Files";
+			name = GeoFire;
 			sourceTree = "<group>";
 		};
 		568D5B5D1E97CD38009CA1C7 /* Firebase Client */ = {
@@ -368,7 +392,7 @@
 				TargetAttributes = {
 					5624EFDC1E92BBED00BB2662 = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = X6M58BL6UT;
+						DevelopmentTeam = GP3Y7UT49E;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
@@ -467,10 +491,12 @@
 				5638E8D71E9D5F6C00058672 /* GFBase32Utils.m in Sources */,
 				5638E8D91E9D5F6C00058672 /* GFGeoHashQuery.m in Sources */,
 				5624F0011E92C04B00BB2662 /* Sport.swift in Sources */,
+				4C2E7EFC1E9D681A008510F6 /* HomeRearViewController.swift in Sources */,
 				887987E31E93EC3000F5C540 /* MapKitClient.swift in Sources */,
 				56BB7B8F1E996C8D001C75E9 /* BlurView.swift in Sources */,
 				5638E8DE1E9D7A3000058672 /* GamePeekController.swift in Sources */,
 				5624EFFA1E92BD7200BB2662 /* Team.swift in Sources */,
+				4C2E7EFA1E9D61EE008510F6 /* SWRevealViewController.m in Sources */,
 				889C529E1E9D2DEB00B4E550 /* GeoFireClient.swift in Sources */,
 				564F0B001E9C051300A48E43 /* WhiteFontLabel.swift in Sources */,
 				56BB7B8B1E996568001C75E9 /* SportPickerBottomView.swift in Sources */,
@@ -609,7 +635,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = X6M58BL6UT;
+				DEVELOPMENT_TEAM = GP3Y7UT49E;
 				INFOPLIST_FILE = TeamOrange/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -627,7 +653,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = X6M58BL6UT;
+				DEVELOPMENT_TEAM = GP3Y7UT49E;
 				INFOPLIST_FILE = TeamOrange/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
