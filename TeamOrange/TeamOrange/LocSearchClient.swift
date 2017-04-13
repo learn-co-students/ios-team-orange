@@ -23,10 +23,11 @@ final class LocSearchClient: NSObject {
     
     class func setFieldAndTable(from view: SearchBarView){
         view.searchBar.delegate = client
-        //table.delegate = client
-        //table.dataSource = client
+        view.tableView.delegate = client
+        view.tableView.dataSource = client
         client.textField = view.searchBar
         client.tableView = view.tableView
+        client.tableView.tableFooterView = UIView()
     }
     
     class func setDismissal(to function: @escaping ()->()){
@@ -41,6 +42,9 @@ extension LocSearchClient:  UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "completionCell", for: indexPath)
+        cell.contentView.backgroundColor = UIColor.clear
+        cell.backgroundColor = UIColor.clear
+        cell.textLabel?.backgroundColor = UIColor.clear
         cell.textLabel?.text = completions[indexPath.row]
         return cell
     }

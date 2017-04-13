@@ -65,6 +65,9 @@ class SearchBarView: UIView {
         tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 0).isActive = true
         tableView.leadingAnchor.constraint(equalTo: okButton.leadingAnchor, constant: 0).isActive = true
         tableView.trailingAnchor.constraint(equalTo: cancelButton.trailingAnchor, constant: 0).isActive = true
+        let blurView = BlurView(blurEffect: .dark)
+        blurView.alpha = 0.5
+        tableView.backgroundView = blurView
         tableView.backgroundColor = UIColor.clear
         tableView.register(CompletionCell.self, forCellReuseIdentifier: "completionCell")
     }
