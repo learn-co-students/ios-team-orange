@@ -30,6 +30,7 @@ class GamePeekController: UIViewController, GamePeekScrollerDelegate {
         self.buildView()
         self.myView.layer.cornerRadius = 10
         self.myView.clipsToBounds = true
+        NotificationCenter.default.addObserver(self, selector: #selector(self.animatedDismiss), name: Notification.Name("Stop Peaking"), object: nil)
     }
     
     
@@ -38,6 +39,10 @@ class GamePeekController: UIViewController, GamePeekScrollerDelegate {
         UIView.animate(withDuration: 0.25) {
             self.view.transform = CGAffineTransform(scaleX: 1.4, y: 1.4)
         }
+    }
+    
+    func animatedDismiss() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     func buildView() {
@@ -51,10 +56,9 @@ class GamePeekController: UIViewController, GamePeekScrollerDelegate {
     
     func getGames() {
         self.location.games.forEach {
-            QueryFirebase.forGameWith(id: $0, completion: {
-                self.games.append($0)
-                if self.location.games.count == self.games.count {
-                    
+            QueryFirebase.forGameWith(id: $0, completion: { game in
+                game.getPlayers() {
+                    self.games.append(game)
                 }
             })
         }
@@ -64,7 +68,8 @@ class GamePeekController: UIViewController, GamePeekScrollerDelegate {
 extension GamePeekController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        guard let numPlayers = self.games[collectionView.tag].players?.count else { return 10 }
+        return numPlayers
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

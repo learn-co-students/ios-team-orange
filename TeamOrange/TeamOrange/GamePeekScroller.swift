@@ -28,6 +28,7 @@ class GamePeekScroller: UIScrollView {
         for num in 0..<self.gamePeekDelegate.games.count {
             let abbreviatedGameView = AbbreviatedGameView(delegate: self.gamePeekDelegate)
             abbreviatedGameView.game = self.gamePeekDelegate.games[num]
+            abbreviatedGameView.collectionView.tag = num
             gameViews.append(abbreviatedGameView)
             
         }

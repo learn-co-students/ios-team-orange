@@ -21,6 +21,7 @@ class AbbreviatedGameView: UIView {
             self.buildCollectionView()
         }
     }
+    
     var collectionView: UICollectionView!
     var gamePeekDelegate: GamePeekScrollerDelegate!
     var sportIcon: UIImageView!
@@ -28,10 +29,12 @@ class AbbreviatedGameView: UIView {
     var playersLabel: WhiteFontLabel!
     var dateLabel: WhiteFontLabel!
     var admin = UIImageView()
+    var dismissButton = UIButton()
     
     init(delegate: GamePeekScrollerDelegate) {
         self.gamePeekDelegate = delegate
         super.init(frame: CGRect.zero)
+        self.buildDismissButton()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -83,12 +86,16 @@ class AbbreviatedGameView: UIView {
     func buildDateLabel() {
         self.dateLabel = WhiteFontLabel(withTitle: self.game.date)
         self.addSubview(self.dateLabel)
-        
-        
     }
     
+    
+    
     func buildPlayersLabel() {
-        self.playersLabel = WhiteFontLabel(withTitle: "Players: \(self.game.players?.count)")
+        if let numPlayers = self.game.players?.count {
+            self.playersLabel = WhiteFontLabel(withTitle: "Players: \(numPlayers)")
+        } else {
+            self.playersLabel = WhiteFontLabel(withTitle: "Players: 0")
+        }
         self.addSubview(self.playersLabel)
         self.playersLabel.translatesAutoresizingMaskIntoConstraints = false
         self.playersLabel.topAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
@@ -96,5 +103,23 @@ class AbbreviatedGameView: UIView {
         self.playersLabel.lineBreakMode = .byWordWrapping
         self.playersLabel.numberOfLines = 0
     }
+    
+    func buildDismissButton() {
+        self.addSubview(self.dismissButton)
+        self.dismissButton.translatesAutoresizingMaskIntoConstraints = false
+        self.dismissButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
+        self.dismissButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5).isActive = true
+        self.dismissButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        self.dismissButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        self.dismissButton.addTarget(self, action: #selector(self.dismissScreen), for: .touchUpInside)
+        self.dismissButton.setTitle("X", for: .normal)
+        self.dismissButton.setTitleColor(UIColor.white, for: .normal)
+    }
+    
+    func dismissScreen() {
+        let notification = Notification(name: Notification.Name("Stop Peaking"), object: nil, userInfo: nil)
+        NotificationCenter.default.post(notification)
+    }
+    
     
 }

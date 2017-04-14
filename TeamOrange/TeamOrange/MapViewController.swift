@@ -37,6 +37,7 @@ class MapViewController: UIViewController {
         self.buildLoginButton()
         self.buildPeekButton()
 //        self.navigationController?.setNavBarTitle()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.scaleUp), name: Notification.Name("Stop Peaking"), object: nil)
 
     }
     
@@ -172,6 +173,12 @@ class MapViewController: UIViewController {
         self.present(gamepeek, animated: false, completion: nil)
         UIView.animate(withDuration: 0.25, animations: {
             self.view.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+        })
+    }
+    
+    func scaleUp() {
+        UIView.animate(withDuration: 0.25, animations: {
+            self.view.transform = CGAffineTransform(scaleX: 1, y: 1)
         })
     }
     

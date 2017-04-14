@@ -42,6 +42,14 @@ import Foundation
         self.over = dict["over"] as? Bool ?? false //TODO: Should we ve defaulting to false?
         self.state = dict["gameState"] as? GameState
     }
+    
+    func getPlayers(completion: @escaping () -> Void) {
+        QueryFirebase.forPlayersIn(game: self, completion: {
+            self.players = $0
+            completion()
+        })
+    }
+    
  }
 
 extension Game: CustomStringConvertible {
