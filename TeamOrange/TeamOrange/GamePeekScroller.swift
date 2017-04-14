@@ -12,12 +12,10 @@ import UIKit
 class GamePeekScroller: UIScrollView {
     
     var gameStack: UIStackView!
-    var games: [Game]
+    var gamePeekDelegate: GamePeekScrollerDelegate! { didSet { self.setupStack() } }
     
-    init(games: [Game], delegate: UICollectionViewDataSource & UICollectionViewDelegate) {
-        self.games = games
+    init() {
         super.init(frame: CGRect.zero)
-        self.setupStack(delegate: delegate)
         self.isPagingEnabled = true
     }
     
@@ -25,9 +23,14 @@ class GamePeekScroller: UIScrollView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupStack(delegate: UICollectionViewDelegate & UICollectionViewDataSource) {
+    func setupStack() {
         var gameViews: [AbbreviatedGameView] = []
-        self.games.forEach { gameViews.append(AbbreviatedGameView(game: $0, delegate: delegate))}
+        for num in 0..<self.gamePeekDelegate.games.count {
+            let abbreviatedGameView = AbbreviatedGameView(delegate: self.gamePeekDelegate)
+            abbreviatedGameView.game = self.gamePeekDelegate.games[num]
+            gameViews.append(abbreviatedGameView)
+            
+        }
         self.gameStack = UIStackView(arrangedSubviews: gameViews)
         self.gameStack.addAndConstrainToEdges(of: self)
         gameViews.forEach {

@@ -11,9 +11,12 @@ import UIKit
 
 class PlayerCollectionViewCell: UICollectionViewCell {
     
+    let imageView = UIImageView(image: #imageLiteral(resourceName: "avatar"))
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.buildCell()
+        self.imageView.addAndConstrainToEdges(of: self)
     }
     
     required init?(coder aDecoder: NSCoder) {

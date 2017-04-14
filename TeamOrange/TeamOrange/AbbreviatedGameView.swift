@@ -11,25 +11,27 @@ import UIKit
 
 class AbbreviatedGameView: UIView {
     
-    let game: Game
-    var collectionView: UICollectionView!
-    let delegate: UICollectionViewDelegate & UICollectionViewDataSource
-    var sportIcon: UIImageView?
-    let titleLabel: WhiteFontLabel
-    let playersLabel = WhiteFontLabel(withTitle: "Players")
-    let dateLabel: WhiteFontLabel
-    
-    init(game: Game, delegate: UICollectionViewDelegate & UICollectionViewDataSource) {
-        self.game = game
-        self.titleLabel = WhiteFontLabel(withTitle: self.game.name)
-        self.dateLabel = WhiteFontLabel(withTitle: self.game.date)
-        if let sport = self.game.sport {
-            self.sportIcon = sport.image
+    var game: Game! {
+        didSet {
+            self.buildTitleLabel()
+            self.buildSportIcon()
+            self.buildTitleLabel()
+            self.buildDateLabel()
+            self.buildPlayersLabel()
+            self.buildCollectionView()
         }
-        self.delegate = delegate
+    }
+    var collectionView: UICollectionView!
+    var gamePeekDelegate: GamePeekScrollerDelegate!
+    var sportIcon: UIImageView!
+    var titleLabel: WhiteFontLabel!
+    var playersLabel: WhiteFontLabel!
+    var dateLabel: WhiteFontLabel!
+    var admin = UIImageView()
+    
+    init(delegate: GamePeekScrollerDelegate) {
+        self.gamePeekDelegate = delegate
         super.init(frame: CGRect.zero)
-        self.buildCollectionView()
-        self.buildTitleLabel()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -43,14 +45,14 @@ class AbbreviatedGameView: UIView {
         layout.scrollDirection = .vertical
         
         self.collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        self.collectionView.delegate = self.delegate
-        self.collectionView.dataSource = self.delegate
+        self.collectionView.delegate = self.gamePeekDelegate
+        self.collectionView.dataSource = self.gamePeekDelegate
         
         self.collectionView.register(PlayerCollectionViewCell.self, forCellWithReuseIdentifier: "playerCell")
         
         self.addSubview(self.collectionView)
         self.collectionView.translatesAutoresizingMaskIntoConstraints = false
-        self.collectionView.topAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        self.collectionView.topAnchor.constraint(equalTo: self.playersLabel.bottomAnchor, constant: 5).isActive = true
         self.collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         self.collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         self.collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
@@ -58,6 +60,7 @@ class AbbreviatedGameView: UIView {
     }
     
     func buildTitleLabel() {
+        self.titleLabel = WhiteFontLabel(withTitle: self.game.name)
         self.addSubview(self.titleLabel)
         self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
         self.titleLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
@@ -67,14 +70,31 @@ class AbbreviatedGameView: UIView {
     }
     
     func buildSportIcon() {
-//        guard let sportIcon = self.sportIcon else { return }
-//        self.addSubview(sportIcon)
-//        sportIcon.translatesAutoresizingMaskIntoConstraints = false
-//        sportIcon.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor).isActive = true
-//        sportIcon.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
-//        sportIcon.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/3).isActive = true
-//        sportIcon.widthAnchor.constraint(equalTo: self.sportIcon.heightAnchor).isActive = true
-//        self.sportIcon.image = self.game.sport.image.image
+        self.sportIcon = UIImageView(image: self.game.sport?.image.image)
+        self.addSubview(self.sportIcon)
+        self.sportIcon.translatesAutoresizingMaskIntoConstraints = false
+        self.sportIcon.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor).isActive = true
+        self.sportIcon.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5).isActive = true
+        self.sportIcon.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/3).isActive = true
+        self.sportIcon.widthAnchor.constraint(equalTo: self.sportIcon.heightAnchor).isActive = true
+    }
+    
+    //TODO: Build this out
+    func buildDateLabel() {
+        self.dateLabel = WhiteFontLabel(withTitle: self.game.date)
+        self.addSubview(self.dateLabel)
+        
+        
+    }
+    
+    func buildPlayersLabel() {
+        self.playersLabel = WhiteFontLabel(withTitle: "Players: \(self.game.players?.count)")
+        self.addSubview(self.playersLabel)
+        self.playersLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.playersLabel.topAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        self.playersLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        self.playersLabel.lineBreakMode = .byWordWrapping
+        self.playersLabel.numberOfLines = 0
     }
     
 }

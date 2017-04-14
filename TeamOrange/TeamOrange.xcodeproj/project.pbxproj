@@ -15,6 +15,7 @@
 		4C885E461E93F99C00B80EA4 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E451E93F99C00B80EA4 /* LoginButton.swift */; };
 		4CE02D271E95A1BD0068190C /* LoginButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE02D261E95A1BD0068190C /* LoginButtonStackView.swift */; };
 		5614FC5C1EA0615D003D2A01 /* RandomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5614FC5B1EA0615D003D2A01 /* RandomColor.swift */; };
+		5614FC5E1EA10BCA003D2A01 /* GamePeekScrollerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5614FC5D1EA10BCA003D2A01 /* GamePeekScrollerDelegate.swift */; };
 		561B2ADD1E9EA61F00A3C95B /* MapGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561B2ADC1E9EA61F00A3C95B /* MapGradientView.swift */; };
 		561B2AE11E9ED25800A3C95B /* StaticNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561B2AE01E9ED25800A3C95B /* StaticNavBar.swift */; };
 		562358181E9994F300B58A32 /* ClickableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562358171E9994F300B58A32 /* ClickableImageView.swift */; };
@@ -34,7 +35,7 @@
 		5638E8D91E9D5F6C00058672 /* GFGeoHashQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 5638E8D31E9D5F6C00058672 /* GFGeoHashQuery.m */; };
 		5638E8DA1E9D5F6C00058672 /* GFQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 5638E8D41E9D5F6C00058672 /* GFQuery.m */; };
 		5638E8DC1E9D714A00058672 /* GamePeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5638E8DB1E9D714A00058672 /* GamePeekView.swift */; };
-		5638E8DE1E9D7A3000058672 /* GamePeakController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5638E8DD1E9D7A3000058672 /* GamePeakController.swift */; };
+		5638E8DE1E9D7A3000058672 /* GamePeekController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5638E8DD1E9D7A3000058672 /* GamePeekController.swift */; };
 		5638E8E01E9E774900058672 /* RoundSingleCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5638E8DF1E9E774900058672 /* RoundSingleCorners.swift */; };
 		5639B47E1E9816CF008FD173 /* SportPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5639B47D1E9816CF008FD173 /* SportPickerController.swift */; };
 		5639B4801E98171D008FD173 /* SportPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5639B47F1E98171D008FD173 /* SportPickerView.swift */; };
@@ -73,6 +74,7 @@
 		4C885E451E93F99C00B80EA4 /* LoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
 		4CE02D261E95A1BD0068190C /* LoginButtonStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButtonStackView.swift; sourceTree = "<group>"; };
 		5614FC5B1EA0615D003D2A01 /* RandomColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomColor.swift; sourceTree = "<group>"; };
+		5614FC5D1EA10BCA003D2A01 /* GamePeekScrollerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePeekScrollerDelegate.swift; sourceTree = "<group>"; };
 		561B2ADC1E9EA61F00A3C95B /* MapGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapGradientView.swift; sourceTree = "<group>"; };
 		561B2AE01E9ED25800A3C95B /* StaticNavBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticNavBar.swift; sourceTree = "<group>"; };
 		562358171E9994F300B58A32 /* ClickableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClickableImageView.swift; sourceTree = "<group>"; };
@@ -104,7 +106,7 @@
 		5638E8D41E9D5F6C00058672 /* GFQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFQuery.m; sourceTree = "<group>"; };
 		5638E8D51E9D5F6C00058672 /* GFQuery+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GFQuery+Private.h"; sourceTree = "<group>"; };
 		5638E8DB1E9D714A00058672 /* GamePeekView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePeekView.swift; sourceTree = "<group>"; };
-		5638E8DD1E9D7A3000058672 /* GamePeakController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePeakController.swift; sourceTree = "<group>"; };
+		5638E8DD1E9D7A3000058672 /* GamePeekController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePeekController.swift; sourceTree = "<group>"; };
 		5638E8DF1E9E774900058672 /* RoundSingleCorners.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundSingleCorners.swift; sourceTree = "<group>"; };
 		5639B47D1E9816CF008FD173 /* SportPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportPickerController.swift; sourceTree = "<group>"; };
 		5639B47F1E98171D008FD173 /* SportPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportPickerView.swift; sourceTree = "<group>"; };
@@ -153,7 +155,7 @@
 				88798E251E95B60900F5C540 /* MapViewController.swift */,
 				5639B47D1E9816CF008FD173 /* SportPickerController.swift */,
 				4C2E7EFB1E9D681A008510F6 /* HomeRearViewController.swift */,
-				5638E8DD1E9D7A3000058672 /* GamePeakController.swift */,
+				5638E8DD1E9D7A3000058672 /* GamePeekController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -353,6 +355,7 @@
 		56FDCD351E941E8D00FE5AA9 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				5614FC5D1EA10BCA003D2A01 /* GamePeekScrollerDelegate.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -511,7 +514,7 @@
 				4C2E7EFC1E9D681A008510F6 /* HomeRearViewController.swift in Sources */,
 				887987E31E93EC3000F5C540 /* MapKitClient.swift in Sources */,
 				56BB7B8F1E996C8D001C75E9 /* BlurView.swift in Sources */,
-				5638E8DE1E9D7A3000058672 /* GamePeakController.swift in Sources */,
+				5638E8DE1E9D7A3000058672 /* GamePeekController.swift in Sources */,
 				5624EFFA1E92BD7200BB2662 /* Team.swift in Sources */,
 				4C2E7EFA1E9D61EE008510F6 /* SWRevealViewController.m in Sources */,
 				889C529E1E9D2DEB00B4E550 /* GeoFireClient.swift in Sources */,
@@ -534,6 +537,7 @@
 				569F05CE1E99AAD5008C82B8 /* ChosenSportTableCell.swift in Sources */,
 				4CE02D271E95A1BD0068190C /* LoginButtonStackView.swift in Sources */,
 				5638E8D61E9D5F6C00058672 /* GeoFire.m in Sources */,
+				5614FC5E1EA10BCA003D2A01 /* GamePeekScrollerDelegate.swift in Sources */,
 				56BB7B891E99655D001C75E9 /* SportPickerTopView.swift in Sources */,
 				5624F00D1E92F44400BB2662 /* InsertToFirebase.swift in Sources */,
 				5624EFFE1E92BD8E00BB2662 /* Location.swift in Sources */,

@@ -9,20 +9,27 @@
 import Foundation
 import UIKit
 
-class GamePeekController: UIViewController {
+class GamePeekController: UIViewController, GamePeekScrollerDelegate {
     
     var myView: GamePeekView!
     var location: Location!
-    var games: [Game] = []
+    var games: [Game] = [] {
+        didSet {
+            if self.games.count == self.location.games.count {
+                self.myView.gamePeekScroller.gamePeekDelegate = self
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.getGames(completion: {
-            self.myView = GamePeekView(games: self.games, delegate: self)
-            self.buildView()
-            self.myView.layer.cornerRadius = 10
-            self.myView.clipsToBounds = true
+            
         })
+        self.myView = GamePeekView()
+        self.buildView()
+        self.myView.layer.cornerRadius = 10
+        self.myView.clipsToBounds = true
     }
     
     
@@ -62,7 +69,6 @@ extension GamePeekController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playerCell", for: indexPath) as! PlayerCollectionViewCell
-        cell.backgroundColor = UIColor.blue
         return cell
     }
 }
