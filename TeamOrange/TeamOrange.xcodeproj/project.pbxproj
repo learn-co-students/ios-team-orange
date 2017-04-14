@@ -174,7 +174,7 @@
 		4C885E441E93F8DB00B80EA4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				566EEDE21EA022A800D3F8A2 /* Game Peak Scroller */,
+				566EEDE21EA022A800D3F8A2 /* Game Peek Scroller */,
 				56BB7B901E996E28001C75E9 /* Sport Picker Menu */,
 				4C885E451E93F99C00B80EA4 /* LoginButton.swift */,
 				4CE02D261E95A1BD0068190C /* LoginButtonStackView.swift */,
@@ -288,7 +288,7 @@
 			name = GeoFire;
 			sourceTree = "<group>";
 		};
-		566EEDE21EA022A800D3F8A2 /* Game Peak Scroller */ = {
+		566EEDE21EA022A800D3F8A2 /* Game Peek Scroller */ = {
 			isa = PBXGroup;
 			children = (
 				5638E8DB1E9D714A00058672 /* GamePeekView.swift */,
@@ -296,7 +296,7 @@
 				56E902C91EA0489B00579F46 /* AbbreviatedGameView.swift */,
 				56E902CB1EA0499B00579F46 /* PlayerCollectionViewCell.swift */,
 			);
-			name = "Game Peak Scroller";
+			name = "Game Peek Scroller";
 			sourceTree = "<group>";
 		};
 		568D5B5D1E97CD38009CA1C7 /* Firebase Client */ = {

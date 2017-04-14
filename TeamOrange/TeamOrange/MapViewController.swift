@@ -19,6 +19,7 @@ class MapViewController: UIViewController {
     let profileButton = UIButton()
     let sportsButton = UIButton()
     let loginButton = UIButton()
+    let peekButton = UIButton()
     
     override func loadView() {
         super.loadView()
@@ -34,6 +35,7 @@ class MapViewController: UIViewController {
         self.buildProfileButton()
         self.buildSportsButton()
         self.buildLoginButton()
+        self.buildPeekButton()
 //        self.navigationController?.setNavBarTitle()
 
     }
@@ -124,7 +126,7 @@ class MapViewController: UIViewController {
         self.sportsButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
         self.sportsButton.setTitle("Sports", for: .normal)
         self.sportsButton.setTitleColor(UIColor.red, for: .normal)
-        self.sportsButton.addTarget(self, action: #selector(self.goToGamePeekView), for: .touchUpInside)
+        self.sportsButton.addTarget(self, action: #selector(self.goToSportPicker), for: .touchUpInside)
         self.sportsButton.titleLabel?.font = self.mikesFavFont
     }
     
@@ -140,6 +142,19 @@ class MapViewController: UIViewController {
         self.loginButton.addTarget(self, action: #selector(self.goToLoginScreen), for: .touchUpInside)
         self.loginButton.titleLabel?.font = self.mikesFavFont
         
+    }
+    
+    func buildPeekButton() {
+        self.view.addSubview(self.peekButton)
+        self.peekButton.translatesAutoresizingMaskIntoConstraints = false
+        self.peekButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20).isActive = true
+        self.peekButton.bottomAnchor.constraint(equalTo: self.sportsButton.topAnchor, constant: -20).isActive = true
+        self.peekButton.heightAnchor.constraint(equalTo: self.sportsButton.heightAnchor).isActive = true
+        self.peekButton.widthAnchor.constraint(equalTo: self.sportsButton.widthAnchor).isActive = true
+        self.peekButton.setTitle("Peek", for: .normal)
+        self.peekButton.addTarget(self, action: #selector(self.goToGamePeekView), for: .touchUpInside)
+        self.peekButton.setTitleColor(UIColor.red, for: .normal)
+        self.peekButton.titleLabel?.font = self.mikesFavFont
     }
     
     func goToGamePeekView() {

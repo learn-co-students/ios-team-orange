@@ -15,17 +15,17 @@ class GamePeekController: UIViewController, GamePeekScrollerDelegate {
     var location: Location!
     var games: [Game] = [] {
         didSet {
-            if self.games.count == self.location.games.count {
+            let isLastGame = self.games.count == self.location.games.count
+            if isLastGame {
                 self.myView.gamePeekScroller.gamePeekDelegate = self
+                self.myView.gamePeekScroller.setupStack()
             }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.getGames(completion: {
-            
-        })
+        self.getGames()
         self.myView = GamePeekView()
         self.buildView()
         self.myView.layer.cornerRadius = 10
@@ -49,12 +49,12 @@ class GamePeekController: UIViewController, GamePeekScrollerDelegate {
         self.myView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.5).isActive = true
     }
     
-    func getGames(completion: @escaping () -> Void) {
+    func getGames() {
         self.location.games.forEach {
             QueryFirebase.forGameWith(id: $0, completion: {
                 self.games.append($0)
                 if self.location.games.count == self.games.count {
-                    completion()
+                    
                 }
             })
         }

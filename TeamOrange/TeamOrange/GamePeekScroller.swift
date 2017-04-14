@@ -12,7 +12,7 @@ import UIKit
 class GamePeekScroller: UIScrollView {
     
     var gameStack: UIStackView!
-    var gamePeekDelegate: GamePeekScrollerDelegate! { didSet { self.setupStack() } }
+    var gamePeekDelegate: GamePeekScrollerDelegate!
     
     init() {
         super.init(frame: CGRect.zero)
@@ -32,6 +32,8 @@ class GamePeekScroller: UIScrollView {
             
         }
         self.gameStack = UIStackView(arrangedSubviews: gameViews)
+        self.gameStack.distribution = .fillEqually
+        self.gameStack.alignment = .fill
         self.gameStack.addAndConstrainToEdges(of: self)
         gameViews.forEach {
             $0.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
