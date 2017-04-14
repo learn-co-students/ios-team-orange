@@ -43,11 +43,12 @@ import Foundation
         self.state = dict["gameState"] as? GameState
     }
     
-    func getPlayers(completion: @escaping () -> Void) {
-        QueryFirebase.forPlayersIn(game: self, completion: {
-            self.players = $0
-            completion()
-        })
+    func fillArrays(completion: @escaping () -> Void) {
+        let dispatchGroup = DispatchGroup()
+        dispatchGroup.enter(QueryFirebase.forPlayersIn(game: self, completion: { self.players = $0 }))
+        dispatchGroup.enter(QueryFirebase.forAdminsOf(game: self, completion: { self.admins = $0 }))
+        dispatchGroup.leave()
+        completion()
     }
     
  }
