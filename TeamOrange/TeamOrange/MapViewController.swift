@@ -38,7 +38,7 @@ class MapViewController: UIViewController {
         self.buildPeekButton()
 //        self.navigationController?.setNavBarTitle()
         NotificationCenter.default.addObserver(self, selector: #selector(self.scaleUp), name: Notification.Name("Stop Peaking"), object: nil)
-
+        NotificationCenter.default.addObserver(self, selector: #selector(self.makePeekViewAtAnnotation), name: Notification.Name("PeakToLoc"), object: nil)
     }
     
     
@@ -158,18 +158,6 @@ class MapViewController: UIViewController {
         self.peekButton.titleLabel?.font = self.mikesFavFont
     }
     
-    func goToGamePeakView(sender: MKPinAnnotationView) {
-        self.view.layer.cornerRadius = 10
-        self.view.clipsToBounds = true
-        let gamepeek = GamePeekController()
-        //Creat Loctaion here and uncomment the below line
-//        gamepeek.location = location
-        gamepeek.modalPresentationStyle = .overCurrentContext
-        self.present(gamepeek, animated: false, completion: nil)
-        UIView.animate(withDuration: 0.25, animations: {
-            self.view.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
-        })
-    }
     
     func goToGamePeekViewTest() {
         self.view.layer.cornerRadius = 10
@@ -195,6 +183,22 @@ class MapViewController: UIViewController {
         })
     }
     
+}
+
+extension MapViewController: MKMapViewDelegate{
+    func makePeekViewAtAnnotation(_ notification: Notification) {
+        if let location = notification.object as? Location {
+            self.view.layer.cornerRadius = 10
+            self.view.clipsToBounds = true
+            let gamepeek = GamePeekController()
+            gamepeek.location = location
+            gamepeek.modalPresentationStyle = .overCurrentContext
+            self.present(gamepeek, animated: false, completion: nil)
+            UIView.animate(withDuration: 0.25, animations: {
+                self.view.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+            })
+        }
+    }
 }
 
 

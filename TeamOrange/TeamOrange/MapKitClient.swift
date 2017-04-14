@@ -15,6 +15,7 @@ final class MapKitClient: NSObject {
     lazy var mapView = MKMapView()
     fileprivate static var client = MapKitClient()
     
+    
     private override init(){
         super.init()
     }
@@ -33,7 +34,6 @@ extension MapKitClient: CLLocationManagerDelegate, MKMapViewDelegate {
         mapView.delegate = client
         mapView.isRotateEnabled = false
         mapView.showsPointsOfInterest = false
-        //mapView.mapType = .hybrid
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -86,21 +86,33 @@ extension MapKitClient: CLLocationManagerDelegate, MKMapViewDelegate {
         return nil
     }
     
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if view.annotation is Location {
+            let loc = view.annotation as! Location
+            print (loc.allGameIDs)
+            let message = Notification(name: Notification.Name("PeakToLoc"), object: loc, userInfo: nil)
+            NotificationCenter.default.post(message)
+        }
+    }
+    
     func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
         print("mapViewDidFinishRenderingMap")
         GeoFireClient.queryLocations(within: mapView.region, response: { response in
+            let coord = response.1.coordinate
+            let id = response.0
             DispatchQueue.main.async {
-                
                 for annotation in mapView.annotations{
                     guard annotation is Location,
                         let location = annotation as? Location else {continue}
                     //print("ck: \(location.coordinate), \(response.1.coordinate)")
-                    if location.coordinate == response.1.coordinate{
+                    let idCheck = !(location.games.contains(id))
+                    let coordCheck = location.coordinate == coord
+                    if  coordCheck && idCheck {
                         location.addGame(id: response.0)
                         return
                     }
                 }
-                let newLocation = Location(gameID: response.0, coordinate: response.1.coordinate)
+                let newLocation = Location(gameID: id, coordinate: coord)
                 mapView.addAnnotation(newLocation)
                 newLocation.lookUpAddress()
             }

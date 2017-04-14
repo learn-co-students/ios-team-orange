@@ -54,6 +54,7 @@
 		56FDCD371E9431AE00FE5AA9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56FDCD361E9431AE00FE5AA9 /* GoogleService-Info.plist */; };
 		56FDCD391E9557CC00FE5AA9 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FDCD381E9557CC00FE5AA9 /* Category.swift */; };
 		881D88E71EA02114006D5F44 /* CompletionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881D88E61EA02114006D5F44 /* CompletionCell.swift */; };
+		881D88E91EA13D54006D5F44 /* LocationPinAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881D88E81EA13D54006D5F44 /* LocationPinAnnotationView.swift */; };
 		887987E11E93E7D100F5C540 /* CoreLocClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887987E01E93E7D100F5C540 /* CoreLocClient.swift */; };
 		887987E31E93EC3000F5C540 /* MapKitClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887987E21E93EC3000F5C540 /* MapKitClient.swift */; };
 		887987E51E9426DA00F5C540 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887987E41E9426DA00F5C540 /* Game.swift */; };
@@ -126,6 +127,7 @@
 		56FDCD361E9431AE00FE5AA9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		56FDCD381E9557CC00FE5AA9 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		881D88E61EA02114006D5F44 /* CompletionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletionCell.swift; sourceTree = "<group>"; };
+		881D88E81EA13D54006D5F44 /* LocationPinAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationPinAnnotationView.swift; sourceTree = "<group>"; };
 		887987E01E93E7D100F5C540 /* CoreLocClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreLocClient.swift; sourceTree = "<group>"; };
 		887987E21E93EC3000F5C540 /* MapKitClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapKitClient.swift; sourceTree = "<group>"; };
 		887987E41E9426DA00F5C540 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				562358171E9994F300B58A32 /* ClickableImageView.swift */,
 				561B2ADC1E9EA61F00A3C95B /* MapGradientView.swift */,
 				881D88E61EA02114006D5F44 /* CompletionCell.swift */,
+				881D88E81EA13D54006D5F44 /* LocationPinAnnotationView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -545,6 +548,7 @@
 				56BB7B891E99655D001C75E9 /* SportPickerTopView.swift in Sources */,
 				5624F00D1E92F44400BB2662 /* InsertToFirebase.swift in Sources */,
 				5624EFFE1E92BD8E00BB2662 /* Location.swift in Sources */,
+				881D88E91EA13D54006D5F44 /* LocationPinAnnotationView.swift in Sources */,
 				566EEDE41EA0230100D3F8A2 /* GamePeekScroller.swift in Sources */,
 				88798E261E95B60900F5C540 /* MapViewController.swift in Sources */,
 				5624EFF71E92BD3D00BB2662 /* Player.swift in Sources */,
