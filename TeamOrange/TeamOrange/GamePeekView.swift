@@ -12,8 +12,10 @@ import UIKit
 class GamePeekView: UIView {
     
     let blurView = BlurView(blurEffect: .dark)
+    let gamePeekScroller: GamePeekScroller
     
-    init() {
+    init(games: [Game]) {
+        self.gamePeekScroller = GamePeekScroller(games: games)
         super.init(frame: CGRect.zero)
         self.blurView.addAndConstrainToEdges(of: self)
     }

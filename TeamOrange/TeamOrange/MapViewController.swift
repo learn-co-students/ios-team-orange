@@ -146,7 +146,7 @@ class MapViewController: UIViewController {
         self.view.layer.cornerRadius = 10
         self.view.clipsToBounds = true
         let coordinates = CLLocationCoordinate2D(latitude: 37.77971275757405, longitude: -122.4074749280276)
-        let gamepeek = GamepeekController()
+        let gamepeek = GamePeekController()
         let location = Location(gameID: "-Kh2Wlj0Cm7Cx3ZoM0bm", coordinate: coordinates)
         location.games.append("-Kh2Wlj154CmYfGDI4SW")
         location.games.append("-Kh2Wlj0Cm7Cx3ZoM0bp")

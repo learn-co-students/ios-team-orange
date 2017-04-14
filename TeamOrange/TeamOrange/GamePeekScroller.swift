@@ -9,26 +9,27 @@
 import Foundation
 import UIKit
 
-class GamePeekScroll: UIScrollView {
+class GamePeekScroller: UIScrollView {
     
-//    var gameStack: UIStackView!
-//    var games: [Game] = []
-//    
-//    init() {
-//        super.init(frame: CGRect.zero)
-//        Sport.all.forEach { self.sportIcons.append($0.image) }
-//        self.setupStack()
-//        self.isPagingEnabled = true
-//        
-//    }
-//    
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//    
-//    func setupStack() {
-//        self.gameStack = UIStackView(arrangedSubviews: self.games)
-//    }
+    var gameStack: UIStackView!
+    var games: [Game]
+    var collectionViewDelegate: UICollectionViewDelegate!
+    
+    init(games: [Game]) {
+        self.games = games
+        super.init(frame: CGRect.zero)
+        self.setupStack()
+        self.isPagingEnabled = true
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupStack() {
+        
+    }
     
 //    func setupStackOld() {
 //        self.sportStack = UIStackView(arrangedSubviews: self.sportIcons)

@@ -11,12 +11,15 @@ import UIKit
 
 class GamePeekController: UIViewController {
     
-    let myView = GamePeekView()
+    var myView: GamePeekView!
     var location: Location!
+    var games: [Game]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.buildView()
+        self.myView.gamePeekScroller.delegate = self
+        self.myView = GamePeekView(games: self.games)
     }
     
     
@@ -36,5 +39,23 @@ class GamePeekController: UIViewController {
         self.myView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
         self.myView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.5).isActive = true
         self.myView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.5).isActive = true
+    }
+    
+    func getGames() {
+        
+    }
+    
+}
+
+extension GamePeekController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playerCell", for: indexPath)
+        cell.backgroundColor = UIColor.blue
+        return cell
     }
 }
