@@ -73,7 +73,7 @@ class MapSearchView: UIView {
         
         self.addSubview(searchBarView)
         searchBarView.translatesAutoresizingMaskIntoConstraints = false
-        searchBarView.heightAnchor.constraint(equalToConstant: 325).isActive = true
+        searchBarView.heightAnchor.constraint(equalToConstant: 25).isActive = true
         searchBarView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.75).isActive = true
         searchBarConstraint = NSLayoutConstraint(item: searchBarView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: -350)
         self.addConstraint(searchBarConstraint)

@@ -78,6 +78,7 @@ extension Location: MKAnnotation{
         return games.joined(separator: ", ")
     }//for debugging.
     
+    
 }
 
 //extension CLPlacemark {
