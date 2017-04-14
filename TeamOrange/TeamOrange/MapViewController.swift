@@ -19,6 +19,7 @@ class MapViewController: UIViewController {
     let profileButton = UIButton()
     let sportsButton = UIButton()
     let loginButton = UIButton()
+    let peekButton = UIButton()
     
     override func loadView() {
         super.loadView()
@@ -34,7 +35,9 @@ class MapViewController: UIViewController {
         self.buildProfileButton()
         self.buildSportsButton()
         self.buildLoginButton()
+        self.buildPeekButton()
 //        self.navigationController?.setNavBarTitle()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.scaleUp), name: Notification.Name("Stop Peaking"), object: nil)
 
     }
     
@@ -142,20 +145,40 @@ class MapViewController: UIViewController {
         
     }
     
+    func buildPeekButton() {
+        self.view.addSubview(self.peekButton)
+        self.peekButton.translatesAutoresizingMaskIntoConstraints = false
+        self.peekButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20).isActive = true
+        self.peekButton.bottomAnchor.constraint(equalTo: self.sportsButton.topAnchor, constant: -20).isActive = true
+        self.peekButton.heightAnchor.constraint(equalTo: self.sportsButton.heightAnchor).isActive = true
+        self.peekButton.widthAnchor.constraint(equalTo: self.sportsButton.widthAnchor).isActive = true
+        self.peekButton.setTitle("Peek", for: .normal)
+        self.peekButton.addTarget(self, action: #selector(self.goToGamePeekView), for: .touchUpInside)
+        self.peekButton.setTitleColor(UIColor.red, for: .normal)
+        self.peekButton.titleLabel?.font = self.mikesFavFont
+    }
+    
     func goToGamePeekView() {
         self.view.layer.cornerRadius = 10
         self.view.clipsToBounds = true
         let coordinates = CLLocationCoordinate2D(latitude: 37.77971275757405, longitude: -122.4074749280276)
+        let gamepeek = GamePeekController()
         let location = Location(gameID: "-Kh2Wlj0Cm7Cx3ZoM0bm", coordinate: coordinates)
         location.games.append("-Kh2Wlj154CmYfGDI4SW")
         location.games.append("-Kh2Wlj0Cm7Cx3ZoM0bp")
         location.games.append("-Kh2Wlj3US5xYAypY1Az")
         location.games.append("-Kh2Wlj3US5xYAypY1B1")
-        let gamePeak = GamePeakController(location: location)
-        gamePeak.modalPresentationStyle = .overCurrentContext
-        self.present(gamePeak, animated: false, completion: nil)
+        gamepeek.location = location
+        gamepeek.modalPresentationStyle = .overCurrentContext
+        self.present(gamepeek, animated: false, completion: nil)
         UIView.animate(withDuration: 0.25, animations: {
             self.view.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+        })
+    }
+    
+    func scaleUp() {
+        UIView.animate(withDuration: 0.25, animations: {
+            self.view.transform = CGAffineTransform(scaleX: 1, y: 1)
         })
     }
     

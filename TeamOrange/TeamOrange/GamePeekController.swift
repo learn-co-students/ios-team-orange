@@ -1,5 +1,5 @@
 //
-//  GamePeakController.swift
+//  GamepeekController.swift
 //  TeamOrange
 //
 //  Created by William Brancato on 4/11/17.
@@ -9,31 +9,40 @@
 import Foundation
 import UIKit
 
-class GamePeakController: UIViewController {
+class GamePeekController: UIViewController, GamePeekScrollerDelegate {
     
-    let myView = GamePeekView()
-    
-    init(location: Location) {
-        super.init(nibName: "GamePeak", bundle: nil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    var myView: GamePeekView!
+    var location: Location!
+    var games: [Game] = [] {
+        didSet {
+            let isLastGame = self.games.count == self.location.games.count
+            if isLastGame {
+                self.myView.gamePeekScroller.gamePeekDelegate = self
+                self.myView.gamePeekScroller.setupStack()
+            }
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.getGames()
+        self.myView = GamePeekView()
         self.buildView()
+        self.myView.layer.cornerRadius = 10
+        self.myView.clipsToBounds = true
+        NotificationCenter.default.addObserver(self, selector: #selector(self.animatedDismiss), name: Notification.Name("Stop Peaking"), object: nil)
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.myView.layer.cornerRadius = 10
-        self.myView.clipsToBounds = true
         UIView.animate(withDuration: 0.25) {
             self.view.transform = CGAffineTransform(scaleX: 1.4, y: 1.4)
         }
+    }
+    
+    func animatedDismiss() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     func buildView() {
@@ -43,5 +52,28 @@ class GamePeakController: UIViewController {
         self.myView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
         self.myView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.5).isActive = true
         self.myView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.5).isActive = true
+    }
+    
+    func getGames() {
+        self.location.games.forEach {
+            QueryFirebase.forGameWith(id: $0, completion: { game in
+                game.getPlayers() {
+                    self.games.append(game)
+                }
+            })
+        }
+    }
+}
+
+extension GamePeekController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let numPlayers = self.games[collectionView.tag].players?.count else { return 10 }
+        return numPlayers
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playerCell", for: indexPath) as! PlayerCollectionViewCell
+        return cell
     }
 }
