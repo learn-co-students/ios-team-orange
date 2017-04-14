@@ -153,12 +153,25 @@ class MapViewController: UIViewController {
         self.peekButton.heightAnchor.constraint(equalTo: self.sportsButton.heightAnchor).isActive = true
         self.peekButton.widthAnchor.constraint(equalTo: self.sportsButton.widthAnchor).isActive = true
         self.peekButton.setTitle("Peek", for: .normal)
-        self.peekButton.addTarget(self, action: #selector(self.goToGamePeekView), for: .touchUpInside)
+        self.peekButton.addTarget(self, action: #selector(self.goToGamePeekViewTest), for: .touchUpInside)
         self.peekButton.setTitleColor(UIColor.red, for: .normal)
         self.peekButton.titleLabel?.font = self.mikesFavFont
     }
     
-    func goToGamePeekView() {
+    func goToGamePeakView(sender: MKPinAnnotationView) {
+        self.view.layer.cornerRadius = 10
+        self.view.clipsToBounds = true
+        let gamepeek = GamePeekController()
+        //Creat Loctaion here and uncomment the below line
+//        gamepeek.location = location
+        gamepeek.modalPresentationStyle = .overCurrentContext
+        self.present(gamepeek, animated: false, completion: nil)
+        UIView.animate(withDuration: 0.25, animations: {
+            self.view.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+        })
+    }
+    
+    func goToGamePeekViewTest() {
         self.view.layer.cornerRadius = 10
         self.view.clipsToBounds = true
         let coordinates = CLLocationCoordinate2D(latitude: 37.77971275757405, longitude: -122.4074749280276)
