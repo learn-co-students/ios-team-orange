@@ -11,16 +11,17 @@ import UIKit
 
 class PlayerCollectionViewCell: UICollectionViewCell {
     
-    let imageView: UIImageView
-    
-    init(image: UIImage) {
-        self.imageView = UIImageView(image: image)
-        super.init(frame: CGRect.zero)
-        self.imageView.addAndConstrainToEdges(of: self)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.buildCell()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func buildCell() {
+        
     }
     
 }

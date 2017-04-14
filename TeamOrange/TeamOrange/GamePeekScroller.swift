@@ -13,31 +13,26 @@ class GamePeekScroller: UIScrollView {
     
     var gameStack: UIStackView!
     var games: [Game]
-    var collectionViewDelegate: UICollectionViewDelegate!
     
-    init(games: [Game]) {
+    init(games: [Game], delegate: UICollectionViewDataSource & UICollectionViewDelegate) {
         self.games = games
         super.init(frame: CGRect.zero)
-        self.setupStack()
+        self.setupStack(delegate: delegate)
         self.isPagingEnabled = true
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupStack() {
-        
+    func setupStack(delegate: UICollectionViewDelegate & UICollectionViewDataSource) {
+        var gameViews: [AbbreviatedGameView] = []
+        self.games.forEach { gameViews.append(AbbreviatedGameView(game: $0, delegate: delegate))}
+        self.gameStack = UIStackView(arrangedSubviews: gameViews)
+        self.gameStack.addAndConstrainToEdges(of: self)
+        gameViews.forEach {
+            $0.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
+            $0.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        }
     }
-    
-//    func setupStackOld() {
-//        self.sportStack = UIStackView(arrangedSubviews: self.sportIcons)
-//        self.sportStack.addAndConstrainToEdges(of: self)
-//        self.sportIcons.forEach {
-//            $0.contentMode = .scaleAspectFit
-//            $0.heightAnchor.constraint(equalTo:self.heightAnchor).isActive = true
-//            $0.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
-//        }
-//    }
 }

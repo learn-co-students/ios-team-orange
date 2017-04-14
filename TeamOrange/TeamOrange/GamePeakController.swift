@@ -13,20 +13,21 @@ class GamePeekController: UIViewController {
     
     var myView: GamePeekView!
     var location: Location!
-    var games: [Game]!
+    var games: [Game] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.buildView()
-        self.myView.gamePeekScroller.delegate = self
-        self.myView = GamePeekView(games: self.games)
+        self.getGames(completion: {
+            self.myView = GamePeekView(games: self.games, delegate: self)
+            self.buildView()
+            self.myView.layer.cornerRadius = 10
+            self.myView.clipsToBounds = true
+        })
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.myView.layer.cornerRadius = 10
-        self.myView.clipsToBounds = true
         UIView.animate(withDuration: 0.25) {
             self.view.transform = CGAffineTransform(scaleX: 1.4, y: 1.4)
         }
@@ -41,10 +42,16 @@ class GamePeekController: UIViewController {
         self.myView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.5).isActive = true
     }
     
-    func getGames() {
-        
+    func getGames(completion: @escaping () -> Void) {
+        self.location.games.forEach {
+            QueryFirebase.forGameWith(id: $0, completion: {
+                self.games.append($0)
+                if self.location.games.count == self.games.count {
+                    completion()
+                }
+            })
+        }
     }
-    
 }
 
 extension GamePeekController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -54,7 +61,7 @@ extension GamePeekController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playerCell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playerCell", for: indexPath) as! PlayerCollectionViewCell
         cell.backgroundColor = UIColor.blue
         return cell
     }

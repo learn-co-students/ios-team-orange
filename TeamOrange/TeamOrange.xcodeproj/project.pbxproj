@@ -14,6 +14,7 @@
 		4C885E421E93F3C000B80EA4 /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E411E93F3C000B80EA4 /* Constraints.swift */; };
 		4C885E461E93F99C00B80EA4 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E451E93F99C00B80EA4 /* LoginButton.swift */; };
 		4CE02D271E95A1BD0068190C /* LoginButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE02D261E95A1BD0068190C /* LoginButtonStackView.swift */; };
+		5614FC5C1EA0615D003D2A01 /* RandomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5614FC5B1EA0615D003D2A01 /* RandomColor.swift */; };
 		561B2ADD1E9EA61F00A3C95B /* MapGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561B2ADC1E9EA61F00A3C95B /* MapGradientView.swift */; };
 		561B2AE11E9ED25800A3C95B /* NavBarMapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561B2AE01E9ED25800A3C95B /* NavBarMapButton.swift */; };
 		562358181E9994F300B58A32 /* ClickableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562358171E9994F300B58A32 /* ClickableImageView.swift */; };
@@ -71,6 +72,7 @@
 		4C885E411E93F3C000B80EA4 /* Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
 		4C885E451E93F99C00B80EA4 /* LoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
 		4CE02D261E95A1BD0068190C /* LoginButtonStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButtonStackView.swift; sourceTree = "<group>"; };
+		5614FC5B1EA0615D003D2A01 /* RandomColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomColor.swift; sourceTree = "<group>"; };
 		561B2ADC1E9EA61F00A3C95B /* MapGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapGradientView.swift; sourceTree = "<group>"; };
 		561B2AE01E9ED25800A3C95B /* NavBarMapButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavBarMapButton.swift; sourceTree = "<group>"; };
 		562358171E9994F300B58A32 /* ClickableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClickableImageView.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				4C885E411E93F3C000B80EA4 /* Constraints.swift */,
 				5638E8DF1E9E774900058672 /* RoundSingleCorners.swift */,
 				561B2AE01E9ED25800A3C95B /* NavBarMapButton.swift */,
+				5614FC5B1EA0615D003D2A01 /* RandomColor.swift */,
 			);
 			name = "Apple Class Extensions";
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 				566EEDE41EA0230100D3F8A2 /* GamePeekScroller.swift in Sources */,
 				88798E261E95B60900F5C540 /* MapViewController.swift in Sources */,
 				5624EFF71E92BD3D00BB2662 /* Player.swift in Sources */,
+				5614FC5C1EA0615D003D2A01 /* RandomColor.swift in Sources */,
 				4C885E3F1E93EB9700B80EA4 /* LoginController.swift in Sources */,
 				561B2AE11E9ED25800A3C95B /* NavBarMapButton.swift in Sources */,
 				887987ED1E94653000F5C540 /* SearchBarView.swift in Sources */,
