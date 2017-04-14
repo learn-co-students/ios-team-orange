@@ -31,13 +31,17 @@ class SearchBarView: UIView {
     func commonInit() {
         self.backgroundColor = UIColor.clear
         
+        let blurView = BlurView(blurEffect: .dark)
+        blurView.alpha = 0.5
+        blurView.addAndConstrainToEdges(of: self)
+        
         let views: [UIView] = [searchBar, okButton, cancelButton]
         views.forEach({ view in
             self.addSubview(view)
             view.translatesAutoresizingMaskIntoConstraints = false
             view.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
             view.heightAnchor.constraint(equalToConstant: 25).isActive = true
-            view.backgroundColor = UIColor.lightGray
+            view.backgroundColor = UIColor.clear
         })
         
         searchBar.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
@@ -48,14 +52,12 @@ class SearchBarView: UIView {
         okButtonConstraint = NSLayoutConstraint(item: okButton, attribute: .trailing, relatedBy: .equal, toItem: searchBar, attribute: .leading, multiplier: 1, constant: 50)
         self.addConstraint(okButtonConstraint)
         self.insertSubview(okButton, belowSubview: searchBar)
-        okButton.backgroundColor = UIColor.green
         okButton.setTitle("-O", for: .normal)
         
         cancelButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.1).isActive = true
         cancelButtonConstraint = NSLayoutConstraint(item: cancelButton, attribute: .leading, relatedBy: .equal, toItem: searchBar, attribute: .trailing, multiplier: 1, constant: -50)
         self.addConstraint(cancelButtonConstraint)
         self.insertSubview(cancelButton, belowSubview: searchBar)
-        cancelButton.backgroundColor = UIColor.red
         cancelButton.setTitle("X", for: .normal)
         
         self.addSubview(tableView)
@@ -65,9 +67,6 @@ class SearchBarView: UIView {
         tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 0).isActive = true
         tableView.leadingAnchor.constraint(equalTo: okButton.leadingAnchor, constant: 0).isActive = true
         tableView.trailingAnchor.constraint(equalTo: cancelButton.trailingAnchor, constant: 0).isActive = true
-        let blurView = BlurView(blurEffect: .dark)
-        blurView.alpha = 0.5
-        tableView.backgroundView = blurView
         tableView.backgroundColor = UIColor.clear
         tableView.register(CompletionCell.self, forCellReuseIdentifier: "completionCell")
     }

@@ -10,8 +10,19 @@ import UIKit
 
 class CompletionCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        let blurView = BlurView(blurEffect: .dark)
+        blurView.alpha = 0.5
+        blurView.addAndConstrainToEdges(of: self.contentView)
+        self.contentView.backgroundColor = UIColor.clear
+        self.backgroundColor = UIColor.clear
+        self.textLabel?.backgroundColor = UIColor.clear
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
