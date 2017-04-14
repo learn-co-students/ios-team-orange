@@ -14,22 +14,22 @@ class AbbreviatedGameView: UIView {
     let game: Game
     var collectionView: UICollectionView!
     let delegate: UICollectionViewDelegate & UICollectionViewDataSource
-    var gameIcon: UIImageView?
+    var sportIcon: UIImageView?
     let titleLabel: WhiteFontLabel
     let playersLabel = WhiteFontLabel(withTitle: "Players")
     let dateLabel: WhiteFontLabel
-    
     
     init(game: Game, delegate: UICollectionViewDelegate & UICollectionViewDataSource) {
         self.game = game
         self.titleLabel = WhiteFontLabel(withTitle: self.game.name)
         self.dateLabel = WhiteFontLabel(withTitle: self.game.date)
         if let sport = self.game.sport {
-            self.gameIcon = sport.image
+            self.sportIcon = sport.image
         }
         self.delegate = delegate
         super.init(frame: CGRect.zero)
         self.buildCollectionView()
+        self.buildTitleLabel()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -57,6 +57,24 @@ class AbbreviatedGameView: UIView {
         self.collectionView.backgroundColor = self.backgroundColor
     }
     
+    func buildTitleLabel() {
+        self.addSubview(self.titleLabel)
+        self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.titleLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        self.titleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        self.titleLabel.lineBreakMode = .byWordWrapping
+        self.titleLabel.numberOfLines = 0
+    }
     
+    func buildSportIcon() {
+//        guard let sportIcon = self.sportIcon else { return }
+//        self.addSubview(sportIcon)
+//        sportIcon.translatesAutoresizingMaskIntoConstraints = false
+//        sportIcon.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor).isActive = true
+//        sportIcon.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
+//        sportIcon.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/3).isActive = true
+//        sportIcon.widthAnchor.constraint(equalTo: self.sportIcon.heightAnchor).isActive = true
+//        self.sportIcon.image = self.game.sport.image.image
+    }
     
 }

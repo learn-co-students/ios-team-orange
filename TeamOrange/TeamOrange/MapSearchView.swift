@@ -81,6 +81,10 @@ class MapSearchView: UIView {
         self.insertSubview(searchBarView, aboveSubview: mapView)
     }
     
+    func buildMapButton() {
+        
+    }
+    
     func animateSearchBar(){
         if searchBarViewActive{
             searchBarView.deactivateSelf(completion: {

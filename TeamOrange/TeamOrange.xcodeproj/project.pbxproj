@@ -16,7 +16,7 @@
 		4CE02D271E95A1BD0068190C /* LoginButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE02D261E95A1BD0068190C /* LoginButtonStackView.swift */; };
 		5614FC5C1EA0615D003D2A01 /* RandomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5614FC5B1EA0615D003D2A01 /* RandomColor.swift */; };
 		561B2ADD1E9EA61F00A3C95B /* MapGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561B2ADC1E9EA61F00A3C95B /* MapGradientView.swift */; };
-		561B2AE11E9ED25800A3C95B /* NavBarMapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561B2AE01E9ED25800A3C95B /* NavBarMapButton.swift */; };
+		561B2AE11E9ED25800A3C95B /* StaticNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561B2AE01E9ED25800A3C95B /* StaticNavBar.swift */; };
 		562358181E9994F300B58A32 /* ClickableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562358171E9994F300B58A32 /* ClickableImageView.swift */; };
 		5624EFE11E92BBED00BB2662 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5624EFE01E92BBED00BB2662 /* AppDelegate.swift */; };
 		5624EFE91E92BBED00BB2662 /* TeamOrange.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5624EFE71E92BBED00BB2662 /* TeamOrange.xcdatamodeld */; };
@@ -74,7 +74,7 @@
 		4CE02D261E95A1BD0068190C /* LoginButtonStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButtonStackView.swift; sourceTree = "<group>"; };
 		5614FC5B1EA0615D003D2A01 /* RandomColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomColor.swift; sourceTree = "<group>"; };
 		561B2ADC1E9EA61F00A3C95B /* MapGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapGradientView.swift; sourceTree = "<group>"; };
-		561B2AE01E9ED25800A3C95B /* NavBarMapButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavBarMapButton.swift; sourceTree = "<group>"; };
+		561B2AE01E9ED25800A3C95B /* StaticNavBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticNavBar.swift; sourceTree = "<group>"; };
 		562358171E9994F300B58A32 /* ClickableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClickableImageView.swift; sourceTree = "<group>"; };
 		5624EFDD1E92BBED00BB2662 /* TeamOrange.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeamOrange.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5624EFE01E92BBED00BB2662 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = TeamOrange/AppDelegate.swift; sourceTree = "<group>"; };
@@ -163,7 +163,7 @@
 			children = (
 				4C885E411E93F3C000B80EA4 /* Constraints.swift */,
 				5638E8DF1E9E774900058672 /* RoundSingleCorners.swift */,
-				561B2AE01E9ED25800A3C95B /* NavBarMapButton.swift */,
+				561B2AE01E9ED25800A3C95B /* StaticNavBar.swift */,
 				5614FC5B1EA0615D003D2A01 /* RandomColor.swift */,
 			);
 			name = "Apple Class Extensions";
@@ -542,7 +542,7 @@
 				5624EFF71E92BD3D00BB2662 /* Player.swift in Sources */,
 				5614FC5C1EA0615D003D2A01 /* RandomColor.swift in Sources */,
 				4C885E3F1E93EB9700B80EA4 /* LoginController.swift in Sources */,
-				561B2AE11E9ED25800A3C95B /* NavBarMapButton.swift in Sources */,
+				561B2AE11E9ED25800A3C95B /* StaticNavBar.swift in Sources */,
 				887987ED1E94653000F5C540 /* SearchBarView.swift in Sources */,
 				5639B47E1E9816CF008FD173 /* SportPickerController.swift in Sources */,
 				5638E8E01E9E774900058672 /* RoundSingleCorners.swift in Sources */,
