@@ -9,14 +9,18 @@
 import Foundation
 import UIKit
 
-class PlayerController: UIViewController {
+class PlayerController: UIViewController, PlayerViewDelegate {
     
-    var player: Player!
-    
-    override func viewDidLoad() {
-        self.view.backgroundColor = UIColor.red
-        dump(self.player)
-        self.navigationController?.buildStaticNavBar()
+    let myView: PlayerView = PlayerView()
+    var player: Player! {
+        didSet {
+            self.myView.delegate = self
+            self.myView.buildView()
+        }
     }
     
+    override func viewDidLoad() {
+        self.navigationController?.buildStaticNavBar()
+        self.myView.addAndConstrainToEdges(of: self.view)
+    }
 }

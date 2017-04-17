@@ -52,6 +52,8 @@
 		56E902CC1EA0499B00579F46 /* PlayerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E902CB1EA0499B00579F46 /* PlayerCollectionViewCell.swift */; };
 		56ED6E691EA51BC0005206C8 /* CurrentPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ED6E681EA51BC0005206C8 /* CurrentPlayer.swift */; };
 		56ED6E6B1EA533C8005206C8 /* PlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ED6E6A1EA533C8005206C8 /* PlayerController.swift */; };
+		56ED6E721EA5491B005206C8 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ED6E711EA5491B005206C8 /* PlayerView.swift */; };
+		56ED6E741EA54DE7005206C8 /* PlayerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ED6E731EA54DE7005206C8 /* PlayerViewDelegate.swift */; };
 		56F8C6F81E9C1D6D0022A695 /* SFSportsNight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56F8C6F71E9C1CF10022A695 /* SFSportsNight.ttf */; };
 		56FDCD371E9431AE00FE5AA9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56FDCD361E9431AE00FE5AA9 /* GoogleService-Info.plist */; };
 		56FDCD391E9557CC00FE5AA9 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FDCD381E9557CC00FE5AA9 /* Category.swift */; };
@@ -127,6 +129,8 @@
 		56E902CB1EA0499B00579F46 /* PlayerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerCollectionViewCell.swift; sourceTree = "<group>"; };
 		56ED6E681EA51BC0005206C8 /* CurrentPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentPlayer.swift; sourceTree = "<group>"; };
 		56ED6E6A1EA533C8005206C8 /* PlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerController.swift; sourceTree = "<group>"; };
+		56ED6E711EA5491B005206C8 /* PlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		56ED6E731EA54DE7005206C8 /* PlayerViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewDelegate.swift; sourceTree = "<group>"; };
 		56F8C6F71E9C1CF10022A695 /* SFSportsNight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFSportsNight.ttf; sourceTree = "<group>"; };
 		56FDCD361E9431AE00FE5AA9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		56FDCD381E9557CC00FE5AA9 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
@@ -183,6 +187,7 @@
 		4C885E441E93F8DB00B80EA4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				56ED6E701EA5490A005206C8 /* Player Views */,
 				566EEDE21EA022A800D3F8A2 /* Game Peek Scroller */,
 				56BB7B901E996E28001C75E9 /* Sport Picker Menu */,
 				4C885E451E93F99C00B80EA4 /* LoginButton.swift */,
@@ -334,6 +339,14 @@
 			name = "Sport Picker Menu";
 			sourceTree = "<group>";
 		};
+		56ED6E701EA5490A005206C8 /* Player Views */ = {
+			isa = PBXGroup;
+			children = (
+				56ED6E711EA5491B005206C8 /* PlayerView.swift */,
+			);
+			name = "Player Views";
+			sourceTree = "<group>";
+		};
 		56F8C6F61E9C1CE10022A695 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,6 +381,7 @@
 			isa = PBXGroup;
 			children = (
 				5614FC5D1EA10BCA003D2A01 /* GamePeekScrollerDelegate.swift */,
+				56ED6E731EA54DE7005206C8 /* PlayerViewDelegate.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -517,6 +531,7 @@
 				56BB7B8D1E9966CA001C75E9 /* SportPickerCenterView.swift in Sources */,
 				889C529C1E9BFDAC00B4E550 /* LocSearchClient.swift in Sources */,
 				887987E11E93E7D100F5C540 /* CoreLocClient.swift in Sources */,
+				56ED6E721EA5491B005206C8 /* PlayerView.swift in Sources */,
 				5638E8DA1E9D5F6C00058672 /* GFQuery.m in Sources */,
 				887987E51E9426DA00F5C540 /* Game.swift in Sources */,
 				561B2ADD1E9EA61F00A3C95B /* MapGradientView.swift in Sources */,
@@ -535,6 +550,7 @@
 				56E902CA1EA0489B00579F46 /* AbbreviatedGameView.swift in Sources */,
 				4C885E461E93F99C00B80EA4 /* LoginButton.swift in Sources */,
 				5638E8D81E9D5F6C00058672 /* GFGeoHash.m in Sources */,
+				56ED6E741EA54DE7005206C8 /* PlayerViewDelegate.swift in Sources */,
 				5624EFE91E92BBED00BB2662 /* TeamOrange.xcdatamodeld in Sources */,
 				56FDCD391E9557CC00FE5AA9 /* Category.swift in Sources */,
 				4C885E421E93F3C000B80EA4 /* Constraints.swift in Sources */,
