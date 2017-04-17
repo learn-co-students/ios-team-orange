@@ -8,14 +8,16 @@
 
 import UIKit
 import Firebase
+import GoogleSignIn
 
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate {
     
     let loginStack = LoginButtonStackView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        GIDSignIn.sharedInstance().signIn()
         
 //        let blue = BlurView(blurEffect: .dark)
 //        self.view.addSubview(blurView)
@@ -60,6 +62,27 @@ class LoginViewController: UIViewController {
         
         self.navigationController?.buildStaticNavBar()
         
+        let googleButton = GIDSignInButton()
+        googleButton.frame = CGRect(x: 16, y: 116 + 66, width: view.frame.width - 32, height: 50)
+        view.addSubview(googleButton)
+        
+        GIDSignIn.sharedInstance().uiDelegate = self
+        
+        
+    }
+    
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        // ...
+        if let error = error {
+            // ...
+            return
+        }
+        
+        guard let authentication = user.authentication else { return }
+        let credential = FIRGoogleAuthProvider.credential(withIDToken: authentication.idToken,
+                                                          accessToken: authentication.accessToken)
+        // ...
     }
     
     func exitPressed() {
