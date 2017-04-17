@@ -20,11 +20,11 @@ final class MapKitClient: NSObject {
         super.init()
     }
     
-    class func goTo(place: CLPlacemark) {
+    class func goTo(place: CLPlacemark, animated: Bool) {
         let annotation = MKPlacemark(placemark: place)
         client.mapView.removeAnnotations(client.mapView.annotations)
         client.mapView.addAnnotation(annotation)
-        client.mapView.setCenter(annotation.coordinate, animated: true)
+        client.mapView.setCenter(annotation.coordinate, animated: animated)
     }
 }
 
@@ -113,7 +113,6 @@ extension MapKitClient: CLLocationManagerDelegate, MKMapViewDelegate {
                         let idCheck = !(location.games.contains(id))
                         let coordCheck = location.coordinate == coord
                         //now check those conditions, and if so add the game to the location, signal to end location search loop if so
-                        print ("coordCheck \(coordCheck), idCheck \(idCheck), alreadyStarted \(alreadyStarted)")
                         if  coordCheck && idCheck {
                             location.addGame(id: response.0)
                             return

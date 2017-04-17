@@ -65,7 +65,7 @@ extension LocSearchClient: UITextFieldDelegate{
             DispatchQueue.main.async {
                 if let placemark = placemark{
                     //need to figure out stuff to do here, this is just testing purposes for right now
-                    MapKitClient.goTo(place: placemark)
+                    MapKitClient.goTo(place: placemark, animated: true)
                     NSLog("%@", "successfully found Locations")
                 } else {
                     //probably throw out an alert view or something...

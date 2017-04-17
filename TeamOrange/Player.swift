@@ -54,6 +54,5 @@ extension Player: CustomStringConvertible {
     var description: String {
         return "ID: \(self.id) with name of: \(self.name)\n"
     }
-    
 }
 

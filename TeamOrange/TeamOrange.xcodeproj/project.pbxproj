@@ -55,6 +55,8 @@
 		56FDCD391E9557CC00FE5AA9 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FDCD381E9557CC00FE5AA9 /* Category.swift */; };
 		881D88E71EA02114006D5F44 /* CompletionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881D88E61EA02114006D5F44 /* CompletionCell.swift */; };
 		881D88E91EA13D54006D5F44 /* LocationPinAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881D88E81EA13D54006D5F44 /* LocationPinAnnotationView.swift */; };
+		881D92E31EA51C1E006D5F44 /* CreateGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881D92E21EA51C1E006D5F44 /* CreateGameController.swift */; };
+		881D92E51EA51D37006D5F44 /* CreateGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881D92E41EA51D37006D5F44 /* CreateGameView.swift */; };
 		887987E11E93E7D100F5C540 /* CoreLocClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887987E01E93E7D100F5C540 /* CoreLocClient.swift */; };
 		887987E31E93EC3000F5C540 /* MapKitClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887987E21E93EC3000F5C540 /* MapKitClient.swift */; };
 		887987E51E9426DA00F5C540 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887987E41E9426DA00F5C540 /* Game.swift */; };
@@ -128,6 +130,8 @@
 		56FDCD381E9557CC00FE5AA9 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		881D88E61EA02114006D5F44 /* CompletionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletionCell.swift; sourceTree = "<group>"; };
 		881D88E81EA13D54006D5F44 /* LocationPinAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationPinAnnotationView.swift; sourceTree = "<group>"; };
+		881D92E21EA51C1E006D5F44 /* CreateGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGameController.swift; sourceTree = "<group>"; };
+		881D92E41EA51D37006D5F44 /* CreateGameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGameView.swift; sourceTree = "<group>"; };
 		887987E01E93E7D100F5C540 /* CoreLocClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreLocClient.swift; sourceTree = "<group>"; };
 		887987E21E93EC3000F5C540 /* MapKitClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapKitClient.swift; sourceTree = "<group>"; };
 		887987E41E9426DA00F5C540 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
@@ -155,11 +159,12 @@
 		4C885E3D1E93EB8100B80EA4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				881D92E21EA51C1E006D5F44 /* CreateGameController.swift */,
+				5638E8DD1E9D7A3000058672 /* GamePeekController.swift */,
+				4C2E7EFB1E9D681A008510F6 /* HomeRearViewController.swift */,
 				4C885E3E1E93EB9700B80EA4 /* LoginController.swift */,
 				88798E251E95B60900F5C540 /* MapViewController.swift */,
 				5639B47D1E9816CF008FD173 /* SportPickerController.swift */,
-				4C2E7EFB1E9D681A008510F6 /* HomeRearViewController.swift */,
-				5638E8DD1E9D7A3000058672 /* GamePeekController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -189,6 +194,7 @@
 				561B2ADC1E9EA61F00A3C95B /* MapGradientView.swift */,
 				881D88E61EA02114006D5F44 /* CompletionCell.swift */,
 				881D88E81EA13D54006D5F44 /* LocationPinAnnotationView.swift */,
+				881D92E41EA51D37006D5F44 /* CreateGameView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -418,7 +424,7 @@
 				TargetAttributes = {
 					5624EFDC1E92BBED00BB2662 = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = X6M58BL6UT;
+						DevelopmentTeam = H7DR849HVE;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
@@ -516,6 +522,7 @@
 				561B2ADD1E9EA61F00A3C95B /* MapGradientView.swift in Sources */,
 				5638E8D71E9D5F6C00058672 /* GFBase32Utils.m in Sources */,
 				5638E8D91E9D5F6C00058672 /* GFGeoHashQuery.m in Sources */,
+				881D92E31EA51C1E006D5F44 /* CreateGameController.swift in Sources */,
 				5624F0011E92C04B00BB2662 /* Sport.swift in Sources */,
 				4C2E7EFC1E9D681A008510F6 /* HomeRearViewController.swift in Sources */,
 				887987E31E93EC3000F5C540 /* MapKitClient.swift in Sources */,
@@ -537,6 +544,7 @@
 				5649440E1E999C6C00E56F41 /* SportIconScroll.swift in Sources */,
 				5639B4801E98171D008FD173 /* SportPickerView.swift in Sources */,
 				568D5B5F1E97CD4F009CA1C7 /* QueryFirebase.swift in Sources */,
+				881D92E51EA51D37006D5F44 /* CreateGameView.swift in Sources */,
 				56E902CC1EA0499B00579F46 /* PlayerCollectionViewCell.swift in Sources */,
 				562358181E9994F300B58A32 /* ClickableImageView.swift in Sources */,
 				5624F00B1E92F43100BB2662 /* GameState.swift in Sources */,
@@ -667,7 +675,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = X6M58BL6UT;
+				DEVELOPMENT_TEAM = H7DR849HVE;
 				INFOPLIST_FILE = TeamOrange/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -685,7 +693,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = X6M58BL6UT;
+				DEVELOPMENT_TEAM = H7DR849HVE;
 				INFOPLIST_FILE = TeamOrange/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
