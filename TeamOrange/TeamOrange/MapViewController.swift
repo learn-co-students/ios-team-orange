@@ -19,6 +19,7 @@ class MapViewController: UIViewController {
     let profileButton = UIButton()
     let sportsButton = UIButton()
     let loginButton = UIButton()
+    let swipeView = UIView()
     
     override func loadView() {
         super.loadView()
@@ -34,9 +35,12 @@ class MapViewController: UIViewController {
         self.buildProfileButton()
         self.buildSportsButton()
         self.buildLoginButton()
-//        self.navigationController?.setNavBarTitle()
-
+//        self.navigationController?.setNavBarTitle() 
+        
+//        let panGestureRecognzier = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(self.test))
+//        self.view.addGestureRecognizer(panGestureRecognzier)
     }
+    
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -86,7 +90,6 @@ class MapViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear
-
     }
     
     func goToLoginScreen() {
@@ -101,6 +104,12 @@ class MapViewController: UIViewController {
         sportsPicker.modalPresentationStyle = .overCurrentContext
         self.present(sportsPicker, animated: false, completion: nil)
     }
+    
+//    func goToProfile(sender: UIButton) {
+//        let revealViewController = self.revealViewController()
+//        revealViewController?.revealToggle(sender)
+//        self.buildSwipeView()
+//    }
     
     func buildProfileButton() {
         self.view.addSubview(self.profileButton)
@@ -141,6 +150,12 @@ class MapViewController: UIViewController {
         self.loginButton.titleLabel?.font = self.mikesFavFont
         
     }
+    
+//    func buildSwipeView() {
+//        self.view.addSubview(self.swipeView)
+//        self.swipeView.addAndConstrainToEdges(of: self.view)
+//        self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+//    }
     
     func goToGamePeekView() {
         self.view.layer.cornerRadius = 10
