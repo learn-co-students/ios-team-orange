@@ -45,10 +45,11 @@ import Foundation
     
     func fillArrays(completion: @escaping () -> Void) {
         let dispatchGroup = DispatchGroup()
-        dispatchGroup.enter(QueryFirebase.forPlayersIn(game: self, completion: { self.players = $0 }))
-        dispatchGroup.enter(QueryFirebase.forAdminsOf(game: self, completion: { self.admins = $0 }))
-        dispatchGroup.leave()
-        completion()
+        dispatchGroup.enter()
+        QueryFirebase.forPlayersIn(game: self, completion: { self.players = $0 })
+        dispatchGroup.enter()
+        QueryFirebase.forAdminsOf(game: self, completion: { self.admins = $0 })
+        
     }
     
  }
