@@ -16,6 +16,7 @@ class PlayerController: UIViewController {
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor.red
         dump(self.player)
+        self.navigationController?.buildStaticNavBar()
     }
     
 }
