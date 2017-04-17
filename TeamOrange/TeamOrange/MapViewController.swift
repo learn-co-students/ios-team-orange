@@ -83,7 +83,16 @@ class MapViewController: UIViewController {
     func toggleSearchView(){
         self.mainView.animateSearchBar()
     }
-
+    
+    func testFirebaseStuff() {
+        QueryFirebase.forTeamWith(id: "-Kh2Wlj0Cm7Cx3ZoM0bo", completion: { team in
+            team.fillArrays {
+                print("players:", team.players)
+                print("captains:", team.captains)
+            }
+        })
+    }
+    
     func buildMainView() {
         self.view.addSubview(self.mainView)
         self.mainView.translatesAutoresizingMaskIntoConstraints = false
@@ -175,7 +184,7 @@ class MapViewController: UIViewController {
         self.peekButton.heightAnchor.constraint(equalTo: self.sportsButton.heightAnchor).isActive = true
         self.peekButton.widthAnchor.constraint(equalTo: self.sportsButton.widthAnchor).isActive = true
         self.peekButton.setTitle("Peek", for: .normal)
-        self.peekButton.addTarget(self, action: #selector(self.goToGamePeekViewTest), for: .touchUpInside)
+        self.peekButton.addTarget(self, action: #selector(self.testFirebaseStuff), for: .touchUpInside)
         self.peekButton.setTitleColor(UIColor.red, for: .normal)
         self.peekButton.titleLabel?.font = self.mikesFavFont
     }
