@@ -9,22 +9,30 @@
 import Foundation
 import FirebaseDatabase
 
+//TODO:  Need to add error response notifications for pretty much every one of these functions.
 final class InsertToFirebase {
     
     private init() { }
     
 //MARK: Create new model in database
     
-    class func newPlayer(with playerInfo: [String:Any] ) {
-        FIRDatabase.database().reference().child("players").childByAutoId().setValue(playerInfo)
+    class func newPlayer(with playerInfo: [String:Any], completion: (String) -> Void ) {
+        //FIRDatabase.database().reference().child("players").childByAutoId().setValue(playerInfo)
+        let post = FIRDatabase.database().reference().child("players").childByAutoId()
+        post.setValue(playerInfo)
+        completion(post.key)
     }
     
-    class func newGame(with gameInfo: [String:Any]) {
-        FIRDatabase.database().reference().child("games").childByAutoId().setValue(gameInfo)
+    class func newGame(with gameInfo: [String:Any], completion: (String) -> Void) {
+        let post = FIRDatabase.database().reference().child("games").childByAutoId()
+        post.setValue(gameInfo)
+        completion(post.key)
     }
     
-    class func newTeam(with teamInfo: [String:Any]) {
-        FIRDatabase.database().reference().child("teams").childByAutoId().setValue(teamInfo)
+    class func newTeam(with teamInfo: [String:Any], completion: (String) -> Void) {
+        let post = FIRDatabase.database().reference().child("teams").childByAutoId()
+        post.setValue(teamInfo)
+        completion(post.key)
     }
     
 //MARK: Add players to other models

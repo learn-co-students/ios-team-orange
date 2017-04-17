@@ -19,7 +19,9 @@ class MapViewController: UIViewController {
     let profileButton = UIButton()
     let sportsButton = UIButton()
     let loginButton = UIButton()
+    let swipeView = UIView()
     let peekButton = UIButton()
+
     
     override func loadView() {
         super.loadView()
@@ -35,11 +37,19 @@ class MapViewController: UIViewController {
         self.buildProfileButton()
         self.buildSportsButton()
         self.buildLoginButton()
+
+//        self.navigationController?.setNavBarTitle() 
+        
+//        let panGestureRecognzier = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(self.test))
+//        self.view.addGestureRecognizer(panGestureRecognzier)
+
         self.buildPeekButton()
 //        self.navigationController?.setNavBarTitle()
         NotificationCenter.default.addObserver(self, selector: #selector(self.scaleUp), name: Notification.Name("Stop Peaking"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.makePeekViewAtAnnotation), name: Notification.Name("PeakToLoc"), object: nil)
+
     }
+    
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -89,7 +99,6 @@ class MapViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear
-
     }
     
     func goToLoginScreen() {
@@ -104,6 +113,12 @@ class MapViewController: UIViewController {
         sportsPicker.modalPresentationStyle = .overCurrentContext
         self.present(sportsPicker, animated: false, completion: nil)
     }
+    
+//    func goToProfile(sender: UIButton) {
+//        let revealViewController = self.revealViewController()
+//        revealViewController?.revealToggle(sender)
+//        self.buildSwipeView()
+//    }
     
     func buildProfileButton() {
         self.view.addSubview(self.profileButton)
@@ -144,7 +159,14 @@ class MapViewController: UIViewController {
         self.loginButton.titleLabel?.font = self.mikesFavFont
         
     }
+
+//    func buildSwipeView() {
+//        self.view.addSubview(self.swipeView)
+//        self.swipeView.addAndConstrainToEdges(of: self.view)
+//        self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+//    }
     
+        
     func buildPeekButton() {
         self.view.addSubview(self.peekButton)
         self.peekButton.translatesAutoresizingMaskIntoConstraints = false
@@ -160,6 +182,7 @@ class MapViewController: UIViewController {
     
     
     func goToGamePeekViewTest() {
+
         self.view.layer.cornerRadius = 10
         self.view.clipsToBounds = true
         let coordinates = CLLocationCoordinate2D(latitude: 37.77971275757405, longitude: -122.4074749280276)
