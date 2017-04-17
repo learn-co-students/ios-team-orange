@@ -96,11 +96,10 @@ extension MapKitClient: CLLocationManagerDelegate, MKMapViewDelegate {
     }
     
     func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
-        print("mapViewDidFinishRenderingMap")
+
         GeoFireClient.queryLocations(within: mapView.region, response: { response in
             let coord = response.1.coordinate
             let id = response.0
-            print(response.0)
             QueryFirebase.forGameWith(id: id, completion: { game in
                 let alreadyStarted = game.state?.rawValue != "Not Started"
                 if alreadyStarted { return }
@@ -113,7 +112,6 @@ extension MapKitClient: CLLocationManagerDelegate, MKMapViewDelegate {
                         let idCheck = !(location.games.contains(id))
                         let coordCheck = location.coordinate == coord
                         //now check those conditions, and if so add the game to the location, signal to end location search loop if so
-                        print ("coordCheck \(coordCheck), idCheck \(idCheck), alreadyStarted \(alreadyStarted)")
                         if  coordCheck && idCheck {
                             location.addGame(id: response.0)
                             return

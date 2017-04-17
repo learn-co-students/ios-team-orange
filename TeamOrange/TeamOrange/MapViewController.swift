@@ -22,6 +22,7 @@ class MapViewController: UIViewController {
     let loginButton = UIButton()
     let swipeView = UIView()
     let peekButton = UIButton()
+    var peakLocation: Location?
     
     
     override func loadView() {
@@ -49,6 +50,7 @@ class MapViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.scaleUp), name: Notification.Name("Stop Peaking"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.makePeekViewAtAnnotation), name: Notification.Name("PeakToLoc"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.goToPlayerView), name: Notification.Name("Player View With Player"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setPeakLocation), name: Notification.Name("Set Peak Location"), object: nil)
         
     }
     
@@ -65,6 +67,11 @@ class MapViewController: UIViewController {
         self.mainView.searchBarView.okButton.addTarget(self, action: #selector(searchBarButtonClicked), for: .touchUpInside)
         self.mainView.searchButton.addTarget(self, action: #selector(toggleSearchView), for: .touchUpInside)
         self.mainView.searchBarView.cancelButton.addTarget(self, action: #selector(toggleSearchView), for: .touchUpInside)
+        
+        //TODO: As of now this function will never be called - however this is bad for user functionality, if time permits make it work.
+        if let peakLocation = self.peakLocation {
+            self.makePeakView(location: peakLocation)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -84,6 +91,12 @@ class MapViewController: UIViewController {
     
     func toggleSearchView(){
         self.mainView.animateSearchBar()
+    }
+    
+    func setPeakLocation(notification: Notification) {
+        guard let location = notification.object as? Location else { return }
+        self.peakLocation = location
+        print("Location has been set to:", self.peakLocation)
     }
     
     func buildMainView() {
@@ -106,8 +119,6 @@ class MapViewController: UIViewController {
     func goToLoginScreen() {
         let loginScreen = LoginViewController()
         self.navigationController?.pushViewController(loginScreen, animated: false)
-        loginScreen.modalPresentationStyle = .overCurrentContext
-        self.present(loginScreen, animated: false, completion: nil)
     }
     
     func goToSportPicker() {
@@ -207,17 +218,23 @@ class MapViewController: UIViewController {
 extension MapViewController: MKMapViewDelegate{
     func makePeekViewAtAnnotation(_ notification: Notification) {
         if let location = notification.object as? Location {
-            self.view.layer.cornerRadius = 10
-            self.view.clipsToBounds = true
-            let gamepeek = GamePeekController()
-            gamepeek.location = location
-            gamepeek.modalPresentationStyle = .overCurrentContext
-            self.present(gamepeek, animated: false, completion: nil)
-            UIView.animate(withDuration: 0.25, animations: {
-                self.view.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
-            })
+            self.makePeakView(location: location)
         }
     }
+    
+    func makePeakView(location: Location) {
+        self.view.layer.cornerRadius = 10
+        self.view.clipsToBounds = true
+        let gamepeek = GamePeekController()
+        
+        gamepeek.location = location
+        gamepeek.modalPresentationStyle = .overCurrentContext
+        self.present(gamepeek, animated: false, completion: nil)
+        UIView.animate(withDuration: 0.25, animations: {
+            self.view.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+        })
+    }
+    
 }
 
 
