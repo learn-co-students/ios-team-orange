@@ -16,15 +16,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
     var window: UIWindow?
     
-    let navigationController = UINavigationController(rootViewController: MapViewController())
+//    let navigationController = UINavigationController(rootViewController: MapViewController())
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FIRApp.configure()
         CoreLocClient.authCheckRequest()
         GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
-        
-        let navigationController = UINavigationController(rootViewController: MapViewController())
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.makeKeyAndVisible()
         
