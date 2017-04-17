@@ -22,13 +22,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
         CoreLocClient.authCheckRequest()
 
-        let navigationController = UINavigationController(rootViewController: MapViewController())
-        
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
         
         self.createSlidingMenu()
+        
         return true
     }
     
@@ -40,7 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         swRevealVC?.toggleAnimationType = SWRevealToggleAnimationType.easeOut
         swRevealVC?.toggleAnimationDuration = 0.30
         //set swRevealVC as rootVC of windows
-        self.window?.rootViewController = swRevealVC!
+        let navigationController = UINavigationController(rootViewController: swRevealVC!)
+        self.window?.rootViewController = navigationController
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

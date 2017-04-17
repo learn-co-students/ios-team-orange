@@ -59,8 +59,6 @@ class GamePeekController: UIViewController, GamePeekScrollerDelegate {
         self.location.games.forEach {
             QueryFirebase.forGameWith(id: $0, completion: { game in
                 game.fillArrays {
-                    print("Admins:", game.admins)
-                    print("Players:", game.players)
                     self.games.append(game)
                 }
             })
@@ -78,5 +76,13 @@ extension GamePeekController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playerCell", for: indexPath) as! PlayerCollectionViewCell
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.dismiss(animated: true, completion: {
+            let selectedPlayer = self.games[collectionView.tag].players?[indexPath.item]
+            let notification = Notification(name: Notification.Name("Player View With Player"), object: selectedPlayer, userInfo: nil)
+            NotificationCenter.default.post(notification)
+        })
     }
 }
