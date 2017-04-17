@@ -66,10 +66,8 @@ extension LocSearchClient: UITextFieldDelegate{
                 if let placemark = placemark{
                     //need to figure out stuff to do here, this is just testing purposes for right now
                     MapKitClient.goTo(place: placemark)
-                    NSLog("%@", "successfully found Locations")
                 } else {
                     //probably throw out an alert view or something...
-                    NSLog("%@", "failed to find locations")
                 }
             }
         })
@@ -79,7 +77,6 @@ extension LocSearchClient: UITextFieldDelegate{
     }
     
     class func searchReady(){
-        print("searchReady")
         _ = client.textFieldShouldReturn(client.textField)
     }
 }
