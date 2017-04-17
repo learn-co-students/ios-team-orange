@@ -10,7 +10,7 @@ import Foundation
 
 enum GameState: String {
     
-    case hasNotStarted = "Has Not Started"
+    case notStarted = "Not Started"
     case inProcess = "In Process"
     case over = "Game Over"
 

@@ -39,7 +39,9 @@ class Game {
         self.name = dict["name"] as? String ?? ""
         self.success = dict["success"] as? Bool ?? false //TODO: Should we be defaulting to false?
         self.over = dict["over"] as? Bool ?? false //TODO: Should we ve defaulting to false?
-        self.state = dict["gameState"] as? GameState
+        if let stateString = dict["state"] as? String{
+            self.state = GameState(rawValue: stateString)
+        }else { self.state = nil }
     }
     
     func fillArrays(completion: @escaping () -> Void) {
