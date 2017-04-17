@@ -100,22 +100,30 @@ extension MapKitClient: CLLocationManagerDelegate, MKMapViewDelegate {
         GeoFireClient.queryLocations(within: mapView.region, response: { response in
             let coord = response.1.coordinate
             let id = response.0
-            DispatchQueue.main.async {
-                for annotation in mapView.annotations{
-                    guard annotation is Location,
-                        let location = annotation as? Location else {continue}
-                    //print("ck: \(location.coordinate), \(response.1.coordinate)")
-                    let idCheck = !(location.games.contains(id))
-                    let coordCheck = location.coordinate == coord
-                    if  coordCheck && idCheck {
-                        location.addGame(id: response.0)
-                        return
-                    }
+            print(response.0)
+            QueryFirebase.forGameWith(id: id, completion: { game in
+                let alreadyStarted = game.state?.rawValue != "Not Started"
+                if alreadyStarted { return }
+                DispatchQueue.main.async {
+                    //when callback received, loop over annotations looking for one that matches the location
+                    for annotation in mapView.annotations{
+                        guard annotation is Location,
+                            let location = annotation as? Location else {continue}
+                        //conditions: the game has not started, is not over, is not nil, is not contained at that Location already, and has the same coordinates as the location in question.
+                        let idCheck = !(location.games.contains(id))
+                        let coordCheck = location.coordinate == coord
+                        //now check those conditions, and if so add the game to the location, signal to end location search loop if so
+                        print ("coordCheck \(coordCheck), idCheck \(idCheck), alreadyStarted \(alreadyStarted)")
+                        if  coordCheck && idCheck {
+                            location.addGame(id: response.0)
+                            return
+                        }// end the loop
+                    }//if no location matching the game's coordinates has been found, create a new one
+                    let newLocation = Location(gameID: id, coordinate: coord)
+                    mapView.addAnnotation(newLocation)
+                    newLocation.lookUpAddress()
                 }
-                let newLocation = Location(gameID: id, coordinate: coord)
-                mapView.addAnnotation(newLocation)
-                newLocation.lookUpAddress()
-            }
+            })
         })
     }
 }

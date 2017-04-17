@@ -22,7 +22,7 @@ class MapViewController: UIViewController {
     let loginButton = UIButton()
     let swipeView = UIView()
     let peekButton = UIButton()
-
+    
     
     override func loadView() {
         super.loadView()
@@ -31,24 +31,25 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.makeCreateLocationButton()
         self.buildMainView()
         self.setNavBarToClear()
         self.buildProfileButton()
         self.buildSportsButton()
         self.buildLoginButton()
-
-//        self.navigationController?.setNavBarTitle() 
         
-//        let panGestureRecognzier = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(self.test))
-//        self.view.addGestureRecognizer(panGestureRecognzier)
-
+        //        self.navigationController?.setNavBarTitle()
+        
+        //        let panGestureRecognzier = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(self.test))
+        //        self.view.addGestureRecognizer(panGestureRecognzier)
+        
         self.buildPeekButton()
-//        self.navigationController?.setNavBarTitle()
+        //        self.navigationController?.setNavBarTitle()
         NotificationCenter.default.addObserver(self, selector: #selector(self.scaleUp), name: Notification.Name("Stop Peaking"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.makePeekViewAtAnnotation), name: Notification.Name("PeakToLoc"), object: nil)
-
+        NotificationCenter.default.addObserver(self, selector: #selector(self.goToPlayerView), name: Notification.Name("Player View With Player"), object: nil)
+        
     }
     
     
@@ -84,7 +85,7 @@ class MapViewController: UIViewController {
     func toggleSearchView(){
         self.mainView.animateSearchBar()
     }
-
+    
     func buildMainView() {
         self.view.addSubview(self.mainView)
         self.mainView.translatesAutoresizingMaskIntoConstraints = false
@@ -115,11 +116,12 @@ class MapViewController: UIViewController {
         self.present(sportsPicker, animated: false, completion: nil)
     }
     
-//    func goToProfile(sender: UIButton) {
-//        let revealViewController = self.revealViewController()
-//        revealViewController?.revealToggle(sender)
-//        self.buildSwipeView()
-//    }
+    func goToPlayerView(notification: Notification) {
+        guard let selectedPlayer = notification.object as? Player else { return }
+        let playerController = PlayerController()
+        playerController.player = selectedPlayer
+        self.navigationController?.pushViewController(playerController, animated: true)
+    }
     
     func buildProfileButton() {
         self.view.addSubview(self.profileButton)
@@ -161,14 +163,6 @@ class MapViewController: UIViewController {
         
     }
     
-
-//    func buildSwipeView() {
-//        self.view.addSubview(self.swipeView)
-//        self.swipeView.addAndConstrainToEdges(of: self.view)
-//        self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-//    }
-    
-        
     func buildPeekButton() {
         self.view.addSubview(self.peekButton)
         self.peekButton.translatesAutoresizingMaskIntoConstraints = false
@@ -184,7 +178,7 @@ class MapViewController: UIViewController {
     
     
     func goToGamePeekViewTest() {
-
+        
         self.view.layer.cornerRadius = 10
         self.view.clipsToBounds = true
         let coordinates = CLLocationCoordinate2D(latitude: 37.77971275757405, longitude: -122.4074749280276)

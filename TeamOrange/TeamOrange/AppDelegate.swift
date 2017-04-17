@@ -25,9 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         GIDSignIn.sharedInstance().delegate = self
         
         let navigationController = UINavigationController(rootViewController: MapViewController())
-        
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
         
         self.createSlidingMenu()
@@ -44,7 +42,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         swRevealVC?.toggleAnimationType = SWRevealToggleAnimationType.easeOut
         swRevealVC?.toggleAnimationDuration = 0.30
         //set swRevealVC as rootVC of windows
-        self.window?.rootViewController = swRevealVC!
+        let navigationController = UINavigationController(rootViewController: swRevealVC!)
+        self.window?.rootViewController = navigationController
     }
     
     

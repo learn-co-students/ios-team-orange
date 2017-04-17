@@ -10,14 +10,14 @@
 import Foundation
 
 
- class Game {
+class Game {
     
     var date: String //TODO: change to NSDate
     let id: String
     var name: String
     var over: Bool?
     var sport: Sport? // should not be optional, changing for testing purposes
-    let state: GameState? // should not be optional, changing for testing purposes
+    let state: GameState? // should not bex optional, changing for testing purposes
     var success: Bool?
     
     var numPlayers: Int? {
@@ -34,23 +34,34 @@ import Foundation
         self.date = dict["date"] as? String ?? ""
         if let sportString = dict ["sport"] as? String {
             self.sport = Sport(rawValue: sportString)
-            print(sportString)
         }
         
         self.name = dict["name"] as? String ?? ""
         self.success = dict["success"] as? Bool ?? false //TODO: Should we be defaulting to false?
         self.over = dict["over"] as? Bool ?? false //TODO: Should we ve defaulting to false?
-        self.state = dict["gameState"] as? GameState
+        if let stateString = dict["state"] as? String{
+            self.state = GameState(rawValue: stateString)
+        }else { self.state = nil }
     }
     
-    func getPlayers(completion: @escaping () -> Void) {
+    func fillArrays(completion: @escaping () -> Void) {
+        let dispatchGroup = DispatchGroup()
+        dispatchGroup.enter()
         QueryFirebase.forPlayersIn(game: self, completion: {
             self.players = $0
-            completion()
+            dispatchGroup.leave()
         })
+        dispatchGroup.enter()
+        QueryFirebase.forAdminsOf(game: self, completion: {
+            self.admins = $0
+            dispatchGroup.leave()
+        })
+        dispatchGroup.notify(queue: DispatchQueue.main) {
+            completion()
+        }
     }
     
- }
+}
 
 extension Game: CustomStringConvertible {
     
