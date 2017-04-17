@@ -17,7 +17,7 @@ import Foundation
     var name: String
     var over: Bool?
     var sport: Sport? // should not be optional, changing for testing purposes
-    let state: GameState? // should not be optional, changing for testing purposes
+    let state: GameState? // should not bex optional, changing for testing purposes
     var success: Bool?
     
     var numPlayers: Int? {
@@ -34,7 +34,6 @@ import Foundation
         self.date = dict["date"] as? String ?? ""
         if let sportString = dict ["sport"] as? String {
             self.sport = Sport(rawValue: sportString)
-            print(sportString)
         }
         
         self.name = dict["name"] as? String ?? ""
@@ -49,7 +48,7 @@ import Foundation
         QueryFirebase.forPlayersIn(game: self, completion: { self.players = $0 })
         dispatchGroup.enter()
         QueryFirebase.forAdminsOf(game: self, completion: { self.admins = $0 })
-        
+        dispatchGroup.leave()
     }
     
  }

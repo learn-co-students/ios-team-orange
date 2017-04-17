@@ -159,7 +159,6 @@ class MapViewController: UIViewController {
         self.loginButton.titleLabel?.font = self.mikesFavFont
         
     }
-    
 
 //    func buildSwipeView() {
 //        self.view.addSubview(self.swipeView)

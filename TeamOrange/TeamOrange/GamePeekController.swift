@@ -55,11 +55,10 @@ class GamePeekController: UIViewController, GamePeekScrollerDelegate {
     }
     
     func getGames() {
+        print(self.location.games)
         self.location.games.forEach {
             QueryFirebase.forGameWith(id: $0, completion: { game in
-                game.fillArrays() {
                     self.games.append(game)
-                }
             })
         }
     }
