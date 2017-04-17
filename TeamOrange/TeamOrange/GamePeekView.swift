@@ -12,10 +12,12 @@ import UIKit
 class GamePeekView: UIView {
     
     let blurView = BlurView(blurEffect: .dark)
+    let gamePeekScroller = GamePeekScroller()
     
     init() {
         super.init(frame: CGRect.zero)
         self.blurView.addAndConstrainToEdges(of: self)
+        self.gamePeekScroller.addAndConstrainToEdges(of: self)
     }
     
     required init?(coder aDecoder: NSCoder) {

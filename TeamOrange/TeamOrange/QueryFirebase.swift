@@ -103,7 +103,7 @@ final class QueryFirebase {
         }
     }
     
-    //MARK: Get Info for Game
+//MARK: Get Info for Game
     
     // Get players for game
     class func forPlayersIn(game: Game, completion: @escaping ([Player]) -> Void) {
@@ -117,6 +117,32 @@ final class QueryFirebase {
         self.getArrayOf(.admins, from: .games, withId: game.id) { (admins) in
             if let admins = admins as? [Player] { completion(admins) }
         }
+    }
+
+//MARK: Get Info by ID
+    
+    // Get game with ID
+    class func forGameWith(id: String, completion: @escaping (Game) -> Void) {
+        self.buildArrayOf(.games, for: [id], completion: {
+            guard let game = $0[0] as? Game else { return }
+            completion(game)
+        })
+    }
+    
+    // Get player with ID
+    class func forPlayerWith(id: String, completion: @escaping (Player) -> Void) {
+        self.buildArrayOf(.players, for: [id], completion: {
+            guard let game = $0[0] as? Player else { return }
+            completion(game)
+        })
+    }
+    
+    // Get team with ID
+    class func forTeamWith(id: String, completion: @escaping (Team) -> Void) {
+        self.buildArrayOf(.teams, for: [id], completion: {
+            guard let game = $0[0] as? Team else { return }
+            completion(game)
+        })
     }
 }
 
@@ -152,7 +178,7 @@ extension QueryFirebase {
         })
     }
     
-    private class func buildArrayOf(_ category: Category, for keys: [String], completion: @escaping ([Any]) -> Void) {
+    fileprivate class func buildArrayOf(_ category: Category, for keys: [String], completion: @escaping ([Any]) -> Void) {
         var array = [Any]()
         for key in keys {
             FIRDatabase.database().reference().child(category.type).child(key).observeSingleEvent(of: .value, with: { snapshot in

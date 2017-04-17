@@ -14,7 +14,6 @@ class SportPickerView: UIView {
     let topView = SportPickerTopView()
     let centerView = SportPickerCenterView()
     let bottomView = SportPickerBottomView()
-    let gestureView = UIView()
     
     var topViewTopAnchorInvisible: NSLayoutConstraint!
     var topViewTopAnchorVisible: NSLayoutConstraint!

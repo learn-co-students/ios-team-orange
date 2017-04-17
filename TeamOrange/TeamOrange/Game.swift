@@ -14,7 +14,7 @@ import Foundation
     
     var date: String //TODO: change to NSDate
     let id: String
-    var name: String?
+    var name: String
     var over: Bool?
     var sport: Sport? // should not be optional, changing for testing purposes
     let state: GameState? // should not be optional, changing for testing purposes
@@ -32,12 +32,24 @@ import Foundation
     init(id: String, dict: [String:Any]) {
         self.id = id
         self.date = dict["date"] as? String ?? ""
-        self.sport = dict ["sport"] as? Sport
-        self.name = dict["name"] as? String
+        if let sportString = dict ["sport"] as? String {
+            self.sport = Sport(rawValue: sportString)
+            print(sportString)
+        }
+        
+        self.name = dict["name"] as? String ?? ""
         self.success = dict["success"] as? Bool ?? false //TODO: Should we be defaulting to false?
         self.over = dict["over"] as? Bool ?? false //TODO: Should we ve defaulting to false?
         self.state = dict["gameState"] as? GameState
     }
+    
+    func getPlayers(completion: @escaping () -> Void) {
+        QueryFirebase.forPlayersIn(game: self, completion: {
+            self.players = $0
+            completion()
+        })
+    }
+    
  }
 
 extension Game: CustomStringConvertible {
