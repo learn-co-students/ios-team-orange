@@ -34,13 +34,14 @@ import Foundation
         self.date = dict["date"] as? String ?? ""
         if let sportString = dict ["sport"] as? String {
             self.sport = Sport(rawValue: sportString)
-            print(sportString)
         }
         
         self.name = dict["name"] as? String ?? ""
         self.success = dict["success"] as? Bool ?? false //TODO: Should we be defaulting to false?
         self.over = dict["over"] as? Bool ?? false //TODO: Should we ve defaulting to false?
-        self.state = dict["gameState"] as? GameState
+        if let stateString = dict["state"] as? String{
+            self.state = GameState(rawValue: stateString)
+        }else { self.state = nil }
     }
     
     func getPlayers(completion: @escaping () -> Void) {
