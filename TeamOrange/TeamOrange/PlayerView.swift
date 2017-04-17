@@ -12,12 +12,14 @@ import UIKit
 class PlayerView: UIView {
     
     var imageView: UIImageView!
+    let tableView = UITableView()
     
-    weak var delegate: PlayerViewDelegate?
+    weak var playerDelegate: (PlayerViewDelegate & UITableViewDelegate & UITableViewDataSource)?
     
     init() {
         super.init(frame: CGRect.zero)
         self.backgroundColor = UIColor.white
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -25,8 +27,9 @@ class PlayerView: UIView {
     }
     
     func buildView() {
-        print(self.delegate?.player.propertyDictionary)
+        print(self.playerDelegate?.player.propertyDictionary)
         self.buildImageView()
+        self.buildTableView()
     }
     
     func buildImageView() {
@@ -37,5 +40,14 @@ class PlayerView: UIView {
         self.imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         self.imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         self.imageView.bottomAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+    }
+    
+    func buildTableView() {
+        self.addSubview(self.tableView)
+        self.tableView.translatesAutoresizingMaskIntoConstraints = false
+        self.tableView.topAnchor.constraint(equalTo: self.imageView.bottomAnchor).isActive = true
+        self.tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        self.tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        self.tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
     }
 }
