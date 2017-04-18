@@ -41,7 +41,6 @@ class MapViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.scaleUp), name: Notification.Name("Stop Peaking"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.makePeekViewAtAnnotation), name: Notification.Name("PeakToLoc"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.goToPlayerView), name: Notification.Name("Player View With Player"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(setPeakLocation), name: Notification.Name("Set Peak Location"), object: nil)
         
     }
     
@@ -82,12 +81,6 @@ class MapViewController: UIViewController {
     
     func toggleSearchView(){
         self.mainView.animateSearchBar()
-    }
-    
-    func setPeakLocation(notification: Notification) {
-        guard let location = notification.object as? Location else { return }
-        self.peakLocation = location
-        print("Location has been set to:", self.peakLocation)
     }
     
     func buildMainView() {
