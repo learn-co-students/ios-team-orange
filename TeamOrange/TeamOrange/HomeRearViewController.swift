@@ -49,14 +49,15 @@ class HomeRearViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        switch indexPath.row{
-//        case 3:
-//            let createGameController = CreateGameController()
-//            self.navigationController?.pushViewController(createGameController, animated: false)
-//            break
-//        default:
-//            return
-//        }
+        print ("hi")
+        switch indexPath.row{
+        case 3:
+            let createGameController = CreateGameController()
+            self.navigationController?.pushViewController(createGameController, animated: false)
+            break
+        default:
+            return
+        }
         
     }
     

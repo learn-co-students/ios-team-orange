@@ -13,13 +13,17 @@ class CreateGameController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.buildStaticNavBar()
+        self.title = "Create Game"
         self.view = mainView
+        mainView.addSubview(mainView.mapView)
         mainView.mapView.translatesAutoresizingMaskIntoConstraints = false
         mainView.mapView.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor).isActive = true
         mainView.mapView.leadingAnchor.constraint(equalTo: mainView.leadingAnchor).isActive = true
         mainView.mapView.trailingAnchor.constraint(equalTo: mainView.trailingAnchor).isActive = true
-        mainView.mapView.heightAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 0.3)
+        mainView.mapView.heightAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 0.3).isActive = true
         mainView.setupSubviews()
+        mainView.createButton.addTarget(self, action: #selector(printSelectedSport), for: .touchUpInside)
         print ("CGC viewDidLoad")
     }
     
@@ -32,5 +36,9 @@ class CreateGameController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func printSelectedSport(){
+        print(mainView.selectedSport ?? "nil")
+    }
 
 }
