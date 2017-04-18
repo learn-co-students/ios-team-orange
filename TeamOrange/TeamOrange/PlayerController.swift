@@ -53,9 +53,9 @@ extension PlayerController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 4  {
             print("I wanna see your friends")
-            let tableView = GenericTableViewController()
-            tableView.player = self.player
-            self.navigationController?.pushViewController(tableView, animated: true)
+            let playerTableView = PlayerTableViewController()
+            playerTableView.player = self.player
+            self.navigationController?.pushViewController(playerTableView, animated: true)
         }
     }
 }

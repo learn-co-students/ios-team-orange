@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class GenericTableViewController: UITableViewController {
+class PlayerTableViewController: UITableViewController {
     
     var friends: [Player] = []
     var player: Player? {
@@ -35,11 +35,11 @@ class GenericTableViewController: UITableViewController {
     }
 }
 
-extension GenericTableViewController {
+extension PlayerTableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.friends.count
-    }
+    }git 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PlayerTableViewCell
@@ -48,6 +48,12 @@ extension GenericTableViewController {
             cell.player = self.friends[indexPath.row]
         }
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let playerController = PlayerController()
+        playerController.player = self.friends[indexPath.row]
+        self.navigationController?.pushViewController(playerController, animated: true)
     }
     
 }
