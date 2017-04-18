@@ -22,6 +22,7 @@ class PlayerTableViewCell: UITableViewCell {
     var player: Player? {
         didSet {
             guard let player = self.player else { return }
+            self.buildCell()
             self.usernameLabel.text = player.name
             self.hometownLabel.text = player.homeTown
             self.genderLabel.text = player.gender?.rawValue

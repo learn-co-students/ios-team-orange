@@ -18,9 +18,17 @@ class GameTableViewCell: UITableViewCell {
     var game: Game? {
         didSet {
             guard let game = self.game else { return }
-            self.nameLabel.text = game.name
-            self.dateLabel.text = game.date
-            self.numPlayersLabel.text = "# Playeres: \(game.numPlayers)"
+            self.buildCell()
+            game.fillArrays {
+                self.nameLabel.text = game.name
+                self.dateLabel.text = game.date
+                print(game.name)
+                if let numPlayers = game.numPlayers {
+                    self.numPlayersLabel.text = "# Playeres: \(numPlayers)"
+                }
+                
+            }
+            
         }
     }
     
@@ -34,7 +42,7 @@ class GameTableViewCell: UITableViewCell {
     func buildNameLabel() {
         self.addSubview(self.nameLabel)
         self.nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.nameLabel.leadingAnchor.constraint(equalTo: self.trailingAnchor, constant: 5).isActive = true
+        self.nameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5).isActive = true
         self.nameLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         self.nameLabel.lineBreakMode = .byWordWrapping
         self.nameLabel.numberOfLines = 0

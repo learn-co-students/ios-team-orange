@@ -39,12 +39,11 @@ extension PlayerTableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.friends.count
-    }git 
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PlayerTableViewCell
         if let player = self.player {
-            cell.buildCell()
             cell.player = self.friends[indexPath.row]
         }
         return cell
