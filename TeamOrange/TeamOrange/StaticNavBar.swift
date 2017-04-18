@@ -12,12 +12,14 @@ import UIKit
 extension UINavigationController {
     
     override open func viewDidLoad() {
-        self.buildStaticNavBar()
+//        self.buildStaticNavBar()
     }
     
     func buildStaticNavBar() {
         self.buildMapButton()
         self.setNavBarTitle()
+        self.navigationBar.backgroundColor = UIColor.lightGray
+        self.navigationBar.roundCorners(corners: [.topLeft, .topRight], radius: 10)
     }
     
     func buildMapButton() {

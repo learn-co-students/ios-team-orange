@@ -11,7 +11,7 @@
 		4C2E7EFA1E9D61EE008510F6 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E7EF91E9D61EE008510F6 /* SWRevealViewController.m */; };
 		4C2E7EFC1E9D681A008510F6 /* HomeRearViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2E7EFB1E9D681A008510F6 /* HomeRearViewController.swift */; };
 		4C885E3F1E93EB9700B80EA4 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E3E1E93EB9700B80EA4 /* LoginController.swift */; };
-		4C885E421E93F3C000B80EA4 /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E411E93F3C000B80EA4 /* Constraints.swift */; };
+		4C885E421E93F3C000B80EA4 /* UIViewConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E411E93F3C000B80EA4 /* UIViewConstraints.swift */; };
 		4C885E461E93F99C00B80EA4 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E451E93F99C00B80EA4 /* LoginButton.swift */; };
 		4CE02D271E95A1BD0068190C /* LoginButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE02D261E95A1BD0068190C /* LoginButtonStackView.swift */; };
 		5614FC5C1EA0615D003D2A01 /* RandomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5614FC5B1EA0615D003D2A01 /* RandomColor.swift */; };
@@ -48,6 +48,7 @@
 		56B5B9A41EA651A600294EF2 /* PlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B5B9A31EA651A600294EF2 /* PlayerTableViewCell.swift */; };
 		56B5B9A71EA6622B00294EF2 /* GameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B5B9A61EA6622B00294EF2 /* GameTableViewCell.swift */; };
 		56B5B9A91EA6659200294EF2 /* GameTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B5B9A81EA6659200294EF2 /* GameTableViewController.swift */; };
+		56B5B9AB1EA69FA400294EF2 /* ViewControllerConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B5B9AA1EA69FA400294EF2 /* ViewControllerConstraints.swift */; };
 		56BB7B891E99655D001C75E9 /* SportPickerTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BB7B881E99655D001C75E9 /* SportPickerTopView.swift */; };
 		56BB7B8B1E996568001C75E9 /* SportPickerBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BB7B8A1E996568001C75E9 /* SportPickerBottomView.swift */; };
 		56BB7B8D1E9966CA001C75E9 /* SportPickerCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BB7B8C1E9966CA001C75E9 /* SportPickerCenterView.swift */; };
@@ -80,7 +81,7 @@
 		4C2E7EF91E9D61EE008510F6 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		4C2E7EFB1E9D681A008510F6 /* HomeRearViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRearViewController.swift; sourceTree = "<group>"; };
 		4C885E3E1E93EB9700B80EA4 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
-		4C885E411E93F3C000B80EA4 /* Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
+		4C885E411E93F3C000B80EA4 /* UIViewConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewConstraints.swift; sourceTree = "<group>"; };
 		4C885E451E93F99C00B80EA4 /* LoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
 		4CE02D261E95A1BD0068190C /* LoginButtonStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButtonStackView.swift; sourceTree = "<group>"; };
 		5614FC5B1EA0615D003D2A01 /* RandomColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomColor.swift; sourceTree = "<group>"; };
@@ -129,6 +130,7 @@
 		56B5B9A31EA651A600294EF2 /* PlayerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerTableViewCell.swift; sourceTree = "<group>"; };
 		56B5B9A61EA6622B00294EF2 /* GameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameTableViewCell.swift; sourceTree = "<group>"; };
 		56B5B9A81EA6659200294EF2 /* GameTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameTableViewController.swift; sourceTree = "<group>"; };
+		56B5B9AA1EA69FA400294EF2 /* ViewControllerConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerConstraints.swift; sourceTree = "<group>"; };
 		56BB7B881E99655D001C75E9 /* SportPickerTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportPickerTopView.swift; sourceTree = "<group>"; };
 		56BB7B8A1E996568001C75E9 /* SportPickerBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportPickerBottomView.swift; sourceTree = "<group>"; };
 		56BB7B8C1E9966CA001C75E9 /* SportPickerCenterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportPickerCenterView.swift; sourceTree = "<group>"; };
@@ -186,10 +188,11 @@
 		4C885E401E93F2D200B80EA4 /* Apple Class Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				4C885E411E93F3C000B80EA4 /* Constraints.swift */,
+				4C885E411E93F3C000B80EA4 /* UIViewConstraints.swift */,
 				5638E8DF1E9E774900058672 /* RoundSingleCorners.swift */,
 				561B2AE01E9ED25800A3C95B /* StaticNavBar.swift */,
 				5614FC5B1EA0615D003D2A01 /* RandomColor.swift */,
+				56B5B9AA1EA69FA400294EF2 /* ViewControllerConstraints.swift */,
 			);
 			name = "Apple Class Extensions";
 			sourceTree = "<group>";
@@ -559,6 +562,7 @@
 				5638E8D91E9D5F6C00058672 /* GFGeoHashQuery.m in Sources */,
 				5624F0011E92C04B00BB2662 /* Sport.swift in Sources */,
 				4C2E7EFC1E9D681A008510F6 /* HomeRearViewController.swift in Sources */,
+				56B5B9AB1EA69FA400294EF2 /* ViewControllerConstraints.swift in Sources */,
 				887987E31E93EC3000F5C540 /* MapKitClient.swift in Sources */,
 				56BB7B8F1E996C8D001C75E9 /* BlurView.swift in Sources */,
 				5638E8DE1E9D7A3000058672 /* GamePeekController.swift in Sources */,
@@ -574,7 +578,7 @@
 				56ED6E741EA54DE7005206C8 /* PlayerViewDelegate.swift in Sources */,
 				5624EFE91E92BBED00BB2662 /* TeamOrange.xcdatamodeld in Sources */,
 				56FDCD391E9557CC00FE5AA9 /* Category.swift in Sources */,
-				4C885E421E93F3C000B80EA4 /* Constraints.swift in Sources */,
+				4C885E421E93F3C000B80EA4 /* UIViewConstraints.swift in Sources */,
 				5624F0031E92C58900BB2662 /* Gender.swift in Sources */,
 				5624EFE11E92BBED00BB2662 /* AppDelegate.swift in Sources */,
 				5649440E1E999C6C00E56F41 /* SportIconScroll.swift in Sources */,

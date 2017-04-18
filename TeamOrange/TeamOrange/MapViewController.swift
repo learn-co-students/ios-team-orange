@@ -31,21 +31,13 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.makeCreateLocationButton()
         self.buildMainView()
         self.setNavBarToClear()
         self.buildProfileButton()
         self.buildSportsButton()
         self.buildLoginButton()
-        
-        //        self.navigationController?.setNavBarTitle()
-        
-        //        let panGestureRecognzier = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(self.test))
-        //        self.view.addGestureRecognizer(panGestureRecognzier)
-        
         self.buildPeekButton()
-        //        self.navigationController?.setNavBarTitle()
         NotificationCenter.default.addObserver(self, selector: #selector(self.scaleUp), name: Notification.Name("Stop Peaking"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.makePeekViewAtAnnotation), name: Notification.Name("PeakToLoc"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.goToPlayerView), name: Notification.Name("Player View With Player"), object: nil)

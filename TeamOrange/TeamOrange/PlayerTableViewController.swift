@@ -9,39 +9,35 @@
 import Foundation
 import UIKit
 
-class PlayerTableViewController: UITableViewController {
+class PlayerTableViewController: UIViewController {
     
+    let tableView = UITableView(frame: CGRect.zero)
     var friends: [Player] = []
     var player: Player? {
         didSet {
             guard let player = self.player else { return }
-            guard let friends = player.friends else { return }
-            self.friends = friends
+            self.friends = player.friends
             self.tableView.reloadData()
         }
     }
     
-    init() {
-        super.init(style: .plain)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.addAndConstrain(view: self.tableView)
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.navigationController?.buildStaticNavBar()
         self.tableView.register(PlayerTableViewCell.self, forCellReuseIdentifier: "cell")
     }
 }
 
-extension PlayerTableViewController {
+extension PlayerTableViewController: UITableViewDelegate, UITableViewDataSource {
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.friends.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PlayerTableViewCell
         if let player = self.player {
             cell.player = self.friends[indexPath.row]
@@ -49,7 +45,7 @@ extension PlayerTableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let playerController = PlayerController()
         playerController.player = self.friends[indexPath.row]
         self.navigationController?.pushViewController(playerController, animated: true)

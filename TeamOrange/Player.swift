@@ -28,11 +28,11 @@ class Player {
     var zipCode: String?
     
     // Arrays of classes not initialized at instantiation
-    var adminOf: [Game]?
-    var captainOf: [Team]?
-    var friends: [Player]?
-    var games: [Game]?
-    var teams: [Team]?
+    var adminOf: [Game] = []
+    var captainOf: [Team] = []
+    var friends: [Player] = []
+    var games: [Game] = []
+    var teams: [Team] = []
     
     // Array and Dictionary for TableView
     var propertyArray: [String] = ["Home Town", "Home Field", "Favorite Sport", "Gender", "Friends", "Games", "Teams"]

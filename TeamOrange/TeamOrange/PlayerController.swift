@@ -25,7 +25,7 @@ class PlayerController: UIViewController, PlayerViewDelegate {
     
     override func viewDidLoad() {
         self.navigationController?.buildStaticNavBar()
-        self.myView.addAndConstrainToEdges(of: self.view)
+        self.addAndConstrain(view: self.myView)
     }
 }
 
