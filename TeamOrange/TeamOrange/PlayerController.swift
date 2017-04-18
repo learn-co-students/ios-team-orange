@@ -14,10 +14,12 @@ class PlayerController: UIViewController, PlayerViewDelegate {
     let myView: PlayerView = PlayerView()
     var player: Player! {
         didSet {
-            self.myView.playerDelegate = self
-            self.myView.tableView.delegate = self
-            self.myView.tableView.dataSource = self
-            self.myView.buildView()
+            self.player.fillArrays {
+                self.myView.playerDelegate = self
+                self.myView.tableView.delegate = self
+                self.myView.tableView.dataSource = self
+                self.myView.buildView()
+            }
         }
     }
     
