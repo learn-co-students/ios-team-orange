@@ -33,7 +33,6 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         self.makeCreateLocationButton()
         self.buildMainView()
-        self.setNavBarToClear()
         self.buildProfileButton()
         self.buildSportsButton()
         self.buildLoginButton()
@@ -66,7 +65,7 @@ class MapViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+//        self.setNavBarToClear()
     }
     
     func centerMapButtonClicked(){
