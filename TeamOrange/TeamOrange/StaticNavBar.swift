@@ -23,7 +23,7 @@ extension UINavigationController {
     func buildMapButton() {
         let mikesFavFont = UIFont(name: "SFSportsNight", size: 20)
         self.navigationBar.titleTextAttributes = [NSFontAttributeName: mikesFavFont]
-        let sportsButton = UIBarButtonItem(title: "Sports", style: .plain, target: self, action: #selector(goToSportPicker) )
+        let sportsButton = UIBarButtonItem(title: "Map", style: .plain, target: self, action: #selector(goToSportPicker) )
         sportsButton.setTitleTextAttributes([NSFontAttributeName : mikesFavFont], for: .normal)
         self.topViewController?.navigationItem.setRightBarButton(sportsButton, animated: false)
     }

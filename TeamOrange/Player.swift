@@ -47,6 +47,38 @@ class Player {
         self.phone = dict["phone"] as? String
         self.zipCode = dict["zipCode"] as? String
     }
+    
+    func fillArrays(completion: @escaping () -> Void) {
+        let dispatchGroup = DispatchGroup()
+        dispatchGroup.enter()
+        QueryFirebase.forAdminnedGamesOf(player: self, completion: { adminnedGames in
+            self.adminOf = adminnedGames
+            dispatchGroup.leave()
+        })
+        dispatchGroup.enter()
+        QueryFirebase.forCaptainedTeamsOf(player: self, completion: { captainedTeams in
+            self.captainOf = captainedTeams
+            dispatchGroup.leave()
+        })
+        dispatchGroup.enter()
+        QueryFirebase.forFriendsOf(player: self, completion: { friends in
+            self.friends = friends
+            dispatchGroup.leave()
+        })
+        dispatchGroup.enter()
+        QueryFirebase.forGamesOf(player: self, completion: { games in
+            self.games = games
+            dispatchGroup.leave()
+        })
+        dispatchGroup.enter()
+        QueryFirebase.forTeamsOf(player: self, completion: { teams in
+            self.teams = teams
+            dispatchGroup.leave()
+        })
+        dispatchGroup.notify(queue: DispatchQueue.main) { 
+            completion()
+        }
+    }
 }
 
 extension Player: CustomStringConvertible {

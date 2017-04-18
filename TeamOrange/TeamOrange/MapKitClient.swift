@@ -96,11 +96,10 @@ extension MapKitClient: CLLocationManagerDelegate, MKMapViewDelegate {
     }
     
     func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
-        print("mapViewDidFinishRenderingMap")
+
         GeoFireClient.queryLocations(within: mapView.region, response: { response in
             let coord = response.1.coordinate
             let id = response.0
-            print(response.0)
             QueryFirebase.forGameWith(id: id, completion: { game in
                 let alreadyStarted = game.state?.rawValue != "Not Started"
                 if alreadyStarted { return }

@@ -55,10 +55,11 @@ class GamePeekController: UIViewController, GamePeekScrollerDelegate {
     }
     
     func getGames() {
-        print(self.location.games)
         self.location.games.forEach {
             QueryFirebase.forGameWith(id: $0, completion: { game in
+                game.fillArrays {
                     self.games.append(game)
+                }
             })
         }
     }
@@ -74,5 +75,20 @@ extension GamePeekController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playerCell", for: indexPath) as! PlayerCollectionViewCell
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.dismiss(animated: true, completion: {
+            let selectedPlayer = self.games[collectionView.tag].players?[indexPath.item]
+            let goToPlayerNotification = Notification(name: Notification.Name("Player View With Player"), object: selectedPlayer)
+            NotificationCenter.default.post(goToPlayerNotification)
+            
+            //TODO: This smells - this controller should not send up a notification that it in itself catches.  Should be solved with protocol / delegate relationship.
+            let dismissNotification = Notification(name: Notification.Name("Stop Peaking"), object: nil, userInfo: nil)
+            NotificationCenter.default.post(dismissNotification)
+            
+            
+            
+        })
     }
 }

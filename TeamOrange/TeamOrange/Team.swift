@@ -21,7 +21,7 @@ class Team {
     var name: String
     
     // Arrays not created at initialization
-    var captain: [Player]?
+    var captains: [Player]?
     var players: [Player]?
     
     init(id: String, dict: [String: Any]) {
@@ -30,6 +30,24 @@ class Team {
         self.homeField = dict["homeField"] as? String
         self.imageUrlString = dict["imageUrlString"] as? String
         self.name = dict["name"] as? String ?? ""
+    }
+    
+    func fillArrays(completion: @escaping () -> Void) {
+        let dispatchGroup = DispatchGroup()
+        dispatchGroup.enter()
+        QueryFirebase.forPlayersOn(team: self, completion: { players in
+            self.players = players
+            dispatchGroup.leave()
+        })
+        dispatchGroup.enter()
+        QueryFirebase.forCaptainsOf(team: self, completion: { captains in
+            self.captains = captains
+            dispatchGroup.leave()
+        })
+        dispatchGroup.notify(queue: DispatchQueue.main) { 
+            completion()
+        }
+        
     }
 }
 

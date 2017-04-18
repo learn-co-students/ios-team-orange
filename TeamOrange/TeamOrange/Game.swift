@@ -10,7 +10,7 @@
 import Foundation
 
 
- class Game {
+class Game {
     
     var date: String //TODO: change to NSDate
     let id: String
@@ -47,13 +47,21 @@ import Foundation
     func fillArrays(completion: @escaping () -> Void) {
         let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
-        QueryFirebase.forPlayersIn(game: self, completion: { self.players = $0 })
+        QueryFirebase.forPlayersIn(game: self, completion: {
+            self.players = $0
+            dispatchGroup.leave()
+        })
         dispatchGroup.enter()
-        QueryFirebase.forAdminsOf(game: self, completion: { self.admins = $0 })
-        dispatchGroup.leave()
+        QueryFirebase.forAdminsOf(game: self, completion: {
+            self.admins = $0
+            dispatchGroup.leave()
+        })
+        dispatchGroup.notify(queue: DispatchQueue.main) {
+            completion()
+        }
     }
     
- }
+}
 
 extension Game: CustomStringConvertible {
     
