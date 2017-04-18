@@ -33,6 +33,7 @@ class CreateGameView: UIView {
     }
     
     func setupSubviews(){
+        print("CGV Setup")
         self.addSubview(createButton)
         createButton.translatesAutoresizingMaskIntoConstraints = false
         createButton.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.07, constant: 0).isActive = true

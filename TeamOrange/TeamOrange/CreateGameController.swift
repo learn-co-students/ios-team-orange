@@ -14,13 +14,13 @@ class CreateGameController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view = mainView
-        mainView.addSubview(mainView.mapView)
         mainView.mapView.translatesAutoresizingMaskIntoConstraints = false
         mainView.mapView.topAnchor.constraint(equalTo: self.topLayoutGuide.bottomAnchor).isActive = true
         mainView.mapView.leadingAnchor.constraint(equalTo: mainView.leadingAnchor).isActive = true
         mainView.mapView.trailingAnchor.constraint(equalTo: mainView.trailingAnchor).isActive = true
         mainView.mapView.heightAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 0.3)
         mainView.setupSubviews()
+        print ("CGC viewDidLoad")
     }
     
     /*

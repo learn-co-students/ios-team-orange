@@ -30,7 +30,6 @@ class SearchBarView: UIView {
     
     func commonInit() {
         self.backgroundColor = UIColor.clear
-        
         let blurView = BlurView(blurEffect: .dark)
         blurView.alpha = 0.5
         blurView.addAndConstrainToEdges(of: self)
@@ -69,6 +68,7 @@ class SearchBarView: UIView {
         tableView.trailingAnchor.constraint(equalTo: cancelButton.trailingAnchor, constant: 0).isActive = true
         tableView.backgroundColor = UIColor.clear
         tableView.register(CompletionCell.self, forCellReuseIdentifier: "completionCell")
+        tableView.isUserInteractionEnabled = true
     }
     
     func animateSelf(state: Bool, completion: @escaping ()->()) {

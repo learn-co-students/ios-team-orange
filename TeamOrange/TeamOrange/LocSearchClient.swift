@@ -44,9 +44,13 @@ extension LocSearchClient:  UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "completionCell", for: indexPath)
-        
         cell.textLabel?.text = completions[indexPath.row]
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        textField.text = completions[indexPath.row]
+        LocSearchClient.searchReady()
     }
 }
 
@@ -55,6 +59,11 @@ extension LocSearchClient: UITextFieldDelegate{
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if let text = textField.text {getMapSearchCompletions(with: text)}
         return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        completions = []
+        tableView.reloadData()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -73,8 +82,8 @@ extension LocSearchClient: UITextFieldDelegate{
                 }
             }
         })
-        dismiss()
         textField.endEditing(true)
+        dismiss()
         return true
     }
     
