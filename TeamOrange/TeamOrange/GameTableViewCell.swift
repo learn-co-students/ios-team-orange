@@ -22,7 +22,6 @@ class GameTableViewCell: UITableViewCell {
             game.fillArrays {
                 self.nameLabel.text = game.name
                 self.dateLabel.text = game.date
-                print(game.name)
                 if let numPlayers = game.numPlayers {
                     self.numPlayersLabel.text = "# Playeres: \(numPlayers)"
                 }
