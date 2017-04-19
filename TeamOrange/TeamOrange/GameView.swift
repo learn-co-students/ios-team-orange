@@ -12,16 +12,19 @@ import UIKit
 class GameView: UIView {
     
     var collectionView: UICollectionView!
-    var nameLabel = UILabel()
     var sportIcon = UIImageView()
+    var nameLabel = UILabel()
     var addressLabel = UILabel()
     var dateLabel = UILabel()
     var stateLabel = UILabel()
+    var playersLabel = UILabel()
+    var labels: [UILabel] = []
     
     weak var delegate: GameViewDelegate?
     
     init() {
         super.init(frame: CGRect.zero)
+        self.labels = [self.nameLabel, self.addressLabel, self.dateLabel, self.stateLabel, self.playersLabel]
         self.buildView()
         self.backgroundColor = UIColor.white
     }
@@ -31,20 +34,62 @@ class GameView: UIView {
     }
     
     func buildView() {
-        self.buildCollectionView()
+        self.labels.forEach {
+            self.addSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            $0.lineBreakMode = .byWordWrapping
+            $0.numberOfLines = 0
+        }
         self.buildNameLabel()
         self.buildaddressLabel()
         self.buildDateLabel()
         self.buildStateLabel()
+        self.buildPlayersLabel()
+        self.buildCollectionView()
         self.buildSportIcon()
     }
     
+    func buildNameLabel() {
+        self.nameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
+        self.nameLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+    }
+    
+    func buildaddressLabel() {
+        self.addressLabel.bottomAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        self.addressLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+    }
+    
+    func buildSportIcon() {
+        self.addSubview(self.sportIcon)
+        self.sportIcon.translatesAutoresizingMaskIntoConstraints = false
+        self.sportIcon.topAnchor.constraint(equalTo: self.dateLabel.bottomAnchor, constant: 10).isActive = true
+//        self.sportIcon.bottomAnchor.constraint(equalTo: self.addressLabel.topAnchor, constant: -5).isActive = true
+        self.sportIcon.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+//        self.sportIcon.widthAnchor.constraint(equalTo: self.sportIcon.heightAnchor).isActive = true
+//        self.sportIcon.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+//        self.sportIcon.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        self.sportIcon.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 0.5).isActive = true
+        self.sportIcon.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 0.5).isActive = true
+    }
+    
+    func buildDateLabel() {
+        self.dateLabel.topAnchor.constraint(equalTo: self.nameLabel.bottomAnchor).isActive = true
+        self.dateLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5).isActive = true
+    }
+    
+    func buildStateLabel() {
+        self.stateLabel.topAnchor.constraint(equalTo: self.nameLabel.bottomAnchor).isActive = true
+        self.stateLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5).isActive = true
+    }
+    
+    func buildPlayersLabel() {
+        self.playersLabel.topAnchor.constraint(equalTo: self.addressLabel.bottomAnchor, constant: 5).isActive = true
+        self.playersLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+    }
+    
     func buildCollectionView() {
-        
-        
-        //TODO: Something smells about the -50 in the edge insets
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: -50, left: 10, bottom: 0, right: 10)
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
         layout.itemSize = CGSize(width: UIScreen.main.bounds.width / 5, height: UIScreen.main.bounds.width / 5)
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 10
@@ -56,58 +101,11 @@ class GameView: UIView {
         
         self.addSubview(self.collectionView)
         self.collectionView.translatesAutoresizingMaskIntoConstraints = false
-        self.collectionView.topAnchor.constraint(equalTo: self.centerYAnchor, constant: 5).isActive = true
+        self.collectionView.topAnchor.constraint(equalTo: self.playersLabel.bottomAnchor, constant: 5).isActive = true
         self.collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         self.collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         self.collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         self.collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         self.collectionView.backgroundColor = self.backgroundColor
-        
-    }
-    
-    func buildNameLabel() {
-        self.addSubview(self.nameLabel)
-        self.nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.nameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
-        self.nameLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        self.nameLabel.lineBreakMode = .byWordWrapping
-        self.nameLabel.numberOfLines = 0
-    }
-    
-    func buildSportIcon() {
-        self.addSubview(self.sportIcon)
-        self.sportIcon.translatesAutoresizingMaskIntoConstraints = false
-        self.sportIcon.topAnchor.constraint(equalTo: self.dateLabel.bottomAnchor, constant: 10).isActive = true
-        self.sportIcon.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        self.sportIcon.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
-        self.sportIcon.heightAnchor.constraint(equalTo: self.sportIcon.widthAnchor).isActive = true
-        
-    }
-    
-    func buildDateLabel() {
-        self.addSubview(self.dateLabel)
-        self.dateLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.dateLabel.topAnchor.constraint(equalTo: self.nameLabel.bottomAnchor).isActive = true
-        self.dateLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5).isActive = true
-        self.dateLabel.lineBreakMode = .byWordWrapping
-        self.dateLabel.numberOfLines = 0
-    }
-    
-    func buildaddressLabel() {
-        self.addSubview(self.addressLabel)
-        self.addressLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.addressLabel.bottomAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        self.addressLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        self.addressLabel.lineBreakMode = .byWordWrapping
-        self.addressLabel.numberOfLines = 0
-    }
-    
-    func buildStateLabel() {
-        self.addSubview(self.stateLabel)
-        self.stateLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.stateLabel.topAnchor.constraint(equalTo: self.nameLabel.bottomAnchor).isActive = true
-        self.stateLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5).isActive = true
-        self.stateLabel.lineBreakMode = .byWordWrapping
-        self.stateLabel.numberOfLines = 0
     }
 }

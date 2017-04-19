@@ -91,11 +91,7 @@ class AbbreviatedGameView: UIView {
     
     
     func buildPlayersLabel() {
-        if let numPlayers = self.game.players?.count {
-            self.playersLabel = WhiteFontLabel(withTitle: "Players: \(numPlayers)")
-        } else {
-            self.playersLabel = WhiteFontLabel(withTitle: "Players: 0")
-        }
+            self.playersLabel = WhiteFontLabel(withTitle: "Players: \(self.game.players.count)")
         self.addSubview(self.playersLabel)
         self.playersLabel.translatesAutoresizingMaskIntoConstraints = false
         self.playersLabel.topAnchor.constraint(equalTo: self.centerYAnchor).isActive = true

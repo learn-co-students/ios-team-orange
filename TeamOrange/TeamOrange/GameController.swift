@@ -33,6 +33,7 @@ class GameController: UIViewController {
         self.myView.addressLabel.text = "66 Tuckerton Rd, Shamong, NJ 08088"
         self.myView.dateLabel.text = game.date
         self.myView.stateLabel.text = game.state?.rawValue
+        self.myView.playersLabel.text = "Players: \(game.numPlayers) / \(game.maxPlayers)"
     }
 }
 
@@ -40,8 +41,7 @@ extension GameController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let game = self.game else { return 0 }
-        guard let players = game.players else { return 0 }
-        return players.count
+        return game.players.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

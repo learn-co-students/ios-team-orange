@@ -68,8 +68,7 @@ class GamePeekController: UIViewController, GamePeekScrollerDelegate {
 extension GamePeekController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let numPlayers = self.games[collectionView.tag].players?.count else { return 10 }
-        return numPlayers
+        return self.games[collectionView.tag].players.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -79,7 +78,7 @@ extension GamePeekController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.dismiss(animated: true, completion: {
-            let selectedPlayer = self.games[collectionView.tag].players?[indexPath.item]
+            let selectedPlayer = self.games[collectionView.tag].players[indexPath.item]
 //            selectedPlayer?.fillArrays {
                 let goToPlayerNotification = Notification(name: Notification.Name("Player View With Player"), object: selectedPlayer)
                 NotificationCenter.default.post(goToPlayerNotification)

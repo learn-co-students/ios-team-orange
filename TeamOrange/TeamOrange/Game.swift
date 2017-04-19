@@ -21,14 +21,13 @@ class Game {
     var success: Bool?
     var maxPlayers: Int
     
-    var numPlayers: Int? {
-        guard let players = self.players else { return nil }
+    var numPlayers: Int {
         return players.count
     }
     
     // Arrays not created at initialization
-    var admins: [Player]?
-    var players: [Player]?
+    var admins: [Player] = []
+    var players: [Player] = []
     
     init(id: String, dict: [String:Any]) {
         self.id = id
@@ -61,7 +60,6 @@ class Game {
             completion()
         }
     }
-    
 }
 
 extension Game: CustomStringConvertible {
