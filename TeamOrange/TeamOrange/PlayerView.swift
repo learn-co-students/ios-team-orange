@@ -33,7 +33,7 @@ class PlayerView: UIView {
     }
     
     func buildImageView() {
-        self.imageView = UIImageView(image: #imageLiteral(resourceName: "avatar"))
+        self.imageView = UIImageView(image: #imageLiteral(resourceName: "runner-noBackground"))
         self.addSubview(self.imageView)
         self.imageView.translatesAutoresizingMaskIntoConstraints = false
         self.imageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
