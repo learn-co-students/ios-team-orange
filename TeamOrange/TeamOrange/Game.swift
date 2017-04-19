@@ -52,7 +52,7 @@ class Game {
             dispatchGroup.leave()
         })
         dispatchGroup.enter()
-        QueryFirebase.forAdminsOf(game: self, completion: {
+        QueryFirebase.forAdminsOf(game: self, completion: {x
             self.admins = $0
             dispatchGroup.leave()
         })
@@ -60,6 +60,18 @@ class Game {
             completion()
         }
     }
+    
+    func containsPlayer(withId playerId: String) -> Bool {
+        var playerInGame: Bool = false
+        for player in self.players {
+            if player.id == playerId {
+                playerInGame = true
+                break
+            }
+        }
+        return playerInGame
+    }
+    
 }
 
 extension Game: CustomStringConvertible {

@@ -88,16 +88,18 @@ class AbbreviatedGameView: UIView {
         self.addSubview(self.dateLabel)
     }
     
-    
-    
     func buildPlayersLabel() {
-            self.playersLabel = WhiteFontLabel(withTitle: "Players: \(self.game.players.count)")
+        self.playersLabel = WhiteFontLabel(withTitle: "Players: \(self.game.players.count) / \(self.game.maxPlayers)")
         self.addSubview(self.playersLabel)
         self.playersLabel.translatesAutoresizingMaskIntoConstraints = false
         self.playersLabel.topAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         self.playersLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         self.playersLabel.lineBreakMode = .byWordWrapping
         self.playersLabel.numberOfLines = 0
+    }
+    
+    func setPlayersLabelText() {
+        self.playersLabel.text = "Players: \(self.game.players.count) / \(self.game.maxPlayers)"
     }
     
     func buildDismissButton() {

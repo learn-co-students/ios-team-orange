@@ -64,6 +64,35 @@ class GamePeekController: UIViewController, GamePeekScrollerDelegate {
             })
         }
     }
+    
+    func goToPlayer(player: Player) {
+        self.dismiss(animated: true, completion: {
+            
+            let goToPlayerNotification = Notification(name: Notification.Name("Player View With Player"), object: player)
+            NotificationCenter.default.post(goToPlayerNotification)
+            //TODO: This smells - this controller should not send up a notification that it in itself catches.  Should be solved with protocol / delegate relationship.
+            let dismissNotification = Notification(name: Notification.Name("Stop Peeking"), object: nil, userInfo: nil)
+            NotificationCenter.default.post(dismissNotification)
+        })
+    }
+    
+    func presentInGameAlert() {
+        let alert = UIAlertController(title: "Already playing in this game!", message: nil, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Got It", style: .destructive, handler: nil)
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func addPlayerToGame(game: Game, collectionViewTag: Int) {
+        InsertToFirebase.player(withId: CurrentPlayer.player.id, toGame: game.id, completion: {
+            if let abbreviatedGameView = self.myView.gamePeekScroller.gameStack.viewWithTag(collectionViewTag + 100) as? AbbreviatedGameView {
+                abbreviatedGameView.game.fillArrays {
+                    abbreviatedGameView.collectionView.reloadData()
+                    abbreviatedGameView.setPlayersLabelText()
+                }
+            }
+        })
+    }
 }
 
 extension GamePeekController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -79,18 +108,14 @@ extension GamePeekController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         if indexPath.item < self.games[collectionView.tag].players.count {
-            self.dismiss(animated: true, completion: {
-                let selectedPlayer = self.games[collectionView.tag].players[indexPath.item]
-                let goToPlayerNotification = Notification(name: Notification.Name("Player View With Player"), object: selectedPlayer)
-                NotificationCenter.default.post(goToPlayerNotification)
-                //TODO: This smells - this controller should not send up a notification that it in itself catches.  Should be solved with protocol / delegate relationship.
-                let dismissNotification = Notification(name: Notification.Name("Stop Peeking"), object: nil, userInfo: nil)
-                NotificationCenter.default.post(dismissNotification)
-            })
+            let selectedPlayer = self.games[collectionView.tag].players[indexPath.item]
+            self.goToPlayer(player: selectedPlayer)
+        } else if self.games[collectionView.tag].containsPlayer(withId: CurrentPlayer.player.id) {
+            self.presentInGameAlert()
         } else {
-            print("Add me to the game")
+            let game = self.games[collectionView.tag]
+            self.addPlayerToGame(game: game, collectionViewTag: collectionView.tag)
         }
     }
 }

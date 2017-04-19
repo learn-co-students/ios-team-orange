@@ -35,6 +35,7 @@ class CreateGameController: UIViewController {
         coord = mainView.mapView.userLocation.coordinate
         mainView.maxPlayers.delegate = self
         mainView.maxPlayers.dataSource = self
+        self.navigationController?.navigationBar.isHidden = false
     }
     
     /*
