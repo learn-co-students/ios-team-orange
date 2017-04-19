@@ -44,9 +44,13 @@ extension LocSearchClient:  UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "completionCell", for: indexPath)
-        
         cell.textLabel?.text = completions[indexPath.row]
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        textField.text = completions[indexPath.row]
+        LocSearchClient.searchReady()
     }
 }
 
@@ -57,6 +61,11 @@ extension LocSearchClient: UITextFieldDelegate{
         return true
     }
     
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        completions = []
+        tableView.reloadData()
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard let text = textField.text, text != "" else {
             return false
@@ -65,14 +74,14 @@ extension LocSearchClient: UITextFieldDelegate{
             DispatchQueue.main.async {
                 if let placemark = placemark{
                     //need to figure out stuff to do here, this is just testing purposes for right now
-                    MapKitClient.goTo(place: placemark)
+                    MapKitClient.goTo(place: placemark, animated: true)
                 } else {
                     //probably throw out an alert view or something...
                 }
             }
         })
-        dismiss()
         textField.endEditing(true)
+        dismiss()
         return true
     }
     
