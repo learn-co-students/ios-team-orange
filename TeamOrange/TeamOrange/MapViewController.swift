@@ -41,6 +41,7 @@ class MapViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.scaleUp), name: Notification.Name("Stop Peaking"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.makePeekViewAtAnnotation), name: Notification.Name("PeakToLoc"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.goToPlayerView), name: Notification.Name("Player View With Player"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.fadeSportsButton), name: Notification.Name("Picker Collapsed"), object: nil)
         
     }
     
@@ -106,9 +107,16 @@ class MapViewController: UIViewController {
     }
     
     func goToSportPicker() {
+        self.fadeSportsButton()
         let sportsPicker = SportPickerController()
         sportsPicker.modalPresentationStyle = .overCurrentContext
         self.present(sportsPicker, animated: false, completion: nil)
+    }
+    
+    func fadeSportsButton() {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.sportsButton.alpha = self.sportsButton.alpha == 1 ? 0 : 1
+        })
     }
     
     func goToPlayerView(notification: Notification) {

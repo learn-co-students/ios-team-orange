@@ -25,26 +25,30 @@ class SportPickerController: UIViewController {
         self.buildGestureView()
         NotificationCenter.default.addObserver(self, selector: #selector(self.sportChosen), name: Notification.Name("Sport Chosen"), object: nil)
         NotificationCenter.default.addObserver(self.myView, selector: #selector(self.myView.collapse), name: Notification.Name("Collapse Picker"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.slideViewOut), name: Notification.Name("Picker Collapsed"), object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.slideViewIn()   
+        self.slideViewIn()
     }
     
     func slideViewIn() {
         self.leadingConstraintVisible.isActive = false
         self.leadingConstraintInvisible.isActive = true
         UIView.animate(withDuration: 0.25, animations: { self.view.layoutIfNeeded() }
-                                         , completion: { _ in self.myView.build() })
+            , completion: { _ in self.myView.build() })
     }
     
     func slideViewOut() {
         self.leadingConstraintVisible.isActive = true
         self.leadingConstraintInvisible.isActive = false
         UIView.animate(withDuration: 0.25, animations: { self.view.layoutIfNeeded() }
-                                         , completion: { _ in self.dismiss(animated: false) })
+            , completion: { _ in
+                self.dismiss(animated: false)
+                let notification = Notification(name: Notification.Name("Picker Collapsed"), object: nil, userInfo: nil)
+                NotificationCenter.default.post(notification)
+        })
+        
     }
     
     func sportChosen(notification: Notification) {
