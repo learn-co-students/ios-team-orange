@@ -76,6 +76,7 @@ class CreateGameController: UIViewController {
                 GeoFireClient.addLocation(game: id, coordinate: coord!, completion: {
                     //perform segue! pass in location
                 })
+                InsertToFirebase.player(withId: CurrentPlayer.player.id, toGame: id)
             })
         }
     }
