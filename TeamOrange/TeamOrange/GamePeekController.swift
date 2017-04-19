@@ -89,8 +89,10 @@ extension GamePeekController: UICollectionViewDelegate, UICollectionViewDataSour
                 let dismissNotification = Notification(name: Notification.Name("Stop Peaking"), object: nil, userInfo: nil)
                 NotificationCenter.default.post(dismissNotification)
             })
+        } else if self.games[collectionView.tag].containsPlayer(withId: CurrentPlayer.player.id) {
+            print("Player Already in Game")
         } else {
-            print("Add me to the game")
+            InsertToFirebase.player(withId: CurrentPlayer.player.id, toGame: self.games[collectionView.tag].id)
         }
     }
 }

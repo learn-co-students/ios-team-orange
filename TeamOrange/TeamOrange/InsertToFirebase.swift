@@ -43,7 +43,6 @@ final class InsertToFirebase {
         FIRDatabase.database().reference().child("teams").child(teamId).child("players").child(playerId).setValue(true)
     }
     
-    
     // Add game to player & player to game
     class func player(withId playerId: String, toGame gameId: String) {
         FIRDatabase.database().reference().child("players").child(playerId).child("games").child(gameId).setValue(true)

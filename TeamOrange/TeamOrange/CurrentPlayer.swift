@@ -10,11 +10,11 @@ import Foundation
 
 final class CurrentPlayer {
     
-    var player: Player!
+    static private(set) var player: Player!
     
     private init() {}
     
-    func createPlayer() {
+    static func createPlayer() {
         QueryFirebase.forPlayerWith(id: "-Kh2WlizyeXGe_2Wr9NE", completion: { player in
             self.player = player
         })

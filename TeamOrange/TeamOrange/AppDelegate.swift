@@ -36,6 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         self.createSlidingMenu()
         
+        CurrentPlayer.createPlayer()
+        
         return true
     }
     

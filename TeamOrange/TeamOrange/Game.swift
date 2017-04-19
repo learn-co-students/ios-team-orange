@@ -60,6 +60,18 @@ class Game {
             completion()
         }
     }
+    
+    func containsPlayer(withId playerId: String) -> Bool {
+        var playerInGame: Bool = false
+        for player in self.players {
+            if player.id == playerId {
+                playerInGame = true
+                break
+            }
+        }
+        return playerInGame
+    }
+    
 }
 
 extension Game: CustomStringConvertible {
