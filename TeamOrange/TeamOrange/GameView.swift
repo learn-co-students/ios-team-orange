@@ -59,6 +59,7 @@ class GameView: UIView {
         self.addressLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
     }
     
+    //TODO:  Fix these constraints to not use constants - think about putting top labels in container view.
     func buildSportIcon() {
         self.addSubview(self.sportIcon)
         self.sportIcon.translatesAutoresizingMaskIntoConstraints = false
@@ -66,6 +67,9 @@ class GameView: UIView {
 //        self.sportIcon.bottomAnchor.constraint(equalTo: self.addressLabel.topAnchor, constant: -5).isActive = true
         self.sportIcon.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
 //        self.sportIcon.widthAnchor.constraint(equalTo: self.sportIcon.heightAnchor).isActive = true
+//        self.sportIcon.contentMode = .scaleAspectFit
+//        self.sportIcon.layer.masksToBounds = true
+//        self.sportIcon.backgroundColor = UIColor.blue
 //        self.sportIcon.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
 //        self.sportIcon.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         self.sportIcon.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 0.5).isActive = true

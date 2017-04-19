@@ -11,7 +11,7 @@ import UIKit
 
 class PlayerCollectionViewCell: UICollectionViewCell {
     
-    let imageView = UIImageView(image: #imageLiteral(resourceName: "runner"))
+    let imageView = UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

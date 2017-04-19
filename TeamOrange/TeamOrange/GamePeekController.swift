@@ -68,24 +68,28 @@ class GamePeekController: UIViewController, GamePeekScrollerDelegate {
 extension GamePeekController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.games[collectionView.tag].players.count
+        return self.games[collectionView.tag].maxPlayers
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playerCell", for: indexPath) as! PlayerCollectionViewCell
+        cell.imageView.image = indexPath.item < self.games[collectionView.tag].players.count ? #imageLiteral(resourceName: "runner") : #imageLiteral(resourceName: "addPlayer")
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.dismiss(animated: true, completion: {
-            let selectedPlayer = self.games[collectionView.tag].players[indexPath.item]
-//            selectedPlayer?.fillArrays {
+        
+        if indexPath.item < self.games[collectionView.tag].players.count {
+            self.dismiss(animated: true, completion: {
+                let selectedPlayer = self.games[collectionView.tag].players[indexPath.item]
                 let goToPlayerNotification = Notification(name: Notification.Name("Player View With Player"), object: selectedPlayer)
                 NotificationCenter.default.post(goToPlayerNotification)
                 //TODO: This smells - this controller should not send up a notification that it in itself catches.  Should be solved with protocol / delegate relationship.
                 let dismissNotification = Notification(name: Notification.Name("Stop Peaking"), object: nil, userInfo: nil)
                 NotificationCenter.default.post(dismissNotification)
-//            }
-        })
+            })
+        } else {
+            print("Add me to the game")
+        }
     }
 }
