@@ -12,11 +12,9 @@ import UIKit
 class GameTableViewController: UIViewController {
     
     let tableView = UITableView(frame: CGRect.zero)
-    var games: [Game] = []
     var player: Player? {
         didSet {
             guard let player = self.player else { return }
-            self.games = player.games
             self.tableView.reloadData()
         }
     }
@@ -34,15 +32,22 @@ class GameTableViewController: UIViewController {
 extension GameTableViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.games.count
+        guard let player = self.player else { return 0 }
+        return player.games.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! GameTableViewCell
         if let player = self.player {
-            cell.game = self.games[indexPath.row]
+            cell.game = player.games[indexPath.row]
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let gameController = GameController()
+        gameController.game = self.player?.games[indexPath.row]
+        self.navigationController?.pushViewController(gameController, animated: true)
     }
 }
 

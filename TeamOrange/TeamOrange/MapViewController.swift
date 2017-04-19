@@ -11,11 +11,12 @@ import MapKit
 import CoreLocation
 import FirebaseDatabase
 
+
 class MapViewController: UIViewController {
     
     
     lazy var mainView: MapSearchView = MapSearchView()
-    let mikesFavFont = UIFont(name: "SFSportsNight", size: 20)
+    let mikesFavFont = UIFont(name: "NunitoSans-Black", size: 20)
     let profileButton = UIButton()
     let sportsButton = UIButton()
     let loginButton = UIButton()
@@ -33,7 +34,6 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         self.makeCreateLocationButton()
         self.buildMainView()
-        self.setNavBarToClear()
         self.buildProfileButton()
         self.buildSportsButton()
         self.buildLoginButton()
@@ -66,7 +66,7 @@ class MapViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+//        self.setNavBarToClear()
     }
     
     func centerMapButtonClicked(){
@@ -123,12 +123,11 @@ class MapViewController: UIViewController {
         self.profileButton.translatesAutoresizingMaskIntoConstraints = false
         self.profileButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20).isActive = true
         self.profileButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
-        self.profileButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        self.profileButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        self.profileButton.setTitle("Profile", for: .normal)
+        self.profileButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        self.profileButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         self.profileButton.setTitleColor(UIColor.red, for: .normal)
+        self.profileButton.setImage(#imageLiteral(resourceName: "IC_runner"), for: .normal)
         self.profileButton.addTarget(self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
-        self.profileButton.titleLabel?.font = self.mikesFavFont
     }
     
     func buildSportsButton() {
@@ -136,10 +135,9 @@ class MapViewController: UIViewController {
         self.sportsButton.translatesAutoresizingMaskIntoConstraints = false
         self.sportsButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20).isActive = true
         self.sportsButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20).isActive = true
-        self.sportsButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        self.sportsButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        self.sportsButton.setTitle("Sports", for: .normal)
-        self.sportsButton.setTitleColor(UIColor.red, for: .normal)
+        self.sportsButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        self.sportsButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        self.sportsButton.setImage(#imageLiteral(resourceName: "sport-bag"), for: .normal)
         self.sportsButton.addTarget(self, action: #selector(self.goToSportPicker), for: .touchUpInside)
         self.sportsButton.titleLabel?.font = self.mikesFavFont
     }

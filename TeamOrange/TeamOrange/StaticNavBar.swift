@@ -12,7 +12,7 @@ import UIKit
 extension UINavigationController {
     
     override open func viewDidLoad() {
-//        self.buildStaticNavBar()
+        self.buildStaticNavBar()
     }
     
     func buildStaticNavBar() {
