@@ -30,7 +30,8 @@ class GamePeekController: UIViewController, GamePeekScrollerDelegate {
         self.buildView()
         self.myView.layer.cornerRadius = 10
         self.myView.clipsToBounds = true
-        NotificationCenter.default.addObserver(self, selector: #selector(self.animatedDismiss), name: Notification.Name("Stop Peaking"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.animatedDismiss), name: Notification.Name("Stop Peeking"), object: nil)
+        self.navigationController?.navigationBar.isHidden = false
     }
     
     
@@ -68,25 +69,41 @@ class GamePeekController: UIViewController, GamePeekScrollerDelegate {
 extension GamePeekController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let numPlayers = self.games[collectionView.tag].players?.count else { return 10 }
-        return numPlayers
+        return self.games[collectionView.tag].maxPlayers
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playerCell", for: indexPath) as! PlayerCollectionViewCell
+        cell.imageView.image = indexPath.item < self.games[collectionView.tag].players.count ? #imageLiteral(resourceName: "runner") : #imageLiteral(resourceName: "addPlayer")
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.dismiss(animated: true, completion: {
-            let selectedPlayer = self.games[collectionView.tag].players?[indexPath.item]
-//            selectedPlayer?.fillArrays {
+        
+        if indexPath.item < self.games[collectionView.tag].players.count {
+            self.dismiss(animated: true, completion: {
+                let selectedPlayer = self.games[collectionView.tag].players[indexPath.item]
                 let goToPlayerNotification = Notification(name: Notification.Name("Player View With Player"), object: selectedPlayer)
                 NotificationCenter.default.post(goToPlayerNotification)
                 //TODO: This smells - this controller should not send up a notification that it in itself catches.  Should be solved with protocol / delegate relationship.
-                let dismissNotification = Notification(name: Notification.Name("Stop Peaking"), object: nil, userInfo: nil)
+                let dismissNotification = Notification(name: Notification.Name("Stop Peeking"), object: nil, userInfo: nil)
                 NotificationCenter.default.post(dismissNotification)
-//            }
-        })
+            })
+        } else if self.games[collectionView.tag].containsPlayer(withId: CurrentPlayer.player.id) {
+            let alert = UIAlertController(title: "Already playing in this game!", message: nil, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Got It", style: .destructive, handler: nil)
+            alert.addAction(okAction)
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            InsertToFirebase.player(withId: CurrentPlayer.player.id, toGame: self.games[collectionView.tag].id, completion: {
+                if let abbreviatedGameView = self.myView.gamePeekScroller.gameStack.viewWithTag(collectionView.tag + 100) as? AbbreviatedGameView {
+                    print("I'm going to attempt to reload the data")
+                    print(abbreviatedGameView.game.name)
+                    abbreviatedGameView.game.fillArrays {
+                        abbreviatedGameView.collectionView.reloadData()
+                    }
+                }
+            })
+        }
     }
 }

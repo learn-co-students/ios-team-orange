@@ -52,6 +52,7 @@
 		56B5B9AB1EA69FA400294EF2 /* ViewControllerConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B5B9AA1EA69FA400294EF2 /* ViewControllerConstraints.swift */; };
 		56B5B9AD1EA6AD8000294EF2 /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B5B9AC1EA6AD8000294EF2 /* GameController.swift */; };
 		56B5B9AF1EA6B20D00294EF2 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B5B9AE1EA6B20D00294EF2 /* GameView.swift */; };
+		56B5B9B11EA79F8A00294EF2 /* GameViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B5B9B01EA79F8A00294EF2 /* GameViewDelegate.swift */; };
 		56BB7B891E99655D001C75E9 /* SportPickerTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BB7B881E99655D001C75E9 /* SportPickerTopView.swift */; };
 		56BB7B8B1E996568001C75E9 /* SportPickerBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BB7B8A1E996568001C75E9 /* SportPickerBottomView.swift */; };
 		56BB7B8D1E9966CA001C75E9 /* SportPickerCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BB7B8C1E9966CA001C75E9 /* SportPickerCenterView.swift */; };
@@ -67,6 +68,8 @@
 		56FDCD391E9557CC00FE5AA9 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FDCD381E9557CC00FE5AA9 /* Category.swift */; };
 		881D88E71EA02114006D5F44 /* CompletionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881D88E61EA02114006D5F44 /* CompletionCell.swift */; };
 		881D88E91EA13D54006D5F44 /* LocationPinAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881D88E81EA13D54006D5F44 /* LocationPinAnnotationView.swift */; };
+		881D92E31EA51C1E006D5F44 /* CreateGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881D92E21EA51C1E006D5F44 /* CreateGameController.swift */; };
+		881D92E51EA51D37006D5F44 /* CreateGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881D92E41EA51D37006D5F44 /* CreateGameView.swift */; };
 		887987E11E93E7D100F5C540 /* CoreLocClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887987E01E93E7D100F5C540 /* CoreLocClient.swift */; };
 		887987E31E93EC3000F5C540 /* MapKitClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887987E21E93EC3000F5C540 /* MapKitClient.swift */; };
 		887987E51E9426DA00F5C540 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887987E41E9426DA00F5C540 /* Game.swift */; };
@@ -138,6 +141,7 @@
 		56B5B9AA1EA69FA400294EF2 /* ViewControllerConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerConstraints.swift; sourceTree = "<group>"; };
 		56B5B9AC1EA6AD8000294EF2 /* GameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
 		56B5B9AE1EA6B20D00294EF2 /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		56B5B9B01EA79F8A00294EF2 /* GameViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewDelegate.swift; sourceTree = "<group>"; };
 		56BB7B881E99655D001C75E9 /* SportPickerTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportPickerTopView.swift; sourceTree = "<group>"; };
 		56BB7B8A1E996568001C75E9 /* SportPickerBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportPickerBottomView.swift; sourceTree = "<group>"; };
 		56BB7B8C1E9966CA001C75E9 /* SportPickerCenterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportPickerCenterView.swift; sourceTree = "<group>"; };
@@ -153,6 +157,8 @@
 		56FDCD381E9557CC00FE5AA9 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		881D88E61EA02114006D5F44 /* CompletionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletionCell.swift; sourceTree = "<group>"; };
 		881D88E81EA13D54006D5F44 /* LocationPinAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationPinAnnotationView.swift; sourceTree = "<group>"; };
+		881D92E21EA51C1E006D5F44 /* CreateGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGameController.swift; sourceTree = "<group>"; };
+		881D92E41EA51D37006D5F44 /* CreateGameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGameView.swift; sourceTree = "<group>"; };
 		887987E01E93E7D100F5C540 /* CoreLocClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreLocClient.swift; sourceTree = "<group>"; };
 		887987E21E93EC3000F5C540 /* MapKitClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapKitClient.swift; sourceTree = "<group>"; };
 		887987E41E9426DA00F5C540 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
@@ -180,6 +186,7 @@
 		4C885E3D1E93EB8100B80EA4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				881D92E21EA51C1E006D5F44 /* CreateGameController.swift */,
 				4C885E3E1E93EB9700B80EA4 /* LoginController.swift */,
 				88798E251E95B60900F5C540 /* MapViewController.swift */,
 				5639B47D1E9816CF008FD173 /* SportPickerController.swift */,
@@ -219,6 +226,7 @@
 				562358171E9994F300B58A32 /* ClickableImageView.swift */,
 				561B2ADC1E9EA61F00A3C95B /* MapGradientView.swift */,
 				881D88E81EA13D54006D5F44 /* LocationPinAnnotationView.swift */,
+				881D92E41EA51D37006D5F44 /* CreateGameView.swift */,
 				56B5B9AE1EA6B20D00294EF2 /* GameView.swift */,
 				56ED6E711EA5491B005206C8 /* PlayerView.swift */,
 			);
@@ -408,6 +416,7 @@
 			children = (
 				5614FC5D1EA10BCA003D2A01 /* GamePeekScrollerDelegate.swift */,
 				56ED6E731EA54DE7005206C8 /* PlayerViewDelegate.swift */,
+				56B5B9B01EA79F8A00294EF2 /* GameViewDelegate.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -583,6 +592,7 @@
 				561B2ADD1E9EA61F00A3C95B /* MapGradientView.swift in Sources */,
 				5638E8D71E9D5F6C00058672 /* GFBase32Utils.m in Sources */,
 				5638E8D91E9D5F6C00058672 /* GFGeoHashQuery.m in Sources */,
+				881D92E31EA51C1E006D5F44 /* CreateGameController.swift in Sources */,
 				5624F0011E92C04B00BB2662 /* Sport.swift in Sources */,
 				4C2E7EFC1E9D681A008510F6 /* HomeRearViewController.swift in Sources */,
 				56B5B9AB1EA69FA400294EF2 /* ViewControllerConstraints.swift in Sources */,
@@ -607,7 +617,9 @@
 				5624EFE11E92BBED00BB2662 /* AppDelegate.swift in Sources */,
 				5649440E1E999C6C00E56F41 /* SportIconScroll.swift in Sources */,
 				5639B4801E98171D008FD173 /* SportPickerView.swift in Sources */,
+				56B5B9B11EA79F8A00294EF2 /* GameViewDelegate.swift in Sources */,
 				568D5B5F1E97CD4F009CA1C7 /* QueryFirebase.swift in Sources */,
+				881D92E51EA51D37006D5F44 /* CreateGameView.swift in Sources */,
 				56E902CC1EA0499B00579F46 /* PlayerCollectionViewCell.swift in Sources */,
 				56ED6E691EA51BC0005206C8 /* CurrentPlayer.swift in Sources */,
 				562358181E9994F300B58A32 /* ClickableImageView.swift in Sources */,

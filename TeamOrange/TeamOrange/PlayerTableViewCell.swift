@@ -14,7 +14,7 @@ import UIKit
 
 class PlayerTableViewCell: UITableViewCell {
     
-    let myImageView = UIImageView(image: #imageLiteral(resourceName: "avatar"))
+    let myImageView = UIImageView(image: #imageLiteral(resourceName: "runner"))
     let usernameLabel = UILabel()
     let hometownLabel = UILabel()
     let genderLabel = UILabel()

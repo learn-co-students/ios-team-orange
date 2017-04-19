@@ -28,6 +28,7 @@ class PlayerTableViewController: UIViewController {
         self.tableView.dataSource = self
         self.navigationController?.buildStaticNavBar()
         self.tableView.register(PlayerTableViewCell.self, forCellReuseIdentifier: "cell")
+        self.navigationController?.navigationBar.isHidden = false
     }
 }
 

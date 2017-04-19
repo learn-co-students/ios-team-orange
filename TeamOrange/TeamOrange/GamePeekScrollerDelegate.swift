@@ -1,5 +1,5 @@
 //
-//  GamePeakScrollerDelegate.swift
+//  GamePeekScrollerDelegate.swift
 //  TeamOrange
 //
 //  Created by William Brancato on 4/14/17.

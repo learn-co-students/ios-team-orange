@@ -30,6 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.createSlidingMenu()
         
+        CurrentPlayer.createPlayer()
+        
         return true
     }
     
