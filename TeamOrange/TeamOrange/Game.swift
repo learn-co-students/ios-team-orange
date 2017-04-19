@@ -19,6 +19,7 @@ class Game {
     var sport: Sport? // should not be optional, changing for testing purposes
     let state: GameState? // should not be optional, changing for testing purposes
     var success: Bool?
+    var maxPlayers: Int
     
     var numPlayers: Int? {
         guard let players = self.players else { return nil }
@@ -35,7 +36,7 @@ class Game {
         if let sportString = dict ["sport"] as? String {
             self.sport = Sport(rawValue: sportString)
         }
-        
+        self.maxPlayers = dict["maxPlayers"] as? Int ?? 0
         self.name = dict["name"] as? String ?? ""
         self.success = dict["success"] as? Bool ?? false //TODO: Should we be defaulting to false?
         self.isOver = dict["over"] as? Bool ?? false //TODO: Should we ve defaulting to false?
