@@ -221,7 +221,6 @@ extension MapViewController: MKMapViewDelegate{
     
 }
 
-
 // MARK: temporary create location entry at map center button
 extension MapViewController {
     func makeCreateLocationButton () {

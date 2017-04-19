@@ -50,7 +50,7 @@ class Location: NSObject {
         if let index = index{ games.remove(at: index) }
     }
     
-    func lookUpAddress() {
+    func lookUpAddress(completion: (Bool)->()) {
         CoreLocClient.reverseGeocode(latitude: self.latitude, longitude: self.longitude, completion: { placemark in
             DispatchQueue.main.async {
                 if let placemark = placemark{

@@ -12,7 +12,7 @@ import Foundation
 
 class Game {
     
-    var date: String //TODO: change to NSDate
+    var date: String //TODO: add func to convert to NSDate
     let id: String
     var name: String
     var over: Bool?

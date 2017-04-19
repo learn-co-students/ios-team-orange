@@ -16,9 +16,9 @@ class CreateGameView: UIView {
     lazy var createButton = UIButton()
     lazy var nameField = UITextField()
     lazy var addressField = UITextField()
-    lazy var datePicker = UIPickerView()
+    lazy var datePicker = UIDatePicker()
     lazy var sportPicker = SportIconScroll()
-    var fieldLabels = [UILabel]()
+    lazy var useLocationButton = UIButton()
     
     override init(frame: CGRect){
         super.init(frame: frame)
@@ -29,11 +29,6 @@ class CreateGameView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.roundCorners(corners: [.topLeft, .topRight], radius: 10)
-    }
-    
     func setupSubviews(){
         print("CGV Setup")
         self.addSubview(createButton)
@@ -42,56 +37,43 @@ class CreateGameView: UIView {
         createButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.3, constant: 0).isActive = true
         createButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: createButton.frame.height/2).isActive = true
         createButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        createButton.layer.cornerRadius = 0.6
+        createButton.layer.cornerRadius = 8
         createButton.setTitle("Invite Players", for: .normal)
+        createButton.setTitle("Invite Players", for: .disabled)
         createButton.backgroundColor = UIColor.white
-        createButton.titleLabel?.textColor = UIColor.gray
+        createButton.setTitleColor(createButton.tintColor, for: .normal)
+        createButton.setTitleColor(UIColor.gray, for: .disabled)
         
         addAndConstrainTextField( nameField, to: mapView)
-        nameField.accessibilityLabel = "Name"
-        let nameLabel = UILabel()
-        addAndConstrainLabel(nameLabel, to: nameField)
+        nameField.accessibilityLabel = "Game Name"
+        nameField.placeholder = "Game Name (at least 7 letters)"
         
         addAndConstrainTextField(addressField, to: nameField)
+        addressField.placeholder = "Address"
         addressField.accessibilityLabel = "Address"
-        let addressLabel = UILabel()
-        addAndConstrainLabel(addressLabel, to: addressField)
-        
         
         let dateContainer = makePickerContainer(constrainedTo: addressField)
-        dateContainer.accessibilityLabel = "Date"
         addSubview(datePicker)
         datePicker.addAndConstrainToEdges(of: dateContainer)
-        let dateLabel = UILabel()
-        addAndConstrainLabel(dateLabel, to: dateContainer)
+        datePicker.tintColor = UIColor.white
         
         let sportContainer = makePickerContainer(constrainedTo: dateContainer)
-        sportContainer.accessibilityLabel = "Sport"
         addSubview(sportPicker)
         sportPicker.addAndConstrainToEdges(of: sportContainer)
         sportPicker.sportIcons.forEach({
             $0.isUserInteractionEnabled = false
             $0.alpha = 1
         })
-        let sportLabel = UILabel()
-        addAndConstrainLabel(sportLabel, to: sportContainer)
-    }
-    
-    func addAndConstrainLabel(_ label: UILabel, to view: UIView){
-        self.addSubview(label)
-        fieldLabels.append(label)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.heightAnchor.constraint(equalToConstant: 16).isActive = true
-        label.bottomAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-        //label.roundCorners(corners: [.topLeft, .topRight], radius: 6)
-        //label.isOpaque = true
-        label.backgroundColor = UIColor.gray
-        label.textColor = UIColor.white
-        if let accLabel = view.accessibilityLabel{
-            label.text = accLabel
-            label.accessibilityLabel = accLabel + " Label"
-        }
+        
+        self.addSubview(useLocationButton)
+        useLocationButton.translatesAutoresizingMaskIntoConstraints = false
+        useLocationButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        useLocationButton.heightAnchor.constraint(equalToConstant: 16).isActive = true
+        useLocationButton.widthAnchor.constraint(equalTo: addressField.widthAnchor, multiplier: 0.4).isActive = true
+        useLocationButton.topAnchor.constraint(equalTo: addressField.bottomAnchor).isActive = true
+        useLocationButton.setTitle("Current Location", for: .normal)
+        useLocationButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        useLocationButton.setTitleColor(useLocationButton.tintColor, for: .normal)
     }
     
     func addAndConstrainTextField(_ field: UITextField, to view: UIView){
@@ -104,6 +86,7 @@ class CreateGameView: UIView {
         field.layer.cornerRadius = 8
         field.backgroundColor = UIColor.white
         field.textColor = UIColor.darkGray
+        field.returnKeyType = .done
     }
     
     func makePickerContainer(constrainedTo view: UIView)->UIView{
@@ -118,7 +101,7 @@ class CreateGameView: UIView {
     }
     
     var selectedSport: Sport? {
-        let imgSelected = Int(sportPicker.sportStack.bounds. / sportPicker.frame.size.width)
+        let imgSelected = Int(sportPicker.contentOffset.x / sportPicker.frame.size.width)
         let img = sportPicker.sportIcons[imgSelected] as? ClickableImage
         return img?.sport
     }
