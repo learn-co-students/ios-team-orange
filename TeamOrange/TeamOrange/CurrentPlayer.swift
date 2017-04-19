@@ -15,7 +15,7 @@ final class CurrentPlayer {
     private init() {}
     
     static func createPlayer() {
-        QueryFirebase.forPlayerWith(id: "-Kh2WlizyeXGe_2Wr9NE", completion: { player in
+        QueryFirebase.forPlayerWith(id: "-Kh2Wlj-Q7ICrTi_jt7R", completion: { player in
             self.player = player
         })
     }

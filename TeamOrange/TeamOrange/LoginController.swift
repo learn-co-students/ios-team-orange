@@ -37,6 +37,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
         setupTwitterButton()
         setupGoogleButtons()
         buildSignout()
+        self.navigationController?.navigationBar.isHidden = false
     }
     
     func setupLoginStack() {
