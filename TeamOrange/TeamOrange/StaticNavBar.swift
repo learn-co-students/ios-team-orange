@@ -18,6 +18,8 @@ extension UINavigationController {
     func buildStaticNavBar() {
         self.buildMapButton()
         self.setNavBarTitle()
+        self.navigationBar.backgroundColor = UIColor.lightGray
+        self.navigationBar.roundCorners(corners: [.topLeft, .topRight], radius: 10)
     }
     
     func buildMapButton() {

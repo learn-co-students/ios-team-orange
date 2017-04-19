@@ -32,25 +32,15 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.makeCreateLocationButton()
         self.buildMainView()
-        self.setNavBarToClear()
         self.buildProfileButton()
         self.buildSportsButton()
         self.buildLoginButton()
-        
-        //        self.navigationController?.setNavBarTitle()
-        
-        //        let panGestureRecognzier = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(self.test))
-        //        self.view.addGestureRecognizer(panGestureRecognzier)
-        
         self.buildPeekButton()
-        //        self.navigationController?.setNavBarTitle()
         NotificationCenter.default.addObserver(self, selector: #selector(self.scaleUp), name: Notification.Name("Stop Peaking"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.makePeekViewAtAnnotation), name: Notification.Name("PeakToLoc"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.goToPlayerView), name: Notification.Name("Player View With Player"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(setPeakLocation), name: Notification.Name("Set Peak Location"), object: nil)
         
     }
     
@@ -76,7 +66,7 @@ class MapViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+//        self.setNavBarToClear()
     }
     
     func centerMapButtonClicked(){
@@ -91,12 +81,6 @@ class MapViewController: UIViewController {
     
     func toggleSearchView(){
         self.mainView.animateSearchBar()
-    }
-    
-    func setPeakLocation(notification: Notification) {
-        guard let location = notification.object as? Location else { return }
-        self.peakLocation = location
-        print("Location has been set to:", self.peakLocation)
     }
     
     func buildMainView() {

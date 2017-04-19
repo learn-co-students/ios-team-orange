@@ -18,8 +18,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButt
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let blue = BlurView(blurEffect: .dark)
-//        self.view.addSubview(blurView)
         
         var darkBlur:UIBlurEffect = UIBlurEffect()
         darkBlur = UIBlurEffect(style: UIBlurEffectStyle.dark)
@@ -140,15 +138,5 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButt
     func exitPressed() {
         self.dismiss(animated: true)
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
