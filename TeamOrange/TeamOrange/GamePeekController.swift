@@ -95,7 +95,9 @@ extension GamePeekController: UICollectionViewDelegate, UICollectionViewDataSour
             alert.addAction(okAction)
             self.present(alert, animated: true, completion: nil)
         } else {
-            InsertToFirebase.player(withId: CurrentPlayer.player.id, toGame: self.games[collectionView.tag].id)
+            InsertToFirebase.player(withId: CurrentPlayer.player.id, toGame: self.games[collectionView.tag].id, completion: {
+                self.myView.gamePeekScroller.
+            })
         }
     }
 }
