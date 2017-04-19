@@ -30,7 +30,7 @@ class GamePeekController: UIViewController, GamePeekScrollerDelegate {
         self.buildView()
         self.myView.layer.cornerRadius = 10
         self.myView.clipsToBounds = true
-        NotificationCenter.default.addObserver(self, selector: #selector(self.animatedDismiss), name: Notification.Name("Stop Peaking"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.animatedDismiss), name: Notification.Name("Stop Peeking"), object: nil)
         self.navigationController?.navigationBar.isHidden = false
     }
     
@@ -86,7 +86,7 @@ extension GamePeekController: UICollectionViewDelegate, UICollectionViewDataSour
                 let goToPlayerNotification = Notification(name: Notification.Name("Player View With Player"), object: selectedPlayer)
                 NotificationCenter.default.post(goToPlayerNotification)
                 //TODO: This smells - this controller should not send up a notification that it in itself catches.  Should be solved with protocol / delegate relationship.
-                let dismissNotification = Notification(name: Notification.Name("Stop Peaking"), object: nil, userInfo: nil)
+                let dismissNotification = Notification(name: Notification.Name("Stop Peeking"), object: nil, userInfo: nil)
                 NotificationCenter.default.post(dismissNotification)
             })
         } else if self.games[collectionView.tag].containsPlayer(withId: CurrentPlayer.player.id) {

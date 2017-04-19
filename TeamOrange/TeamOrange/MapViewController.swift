@@ -22,7 +22,7 @@ class MapViewController: UIViewController {
     let loginButton = UIButton()
     let swipeView = UIView()
     let peekButton = UIButton()
-    var peakLocation: Location?
+    var peekLocation: Location?
     
     
     override func loadView() {
@@ -32,14 +32,13 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.makeCreateLocationButton()
         self.buildMainView()
         self.buildProfileButton()
         self.buildSportsButton()
         self.buildLoginButton()
         self.buildPeekButton()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.scaleUp), name: Notification.Name("Stop Peaking"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.makePeekViewAtAnnotation), name: Notification.Name("PeakToLoc"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.scaleUp), name: Notification.Name("Stop Peeking"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.makePeekViewAtAnnotation), name: Notification.Name("PeekToLoc"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.goToPlayerView), name: Notification.Name("Player View With Player"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.fadeSportsButton), name: Notification.Name("Picker Collapsed"), object: nil)
     }
@@ -59,8 +58,8 @@ class MapViewController: UIViewController {
         self.mainView.searchBarView.cancelButton.addTarget(self, action: #selector(toggleSearchView), for: .touchUpInside)
         
         //TODO: As of now this function will never be called - however this is bad for user functionality, if time permits make it work.
-        if let peakLocation = self.peakLocation {
-            self.makePeakView(location: peakLocation)
+        if let peekLocation = self.peekLocation {
+            self.makePeekView(location: peekLocation)
         }
         
         self.navigationController?.navigationBar.isHidden = true
@@ -209,11 +208,11 @@ class MapViewController: UIViewController {
 extension MapViewController: MKMapViewDelegate{
     func makePeekViewAtAnnotation(_ notification: Notification) {
         if let location = notification.object as? Location {
-            self.makePeakView(location: location)
+            self.makePeekView(location: location)
         }
     }
     
-    func makePeakView(location: Location) {
+    func makePeekView(location: Location) {
         self.view.layer.cornerRadius = 10
         self.view.clipsToBounds = true
         let gamepeek = GamePeekController()
@@ -227,35 +226,4 @@ extension MapViewController: MKMapViewDelegate{
     }
     
 }
-
-
-// MARK: temporary create location entry at map center button
-extension MapViewController {
-    func makeCreateLocationButton () {
-        let button = UIButton()
-        self.mainView.addSubview(button)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        button.widthAnchor.constraint(equalToConstant: 20).isActive = true
-        button.bottomAnchor.constraint(equalTo: self.mainView.bottomAnchor).isActive = true
-        button.leadingAnchor.constraint(equalTo: self.mainView.leadingAnchor).isActive = true
-        button.addTarget(self, action: #selector(makeLocationAtCenter), for: .touchUpInside)
-        button.backgroundColor = UIColor.cyan
-    }
-    
-    func makeLocationAtCenter () {
-        let id = arc4random()
-        GeoFireClient.addLocation(game: "testGame-\(id)", coordinate: self.mainView.mapView.centerCoordinate)
-        self.mainView.mapView.annotations.forEach({ locaiton in
-            guard let loc = locaiton as? Location else {return}
-            print (loc.address)
-        })
-    }
-}
-
-
-
-
-
-
 

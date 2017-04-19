@@ -12,7 +12,7 @@ class HomeRearViewController: UIViewController, UITableViewDelegate, UITableView
     
     let mapView = MapSearchView()
     
-    let fakeDataArray = ["Profile", "Home", "Friends", "Create Game"]
+    let tableFieldsArray = ["Profile", "Teams", "Friends", "Create Game"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,14 +38,27 @@ class HomeRearViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fakeDataArray.count
+        return tableFieldsArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath)
         
-        cell.textLabel?.text = "\(fakeDataArray[indexPath.row])"
+        cell.textLabel?.text = "\(tableFieldsArray[indexPath.row])"
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print ("hi")
+        switch indexPath.row{
+        case 3:
+            let createGameController = CreateGameController()
+            self.navigationController?.pushViewController(createGameController, animated: false)
+            break
+        default:
+            return
+        }
+        
     }
     
     /*

@@ -20,11 +20,11 @@ final class MapKitClient: NSObject {
         super.init()
     }
     
-    class func goTo(place: CLPlacemark) {
+    class func goTo(place: CLPlacemark, animated: Bool) {
         let annotation = MKPlacemark(placemark: place)
         client.mapView.removeAnnotations(client.mapView.annotations)
         client.mapView.addAnnotation(annotation)
-        client.mapView.setCenter(annotation.coordinate, animated: true)
+        client.mapView.setCenter(annotation.coordinate, animated: animated)
     }
 }
 
@@ -77,7 +77,7 @@ extension MapKitClient: CLLocationManagerDelegate, MKMapViewDelegate {
                 //this part adds an annotation view if one hasnt been dequeued for this location
                 annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 annotationView.canShowCallout = true
-                let btn = UIButton(type: .detailDisclosure)
+                let btn = UIButton(type: .contactAdd)
                 annotationView.rightCalloutAccessoryView = btn
             }
             annotationView.pinTintColor = UIColor.red
@@ -90,8 +90,9 @@ extension MapKitClient: CLLocationManagerDelegate, MKMapViewDelegate {
         if view.annotation is Location {
             let loc = view.annotation as! Location
             print (loc.allGameIDs)
-            let message = Notification(name: Notification.Name("PeakToLoc"), object: loc, userInfo: nil)
+            let message = Notification(name: Notification.Name("PeekToLoc"), object: loc, userInfo: nil)
             NotificationCenter.default.post(message)
+            mapView.deselectAnnotation(loc, animated: true)
         }
     }
     
@@ -119,7 +120,7 @@ extension MapKitClient: CLLocationManagerDelegate, MKMapViewDelegate {
                     }//if no location matching the game's coordinates has been found, create a new one
                     let newLocation = Location(gameID: id, coordinate: coord)
                     mapView.addAnnotation(newLocation)
-                    newLocation.lookUpAddress()
+                    newLocation.lookUpAddress(completion: {_ in})
                 }
             })
         })
