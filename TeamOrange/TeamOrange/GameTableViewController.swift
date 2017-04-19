@@ -26,6 +26,7 @@ class GameTableViewController: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.register(GameTableViewCell.self, forCellReuseIdentifier: "cell")
+        self.navigationController?.navigationBar.isHidden = false
     }
 }
 

@@ -42,7 +42,6 @@ class MapViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.makePeekViewAtAnnotation), name: Notification.Name("PeakToLoc"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.goToPlayerView), name: Notification.Name("Player View With Player"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.fadeSportsButton), name: Notification.Name("Picker Collapsed"), object: nil)
-        
     }
     
     
@@ -63,6 +62,8 @@ class MapViewController: UIViewController {
         if let peakLocation = self.peakLocation {
             self.makePeakView(location: peakLocation)
         }
+        
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -241,8 +242,6 @@ extension MapViewController {
         button.addTarget(self, action: #selector(makeLocationAtCenter), for: .touchUpInside)
         button.backgroundColor = UIColor.cyan
     }
-    
-    
     
     func makeLocationAtCenter () {
         let id = arc4random()

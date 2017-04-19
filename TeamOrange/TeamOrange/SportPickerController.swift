@@ -25,6 +25,8 @@ class SportPickerController: UIViewController {
         self.buildGestureView()
         NotificationCenter.default.addObserver(self, selector: #selector(self.sportChosen), name: Notification.Name("Sport Chosen"), object: nil)
         NotificationCenter.default.addObserver(self.myView, selector: #selector(self.myView.collapse), name: Notification.Name("Collapse Picker"), object: nil)
+        
+        self.navigationController?.navigationBar.isHidden = false
     }
     
     override func viewDidAppear(_ animated: Bool) {

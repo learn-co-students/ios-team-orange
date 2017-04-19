@@ -24,6 +24,7 @@ class GameController: UIViewController {
         self.myView.collectionView.delegate = self
         self.myView.collectionView.dataSource = self
         self.addAndConstrain(view: self.myView)
+        self.navigationController?.navigationBar.isHidden = false
     }
     
     func relayGameData() {

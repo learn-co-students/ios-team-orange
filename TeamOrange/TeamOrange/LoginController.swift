@@ -71,6 +71,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButt
         fbLoginBtn.readPermissions = ["email", "public_profile"]
         setupTwitterButton()
         
+        self.navigationController?.navigationBar.isHidden = false
+        
     }
     
     func setupTwitterButton() {

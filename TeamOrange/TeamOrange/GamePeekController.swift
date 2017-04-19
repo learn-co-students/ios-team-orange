@@ -31,6 +31,7 @@ class GamePeekController: UIViewController, GamePeekScrollerDelegate {
         self.myView.layer.cornerRadius = 10
         self.myView.clipsToBounds = true
         NotificationCenter.default.addObserver(self, selector: #selector(self.animatedDismiss), name: Notification.Name("Stop Peaking"), object: nil)
+        self.navigationController?.navigationBar.isHidden = false
     }
     
     
