@@ -2,6 +2,25 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>bd0d9b6e9195f05b23d395d94092651f5105dffc</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict>
+					<key>consumerKey</key>
+					<string>DxhjLJFSJ0slhVMzvKPSKat6w</string>
+					<key>consumerSecret</key>
+					<string>cduWmNbOgOdXhO7UkjkVgbEvUi2dRJ8XvTcsHkobYGYTl5Incs</string>
+				</dict>
+				<key>KitName</key>
+				<string>Twitter</string>
+			</dict>
+		</array>
+	</dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -25,8 +44,7 @@
 			<string> </string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>
-</string>
+				<string>362231587512502</string>
 			</array>
 		</dict>
 		<dict>
@@ -34,12 +52,24 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
+				<string>fb362231587512502</string>
 				<string>com.googleusercontent.apps.481848468688-7n85cjq6kcjv0h7rmfm0r5gdh7r3a9qg</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>FacebookAppID</key>
+	<string>362231587512502</string>
+	<key>FacebookDisplayName</key>
+	<string>TeamOrange</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationWhenInUseUsageDescription</key>
@@ -47,6 +77,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>SFSportsNight.ttf</string>
+		<string>NunitoSans-Black.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

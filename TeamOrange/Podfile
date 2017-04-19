@@ -10,5 +10,11 @@ target 'TeamOrange' do
   pod 'Firebase'
   pod 'SWRevealViewController', '~> 2.3'
   pod 'GoogleSignIn'
+  pod 'FBSDKCoreKit'
+  pod 'FBSDKShareKit'
+  pod 'FBSDKLoginKit'
+  pod 'Fabric'
+  pod 'TwitterKit'
+  pod 'TwitterCore'
 
 end

@@ -48,19 +48,16 @@ class MapSearchView: UIView {
         
         self.addSubview(searchButton)
         searchButton.translatesAutoresizingMaskIntoConstraints = false
-        searchButtonConstraint = NSLayoutConstraint(item: searchButton, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: -10)
-        self.addConstraint(searchButtonConstraint)
-        searchButton.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: -35).isActive = true
-        searchButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
-        searchButton.widthAnchor.constraint(equalToConstant: 70).isActive = true
-        searchButton.layer.cornerRadius = 29
-        searchButton.setTitle("-O", for: .normal)
-        searchButton.setTitleColor(UIColor.red, for: .normal )
+        searchButton.bottomAnchor.constraint(equalTo: self.mapView.bottomAnchor, constant: -20).isActive = true
+        searchButton.centerXAnchor.constraint(equalTo: self.mapView.centerXAnchor).isActive = true
+        searchButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        searchButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        searchButton.setImage(#imageLiteral(resourceName: "search"), for: .normal)
         self.insertSubview(searchButton, aboveSubview: mapView)
-        
+
         self.addSubview(centerMapButton)
         centerMapButton.translatesAutoresizingMaskIntoConstraints = false
-        centerMapButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
+        centerMapButton.bottomAnchor.constraint(equalTo: self.bottomAnchor , constant: -10).isActive = true
         centerMapButton.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 35).isActive = true
         centerMapButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
         centerMapButton.widthAnchor.constraint(equalToConstant: 70).isActive = true

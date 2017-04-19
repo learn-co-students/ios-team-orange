@@ -9,16 +9,15 @@
 import UIKit
 import Firebase
 import GoogleSignIn
+import FBSDKLoginKit
+import TwitterKit
 
-
-class LoginViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate {
+class LoginViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDelegate {
     
     let loginStack = LoginButtonStackView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        GIDSignIn.sharedInstance().signIn()
-        
 //        let blue = BlurView(blurEffect: .dark)
 //        self.view.addSubview(blurView)
         
@@ -65,25 +64,78 @@ class LoginViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDeleg
         let googleButton = GIDSignInButton()
         googleButton.frame = CGRect(x: 16, y: 116 + 66, width: view.frame.width - 32, height: 50)
         view.addSubview(googleButton)
-        
         GIDSignIn.sharedInstance().uiDelegate = self
         
+        let fbLoginBtn = FBSDKLoginButton()
+        fbLoginBtn.frame = CGRect(x: 16, y: 50, width: view.frame.width - 32, height: 50)
+        view.addSubview(fbLoginBtn)
+        fbLoginBtn.delegate = self
+        fbLoginBtn.readPermissions = ["email", "public_profile"]
+        setupTwitterButton()
         
     }
     
+    func setupTwitterButton() {
+        let twitterBtn = TWTRLogInButton { (session, error) in
+            if let error = error {
+                print("Failed to login via Twitter")
+                return
+            }
+            
+//            print("Succesfully logged in under Twiter")
+            guard let token = session?.authToken else { return }
+            guard let secret = session?.authTokenSecret else { return }
+            
+            let credentials = FIRTwitterAuthProvider.credential(withToken: token, secret: secret)
+            
+            FIRAuth.auth()?.signIn(with: credentials, completion: { (user, error) in
+                if let error = error {
+                    print("Failed to login in Firebase with Twitter", error)
+                    return
+                }
+                
+                print("Succesfully created a FIrebase-Twitter user", user?.uid ?? "")
+            })
+        }
+        view.addSubview(twitterBtn)
+        twitterBtn.frame = CGRect(x: 16, y: 50 + 50, width: view.frame.width - 32, height: 50)
+            
+        
+    }
     
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        // ...
-        if let error = error {
-            // ...
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+        print("signed out of fb")
+    }
+    
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+        if error != nil {
+            print(error)
             return
         }
-        
-        guard let authentication = user.authentication else { return }
-        let credential = FIRGoogleAuthProvider.credential(withIDToken: authentication.idToken,
-                                                          accessToken: authentication.accessToken)
-        // ...
+        getEmailFromUser()
     }
+    
+    func getEmailFromUser() {
+        let accessToken = FBSDKAccessToken.current()
+        guard let accessTokenString = accessToken?.tokenString else { return }
+        let credentials = FIRFacebookAuthProvider.credential(withAccessToken: accessTokenString)
+        FIRAuth.auth()?.signIn(with: credentials, completion: { (user, error) in
+            if error != nil {
+                print("Something went wrong with our FB user:", user ?? "")
+                return
+            }
+            print("Successfully logged in with our user: ", user ?? "")
+        })
+        
+        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start { (connection, result, error) in
+            if error != nil {
+                print("Failed to start graph request:", error ?? "")
+                return
+            }
+            print(result ?? "")
+        }
+    }
+    
     
     func exitPressed() {
         self.dismiss(animated: true)

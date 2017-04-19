@@ -13,6 +13,7 @@
 		4C885E3F1E93EB9700B80EA4 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E3E1E93EB9700B80EA4 /* LoginController.swift */; };
 		4C885E421E93F3C000B80EA4 /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E411E93F3C000B80EA4 /* Constraints.swift */; };
 		4C885E461E93F99C00B80EA4 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E451E93F99C00B80EA4 /* LoginButton.swift */; };
+		4CDDFA9C1EA6A557001F40A5 /* NunitoSans-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4CDDFA9B1EA6A557001F40A5 /* NunitoSans-Black.ttf */; };
 		4CE02D271E95A1BD0068190C /* LoginButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE02D261E95A1BD0068190C /* LoginButtonStackView.swift */; };
 		5614FC5C1EA0615D003D2A01 /* RandomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5614FC5B1EA0615D003D2A01 /* RandomColor.swift */; };
 		5614FC5E1EA10BCA003D2A01 /* GamePeekScrollerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5614FC5D1EA10BCA003D2A01 /* GamePeekScrollerDelegate.swift */; };
@@ -76,6 +77,8 @@
 		4C885E3E1E93EB9700B80EA4 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		4C885E411E93F3C000B80EA4 /* Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
 		4C885E451E93F99C00B80EA4 /* LoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
+		4CDD8C911EA568D700BAA84F /* TeamOrange.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TeamOrange.entitlements; sourceTree = "<group>"; };
+		4CDDFA9B1EA6A557001F40A5 /* NunitoSans-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NunitoSans-Black.ttf"; sourceTree = "<group>"; };
 		4CE02D261E95A1BD0068190C /* LoginButtonStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButtonStackView.swift; sourceTree = "<group>"; };
 		5614FC5B1EA0615D003D2A01 /* RandomColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomColor.swift; sourceTree = "<group>"; };
 		5614FC5D1EA10BCA003D2A01 /* GamePeekScrollerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePeekScrollerDelegate.swift; sourceTree = "<group>"; };
@@ -238,6 +241,7 @@
 		5624EFDF1E92BBED00BB2662 /* TeamOrange */ = {
 			isa = PBXGroup;
 			children = (
+				4CDD8C911EA568D700BAA84F /* TeamOrange.entitlements */,
 				4C9F8FF21EA01D2C00EE70D6 /* Obj C Files */,
 				56F8C6F61E9C1CE10022A695 /* Fonts */,
 				5624EFF81E92BD4600BB2662 /* Models */,
@@ -338,6 +342,7 @@
 			isa = PBXGroup;
 			children = (
 				56F8C6F71E9C1CF10022A695 /* SFSportsNight.ttf */,
+				4CDDFA9B1EA6A557001F40A5 /* NunitoSans-Black.ttf */,
 			);
 			name = Fonts;
 			sourceTree = "<group>";
@@ -402,6 +407,7 @@
 				5624EFDB1E92BBED00BB2662 /* Resources */,
 				4DCDF048FC841A86CDAD807F /* [CP] Embed Pods Frameworks */,
 				D487F1753B057B010BD759E7 /* [CP] Copy Pods Resources */,
+				4CDDFA9A1EA66276001F40A5 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -427,6 +433,11 @@
 						DevelopmentTeam = GP3Y7UT49E;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -453,6 +464,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CDDFA9C1EA6A557001F40A5 /* NunitoSans-Black.ttf in Resources */,
 				56F8C6F81E9C1D6D0022A695 /* SFSportsNight.ttf in Resources */,
 				5624EFEB1E92BBED00BB2662 /* Assets.xcassets in Resources */,
 				56FDCD371E9431AE00FE5AA9 /* GoogleService-Info.plist in Resources */,
@@ -462,6 +474,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		4CDDFA9A1EA66276001F40A5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" bd0d9b6e9195f05b23d395d94092651f5105dffc eb61d48218f1f827a3c8a402591adc244b86efeb0da0510b53adde8f3033b408";
+		};
 		4DCDF048FC841A86CDAD807F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -675,6 +700,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = TeamOrange/TeamOrange.entitlements;
 				DEVELOPMENT_TEAM = GP3Y7UT49E;
 				INFOPLIST_FILE = TeamOrange/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
@@ -693,6 +719,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = TeamOrange/TeamOrange.entitlements;
 				DEVELOPMENT_TEAM = GP3Y7UT49E;
 				INFOPLIST_FILE = TeamOrange/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
