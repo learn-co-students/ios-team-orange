@@ -31,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.createSlidingMenu()
         
         CurrentPlayer.createPlayer()
+        print("Current Player is:", CurrentPlayer.player)
         
         return true
     }
