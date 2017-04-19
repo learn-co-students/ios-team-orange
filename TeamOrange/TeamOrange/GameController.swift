@@ -25,6 +25,15 @@ class GameController: UIViewController {
         self.myView.collectionView.dataSource = self
         self.addAndConstrain(view: self.myView)
     }
+    
+    func relayGameData() {
+        guard let game = self.game else { return }
+        self.myView.nameLabel.text = game.name
+        self.myView.sportIcon.image = game.sport?.image.image
+        self.myView.addressLabel.text = "66 Tuckerton Rd, Shamong, NJ 08088"
+        self.myView.dateLabel.text = game.date
+        self.myView.stateLabel.text = game.state?.rawValue
+    }
 }
 
 extension GameController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -37,16 +46,7 @@ extension GameController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playerCell", for: indexPath) as! PlayerCollectionViewCell
-        cell.backgroundColor = UIColor.blue
-        cell.imageView.backgroundColor = UIColor.blue
         return cell
     }
     
-    func relayGameData() {
-        guard let game = self.game else { return }
-        self.myView.nameLabel.text = game.name
-        self.myView.sportIcon.image = game.sport?.image.image
-        self.myView.addressLabel.text = "66 Tuckerton Rd, Shamong, NJ 08088"
-        self.myView.dateLabel.text = game.date
-    }
 }
