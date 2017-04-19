@@ -90,7 +90,10 @@ extension GamePeekController: UICollectionViewDelegate, UICollectionViewDataSour
                 NotificationCenter.default.post(dismissNotification)
             })
         } else if self.games[collectionView.tag].containsPlayer(withId: CurrentPlayer.player.id) {
-            print("Player Already in Game")
+            let alert = UIAlertController(title: "Already playing in this game!", message: nil, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Got It", style: .destructive, handler: nil)
+            alert.addAction(okAction)
+            self.present(alert, animated: true, completion: nil)
         } else {
             InsertToFirebase.player(withId: CurrentPlayer.player.id, toGame: self.games[collectionView.tag].id)
         }
