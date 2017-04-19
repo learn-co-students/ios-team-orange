@@ -96,7 +96,13 @@ extension GamePeekController: UICollectionViewDelegate, UICollectionViewDataSour
             self.present(alert, animated: true, completion: nil)
         } else {
             InsertToFirebase.player(withId: CurrentPlayer.player.id, toGame: self.games[collectionView.tag].id, completion: {
-                self.myView.gamePeekScroller.
+                if let abbreviatedGameView = self.myView.gamePeekScroller.gameStack.viewWithTag(collectionView.tag + 100) as? AbbreviatedGameView {
+                    print("I'm going to attempt to reload the data")
+                    print(abbreviatedGameView.game.name)
+                    abbreviatedGameView.game.fillArrays {
+                        abbreviatedGameView.collectionView.reloadData()
+                    }
+                }
             })
         }
     }
