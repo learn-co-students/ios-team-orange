@@ -12,9 +12,9 @@ import UIKit
 class GameController: UIViewController {
     
     let myView = GameView()
-    var game: Game! {
+    var game: Game? {
         didSet {
-            
+            self.relayGameData()
         }
     }
     
@@ -42,4 +42,11 @@ extension GameController: UICollectionViewDelegate, UICollectionViewDataSource {
         return cell
     }
     
+    func relayGameData() {
+        guard let game = self.game else { return }
+        self.myView.nameLabel.text = game.name
+        self.myView.sportIcon.image = game.sport?.image.image
+        self.myView.addressLabel.text = "66 Tuckerton Rd, Shamong, NJ 08088"
+        self.myView.dateLabel.text = game.date
+    }
 }

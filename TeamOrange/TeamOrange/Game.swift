@@ -15,9 +15,9 @@ class Game {
     var date: String //TODO: change to NSDate
     let id: String
     var name: String
-    var over: Bool?
+    var isOver: Bool?
     var sport: Sport? // should not be optional, changing for testing purposes
-    let state: GameState? // should not bex optional, changing for testing purposes
+    let state: GameState? // should not be optional, changing for testing purposes
     var success: Bool?
     
     var numPlayers: Int? {
@@ -38,7 +38,7 @@ class Game {
         
         self.name = dict["name"] as? String ?? ""
         self.success = dict["success"] as? Bool ?? false //TODO: Should we be defaulting to false?
-        self.over = dict["over"] as? Bool ?? false //TODO: Should we ve defaulting to false?
+        self.isOver = dict["over"] as? Bool ?? false //TODO: Should we ve defaulting to false?
         if let stateString = dict["state"] as? String{
             self.state = GameState(rawValue: stateString)
         }else { self.state = nil }
