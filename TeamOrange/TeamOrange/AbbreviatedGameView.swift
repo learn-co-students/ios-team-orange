@@ -117,7 +117,7 @@ class AbbreviatedGameView: UIView {
     }
     
     func dismissScreen() {
-        let notification = Notification(name: Notification.Name("Stop Peaking"), object: nil, userInfo: nil)
+        let notification = Notification(name: Notification.Name("Stop Peeking"), object: nil, userInfo: nil)
         NotificationCenter.default.post(notification)
     }
     

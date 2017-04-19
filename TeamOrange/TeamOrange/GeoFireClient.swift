@@ -12,11 +12,12 @@ import MapKit
 final class GeoFireClient {
     static let geo = GeoFire(firebaseRef: FIRDatabase.database().reference().child("locations"))
     //private static var
-    class func addLocation(game id: String, coordinate: CLLocationCoordinate2D) {
+    class func addLocation(game id: String, coordinate: CLLocationCoordinate2D, completion:(()->())? = nil){
         let loc  = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
         geo?.setLocation(loc, forKey: id, withCompletionBlock:{ error in
             NSLog("%@", "added location at (\(coordinate.latitude), \(coordinate.longitude) ")
             if let error = error{ print (error.localizedDescription) }
+            if let completion = completion {completion()}
         })
         
     }

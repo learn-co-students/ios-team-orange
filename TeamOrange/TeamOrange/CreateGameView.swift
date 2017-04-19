@@ -19,6 +19,7 @@ class CreateGameView: UIView {
     lazy var datePicker = UIDatePicker()
     lazy var sportPicker = SportIconScroll()
     lazy var useLocationButton = UIButton()
+    lazy var maxPlayers = UIPickerView()
     
     override init(frame: CGRect){
         super.init(frame: frame)
@@ -43,6 +44,7 @@ class CreateGameView: UIView {
         createButton.backgroundColor = UIColor.white
         createButton.setTitleColor(createButton.tintColor, for: .normal)
         createButton.setTitleColor(UIColor.gray, for: .disabled)
+        createButton.isEnabled = false
         
         addAndConstrainTextField( nameField, to: mapView)
         nameField.accessibilityLabel = "Game Name"
@@ -56,6 +58,7 @@ class CreateGameView: UIView {
         addSubview(datePicker)
         datePicker.addAndConstrainToEdges(of: dateContainer)
         datePicker.tintColor = UIColor.white
+        datePicker.minimumDate = Date(timeIntervalSinceNow: 0)
         
         let sportContainer = makePickerContainer(constrainedTo: dateContainer)
         addSubview(sportPicker)
@@ -74,6 +77,18 @@ class CreateGameView: UIView {
         useLocationButton.setTitle("Current Location", for: .normal)
         useLocationButton.titleLabel?.adjustsFontSizeToFitWidth = true
         useLocationButton.setTitleColor(useLocationButton.tintColor, for: .normal)
+        
+        let maxPlayersContainer = makePickerContainer(constrainedTo: sportPicker)
+        self.addSubview(maxPlayers)
+        maxPlayers.addAndConstrainToEdges(of: maxPlayersContainer)
+        
+        let label = UILabel()
+        self.addSubview(label)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.bottomAnchor.constraint(equalTo: maxPlayersContainer.topAnchor).isActive = true
+        label.heightAnchor.constraint(equalToConstant: 16).isActive = true
+        label.centerXAnchor.constraint(equalTo: maxPlayersContainer.centerXAnchor).isActive = true
+        label.text = "Maximum number of Players:"
     }
     
     func addAndConstrainTextField(_ field: UITextField, to view: UIView){
@@ -94,7 +109,7 @@ class CreateGameView: UIView {
         self.addSubview(container)
         container.translatesAutoresizingMaskIntoConstraints = false
         container.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7, constant: 0).isActive = true
-        container.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.15, constant: 0).isActive = true
+        container.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.12, constant: 0).isActive = true
         container.topAnchor.constraint(equalTo: view.bottomAnchor, constant: 32).isActive = true
         container.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         return container

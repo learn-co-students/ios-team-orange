@@ -90,7 +90,7 @@ extension MapKitClient: CLLocationManagerDelegate, MKMapViewDelegate {
         if view.annotation is Location {
             let loc = view.annotation as! Location
             print (loc.allGameIDs)
-            let message = Notification(name: Notification.Name("PeakToLoc"), object: loc, userInfo: nil)
+            let message = Notification(name: Notification.Name("PeekToLoc"), object: loc, userInfo: nil)
             NotificationCenter.default.post(message)
             mapView.deselectAnnotation(loc, animated: true)
         }
