@@ -187,8 +187,6 @@
 			isa = PBXGroup;
 			children = (
 				881D92E21EA51C1E006D5F44 /* CreateGameController.swift */,
-				5638E8DD1E9D7A3000058672 /* GamePeekController.swift */,
-				4C2E7EFB1E9D681A008510F6 /* HomeRearViewController.swift */,
 				4C885E3E1E93EB9700B80EA4 /* LoginController.swift */,
 				88798E251E95B60900F5C540 /* MapViewController.swift */,
 				5639B47D1E9816CF008FD173 /* SportPickerController.swift */,
@@ -476,7 +474,7 @@
 				TargetAttributes = {
 					5624EFDC1E92BBED00BB2662 = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = H7DR849HVE;
+						DevelopmentTeam = GP3Y7UT49E;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -758,9 +756,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = H7DR849HVE;
 				CODE_SIGN_ENTITLEMENTS = TeamOrange/TeamOrange.entitlements;
-				DEVELOPMENT_TEAM = X6M58BL6UT;
+				DEVELOPMENT_TEAM = GP3Y7UT49E;
 				INFOPLIST_FILE = TeamOrange/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -778,8 +775,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-                CODE_SIGN_ENTITLEMENTS = TeamOrange/TeamOrange.entitlements;
-                DEVELOPMENT_TEAM = X6M58BL6UT;
+				CODE_SIGN_ENTITLEMENTS = TeamOrange/TeamOrange.entitlements;
+				DEVELOPMENT_TEAM = GP3Y7UT49E;
 				INFOPLIST_FILE = TeamOrange/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
