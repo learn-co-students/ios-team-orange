@@ -12,7 +12,8 @@ class HomeRearViewController: UIViewController, UITableViewDelegate, UITableView
     
     let mapView = MapSearchView()
 
-    let tableFieldsArray = ["Profile", "Friends", "Players", "Create Game"]
+    
+    let tableFieldsArray = ["Profile", "Friends", "Players", "Create Game", "Create Player"]
 
     
     override func viewDidLoad() {
@@ -50,36 +51,28 @@ class HomeRearViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print ("hi")
         switch indexPath.row{
         case 0:
             let playerController = PlayerController()
             playerController.player = CurrentPlayer.player
             self.navigationController?.pushViewController(playerController, animated: true)
-            break
         case 1:
-            break
+            let playerTableView = PlayerTableViewController()
+            playerTableView.player = CurrentPlayer.player
+            CurrentPlayer.player.fillArrays {
+                self.navigationController?.pushViewController(playerTableView, animated: true)
+            }
         case 2:
             let playerSearchController = PlayerSearchViewController()
             self.navigationController?.pushViewController(playerSearchController, animated: true)
-            break
         case 3:
             let createGameController = CreateGameController()
             self.navigationController?.pushViewController(createGameController, animated: false)
-            break
+        case 4:
+            let createPlayerController = CreatePlayerController()
+            self.navigationController?.pushViewController(createPlayerController, animated: true)
         default:
             return
         }
-        
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
 }

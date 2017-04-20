@@ -12,6 +12,7 @@ import UIKit
 class GamePeekController: UIViewController, GamePeekScrollerDelegate {
     
     var myView: GamePeekView!
+    let gestureView = UIView()
     var location: Location!
     var games: [Game] = [] {
         didSet {
@@ -25,12 +26,12 @@ class GamePeekController: UIViewController, GamePeekScrollerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.buildGestureView()
         self.getGames()
         self.myView = GamePeekView()
         self.buildView()
         self.myView.layer.cornerRadius = 10
         self.myView.clipsToBounds = true
-        NotificationCenter.default.addObserver(self, selector: #selector(self.animatedDismiss), name: Notification.Name("Stop Peeking"), object: nil)
         self.navigationController?.navigationBar.isHidden = false
     }
     
@@ -40,10 +41,6 @@ class GamePeekController: UIViewController, GamePeekScrollerDelegate {
         UIView.animate(withDuration: 0.25) {
             self.view.transform = CGAffineTransform(scaleX: 1.4, y: 1.4)
         }
-    }
-    
-    func animatedDismiss() {
-        self.dismiss(animated: true, completion: nil)
     }
     
     func buildView() {
@@ -93,6 +90,19 @@ class GamePeekController: UIViewController, GamePeekScrollerDelegate {
             }
         })
     }
+    
+    //TODO: This should really reside in the peakview
+    func buildGestureView() {
+        self.gestureView.addAndConstrainToEdges(of: self.view)
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissScreen))
+        self.gestureView.addGestureRecognizer(gestureRecognizer)
+    }
+    
+    func dismissScreen() {
+        self.dismiss(animated: true, completion: nil)
+        let notification = Notification(name: Notification.Name("Stop Peeking"), object: nil, userInfo: nil)
+        NotificationCenter.default.post(notification)
+    }
 }
 
 extension GamePeekController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -102,8 +112,12 @@ extension GamePeekController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        print("loading some cells")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playerCell", for: indexPath) as! PlayerCollectionViewCell
-        cell.imageView.image = indexPath.item < self.games[collectionView.tag].players.count ? #imageLiteral(resourceName: "runner") : #imageLiteral(resourceName: "addPlayer")
+        let isGamePlayer = indexPath.item < self.games[collectionView.tag].players.count
+        let isCurrentPlayer = isGamePlayer && self.games[collectionView.tag].players[indexPath.row].id == CurrentPlayer.player.id
+        cell.imageView.image = isGamePlayer ? #imageLiteral(resourceName: "runner") : #imageLiteral(resourceName: "addPlayer")
+        if isCurrentPlayer { cell.backgroundColor = UIColor.yellow }
         return cell
     }
     

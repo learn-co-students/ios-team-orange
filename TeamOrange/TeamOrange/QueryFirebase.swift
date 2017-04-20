@@ -216,7 +216,7 @@ extension QueryFirebase {
             snapshot.forEach {
                 let item = $0.value as? [String:Any]
                 guard let value = item?[searchField] as? String else { return }
-                if value.contains(lookupItem){ array.append($0.key) }
+                if value.lowercased().contains(lookupItem.lowercased()){ array.append($0.key) }
             }
             completion(array)
         })

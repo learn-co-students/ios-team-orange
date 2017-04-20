@@ -35,7 +35,31 @@ class GameController: UIViewController {
         self.myView.stateLabel.text = self.game.state?.rawValue
         self.myView.playersLabel.text = "Players: \(self.game.numPlayers) / \(self.game.maxPlayers)"
     }
+    
+    func addPlayerToGame(game: Game) {
+        InsertToFirebase.player(withId: CurrentPlayer.player.id, toGame: self.game.id, completion: {
+            self.game.fillArrays {
+                self.myView.collectionView.reloadData()
+            }
+        })
+    }
+    
+    func goToPlayer(player: Player) {
+        let playerController = PlayerController()
+        playerController.player = player
+        self.navigationController?.pushViewController(playerController, animated: true)
+    }
+    
+    func presentInGameAlert() {
+        let alert = UIAlertController(title: "Already playing in this game!", message: nil, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Got It", style: .destructive, handler: nil)
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
 }
+
+
 
 extension GameController: UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -46,17 +70,21 @@ extension GameController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playerCell", for: indexPath) as! PlayerCollectionViewCell
+        let isGamePlayer = indexPath.item < self.game.players.count
+        let isCurrentPlayer = isGamePlayer && self.game.players[indexPath.row].id == CurrentPlayer.player.id
+        if isCurrentPlayer { cell.backgroundColor = UIColor.yellow }
         cell.imageView.image = indexPath.item < game.players.count ? #imageLiteral(resourceName: "runner") : #imageLiteral(resourceName: "addPlayer")
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.item < self.game.players.count {
-            let playerController = PlayerController()
-            playerController.player = self.game.players[indexPath.item]
-            self.navigationController?.pushViewController(playerController, animated: true)
+            let selectedPlayer = self.game.players[indexPath.item]
+            self.goToPlayer(player: selectedPlayer)
+        } else if self.game.containsPlayer(withId: CurrentPlayer.player.id) {
+            self.presentInGameAlert()
         } else {
-            print("Add me to the game")
+            self.addPlayerToGame(game: self.game)
         }
     }
 }

@@ -103,8 +103,6 @@ extension PlayerSearchViewController: UISearchBarDelegate{
             }
         })
     }
-    
-    
 }
 
 

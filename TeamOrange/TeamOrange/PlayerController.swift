@@ -12,6 +12,8 @@ import UIKit
 class PlayerController: UIViewController, PlayerViewDelegate {
     
     let myView: PlayerView = PlayerView()
+    var isCurrentPlayer = false
+    var isAFriend = false
     var player: Player! {
         didSet {
             self.player.fillArrays {
@@ -19,6 +21,7 @@ class PlayerController: UIViewController, PlayerViewDelegate {
                 self.myView.tableView.delegate = self
                 self.myView.tableView.dataSource = self
                 self.myView.buildView()
+                self.myView.buildNameLabel()
             }
         }
     }
@@ -27,6 +30,12 @@ class PlayerController: UIViewController, PlayerViewDelegate {
         self.navigationController?.buildStaticNavBar()
         self.addAndConstrain(view: self.myView)
         self.navigationController?.navigationBar.isHidden = false
+        isCurrentPlayer = player.id == CurrentPlayer.player.id
+        isAFriend = CurrentPlayer.player.friends.contains(where: {$0.id == player.id})
+        if !isCurrentPlayer {
+            myView.buildFriendButton(player: player, isFriend: isAFriend)
+        }
+        NotificationCenter.default.addObserver(self, selector: #selector(friendAlert), name: NSNotification.Name(rawValue: "Added Friend"), object: nil)
     }
 }
 
@@ -44,6 +53,15 @@ extension PlayerController: UITableViewDelegate, UITableViewDataSource {
             }
             cell!.textLabel?.text = propertyValue
             cell!.detailTextLabel?.text = self.player.propertyArray[indexPath.row]
+            cell!.detailTextLabel?.textColor = UIColor.lightGray
+            return cell!
+        } else if let propertyValue = self.player.propertyDictionary[self.player.propertyArray[indexPath.row]] as? [Any]{
+            var cell = tableView.dequeueReusableCell(withIdentifier: "detailCell")
+            if (cell == nil) {
+                cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "detailCell")
+            }
+            cell!.textLabel?.text = self.player.propertyArray[indexPath.row]
+            cell!.detailTextLabel?.text = "\(self.player.propertyArray[indexPath.row]): \(propertyValue.count)"
             cell!.detailTextLabel?.textColor = UIColor.lightGray
             return cell!
         } else {
@@ -67,9 +85,16 @@ extension PlayerController: UITableViewDelegate, UITableViewDataSource {
         default:
             break
         }
-        if indexPath.row == 4  {
-            
-            
+    }
+    
+    func friendAlert() {
+        player.fillArrays {
+            self.myView.tableView.reloadData()
         }
+        let alert = UIAlertController(title: "Added \(self.player.name ?? "ERROR") ", message: nil, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Got It", style: .destructive, handler: nil)
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
     }
 }
+
