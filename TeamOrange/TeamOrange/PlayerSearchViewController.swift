@@ -93,6 +93,17 @@ extension PlayerSearchViewController: UISearchBarDelegate{
         })
     }
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard searchText.characters.count > 2 else { return }
+        QueryFirebase.forPlayerNamesContaining(searchText, completion: { results in
+            self.players = results
+            print("search came back")
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        })
+    }
+    
     
 }
 
