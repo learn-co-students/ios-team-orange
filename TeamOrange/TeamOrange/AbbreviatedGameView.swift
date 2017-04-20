@@ -29,12 +29,10 @@ class AbbreviatedGameView: UIView {
     var playersLabel: WhiteFontLabel!
     var dateLabel: WhiteFontLabel!
     var admin = UIImageView()
-    var dismissButton = UIButton()
     
     init(delegate: GamePeekScrollerDelegate) {
         self.gamePeekDelegate = delegate
         super.init(frame: CGRect.zero)
-        self.buildDismissButton()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -101,23 +99,4 @@ class AbbreviatedGameView: UIView {
     func setPlayersLabelText() {
         self.playersLabel.text = "Players: \(self.game.players.count) / \(self.game.maxPlayers)"
     }
-    
-    func buildDismissButton() {
-        self.addSubview(self.dismissButton)
-        self.dismissButton.translatesAutoresizingMaskIntoConstraints = false
-        self.dismissButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
-        self.dismissButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5).isActive = true
-        self.dismissButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
-        self.dismissButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        self.dismissButton.addTarget(self, action: #selector(self.dismissScreen), for: .touchUpInside)
-        self.dismissButton.setTitle("X", for: .normal)
-        self.dismissButton.setTitleColor(UIColor.white, for: .normal)
-    }
-    
-    func dismissScreen() {
-        let notification = Notification(name: Notification.Name("Stop Peeking"), object: nil, userInfo: nil)
-        NotificationCenter.default.post(notification)
-    }
-    
-    
 }
