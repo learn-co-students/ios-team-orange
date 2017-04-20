@@ -27,6 +27,7 @@ class PlayerController: UIViewController, PlayerViewDelegate {
         self.navigationController?.buildStaticNavBar()
         self.addAndConstrain(view: self.myView)
         self.navigationController?.navigationBar.isHidden = false
+        if player.id != CurrentPlayer.player.id { myView.buildFriendButton(player: player) }
     }
 }
 
@@ -72,4 +73,6 @@ extension PlayerController: UITableViewDelegate, UITableViewDataSource {
             
         }
     }
+    
+    
 }

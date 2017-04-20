@@ -50,4 +50,13 @@ class PlayerView: UIView {
         self.tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         self.tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
     }
+    
+    func buildFriendButton(player: Player) {
+        let friendButton = AddFriendButton(player: player)
+        addSubview(friendButton)
+        friendButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = false
+        friendButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 10).isActive = false
+        friendButton.setImage(#imageLiteral(resourceName: "addPlayer"), for: .normal)
+        friendButton.setTitle("Add Friend", for: .normal)
+    }
 }

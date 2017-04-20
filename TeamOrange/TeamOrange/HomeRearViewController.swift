@@ -49,7 +49,7 @@ class HomeRearViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print ("hi")
+        
         switch indexPath.row{
         case 0:
             let playerController = PlayerController()
@@ -57,6 +57,9 @@ class HomeRearViewController: UIViewController, UITableViewDelegate, UITableView
             self.navigationController?.pushViewController(playerController, animated: true)
             break
         case 1:
+            let playerTableView = PlayerTableViewController()
+            playerTableView.player = CurrentPlayer.player
+            self.navigationController?.pushViewController(playerTableView, animated: true)
             break
         case 2:
             let playerSearchController = PlayerSearchViewController()
