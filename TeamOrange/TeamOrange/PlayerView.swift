@@ -14,7 +14,7 @@ class PlayerView: UIView {
     var imageView: UIImageView!
     var nameLabel = UILabel()
     let tableView = UITableView()
-    let mikesFavFont = UIFont(name: "SFSportsNight", size: 20)
+    let mikesFavFont = UIFont(name: "NunitoSans-Black", size: 20)
     
     weak var playerDelegate: (PlayerViewDelegate & UITableViewDelegate & UITableViewDataSource)?
     
