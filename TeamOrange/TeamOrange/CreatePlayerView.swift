@@ -13,7 +13,7 @@ class CreatePlayerView: UIView {
     
     let nameEntry = UITextField()
     let hometownEntry = UITextField()
-    let homefieldEntry = UITextField()
+    let homeFieldEntry = UITextField()
     let genderPicker = UIPickerView()
     let sportScroll = SportIconScroll()
     var textFields: [UITextField] = []
@@ -34,7 +34,7 @@ class CreatePlayerView: UIView {
     init() {
         super.init(frame: CGRect.zero)
         self.backgroundColor = UIColor.gray
-        self.textFields = [self.nameEntry, self.hometownEntry, self.homefieldEntry]
+        self.textFields = [self.nameEntry, self.hometownEntry, self.homeFieldEntry]
         self.setupTextFields()
         self.buildButton()
         self.buildGenderPicker()
@@ -63,15 +63,15 @@ class CreatePlayerView: UIView {
         self.hometownEntry.topAnchor.constraint(equalTo: self.nameEntry.bottomAnchor, constant: 50).isActive = true
         self.hometownEntry.placeholder = "Enter hometown here"
         
-        self.homefieldEntry.topAnchor.constraint(equalTo: self.hometownEntry.bottomAnchor, constant: 50).isActive = true
-        self.homefieldEntry.placeholder = "Enter homefield here"
+        self.homeFieldEntry.topAnchor.constraint(equalTo: self.hometownEntry.bottomAnchor, constant: 50).isActive = true
+        self.homeFieldEntry.placeholder = "Enter home field here"
     }
     
     
     func buildSportScroll() {
         self.addSubview(self.sportScroll)
         self.sportScroll.translatesAutoresizingMaskIntoConstraints = false
-        self.sportScroll.topAnchor.constraint(equalTo: self.homefieldEntry.bottomAnchor, constant: 75).isActive = true
+        self.sportScroll.topAnchor.constraint(equalTo: self.homeFieldEntry.bottomAnchor, constant: 75).isActive = true
         self.sportScroll.bottomAnchor.constraint(equalTo: self.genderPicker.topAnchor, constant: -50).isActive = true
         self.sportScroll.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         self.sportScroll.widthAnchor.constraint(equalTo: self.sportScroll.heightAnchor).isActive = true
@@ -106,7 +106,7 @@ class CreatePlayerView: UIView {
     func buildFavSportLabel() {
         self.addSubview(self.favSportLabel)
         self.favSportLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.favSportLabel.topAnchor.constraint(equalTo: self.homefieldEntry.bottomAnchor, constant: 25).isActive = true
+        self.favSportLabel.topAnchor.constraint(equalTo: self.homeFieldEntry.bottomAnchor, constant: 25).isActive = true
         self.favSportLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         self.favSportLabel.lineBreakMode = .byWordWrapping
         self.favSportLabel.numberOfLines = 0
@@ -117,14 +117,14 @@ class CreatePlayerView: UIView {
         var stop = false
         guard let name = self.nameEntry.text else { return }
         guard let hometown = self.hometownEntry.text else { return }
-        guard let homefield = self.homefieldEntry.text else { return }
+        guard let homeField = self.homeFieldEntry.text else { return }
         
         self.textFields.forEach { if $0.text == "" { $0.shake(); stop = true } }
         
         if stop { return }
         
         let userInfo: [String:String] = ["hometown": hometown,
-                                         "homefield": homefield,
+                                         "homeField": homeField,
                                          "name": name,
                                          "favSport":self.selectedSport,
                                          "gender": self.gender]

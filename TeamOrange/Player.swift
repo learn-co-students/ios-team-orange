@@ -20,7 +20,7 @@ class Player {
     var favSport: Sport?
     var gender: Gender?
     var homeField: String?
-    var homeTown: String?
+    var hometown: String?
     var id: String
     var imageUrlString: String?
     var name: String?
@@ -35,7 +35,7 @@ class Player {
     var teams: [Team] = []
     
     // Array and Dictionary for TableView
-    var propertyArray: [String] = ["Home Town", "Home Field", "Favorite Sport", "Gender", "Friends", "Games", "Teams"]
+    var propertyArray: [String] = ["Hometown", "Home Field", "Favorite Sport", "Gender", "Friends", "Games", "Teams"]
     var propertyDictionary: [String:Any] = [:]
     
     
@@ -51,12 +51,12 @@ class Player {
             self.gender = Gender(rawValue: genderString)
         }
         self.homeField = dict["homeField"] as? String
-        self.homeTown = dict["homeTown"] as? String
+        self.hometown = dict["hometown"] as? String
         self.imageUrlString = dict["imageUrlString"] as? String
         self.name = dict["name"] as? String
         self.phone = dict["phone"] as? String
         self.zipCode = dict["zipCode"] as? String
-        self.propertyDictionary = ["Home Town" : self.homeTown,
+        self.propertyDictionary = ["Hometown" : self.hometown,
                                    "Home Field" : self.homeField,
                                    "Favorite Sport" : self.favSport?.rawValue,
                                    "Gender" : self.gender?.rawValue]
