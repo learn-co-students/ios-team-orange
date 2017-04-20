@@ -21,7 +21,6 @@ class MapViewController: UIViewController {
     let sportsButton = UIButton()
     let loginButton = UIButton()
     let swipeView = UIView()
-    let peekButton = UIButton()
     var peekLocation: Location?
     
     
@@ -36,14 +35,11 @@ class MapViewController: UIViewController {
         self.buildProfileButton()
         self.buildSportsButton()
         self.buildLoginButton()
-        self.buildPeekButton()
         NotificationCenter.default.addObserver(self, selector: #selector(self.scaleUp), name: Notification.Name("Stop Peeking"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.makePeekViewAtAnnotation), name: Notification.Name("PeekToLoc"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.goToPlayerView), name: Notification.Name("Player View With Player"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.fadeSportsButton), name: Notification.Name("Picker Collapsed"), object: nil)
     }
-    
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -67,7 +63,6 @@ class MapViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        self.setNavBarToClear()
     }
     
     func centerMapButtonClicked(){
@@ -163,21 +158,7 @@ class MapViewController: UIViewController {
         self.loginButton.titleLabel?.font = self.mikesFavFont
         
     }
-    
-    func buildPeekButton() {
-        self.view.addSubview(self.peekButton)
-        self.peekButton.translatesAutoresizingMaskIntoConstraints = false
-        self.peekButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20).isActive = true
-        self.peekButton.bottomAnchor.constraint(equalTo: self.sportsButton.topAnchor, constant: -20).isActive = true
-        self.peekButton.heightAnchor.constraint(equalTo: self.sportsButton.heightAnchor).isActive = true
-        self.peekButton.widthAnchor.constraint(equalTo: self.sportsButton.widthAnchor).isActive = true
-        self.peekButton.setTitle("Peek", for: .normal)
-        self.peekButton.addTarget(self, action: #selector(self.goToGamePeekViewTest), for: .touchUpInside)
-        self.peekButton.setTitleColor(UIColor.red, for: .normal)
-        self.peekButton.titleLabel?.font = self.mikesFavFont
-    }
-    
-    
+
     func goToGamePeekViewTest() {
         
         self.view.layer.cornerRadius = 10
