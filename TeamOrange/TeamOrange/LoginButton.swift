@@ -13,8 +13,10 @@ import GoogleSignIn
 class LoginButton: UIButton {
     
     var myImageView = UIImageView()
+    var action: () -> ()
     
-    init(image: UIImage?) {
+    init(image: UIImage?, action: @escaping () -> ()) {
+        self.action = action
         super.init(frame: CGRect.zero)
         self.myImageView.image = image
         self.addTarget(self, action: #selector(self.pressed), for: .touchUpInside)
@@ -26,6 +28,6 @@ class LoginButton: UIButton {
     }
     
     func pressed() {
-        print("Login button pressed")
+        self.action()
     }
 }
