@@ -82,7 +82,7 @@ final class InsertToFirebase {
     }
     
     // Add admin (player) to game and game to admin (player)
-    class func admin(withId playerId: String, toGame gameId: String, completion: () -> Void) {
+    class func admin(withId playerId: String, toGame gameId: String) {
         FIRDatabase.database().reference().child("players").child(playerId).child("adminOf").child(gameId).setValue(true)
         FIRDatabase.database().reference().child("games").child(gameId).child("admins").child(playerId).setValue(true)
     }

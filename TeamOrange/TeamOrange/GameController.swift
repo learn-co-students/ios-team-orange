@@ -59,5 +59,4 @@ extension GameController: UICollectionViewDelegate, UICollectionViewDataSource {
             print("Add me to the game")
         }
     }
-    
 }

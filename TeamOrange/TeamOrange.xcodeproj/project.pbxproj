@@ -70,6 +70,8 @@
 		881D88E91EA13D54006D5F44 /* LocationPinAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881D88E81EA13D54006D5F44 /* LocationPinAnnotationView.swift */; };
 		881D92E31EA51C1E006D5F44 /* CreateGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881D92E21EA51C1E006D5F44 /* CreateGameController.swift */; };
 		881D92E51EA51D37006D5F44 /* CreateGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881D92E41EA51D37006D5F44 /* CreateGameView.swift */; };
+		881D92EB1EA80915006D5F44 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881D92EA1EA80915006D5F44 /* SearchCell.swift */; };
+		881D92EF1EA827DE006D5F44 /* PlayerSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881D92EE1EA827DE006D5F44 /* PlayerSearchViewController.swift */; };
 		887987E11E93E7D100F5C540 /* CoreLocClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887987E01E93E7D100F5C540 /* CoreLocClient.swift */; };
 		887987E31E93EC3000F5C540 /* MapKitClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887987E21E93EC3000F5C540 /* MapKitClient.swift */; };
 		887987E51E9426DA00F5C540 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887987E41E9426DA00F5C540 /* Game.swift */; };
@@ -159,6 +161,8 @@
 		881D88E81EA13D54006D5F44 /* LocationPinAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationPinAnnotationView.swift; sourceTree = "<group>"; };
 		881D92E21EA51C1E006D5F44 /* CreateGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGameController.swift; sourceTree = "<group>"; };
 		881D92E41EA51D37006D5F44 /* CreateGameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGameView.swift; sourceTree = "<group>"; };
+		881D92EA1EA80915006D5F44 /* SearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
+		881D92EE1EA827DE006D5F44 /* PlayerSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerSearchViewController.swift; sourceTree = "<group>"; };
 		887987E01E93E7D100F5C540 /* CoreLocClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreLocClient.swift; sourceTree = "<group>"; };
 		887987E21E93EC3000F5C540 /* MapKitClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapKitClient.swift; sourceTree = "<group>"; };
 		887987E41E9426DA00F5C540 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
@@ -196,6 +200,7 @@
 				56B5B9A11EA5AA9100294EF2 /* PlayerTableViewController.swift */,
 				56B5B9A81EA6659200294EF2 /* GameTableViewController.swift */,
 				56B5B9AC1EA6AD8000294EF2 /* GameController.swift */,
+				881D92EE1EA827DE006D5F44 /* PlayerSearchViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -362,6 +367,7 @@
 				56E902CB1EA0499B00579F46 /* PlayerCollectionViewCell.swift */,
 				56B5B9A31EA651A600294EF2 /* PlayerTableViewCell.swift */,
 				56B5B9A61EA6622B00294EF2 /* GameTableViewCell.swift */,
+				881D92EA1EA80915006D5F44 /* SearchCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -474,7 +480,7 @@
 				TargetAttributes = {
 					5624EFDC1E92BBED00BB2662 = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = GP3Y7UT49E;
+						DevelopmentTeam = X6M58BL6UT;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -605,6 +611,8 @@
 				889C529E1E9D2DEB00B4E550 /* GeoFireClient.swift in Sources */,
 				564F0B001E9C051300A48E43 /* WhiteFontLabel.swift in Sources */,
 				56BB7B8B1E996568001C75E9 /* SportPickerBottomView.swift in Sources */,
+				881D92EF1EA827DE006D5F44 /* PlayerSearchViewController.swift in Sources */,
+				881D92EB1EA80915006D5F44 /* SearchCell.swift in Sources */,
 				56E902CA1EA0489B00579F46 /* AbbreviatedGameView.swift in Sources */,
 				4C885E461E93F99C00B80EA4 /* LoginButton.swift in Sources */,
 				5638E8D81E9D5F6C00058672 /* GFGeoHash.m in Sources */,
@@ -757,7 +765,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TeamOrange/TeamOrange.entitlements;
-				DEVELOPMENT_TEAM = GP3Y7UT49E;
+				DEVELOPMENT_TEAM = X6M58BL6UT;
 				INFOPLIST_FILE = TeamOrange/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -776,7 +784,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TeamOrange/TeamOrange.entitlements;
-				DEVELOPMENT_TEAM = GP3Y7UT49E;
+				DEVELOPMENT_TEAM = X6M58BL6UT;
 				INFOPLIST_FILE = TeamOrange/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

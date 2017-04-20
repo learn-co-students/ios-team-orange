@@ -22,7 +22,7 @@ class GameTableViewCell: UITableViewCell {
             game.fillArrays {
                 self.nameLabel.text = game.name
                 self.dateLabel.text = game.date
-                self.numPlayersLabel.text = "# Playeres: \(game.numPlayers)"
+                self.numPlayersLabel.text = "# Players: \(game.numPlayers)"
             }
         }
     }

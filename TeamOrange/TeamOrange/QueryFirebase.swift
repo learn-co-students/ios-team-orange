@@ -22,6 +22,13 @@ final class QueryFirebase {
         }
     }
     
+    // Find users with names that contain a string value
+    class func forPlayerNamesContaining(_ value: String, completion: @escaping ([Player]) -> Void) {
+        self.getArray(of: .players, with: "name", containing: value) { (users) in
+            if let users = users as? [Player] { completion(users) }
+        }
+    }
+    
     // Find user by email
     class func forPlayersWith(email: String, completion: @escaping ([Player]) -> Void) {
         self.getArrayOf(.players, with: "email", of: email) { (users) in
@@ -165,6 +172,13 @@ extension QueryFirebase {
         })
     }
     
+    //get array of players with names containing a string value
+    fileprivate class func getArray(of category: Category, with searchField: String, containing value: String, completion: @escaping ([Any]) -> Void) {
+        getKeysContaining(for: category.rawValue, with: searchField, of: value, completion: { keys in
+            self.buildArrayOf(category, for: keys) { completion($0) }
+        })
+    }
+    
     private class func getKeys(for root: String, with searchField: String, of lookupItem: String, completion: @escaping ([String]) -> Void ) {
         var array: [String] = []
         FIRDatabase.database().reference().child(root).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -192,6 +206,20 @@ extension QueryFirebase {
                 }
             })
         }
+        
     }
     
+    private class func getKeysContaining(for root: String, with searchField: String, of lookupItem: String, completion: @escaping ([String]) -> Void ) {
+        var array: [String] = []
+        FIRDatabase.database().reference().child(root).observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let snapshot = snapshot.value as? [String:Any] else { return }
+            snapshot.forEach {
+                let item = $0.value as? [String:Any]
+                guard let value = item?[searchField] as? String else { return }
+                if value.contains(lookupItem){ array.append($0.key) }
+            }
+            completion(array)
+        })
+    }
+
 }
