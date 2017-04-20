@@ -63,6 +63,6 @@ class PlayerView: UIView {
         self.nameLabel.numberOfLines = 0
         self.nameLabel.text = self.playerDelegate?.player.name
         self.nameLabel.font = self.mikesFavFont
-        
+        self.nameLabel.textColor = UIColor.red
     }
 }
