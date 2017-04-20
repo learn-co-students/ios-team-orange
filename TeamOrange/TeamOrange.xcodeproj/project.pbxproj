@@ -492,7 +492,13 @@
 				TargetAttributes = {
 					5624EFDC1E92BBED00BB2662 = {
 						CreatedOnToolsVersion = 8.3;
+<<<<<<< HEAD
 						DevelopmentTeam = X6M58BL6UT;
+=======
+
+						DevelopmentTeam = H7DR849HVE;
+
+>>>>>>> master
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -781,7 +787,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TeamOrange/TeamOrange.entitlements;
+<<<<<<< HEAD
 				DEVELOPMENT_TEAM = X6M58BL6UT;
+=======
+
+				DEVELOPMENT_TEAM = H7DR849HVE;
+>>>>>>> master
 				INFOPLIST_FILE = TeamOrange/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -800,7 +811,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TeamOrange/TeamOrange.entitlements;
+<<<<<<< HEAD
 				DEVELOPMENT_TEAM = X6M58BL6UT;
+=======
+				DEVELOPMENT_TEAM = H7DR849HVE;
+
+>>>>>>> master
 				INFOPLIST_FILE = TeamOrange/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

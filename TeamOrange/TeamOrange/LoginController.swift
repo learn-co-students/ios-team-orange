@@ -9,13 +9,11 @@
 import UIKit
 import Firebase
 import GoogleSignIn
-import FBSDKLoginKit
 import TwitterKit
 
-class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate, FBSDKLoginButtonDelegate {
+class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     
     let loginStack = LoginButtonStackView()
-    let googleBtn = GIDSignInButton()
     let twitterBtn = TWTRLogInButton()
     let signOutButton = UIButton()
     let doneButton = UIButton()
@@ -32,14 +30,17 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
         blurView.alpha = 0.5
         view.addSubview(blurView)
         self.navigationController?.buildStaticNavBar()
+        self.navigationController?.navigationBar.isHidden = false
         
         setupLoginStack()
-        setupFacebookButton()
         setupTwitterButton()
         setupGoogleButtons()
         buildSignout()
+<<<<<<< HEAD
         self.buildDoneButton()
         self.navigationController?.navigationBar.isHidden = false
+=======
+>>>>>>> master
     }
     
     func setupLoginStack() {
@@ -80,21 +81,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
     
     // MARK: Google Login Methods
     fileprivate func setupGoogleButtons() {
-        view.addSubview(googleBtn)
-        googleBtn.translatesAutoresizingMaskIntoConstraints = false
-        googleBtn.topAnchor.constraint(equalTo: self.loginStack.bottomAnchor, constant: 75).isActive = true
-        googleBtn.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 10).isActive = true
-        //        let customButton = UIButton(type: .system)
-        //        customButton.frame = CGRect(x: 16, y: 116 + 66 + 66, width: view.frame.width - 32, height: 50)
-        //        customButton.backgroundColor = .orange
-        //        customButton.setTitle("Custom Google Sign In", for: .normal)
-        //        customButton.addTarget(self, action: #selector(handleCustomGoogleSign), for: .touchUpInside)
-        //        customButton.setTitleColor(.white, for: .normal)
-        //        customButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        //        view.addSubview(customButton)
         GIDSignIn.sharedInstance().uiDelegate = self
     }
-    
     
     //  GIDSignInDelegate protcol methods. It handles the sign in process
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
@@ -138,6 +126,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
             print ("Error signing out: %@", signOutError)
         }
     }
+<<<<<<< HEAD
     
     //MARK: Facebook Login Methods
     fileprivate func setupFacebookButton() {
@@ -210,4 +199,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
             print(result ?? "")
         }
     }
+=======
+>>>>>>> master
 }

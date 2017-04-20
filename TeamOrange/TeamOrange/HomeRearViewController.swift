@@ -11,8 +11,10 @@ import UIKit
 class HomeRearViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let mapView = MapSearchView()
+
     
     let tableFieldsArray = ["Profile", "Friends", "Players", "Create Game", "Create Player"]
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
