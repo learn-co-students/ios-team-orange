@@ -30,9 +30,9 @@ class AddFriendButton: UIButton {
     }
     */
     func addFriend() {
-        InsertToFirebase.player(withId: player.id, toPlayer: CurrentPlayer.player.id)
-        let completion = {
-            let alert = UIAlertController(title: "Friend Added!", message: "\(self.player.name ?? "ERROR") added to friends", preferredStyle: .alert)
+        InsertToFirebase.player(withId: player.id, toPlayer: CurrentPlayer.player.id){
+            let notification = Notification(name: Notification.Name(rawValue: "Added Friend"))
+            NotificationCenter.default.post(notification)
         }
         
     }

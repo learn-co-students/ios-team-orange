@@ -29,6 +29,7 @@ class PlayerController: UIViewController, PlayerViewDelegate {
         self.addAndConstrain(view: self.myView)
         self.navigationController?.navigationBar.isHidden = false
         if player.id != CurrentPlayer.player.id { myView.buildFriendButton(player: player) }
+        NotificationCenter.default.addObserver(self, selector: #selector(friendAlert), name: NSNotification.Name(rawValue: "Added Friend"), object: nil)
     }
 }
 
@@ -75,5 +76,12 @@ extension PlayerController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func friendAlert() {
+        
+        let alert = UIAlertController(title: "Added \(self.player.name ?? "ERROR") ", message: nil, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Got It", style: .destructive, handler: nil)
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+    }
     
 }

@@ -57,8 +57,10 @@ class PlayerView: UIView {
     func buildFriendButton(player: Player) {
         let friendButton = AddFriendButton(player: player)
         addSubview(friendButton)
-        friendButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = false
-        friendButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 10).isActive = false
+        friendButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
+        friendButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 10).isActive = true
+        friendButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.05).isActive = true
+        friendButton.heightAnchor.constraint(equalTo: friendButton.widthAnchor).isActive = true
         friendButton.setImage(#imageLiteral(resourceName: "addPlayer"), for: .normal)
         friendButton.setTitle("Add Friend", for: .normal)
     }
