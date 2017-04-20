@@ -90,7 +90,7 @@ final class InsertToFirebase {
 
 
 /*
-extension FirebaseClient {
+extension InsertToFirebase {
     
     class func fillDatabase() {
         for num in 0...9 {
@@ -107,7 +107,7 @@ extension FirebaseClient {
                 "email" : "myEmail\(num)@gmail.com"
             ]
             
-            FirebaseClient.createPlayer(with: playerInfo)
+            InsertToFirebase.newPlayer(with: playerInfo, completion: { _ in } )
             
             let teamInfo : [String:Any] = [
                 "color" : "blue",
@@ -116,7 +116,7 @@ extension FirebaseClient {
                 "name" : "NYC All Stars \(num)"
             ]
             
-            FirebaseClient.createTeam(with: teamInfo)
+            InsertToFirebase.newTeam(with: teamInfo, completion: { _ in })
             
             let gameInfo: [String:Any] = [
                 "date" : "9/\(num)/2017",
@@ -124,10 +124,11 @@ extension FirebaseClient {
                 "over" : true,
                 "success" : false,
                 "sport" : "Baseball",
-                "state" : "Not Started"
+                "state" : "Not Started",
+                "maxPlayers" : "Not Started"
             ]
             
-            FirebaseClient.createGame(with: gameInfo)
+            InsertToFirebase.newGame(with: gameInfo, completion: { _ in })
         }
         
         var playerKeys: [String] = []
@@ -152,31 +153,36 @@ extension FirebaseClient {
                         
                         let randomNumber1 = arc4random_uniform(9) + 1
                         for _ in 0...randomNumber1 {
-                            FirebaseClient.addPlayer(withId: playerKey, toGame: gameKeys[Int(arc4random_uniform(10))])
+                            InsertToFirebase.player(withId: playerKey, toGame: gameKeys[Int(arc4random_uniform(10))], completion: { _ in })
+//                            FirebaseClient.addPlayer(withId: playerKey, toGame: gameKeys[Int(arc4random_uniform(10))])
                         }
                         
                         let randomNumber2 = arc4random_uniform(9) + 1
                         for _ in 0...randomNumber2 {
-                            FirebaseClient.addPlayer(withId: playerKey, toTeam: teamKeys[Int(arc4random_uniform(10))])
+                            InsertToFirebase.player(withId: playerKey, toTeam: teamKeys[Int(arc4random_uniform(10))], completion: { _ in })
+//                            FirebaseClient.addPlayer(withId: playerKey, toTeam: teamKeys[Int(arc4random_uniform(10))])
                         }
                         
                         let randomNumber3 = arc4random_uniform(9) + 1
                         for _ in 0...randomNumber3 {
-                            FirebaseClient.addPlayer(withId: playerKey, toPlayer: playerKeys[Int(arc4random_uniform(10))])
+                            InsertToFirebase.player(withId: playerKey, toPlayer: playerKeys[Int(arc4random_uniform(10))])
+//                            FirebaseClient.addPlayer(withId: playerKey, toPlayer: playerKeys[Int(arc4random_uniform(10))])
                         }
                     }
                     
                     for teamKey in teamKeys {
                         let randomNumber = arc4random_uniform(3) + 1
                         for _ in 0...randomNumber {
-                            FirebaseClient.addCaptain(withId: playerKeys[Int(arc4random_uniform(10))], toTeam: teamKey)
+                            InsertToFirebase.captain(withId: playerKeys[Int(arc4random_uniform(10))], toTeam: teamKey)
+//                            FirebaseClient.addCaptain(withId: playerKeys[Int(arc4random_uniform(10))], toTeam: teamKey)
                         }
                     }
                     
                     for gameKey in gameKeys {
                         let randomNumber = arc4random_uniform(3) + 1
                         for _ in 0...randomNumber {
-                            FirebaseClient.addAdmin(withId: playerKeys[Int(arc4random_uniform(10))], toGame: gameKey)
+                            InsertToFirebase.admin(withId: playerKeys[Int(arc4random_uniform(10))], toGame: gameKey)
+//                            FirebaseClient.addAdmin(withId: playerKeys[Int(arc4random_uniform(10))], toGame: gameKey)
                         }
                     }
                     

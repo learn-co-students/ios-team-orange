@@ -116,7 +116,7 @@ extension GamePeekController: UICollectionViewDelegate, UICollectionViewDataSour
         let isGamePlayer = indexPath.item < self.games[collectionView.tag].players.count
         let isCurrentPlayer = isGamePlayer && self.games[collectionView.tag].players[indexPath.row].id == CurrentPlayer.player.id
         cell.imageView.image = isGamePlayer ? #imageLiteral(resourceName: "runner") : #imageLiteral(resourceName: "addPlayer")
-        if isCurrentPlayer { cell.backgroundColor = UIColor.white }
+        if isCurrentPlayer { cell.backgroundColor = UIColor.yellow }
         return cell
     }
     
