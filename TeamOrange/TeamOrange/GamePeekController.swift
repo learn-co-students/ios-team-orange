@@ -112,6 +112,7 @@ extension GamePeekController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        print("loading some cells")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playerCell", for: indexPath) as! PlayerCollectionViewCell
         let isGamePlayer = indexPath.item < self.games[collectionView.tag].players.count
         let isCurrentPlayer = isGamePlayer && self.games[collectionView.tag].players[indexPath.row].id == CurrentPlayer.player.id

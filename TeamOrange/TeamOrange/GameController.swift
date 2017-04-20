@@ -47,6 +47,7 @@ extension GameController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playerCell", for: indexPath) as! PlayerCollectionViewCell
         cell.imageView.image = indexPath.item < game.players.count ? #imageLiteral(resourceName: "runner") : #imageLiteral(resourceName: "addPlayer")
+        
         return cell
     }
     

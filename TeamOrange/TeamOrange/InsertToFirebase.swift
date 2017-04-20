@@ -17,7 +17,6 @@ final class InsertToFirebase {
     //MARK: Create new model in database
     
     class func newPlayer(with playerInfo: [String:Any], completion: (String) -> Void ) {
-        //FIRDatabase.database().reference().child("players").childByAutoId().setValue(playerInfo)
         let post = FIRDatabase.database().reference().child("players").childByAutoId()
         post.setValue(playerInfo)
         completion(post.key)
@@ -125,7 +124,7 @@ extension InsertToFirebase {
                 "success" : false,
                 "sport" : "Baseball",
                 "state" : "Not Started",
-                "maxPlayers" : "Not Started"
+                "maxPlayers" : 10
             ]
             
             InsertToFirebase.newGame(with: gameInfo, completion: { _ in })
