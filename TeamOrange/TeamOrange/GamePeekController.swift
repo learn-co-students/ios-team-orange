@@ -113,7 +113,10 @@ extension GamePeekController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "playerCell", for: indexPath) as! PlayerCollectionViewCell
-        cell.imageView.image = indexPath.item < self.games[collectionView.tag].players.count ? #imageLiteral(resourceName: "runner") : #imageLiteral(resourceName: "addPlayer")
+        let isGamePlayer = indexPath.item < self.games[collectionView.tag].players.count
+        let isCurrentPlayer = isGamePlayer && self.games[collectionView.tag].players[indexPath.row].id == CurrentPlayer.player.id
+        cell.imageView.image = isGamePlayer ? #imageLiteral(resourceName: "runner") : #imageLiteral(resourceName: "addPlayer")
+        if isCurrentPlayer { cell.backgroundColor = UIColor.white }
         return cell
     }
     
