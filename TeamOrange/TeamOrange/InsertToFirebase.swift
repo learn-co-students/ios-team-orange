@@ -12,6 +12,8 @@ import FirebaseDatabase
 //TODO:  Need to add error response notifications for pretty much every one of these functions.
 final class InsertToFirebase {
     
+    private static let firebase = FIRDatabase.database().reference()
+    
     private init() { }
     
     //MARK: Create new model in database
@@ -106,7 +108,7 @@ extension InsertToFirebase {
             let playerInfo : [String:Any] = [
                 "birthDate" : "9/\(num)/1986",
                 "favSport" : "Baseball",
-                "gender" : "male",
+                "gender" : "Male",
                 "homeField" : "Dingletown",
                 "hometown" : "Medford",
                 "imageUrlString" : "www.url.com",

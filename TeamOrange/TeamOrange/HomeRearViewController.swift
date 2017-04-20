@@ -49,6 +49,7 @@ class HomeRearViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         print ("hi")
         switch indexPath.row{
         case 0:
@@ -57,6 +58,9 @@ class HomeRearViewController: UIViewController, UITableViewDelegate, UITableView
             self.navigationController?.pushViewController(playerController, animated: true)
             break
         case 1:
+            let playerTableView = PlayerTableViewController()
+            playerTableView.player = CurrentPlayer.player
+            self.navigationController?.pushViewController(playerTableView, animated: true)
             break
         case 2:
             let playerSearchController = PlayerSearchViewController()
@@ -65,12 +69,19 @@ class HomeRearViewController: UIViewController, UITableViewDelegate, UITableView
         case 3:
             let createGameController = CreateGameController()
             self.navigationController?.pushViewController(createGameController, animated: false)
-            break
-        case 4:
-            let createPlayerController = CreatePlayerController()
-            self.navigationController?.pushViewController(createPlayerController, animated: true)
+            break        case 4:
+                let createPlayerController = CreatePlayerController()
+                self.navigationController?.pushViewController(createPlayerController, animated: true)
         default:
             return
+                
+                CurrentPlayer.player.fillArrays {
+                    switch indexPath.row{
+                        
+                    default:
+                        return
+                    }
+                    
+            }
         }
-    }
 }
