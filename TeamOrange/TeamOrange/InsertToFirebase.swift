@@ -69,9 +69,19 @@ final class InsertToFirebase {
     }
     
     // Add player1 to player2 Friends & player2 to player1 Friends
-    class func player(withId player1Id: String, toPlayer player2Id: String) {
-        FIRDatabase.database().reference().child("players").child(player1Id).child("friends").child(player2Id).setValue(true)
-        FIRDatabase.database().reference().child("players").child(player2Id).child("friends").child(player1Id).setValue(true)
+    class func player(withId player1Id: String, toPlayer player2Id: String, completion: @escaping () -> Void) {
+        let dispatchGroup = DispatchGroup()
+        dispatchGroup.enter()
+        FIRDatabase.database().reference().child("players").child(player1Id).child("friends").child(player2Id).setValue(true, withCompletionBlock: { (error, FIRDatabaseReference) in
+            dispatchGroup.leave()
+        })
+        dispatchGroup.enter()
+        FIRDatabase.database().reference().child("players").child(player2Id).child("friends").child(player1Id).setValue(true, withCompletionBlock: { (error, FIRDatabaseReference) in
+            dispatchGroup.leave()
+        })
+        dispatchGroup.notify(queue: DispatchQueue.main) {
+            completion()
+        }
     }
     
     // Add captain (player) to team and team to captain (player)
