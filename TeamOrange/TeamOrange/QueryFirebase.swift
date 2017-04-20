@@ -192,6 +192,20 @@ extension QueryFirebase {
                 }
             })
         }
+        
     }
     
+    class func getKeysContaining(for root: String, with searchField: String, of lookupItem: String, completion: @escaping ([String]) -> Void ) {
+        var array: [String] = []
+        FIRDatabase.database().reference().child(root).observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let snapshot = snapshot.value as? [String:Any] else { return }
+            snapshot.forEach {
+                let item = $0.value as? [String:Any]
+                guard let value = item?[searchField] as? String else { return }
+                if value.contains(lookupItem){ array.append($0.key) }
+            }
+            completion(array)
+        })
+    }
+
 }

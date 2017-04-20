@@ -12,7 +12,7 @@ class HomeRearViewController: UIViewController, UITableViewDelegate, UITableView
     
     let mapView = MapSearchView()
     
-    let tableFieldsArray = ["Profile", "Teams", "Friends", "Create Game"]
+    let tableFieldsArray = ["Profile", "Friends", "Players", "Create Game"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +51,17 @@ class HomeRearViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print ("hi")
         switch indexPath.row{
+        case 0:
+            let playerController = PlayerController()
+            playerController.player = CurrentPlayer.player
+            self.navigationController?.pushViewController(playerController, animated: true)
+            break
+        case 1:
+            break
+        case 2:
+            let playerSearchController = PlayerSearchViewController()
+            self.navigationController?.pushViewController(playerSearchController, animated: true)
+            break
         case 3:
             let createGameController = CreateGameController()
             self.navigationController?.pushViewController(createGameController, animated: false)

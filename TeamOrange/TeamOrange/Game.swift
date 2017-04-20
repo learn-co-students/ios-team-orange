@@ -52,7 +52,7 @@ class Game {
             dispatchGroup.leave()
         })
         dispatchGroup.enter()
-        QueryFirebase.forAdminsOf(game: self, completion: {x
+        QueryFirebase.forAdminsOf(game: self, completion: {
             self.admins = $0
             dispatchGroup.leave()
         })
