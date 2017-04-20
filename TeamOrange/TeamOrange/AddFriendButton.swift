@@ -12,10 +12,12 @@ class AddFriendButton: UIButton {
     
     weak var player: Player!
     
-    init(player: Player) {
+    init(player: Player, isFriend: Bool) {
         super.init(frame: CGRect.zero)
         self.addTarget(self, action: #selector(addFriend), for: .touchUpInside)
         self.player = player
+        if isFriend{self.setImage(#imageLiteral(resourceName: "facebook"), for: .normal)}
+        else {self.setImage(#imageLiteral(resourceName: "addPlayer"), for: .normal)}
     }
     
     required init?(coder aDecoder: NSCoder) {

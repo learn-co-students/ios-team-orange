@@ -59,7 +59,8 @@ class Player {
         self.propertyDictionary = ["Home Town" : self.homeTown,
                                    "Home Field" : self.homeField,
                                    "Favorite Sport" : self.favSport?.rawValue,
-                                   "Gender" : self.gender?.rawValue]
+                                   "Gender" : self.gender?.rawValue
+                                  ]
     }
     
     func fillArrays(completion: @escaping () -> Void) {

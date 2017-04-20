@@ -49,28 +49,29 @@ class HomeRearViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        switch indexPath.row{
-        case 0:
-            let playerController = PlayerController()
-            playerController.player = CurrentPlayer.player
-            self.navigationController?.pushViewController(playerController, animated: true)
-            break
-        case 1:
-            let playerTableView = PlayerTableViewController()
-            playerTableView.player = CurrentPlayer.player
-            self.navigationController?.pushViewController(playerTableView, animated: true)
-            break
-        case 2:
-            let playerSearchController = PlayerSearchViewController()
-            self.navigationController?.pushViewController(playerSearchController, animated: true)
-            break
-        case 3:
-            let createGameController = CreateGameController()
-            self.navigationController?.pushViewController(createGameController, animated: false)
-            break
-        default:
-            return
+        CurrentPlayer.player.fillArrays {
+            switch indexPath.row{
+            case 0:
+                let playerController = PlayerController()
+                playerController.player = CurrentPlayer.player
+                self.navigationController?.pushViewController(playerController, animated: true)
+                break
+            case 1:
+                let playerTableView = PlayerTableViewController()
+                playerTableView.player = CurrentPlayer.player
+                self.navigationController?.pushViewController(playerTableView, animated: true)
+                break
+            case 2:
+                let playerSearchController = PlayerSearchViewController()
+                self.navigationController?.pushViewController(playerSearchController, animated: true)
+                break
+            case 3:
+                let createGameController = CreateGameController()
+                self.navigationController?.pushViewController(createGameController, animated: false)
+                break
+            default:
+                return
+            }
         }
     }
 }
