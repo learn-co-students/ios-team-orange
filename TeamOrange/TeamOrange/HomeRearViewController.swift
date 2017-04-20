@@ -12,7 +12,7 @@ class HomeRearViewController: UIViewController, UITableViewDelegate, UITableView
     
     let mapView = MapSearchView()
     
-    let tableFieldsArray = ["Profile", "Friends", "Players", "Create Game"]
+    let tableFieldsArray = ["Profile", "Friends", "Players", "Create Game", "Create Player"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,6 +66,9 @@ class HomeRearViewController: UIViewController, UITableViewDelegate, UITableView
             let createGameController = CreateGameController()
             self.navigationController?.pushViewController(createGameController, animated: false)
             break
+        case 4:
+            let createPlayerController = CreatePlayerController()
+            self.navigationController?.pushViewController(createPlayerController, animated: true)
         default:
             return
         }
