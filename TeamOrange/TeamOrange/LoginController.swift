@@ -18,6 +18,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
     let googleBtn = GIDSignInButton()
     let twitterBtn = TWTRLogInButton()
     let signOutButton = UIButton()
+    let doneButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +38,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
         setupTwitterButton()
         setupGoogleButtons()
         buildSignout()
+        self.buildDoneButton()
         self.navigationController?.navigationBar.isHidden = false
     }
     
@@ -170,6 +172,23 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
         }
         getEmailFromUser()
     }
+    
+    func buildDoneButton() {
+        self.view.addSubview(self.doneButton)
+        self.doneButton.translatesAutoresizingMaskIntoConstraints = false
+        self.doneButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -50).isActive = true
+        self.doneButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        self.doneButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1/3).isActive = true
+        self.doneButton.heightAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1/4).isActive = true
+        self.doneButton.backgroundColor = UIColor.blue
+        self.doneButton.setTitle("I've Logged In!", for: .normal)
+        self.doneButton.addTarget(self, action: #selector(self.doneButtonClicked), for: .touchUpInside)
+    }
+    
+    func doneButtonClicked() {
+        print("I'm Done")
+    }
+
     
     func getEmailFromUser() {
         let accessToken = FBSDKAccessToken.current()
