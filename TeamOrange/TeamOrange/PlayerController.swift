@@ -19,6 +19,7 @@ class PlayerController: UIViewController, PlayerViewDelegate {
                 self.myView.tableView.delegate = self
                 self.myView.tableView.dataSource = self
                 self.myView.buildView()
+                self.myView.buildNameLabel()
             }
         }
     }

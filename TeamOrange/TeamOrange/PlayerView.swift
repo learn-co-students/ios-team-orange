@@ -12,7 +12,9 @@ import UIKit
 class PlayerView: UIView {
     
     var imageView: UIImageView!
+    var nameLabel = UILabel()
     let tableView = UITableView()
+    let mikesFavFont = UIFont(name: "SFSportsNight", size: 20)
     
     weak var playerDelegate: (PlayerViewDelegate & UITableViewDelegate & UITableViewDataSource)?
     
@@ -40,6 +42,7 @@ class PlayerView: UIView {
         self.imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         self.imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         self.imageView.bottomAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        self.imageView.alpha = 0.75
     }
     
     func buildTableView() {
@@ -58,5 +61,17 @@ class PlayerView: UIView {
         friendButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 10).isActive = false
         friendButton.setImage(#imageLiteral(resourceName: "addPlayer"), for: .normal)
         friendButton.setTitle("Add Friend", for: .normal)
+    }
+    
+    func buildNameLabel() {
+        self.addSubview(self.nameLabel)
+        self.nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.nameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
+        self.nameLabel.bottomAnchor.constraint(equalTo: self.imageView.bottomAnchor, constant: -20).isActive = true
+        self.nameLabel.lineBreakMode = .byWordWrapping
+        self.nameLabel.numberOfLines = 0
+        self.nameLabel.text = self.playerDelegate?.player.name
+        self.nameLabel.font = self.mikesFavFont
+        
     }
 }

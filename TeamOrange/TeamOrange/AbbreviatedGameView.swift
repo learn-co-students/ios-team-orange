@@ -13,10 +13,8 @@ class AbbreviatedGameView: UIView {
     
     var game: Game! {
         didSet {
-            self.buildTitleLabel()
-            self.buildSportIcon()
-            self.buildTitleLabel()
             self.buildDateLabel()
+            self.buildSportIcon()
             self.buildPlayersLabel()
             self.buildCollectionView()
         }
@@ -25,16 +23,13 @@ class AbbreviatedGameView: UIView {
     var collectionView: UICollectionView!
     var gamePeekDelegate: GamePeekScrollerDelegate!
     var sportIcon: UIImageView!
-    var titleLabel: WhiteFontLabel!
-    var playersLabel: WhiteFontLabel!
     var dateLabel: WhiteFontLabel!
+    var playersLabel: WhiteFontLabel!
     var admin = UIImageView()
-    var dismissButton = UIButton()
     
     init(delegate: GamePeekScrollerDelegate) {
         self.gamePeekDelegate = delegate
         super.init(frame: CGRect.zero)
-        self.buildDismissButton()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -62,30 +57,25 @@ class AbbreviatedGameView: UIView {
         self.collectionView.backgroundColor = self.backgroundColor
     }
     
-    func buildTitleLabel() {
-        self.titleLabel = WhiteFontLabel(withTitle: self.game.name)
-        self.addSubview(self.titleLabel)
-        self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.titleLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        self.titleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        self.titleLabel.lineBreakMode = .byWordWrapping
-        self.titleLabel.numberOfLines = 0
+    func buildDateLabel() {
+        self.dateLabel = WhiteFontLabel(withTitle: self.game.date)
+        self.addSubview(self.dateLabel)
+        self.dateLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.dateLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        self.dateLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        self.dateLabel.lineBreakMode = .byWordWrapping
+        self.dateLabel.numberOfLines = 0
     }
     
     func buildSportIcon() {
         self.sportIcon = UIImageView(image: self.game.sport?.image.image)
         self.addSubview(self.sportIcon)
         self.sportIcon.translatesAutoresizingMaskIntoConstraints = false
-        self.sportIcon.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor).isActive = true
-        self.sportIcon.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5).isActive = true
-        self.sportIcon.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/3).isActive = true
+        self.sportIcon.topAnchor.constraint(equalTo: self.topAnchor, constant: 25).isActive = true
+        self.sportIcon.bottomAnchor.constraint(equalTo: self.centerYAnchor, constant: -5).isActive = true
+        self.sportIcon.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         self.sportIcon.widthAnchor.constraint(equalTo: self.sportIcon.heightAnchor).isActive = true
-    }
-    
-    //TODO: Build this out
-    func buildDateLabel() {
-        self.dateLabel = WhiteFontLabel(withTitle: self.game.date)
-        self.addSubview(self.dateLabel)
+        
     }
     
     func buildPlayersLabel() {
@@ -101,23 +91,4 @@ class AbbreviatedGameView: UIView {
     func setPlayersLabelText() {
         self.playersLabel.text = "Players: \(self.game.players.count) / \(self.game.maxPlayers)"
     }
-    
-    func buildDismissButton() {
-        self.addSubview(self.dismissButton)
-        self.dismissButton.translatesAutoresizingMaskIntoConstraints = false
-        self.dismissButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
-        self.dismissButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5).isActive = true
-        self.dismissButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
-        self.dismissButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        self.dismissButton.addTarget(self, action: #selector(self.dismissScreen), for: .touchUpInside)
-        self.dismissButton.setTitle("X", for: .normal)
-        self.dismissButton.setTitleColor(UIColor.white, for: .normal)
-    }
-    
-    func dismissScreen() {
-        let notification = Notification(name: Notification.Name("Stop Peeking"), object: nil, userInfo: nil)
-        NotificationCenter.default.post(notification)
-    }
-    
-    
 }
