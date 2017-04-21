@@ -130,7 +130,10 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
     }
     
     func doneButtonTapped() {
-        print(self.userInfo)
+        if FIRAuth.auth()?.currentUser == nil {
+            self.navigationController?.dismiss(animated: true, completion: nil)
+            print("screen should have been dismissed")
+        }
     }
     
     func signOut() {
