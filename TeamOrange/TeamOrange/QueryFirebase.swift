@@ -15,7 +15,7 @@ final class QueryFirebase {
     
     private init() { }
     
-//MARK: Look up model with information
+    //MARK: Look up model with information
     
     // Find user by displayName
     class func forPlayersWith(name: String, completion: @escaping ([Player]) -> Void) {
@@ -59,7 +59,7 @@ final class QueryFirebase {
         }
     }
     
-//MARK: Get Info For Player
+    //MARK: Get Info For Player
     
     // Get games for player
     class func forGamesOf(player: Player, completion: @escaping ([Game]) -> Void) {
@@ -96,7 +96,7 @@ final class QueryFirebase {
         }
     }
     
-//MARK: Get Info For Team
+    //MARK: Get Info For Team
     
     // Get player for team
     class func forPlayersOn(team: Team, completion: @escaping ([Player]) -> Void) {
@@ -112,7 +112,7 @@ final class QueryFirebase {
         }
     }
     
-//MARK: Get Info for Game
+    //MARK: Get Info for Game
     
     // Get players for game
     class func forPlayersIn(game: Game, completion: @escaping ([Player]) -> Void) {
@@ -127,8 +127,8 @@ final class QueryFirebase {
             if let admins = admins as? [Player] { completion(admins) }
         }
     }
-
-//MARK: Get Info by ID
+    
+    //MARK: Get Info by ID
     
     // Get game with ID
     class func forGameWith(id: String, completion: @escaping (Game) -> Void) {
@@ -197,8 +197,10 @@ extension QueryFirebase {
     fileprivate class func buildArrayOf(_ category: Category, for keys: [String], completion: @escaping ([Any]) -> Void) {
         var array = [Any]()
         for key in keys {
-            firebase.child(category.type).child(key).observeSingleEvent(of: .value, with: { snapshot in
-                if let info = snapshot.value as? [String:Any] {
+            print("########## Hello I'm gonna go out and contact firebase for key:", key)
+            firebase.child(category.type).child(key).observeSingleEvent(of: .value, with: { (snapshot) in
+                print("########## I made it - I'm baaaaAAAAAaaaaAAAAAack")
+                if let info = snapshot.value as? [String:Any]  {
                     switch category.type {
                     case "teams": array.append(Team(id: snapshot.key, dict: info))
                     case "games": array.append(Game(id: snapshot.key, dict: info))
@@ -206,10 +208,12 @@ extension QueryFirebase {
                     }
                     if array.count == keys.count { completion(array) }
                 }
+            }, withCancel: { (error) in
+                print("############## Error:", error)
             })
         }
-        
     }
+    
     
     private class func getKeysContaining(for root: String, with searchField: String, of lookupItem: String, completion: @escaping ([String]) -> Void ) {
         var array: [String] = []
@@ -223,5 +227,5 @@ extension QueryFirebase {
             completion(array)
         })
     }
-
+    
 }

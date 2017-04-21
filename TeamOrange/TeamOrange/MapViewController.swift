@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 import FirebaseDatabase
+import FirebaseAuth
 
 class MapViewController: UIViewController {
     
@@ -55,6 +56,10 @@ class MapViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        if FIRAuth.auth()?.currentUser == nil {
+            let loginController = LoginViewController()
+            self.navigationController?.pushViewController(loginController, animated: true)
+        }
     }
     
     func centerMapButtonClicked(){
