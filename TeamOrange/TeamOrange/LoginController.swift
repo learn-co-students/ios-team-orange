@@ -37,8 +37,9 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
         setupLoginStack()
         setupTwitterButton()
         setupGoogleButtons()
-        buildSignout()
         buildDoneButton()
+        buildSignout()
+        
     }
     
     func setupLoginStack() {
@@ -127,12 +128,17 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
         self.doneButton.setTitle("I've Logged In!", for: .normal)
         self.doneButton.backgroundColor = UIColor.blue
         self.doneButton.addTarget(self, action: #selector(self.doneButtonTapped), for: .touchUpInside)
+        self.doneButton.setImage(#imageLiteral(resourceName: "facebook"), for: .normal)
     }
     
     func doneButtonTapped() {
         if FIRAuth.auth()?.currentUser == nil {
-            self.navigationController?.dismiss(animated: true, completion: nil)
-            print("screen should have been dismissed")
+            let alert = UIAlertController(title: "Don't Lie to Me!", message: nil, preferredStyle: .alert)
+            let sorryAction = UIAlertAction(title: "I'm Sorry :(", style: .cancel, handler: nil)
+            alert.addAction(sorryAction)
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            self.navigationController?.popViewController(animated: true)
         }
     }
     
