@@ -12,10 +12,10 @@ class AddFriendButton: UIButton {
     
     weak var player: Player!
     
-    init(player: Player, isFriend: Bool) {
+    init(player: Player) {
         super.init(frame: CGRect.zero)
-        self.player = player
-        changeImage(isFriend: isFriend)
+        changeImage()
+        self.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -29,6 +29,19 @@ class AddFriendButton: UIButton {
         // Drawing code
     }
     */
+    
+    var isFriend: Bool {
+        return CurrentPlayer.player.friends.contains(where: {player.id == $0.id})
+    }
+    
+    func buttonAction() {
+        if isFriend {
+            askRemoveFriend()
+        } else {
+            addFriend()
+        }
+    }
+    
     func addFriend() {
         InsertToFirebase.player(withId: player.id, toPlayer: CurrentPlayer.player.id){
             let notification = Notification(name: Notification.Name(rawValue: "Added Friend"))
@@ -40,13 +53,12 @@ class AddFriendButton: UIButton {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AskedToRemoveFriend"), object: nil)
     }
     
-    func changeImage(isFriend: Bool) {
+    func changeImage() {
+        print ("is friend \(isFriend)")
         if isFriend{
             self.setImage(#imageLiteral(resourceName: "facebook"), for: .normal)
-            self.addTarget(self, action: #selector(askRemoveFriend), for: .touchUpInside)
         }
         else {
-            self.addTarget(self, action: #selector(addFriend), for: .touchUpInside)
             self.setImage(#imageLiteral(resourceName: "addPlayer"), for: .normal)
         }
     }

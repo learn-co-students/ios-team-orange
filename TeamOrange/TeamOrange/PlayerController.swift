@@ -135,10 +135,11 @@ extension PlayerController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func reloadData(completion: @escaping ()->()){
+        print("reload data")
         self.player.fillArrays {
+            print ("fill arays done")
             let friendButton = self.myView.friendButton as! AddFriendButton
-            friendButton.changeImage(isFriend: self.isAFriend)
-            self.myView.buildView()
+            friendButton.changeImage()
             completion()
         }
     }

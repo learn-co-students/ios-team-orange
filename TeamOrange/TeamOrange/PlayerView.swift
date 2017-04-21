@@ -57,7 +57,7 @@ class PlayerView: UIView {
     
     func buildFriendButton(player: Player, isFriend: Bool) {
         print("building button")
-        friendButton = AddFriendButton(player: player, isFriend: isFriend)
+        friendButton = AddFriendButton(player: player)
         addSubview(friendButton)
         friendButton.translatesAutoresizingMaskIntoConstraints = false
         friendButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
