@@ -45,6 +45,7 @@
 		565A88551EA938F30060A247 /* CreatePlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565A88541EA938F30060A247 /* CreatePlayerController.swift */; };
 		565A88571EA93FD70060A247 /* CreatePlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565A88561EA93FD70060A247 /* CreatePlayerView.swift */; };
 		565A88591EA95D400060A247 /* TextFieldShake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565A88581EA95D400060A247 /* TextFieldShake.swift */; };
+		565A885B1EAA45C90060A247 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 565A885A1EAA45C90060A247 /* GoogleService-Info.plist */; };
 		566EEDE41EA0230100D3F8A2 /* GamePeekScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566EEDE31EA0230100D3F8A2 /* GamePeekScroller.swift */; };
 		568D5B5F1E97CD4F009CA1C7 /* QueryFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568D5B5E1E97CD4F009CA1C7 /* QueryFirebase.swift */; };
 		569F05CE1E99AAD5008C82B8 /* ChosenSportTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569F05CD1E99AAD5008C82B8 /* ChosenSportTableCell.swift */; };
@@ -67,7 +68,6 @@
 		56ED6E721EA5491B005206C8 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ED6E711EA5491B005206C8 /* PlayerView.swift */; };
 		56ED6E741EA54DE7005206C8 /* PlayerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ED6E731EA54DE7005206C8 /* PlayerViewDelegate.swift */; };
 		56F8C6F81E9C1D6D0022A695 /* SFSportsNight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 56F8C6F71E9C1CF10022A695 /* SFSportsNight.ttf */; };
-		56FDCD371E9431AE00FE5AA9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56FDCD361E9431AE00FE5AA9 /* GoogleService-Info.plist */; };
 		56FDCD391E9557CC00FE5AA9 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FDCD381E9557CC00FE5AA9 /* Category.swift */; };
 		881D88E71EA02114006D5F44 /* CompletionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881D88E61EA02114006D5F44 /* CompletionCell.swift */; };
 		881D88E91EA13D54006D5F44 /* LocationPinAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881D88E81EA13D54006D5F44 /* LocationPinAnnotationView.swift */; };
@@ -140,6 +140,7 @@
 		565A88541EA938F30060A247 /* CreatePlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePlayerController.swift; sourceTree = "<group>"; };
 		565A88561EA93FD70060A247 /* CreatePlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePlayerView.swift; sourceTree = "<group>"; };
 		565A88581EA95D400060A247 /* TextFieldShake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldShake.swift; sourceTree = "<group>"; };
+		565A885A1EAA45C90060A247 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		566EEDE31EA0230100D3F8A2 /* GamePeekScroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePeekScroller.swift; sourceTree = "<group>"; };
 		568D5B5E1E97CD4F009CA1C7 /* QueryFirebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryFirebase.swift; sourceTree = "<group>"; };
 		569F05CD1E99AAD5008C82B8 /* ChosenSportTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChosenSportTableCell.swift; sourceTree = "<group>"; };
@@ -162,7 +163,6 @@
 		56ED6E711EA5491B005206C8 /* PlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		56ED6E731EA54DE7005206C8 /* PlayerViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewDelegate.swift; sourceTree = "<group>"; };
 		56F8C6F71E9C1CF10022A695 /* SFSportsNight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFSportsNight.ttf; sourceTree = "<group>"; };
-		56FDCD361E9431AE00FE5AA9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		56FDCD381E9557CC00FE5AA9 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		881D88E61EA02114006D5F44 /* CompletionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletionCell.swift; sourceTree = "<group>"; };
 		881D88E81EA13D54006D5F44 /* LocationPinAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationPinAnnotationView.swift; sourceTree = "<group>"; };
@@ -325,7 +325,7 @@
 				5624EFE71E92BBED00BB2662 /* TeamOrange.xcdatamodeld */,
 				5624EFEA1E92BBED00BB2662 /* Assets.xcassets */,
 				5624EFEF1E92BBED00BB2662 /* Info.plist */,
-				56FDCD361E9431AE00FE5AA9 /* GoogleService-Info.plist */,
+				565A885A1EAA45C90060A247 /* GoogleService-Info.plist */,
 			);
 			name = "Essential Files";
 			path = ..;
@@ -492,9 +492,7 @@
 				TargetAttributes = {
 					5624EFDC1E92BBED00BB2662 = {
 						CreatedOnToolsVersion = 8.3;
-
 						DevelopmentTeam = H7DR849HVE;
-
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -529,9 +527,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CDDFA9C1EA6A557001F40A5 /* NunitoSans-Black.ttf in Resources */,
+				565A885B1EAA45C90060A247 /* GoogleService-Info.plist in Resources */,
 				56F8C6F81E9C1D6D0022A695 /* SFSportsNight.ttf in Resources */,
 				5624EFEB1E92BBED00BB2662 /* Assets.xcassets in Resources */,
-				56FDCD371E9431AE00FE5AA9 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -783,7 +781,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TeamOrange/TeamOrange.entitlements;
-
 				DEVELOPMENT_TEAM = H7DR849HVE;
 				INFOPLIST_FILE = TeamOrange/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
@@ -804,7 +801,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TeamOrange/TeamOrange.entitlements;
 				DEVELOPMENT_TEAM = H7DR849HVE;
-
 				INFOPLIST_FILE = TeamOrange/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
