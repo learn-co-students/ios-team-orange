@@ -10,6 +10,9 @@ import Firebase
 import MapKit
 
 final class GeoFireClient {
+    
+    private static var query: GFRegionQuery?
+    
     static let geo = GeoFire(firebaseRef: FIRDatabase.database().reference().child("locations"))
     //private static var
     class func addLocation(game id: String, coordinate: CLLocationCoordinate2D, completion:(()->())? = nil){
@@ -24,9 +27,9 @@ final class GeoFireClient {
     
     class func queryLocations(within region: MKCoordinateRegion, response: @escaping (String, CLLocation)->()){
         //remove locations from map first!
-        
-        let query = geo?.query(with: region)
-        query?.observe(.keyEntered, with: { key, location in
+        GeoFireClient.query = geo?.query(with: region)
+        guard let query = GeoFireClient.query else {return}
+        query.observe(.keyEntered, with: { key, location in
             //key is game id
             //location is CLLocation
             guard let location = location
@@ -39,5 +42,9 @@ final class GeoFireClient {
         geo?.removeKey(id, withCompletionBlock: { error in
             completion(error == nil)
         })
+    }
+    
+    class func stopObservingOldQueries(){
+        GeoFireClient.query?.removeAllObservers()
     }
 }

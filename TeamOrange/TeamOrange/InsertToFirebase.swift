@@ -19,19 +19,19 @@ final class InsertToFirebase {
     //MARK: Create new model in database
     
     class func newPlayer(with playerInfo: [String:Any], completion: (String) -> Void ) {
-        let post = FIRDatabase.database().reference().child("players").childByAutoId()
+        let post = firebase.child("players").childByAutoId()
         post.setValue(playerInfo)
         completion(post.key)
     }
     
     class func newGame(with gameInfo: [String:Any], completion: (String) -> Void) {
-        let post = FIRDatabase.database().reference().child("games").childByAutoId()
+        let post = firebase.child("games").childByAutoId()
         post.setValue(gameInfo)
         completion(post.key)
     }
     
     class func newTeam(with teamInfo: [String:Any], completion: (String) -> Void) {
-        let post = FIRDatabase.database().reference().child("teams").childByAutoId()
+        let post = firebase.child("teams").childByAutoId()
         post.setValue(teamInfo)
         completion(post.key)
     }
@@ -42,11 +42,11 @@ final class InsertToFirebase {
     class func player(withId playerId: String, toTeam teamId: String, completion: @escaping () -> Void) {
         let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
-        FIRDatabase.database().reference().child("players").child(playerId).child("teams").child(teamId).setValue(true, withCompletionBlock: { (error, FIRDataReference) in
+        firebase.child("players").child(playerId).child("teams").child(teamId).setValue(true, withCompletionBlock: { (error, FIRDataReference) in
             dispatchGroup.leave()
         })
         dispatchGroup.enter()
-        FIRDatabase.database().reference().child("teams").child(teamId).child("players").child(playerId).setValue(true, withCompletionBlock: { (error, FIRDataReference) in
+        firebase.child("teams").child(teamId).child("players").child(playerId).setValue(true, withCompletionBlock: { (error, FIRDataReference) in
             dispatchGroup.leave()
         })
         dispatchGroup.notify(queue: DispatchQueue.main) {
@@ -58,11 +58,11 @@ final class InsertToFirebase {
     class func player(withId playerId: String, toGame gameId: String, completion: @escaping () -> Void) {
         let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
-        FIRDatabase.database().reference().child("players").child(playerId).child("games").child(gameId).setValue(true, withCompletionBlock: { (error, FIRDatabaseReference) in
+        firebase.child("players").child(playerId).child("games").child(gameId).setValue(true, withCompletionBlock: { (error, FIRDatabaseReference) in
             dispatchGroup.leave()
         })
         dispatchGroup.enter()
-        FIRDatabase.database().reference().child("games").child(gameId).child("players").child(playerId).setValue(true, withCompletionBlock: { (error, FIRDatabaseReference) in
+        firebase.child("games").child(gameId).child("players").child(playerId).setValue(true, withCompletionBlock: { (error, FIRDatabaseReference) in
             dispatchGroup.leave()
         })
         dispatchGroup.notify(queue: DispatchQueue.main) {
@@ -74,11 +74,11 @@ final class InsertToFirebase {
     class func player(withId player1Id: String, toPlayer player2Id: String, completion: @escaping () -> Void) {
         let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
-        FIRDatabase.database().reference().child("players").child(player1Id).child("friends").child(player2Id).setValue(true, withCompletionBlock: { (error, FIRDatabaseReference) in
+        firebase.child("players").child(player1Id).child("friends").child(player2Id).setValue(true, withCompletionBlock: { (error, FIRDatabaseReference) in
             dispatchGroup.leave()
         })
         dispatchGroup.enter()
-        FIRDatabase.database().reference().child("players").child(player2Id).child("friends").child(player1Id).setValue(true, withCompletionBlock: { (error, FIRDatabaseReference) in
+        firebase.child("players").child(player2Id).child("friends").child(player1Id).setValue(true, withCompletionBlock: { (error, FIRDatabaseReference) in
             dispatchGroup.leave()
         })
         dispatchGroup.notify(queue: DispatchQueue.main) {
@@ -88,14 +88,14 @@ final class InsertToFirebase {
     
     // Add captain (player) to team and team to captain (player)
     class func captain(withId playerId: String, toTeam teamId: String) {
-        FIRDatabase.database().reference().child("players").child(playerId).child("captainOf").child(teamId).setValue(true)
-        FIRDatabase.database().reference().child("teams").child(teamId).child("captains").child(playerId).setValue(true)
+        firebase.child("players").child(playerId).child("captainOf").child(teamId).setValue(true)
+        firebase.child("teams").child(teamId).child("captains").child(playerId).setValue(true)
     }
     
     // Add admin (player) to game and game to admin (player)
     class func admin(withId playerId: String, toGame gameId: String) {
-        FIRDatabase.database().reference().child("players").child(playerId).child("adminOf").child(gameId).setValue(true)
-        FIRDatabase.database().reference().child("games").child(gameId).child("admins").child(playerId).setValue(true)
+        firebase.child("players").child(playerId).child("adminOf").child(gameId).setValue(true)
+        firebase.child("games").child(gameId).child("admins").child(playerId).setValue(true)
     }
 }
 
@@ -145,17 +145,17 @@ extension InsertToFirebase {
         var playerKeys: [String] = []
         var teamKeys: [String] = []
         var gameKeys: [String] = []
-        FIRDatabase.database().reference().child("players").observeSingleEvent(of: .value, with: { snapshot in
+        firebase.child("players").observeSingleEvent(of: .value, with: { snapshot in
             let snapshot = snapshot.value as? [String:Any]
             for snap in snapshot! {
                 playerKeys.append(snap.key)
             }
-            FIRDatabase.database().reference().child("teams").observeSingleEvent(of: .value, with: { snapshot in
+            firebase.child("teams").observeSingleEvent(of: .value, with: { snapshot in
                 let snapshot = snapshot.value as? [String:Any]
                 for snap in snapshot! {
                     teamKeys.append(snap.key)
                 }
-                FIRDatabase.database().reference().child("games").observeSingleEvent(of: .value, with: { snapshot in
+                firebase.child("games").observeSingleEvent(of: .value, with: { snapshot in
                     let snapshot = snapshot.value as? [String:Any]
                     for snap in snapshot! {
                         gameKeys.append(snap.key)

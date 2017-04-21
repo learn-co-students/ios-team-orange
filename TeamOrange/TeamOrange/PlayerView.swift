@@ -14,6 +14,7 @@ class PlayerView: UIView {
     var imageView: UIImageView!
     var nameLabel = UILabel()
     let tableView = UITableView()
+    var friendButton = UIButton()
     let mikesFavFont = UIFont(name: "NunitoSans-Black", size: 20)
     
     weak var playerDelegate: (PlayerViewDelegate & UITableViewDelegate & UITableViewDataSource)?
@@ -56,7 +57,7 @@ class PlayerView: UIView {
     
     func buildFriendButton(player: Player, isFriend: Bool) {
         print("building button")
-        let friendButton = AddFriendButton(player: player, isFriend: isFriend)
+        friendButton = AddFriendButton(player: player, isFriend: isFriend)
         addSubview(friendButton)
         friendButton.translatesAutoresizingMaskIntoConstraints = false
         friendButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true

@@ -11,6 +11,8 @@ import FirebaseDatabase
 
 final class QueryFirebase {
     
+    fileprivate static let firebase = FIRDatabase.database().reference()
+    
     private init() { }
     
     //MARK: Look up model with information
@@ -165,7 +167,7 @@ extension QueryFirebase {
     
     // get array of games for players with ID
     fileprivate class func getArrayOf(_ category1: Category, from category2: Category, withId id: String, completion: @escaping ([Any]) -> Void) {
-        FIRDatabase.database().reference().child(category2.rawValue).child(id).child(category1.rawValue).observeSingleEvent(of: .value, with: { snapshot in
+        firebase.child(category2.rawValue).child(id).child(category1.rawValue).observeSingleEvent(of: .value, with: { snapshot in
             guard let snapshot = snapshot.value as? [String:Any] else { return }
             let keys = Array(snapshot.keys)
             self.buildArrayOf(category1, for: keys) { completion($0) }
@@ -181,8 +183,7 @@ extension QueryFirebase {
     
     private class func getKeys(for root: String, with searchField: String, of lookupItem: String, completion: @escaping ([String]) -> Void ) {
         var array: [String] = []
-        
-        FIRDatabase.database().reference().child(root).observeSingleEvent(of: .value, with: { (snapshot) in
+        firebase.child(root).observeSingleEvent(of: .value, with: { (snapshot) in
             guard let snapshot = snapshot.value as? [String:Any] else { return }
             snapshot.forEach {
                 let item = $0.value as? [String:Any]
@@ -196,10 +197,8 @@ extension QueryFirebase {
     fileprivate class func buildArrayOf(_ category: Category, for keys: [String], completion: @escaping ([Any]) -> Void) {
         var array = [Any]()
         for key in keys {
-            print("########## Hello I'm gonna go out and contact firebase for key:", key)
-            FIRDatabase.database().reference().child(category.type).child(key).observeSingleEvent(of: .value, with: { (snapshot) in
-                print("########## I made it - I'm baaaaAAAAAaaaaAAAAAack")
-                if let info = snapshot.value as? [String:Any]  {
+            firebase.child(category.type).child(key).observeSingleEvent(of: .value, with: { snapshot in
+                if let info = snapshot.value as? [String:Any] {
                     switch category.type {
                     case "teams": array.append(Team(id: snapshot.key, dict: info))
                     case "games": array.append(Game(id: snapshot.key, dict: info))
@@ -216,7 +215,7 @@ extension QueryFirebase {
     
     private class func getKeysContaining(for root: String, with searchField: String, of lookupItem: String, completion: @escaping ([String]) -> Void ) {
         var array: [String] = []
-        FIRDatabase.database().reference().child(root).observeSingleEvent(of: .value, with: { (snapshot) in
+        firebase.child(root).observeSingleEvent(of: .value, with: { (snapshot) in
             guard let snapshot = snapshot.value as? [String:Any] else { return }
             snapshot.forEach {
                 let item = $0.value as? [String:Any]
