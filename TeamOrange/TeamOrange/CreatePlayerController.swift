@@ -21,6 +21,14 @@ class CreatePlayerController: UIViewController {
         self.navigationItem.title = "Create Player"
         self.myView.genderPicker.delegate = self
         self.myView.genderPicker.dataSource = self
+        NotificationCenter.default.addObserver(self, selector: #selector(self.goToAuthentication), name: Notification.Name("Player Entered Info"), object: nil)
+    }
+    
+    func goToAuthentication(notification: Notification) {
+        guard let userInfo = notification.userInfo as? [String:String] else { return }
+        let loginController = LoginViewController()
+        loginController.userInfo = userInfo
+        self.navigationController?.pushViewController(loginController, animated: true)
     }
 }
 

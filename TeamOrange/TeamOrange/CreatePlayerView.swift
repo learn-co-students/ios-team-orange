@@ -128,6 +128,7 @@ class CreatePlayerView: UIView {
                                          "name": name,
                                          "favSport":self.selectedSport,
                                          "gender": self.gender]
-        print(userInfo)
+        let notification = Notification(name: Notification.Name("Player Entered Info"), object: nil, userInfo: userInfo)
+        NotificationCenter.default.post(notification)
     }
 }

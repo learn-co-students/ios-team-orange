@@ -16,6 +16,9 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
     let loginStack = LoginButtonStackView()
     let twitterBtn = TWTRLogInButton()
     let signOutButton = UIButton()
+    let doneButton = UIButton()
+    
+    var userInfo: [String:String] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,12 +32,13 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
         blurView.alpha = 0.5
         view.addSubview(blurView)
         self.navigationController?.buildStaticNavBar()
-        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.navigationBar.isHidden = true
         
         setupLoginStack()
         setupTwitterButton()
         setupGoogleButtons()
         buildSignout()
+        buildDoneButton()
     }
     
     func setupLoginStack() {
@@ -110,6 +114,23 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
         self.signOutButton.setTitle("Sign out", for: .normal)
         self.signOutButton.setTitleColor(UIColor.red, for: .normal)
         self.signOutButton.addTarget(self, action: #selector(self.signOut), for: .touchUpInside)
+    }
+    
+    func buildDoneButton(){
+        self.view.addSubview(self.doneButton)
+        self.doneButton.translatesAutoresizingMaskIntoConstraints = false
+        self.doneButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -25).isActive = true
+        self.doneButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        self.doneButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1/3).isActive = true
+        self.doneButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        self.doneButton.layer.cornerRadius = 10
+        self.doneButton.setTitle("I've Logged In!", for: .normal)
+        self.doneButton.backgroundColor = UIColor.blue
+        self.doneButton.addTarget(self, action: #selector(self.doneButtonTapped), for: .touchUpInside)
+    }
+    
+    func doneButtonTapped() {
+        print(self.userInfo)
     }
     
     func signOut() {
