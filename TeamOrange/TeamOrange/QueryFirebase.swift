@@ -197,8 +197,10 @@ extension QueryFirebase {
     fileprivate class func buildArrayOf(_ category: Category, for keys: [String], completion: @escaping ([Any]) -> Void) {
         var array = [Any]()
         for key in keys {
-            firebase.child(category.type).child(key).observeSingleEvent(of: .value, with: { snapshot in
-                if let info = snapshot.value as? [String:Any] {
+            print("########## Hello I'm gonna go out and contact firebase for key:", key)
+            firebase.child(category.type).child(key).observeSingleEvent(of: .value, with: { (snapshot) in
+                print("########## I made it - I'm baaaaAAAAAaaaaAAAAAack")
+                if let info = snapshot.value as? [String:Any]  {
                     switch category.type {
                     case "teams": array.append(Team(id: snapshot.key, dict: info))
                     case "games": array.append(Game(id: snapshot.key, dict: info))
