@@ -37,7 +37,6 @@ class PlayerTableViewController: UIViewController {
         guard let player = self.player else { return }
         self.friends = player.friends
         self.tableView.reloadData()
-        
     }
 }
 

@@ -13,6 +13,7 @@ class PlayerController: UIViewController, PlayerViewDelegate {
     
     let myView: PlayerView = PlayerView()
     var isCurrentPlayer = false
+    var isAFriend = false
     var player: Player! {
         didSet {
             self.player.fillArrays {
@@ -25,22 +26,21 @@ class PlayerController: UIViewController, PlayerViewDelegate {
         }
     }
     
+    
     override func viewDidLoad() {
         self.navigationController?.buildStaticNavBar()
         self.addAndConstrain(view: self.myView)
         self.navigationController?.navigationBar.isHidden = false
         isCurrentPlayer = player.id == CurrentPlayer.player.id
         if !isCurrentPlayer {
-            myView.buildFriendButton(player: player, isFriend: isAFriend)
+            myView.buildFriendButton()
         }
-        NotificationCenter.default.addObserver(self, selector: #selector(friendAlert), name: NSNotification.Name(rawValue: "Added Friend"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(confirmRemoveAsFriend), name: NSNotification.Name(rawValue: "AskedToRemoveFriend"), object: nil)
+        isAFriend = CurrentPlayer.player.friends.contains(where: {$0.id == player.id})
+        NotificationCenter.default.addObserver(self, selector: #selector(self.friendButtonTapped), name: Notification.Name("Add/Remove Friend"), object: nil)
+        let image = self.isAFriend ? #imageLiteral(resourceName: "facebook") : #imageLiteral(resourceName: "addPlayer")
+        self.myView.friendButton.setImage(image, for: .normal)
     }
     
-    
-    var isAFriend: Bool {
-        return CurrentPlayer.player.friends.contains(where: {$0.id == player.id})
-    }
 }
 
 extension PlayerController: UITableViewDelegate, UITableViewDataSource {
@@ -91,14 +91,25 @@ extension PlayerController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func friendAlert() {
-        player.fillArrays {
-            self.myView.tableView.reloadData()
+    func friendButtonTapped() {
+        if isAFriend {
+            print("I'm going to remove this person from your friend list")
+            self.confirmRemoveAsFriend()
+        } else {
+            print("This person has been added as your friend")
+            self.friendAlert()
+            self.myView.friendButton.setImage(#imageLiteral(resourceName: "facebook"), for: .normal)
         }
+    }
+    
+    func friendAlert() {
         let alert = UIAlertController(title: "Added \(self.player.name ?? "ERROR") ", message: nil, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Got It", style: .default, handler: nil)
         alert.addAction(okAction)
-        self.present(alert, animated: true, completion: nil)
+        InsertToFirebase.player(withId: CurrentPlayer.player.id, toPlayer: player.id, completion: {
+            self.present(alert, animated: true, completion: nil)
+            self.isAFriend = true
+        })
     }
     
     func arrayDetailText(index: Int, array: [Any])-> String {
@@ -121,10 +132,12 @@ extension PlayerController: UITableViewDelegate, UITableViewDataSource {
         let okAction = UIAlertAction(title: "Do it", style: .destructive, handler: { action in
             RemoveFromFirebase.friend(of: CurrentPlayer.player.id, withId: self.player.id, completion: {
                 self.reloadData(){
+                    self.myView.friendButton.setImage(#imageLiteral(resourceName: "addPlayer"), for: .normal)
                     let alert = UIAlertController(title: "Removed \(self.player.name ?? "ERROR") ", message: nil, preferredStyle: .alert)
                     let okAction = UIAlertAction(title: "Got It", style: .default, handler: nil)
                     alert.addAction(okAction)
                     self.present(alert, animated: true, completion: nil)
+                    self.isAFriend = false
                 }
             })
         })
@@ -136,11 +149,16 @@ extension PlayerController: UITableViewDelegate, UITableViewDataSource {
     
     func reloadData(completion: @escaping ()->()){
         print("reload data")
-        self.player.fillArrays {
-            print ("fill arays done")
+        let dispatchGroup = DispatchGroup()
+        dispatchGroup.enter()
+        self.player.fillArrays { dispatchGroup.leave()}
+        dispatchGroup.enter()
+        CurrentPlayer.player.fillArrays {dispatchGroup.leave()}
+        dispatchGroup.notify(queue: DispatchQueue.main){
+            print ("fill arrays done")
             let friendButton = self.myView.friendButton as! AddFriendButton
-            friendButton.changeImage()
             completion()
+
         }
     }
 }

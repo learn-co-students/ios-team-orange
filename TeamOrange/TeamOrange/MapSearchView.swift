@@ -15,7 +15,6 @@ class MapSearchView: UIView {
     var searchBarViewActive = false
     var searchBarConstraint = NSLayoutConstraint()
     lazy var searchButton = UIButton()
-    var searchButtonConstraint = NSLayoutConstraint()
     lazy var centerMapButton = UIButton()
     
     override init(frame: CGRect){
@@ -67,8 +66,9 @@ class MapSearchView: UIView {
         searchBarView.translatesAutoresizingMaskIntoConstraints = false
         searchBarView.heightAnchor.constraint(equalToConstant: 25).isActive = true
         searchBarView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.75).isActive = true
-        searchBarConstraint = NSLayoutConstraint(item: searchBarView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: -350)
+        searchBarConstraint = NSLayoutConstraint(item: searchBarView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: -50)
         self.addConstraint(searchBarConstraint)
+        searchBarView.layer.cornerRadius = 5
         searchBarView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         self.insertSubview(searchBarView, aboveSubview: mapView)
     }
@@ -76,8 +76,7 @@ class MapSearchView: UIView {
     func animateSearchBar(){
         if searchBarViewActive{
             searchBarView.deactivateSelf(completion: {
-                self.searchBarConstraint.constant = -350
-                self.searchButtonConstraint.constant = -10
+                self.searchBarConstraint.constant = -50
                 UIView.animate(withDuration: 0.5, animations: {
                     self.layoutIfNeeded()
                     self.searchBarViewActive = false
@@ -86,7 +85,6 @@ class MapSearchView: UIView {
             })
         } else {
             searchBarConstraint.constant = 64
-            searchButtonConstraint.constant = 50
             UIView.animate(withDuration: 0.5, animations: {
                 self.layoutIfNeeded()
             } , completion: { _ in

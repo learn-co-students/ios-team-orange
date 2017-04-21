@@ -55,9 +55,9 @@ class PlayerView: UIView {
         self.tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
     }
     
-    func buildFriendButton(player: Player, isFriend: Bool) {
+    func buildFriendButton() {
         print("building button")
-        friendButton = AddFriendButton(player: player)
+        friendButton = AddFriendButton()
         addSubview(friendButton)
         friendButton.translatesAutoresizingMaskIntoConstraints = false
         friendButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
