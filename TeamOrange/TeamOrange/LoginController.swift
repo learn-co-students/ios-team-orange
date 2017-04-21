@@ -5,7 +5,6 @@
 //  Created by Michael on 4/4/17.
 //  Copyright © 2017 William Brancato. All rights reserved.
 //
-
 import UIKit
 import Firebase
 import GoogleSignIn
@@ -15,7 +14,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
     
     let loginStack = LoginButtonStackView()
     let twitterBtn = TWTRLogInButton()
-    let signOutButton = UIButton()
     let doneButton = UIButton()
     
     var userInfo: [String:String] = [:]
@@ -24,22 +22,13 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
         super.viewDidLoad()
         GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
-        var darkBlur:UIBlurEffect = UIBlurEffect()
-        darkBlur = UIBlurEffect(style: UIBlurEffectStyle.dark)
-        let blurView = UIVisualEffectView(effect: darkBlur)
-        blurView.frame = self.view.frame
-        blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        blurView.alpha = 0.5
-        view.addSubview(blurView)
+
         self.navigationController?.buildStaticNavBar()
         self.navigationController?.navigationBar.isHidden = true
         
         setupLoginStack()
-        setupTwitterButton()
         setupGoogleButtons()
         buildDoneButton()
-        buildSignout()
-        
     }
     
     func setupLoginStack() {
@@ -53,7 +42,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
     
     //MARK: Twitter Login Methods
     func setupTwitterButton() {
-        let logInButton = TWTRLogInButton { (session, error) in
+        _ = TWTRLogInButton { (session, error) in
             if let unwrappedSession = session {
                 let alert = UIAlertController(title: "Logged In", message: "User \(unwrappedSession.userName) has logged in", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
@@ -72,10 +61,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
                 NSLog("Login error: %@", error!.localizedDescription);
             }
         }
-        view.addSubview(logInButton)
-        logInButton.translatesAutoresizingMaskIntoConstraints = false
-        logInButton.topAnchor.constraint(equalTo: self.loginStack.bottomAnchor, constant: 25).isActive = true
-        logInButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 10).isActive = true
     }
     
     // MARK: Google Login Methods
@@ -102,19 +87,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
             guard let uid = user?.uid else { return }
             print("Successfully logged into FIrebase with", uid)
         })
-    }
-    
-    //  Google sign out
-    func buildSignout() {
-        self.view.addSubview(self.signOutButton)
-        self.signOutButton.translatesAutoresizingMaskIntoConstraints = false
-        self.signOutButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20).isActive = true
-        self.signOutButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20).isActive = true
-        self.signOutButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
-        self.signOutButton.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        self.signOutButton.setTitle("Sign out", for: .normal)
-        self.signOutButton.setTitleColor(UIColor.red, for: .normal)
-        self.signOutButton.addTarget(self, action: #selector(self.signOut), for: .touchUpInside)
     }
     
     func buildDoneButton(){
