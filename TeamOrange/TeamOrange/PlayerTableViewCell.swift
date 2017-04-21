@@ -24,7 +24,7 @@ class PlayerTableViewCell: UITableViewCell {
             guard let player = self.player else { return }
             self.buildCell()
             self.usernameLabel.text = player.name
-            self.hometownLabel.text = player.homeTown
+            self.hometownLabel.text = player.hometown
             self.genderLabel.text = player.gender?.rawValue
         }
     }

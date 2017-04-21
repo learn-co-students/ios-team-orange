@@ -11,8 +11,10 @@ import UIKit
 class HomeRearViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let mapView = MapSearchView()
+
     
-    let tableFieldsArray = ["Profile", "Friends", "Players", "Create Game"]
+    let tableFieldsArray = ["Profile", "Friends", "Players", "Create Game", "Create Player"]
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,29 +51,28 @@ class HomeRearViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        CurrentPlayer.player.fillArrays {
-            switch indexPath.row{
-            case 0:
-                let playerController = PlayerController()
-                playerController.player = CurrentPlayer.player
-                self.navigationController?.pushViewController(playerController, animated: true)
-                break
-            case 1:
-                let playerTableView = PlayerTableViewController()
-                playerTableView.player = CurrentPlayer.player
+        switch indexPath.row{
+        case 0:
+            let playerController = PlayerController()
+            playerController.player = CurrentPlayer.player
+            self.navigationController?.pushViewController(playerController, animated: true)
+        case 1:
+            let playerTableView = PlayerTableViewController()
+            playerTableView.player = CurrentPlayer.player
+            CurrentPlayer.player.fillArrays {
                 self.navigationController?.pushViewController(playerTableView, animated: true)
-                break
-            case 2:
-                let playerSearchController = PlayerSearchViewController()
-                self.navigationController?.pushViewController(playerSearchController, animated: true)
-                break
-            case 3:
-                let createGameController = CreateGameController()
-                self.navigationController?.pushViewController(createGameController, animated: false)
-                break
-            default:
-                return
             }
+        case 2:
+            let playerSearchController = PlayerSearchViewController()
+            self.navigationController?.pushViewController(playerSearchController, animated: true)
+        case 3:
+            let createGameController = CreateGameController()
+            self.navigationController?.pushViewController(createGameController, animated: false)
+        case 4:
+            let createPlayerController = CreatePlayerController()
+            self.navigationController?.pushViewController(createPlayerController, animated: true)
+        default:
+            return
         }
     }
 }

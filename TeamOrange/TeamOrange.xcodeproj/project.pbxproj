@@ -42,6 +42,9 @@
 		5639B4801E98171D008FD173 /* SportPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5639B47F1E98171D008FD173 /* SportPickerView.swift */; };
 		5649440E1E999C6C00E56F41 /* SportIconScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5649440D1E999C6C00E56F41 /* SportIconScroll.swift */; };
 		564F0B001E9C051300A48E43 /* WhiteFontLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564F0AFF1E9C051300A48E43 /* WhiteFontLabel.swift */; };
+		565A88551EA938F30060A247 /* CreatePlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565A88541EA938F30060A247 /* CreatePlayerController.swift */; };
+		565A88571EA93FD70060A247 /* CreatePlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565A88561EA93FD70060A247 /* CreatePlayerView.swift */; };
+		565A88591EA95D400060A247 /* TextFieldShake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565A88581EA95D400060A247 /* TextFieldShake.swift */; };
 		566EEDE41EA0230100D3F8A2 /* GamePeekScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566EEDE31EA0230100D3F8A2 /* GamePeekScroller.swift */; };
 		568D5B5F1E97CD4F009CA1C7 /* QueryFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568D5B5E1E97CD4F009CA1C7 /* QueryFirebase.swift */; };
 		569F05CE1E99AAD5008C82B8 /* ChosenSportTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569F05CD1E99AAD5008C82B8 /* ChosenSportTableCell.swift */; };
@@ -134,6 +137,9 @@
 		5639B47F1E98171D008FD173 /* SportPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportPickerView.swift; sourceTree = "<group>"; };
 		5649440D1E999C6C00E56F41 /* SportIconScroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportIconScroll.swift; sourceTree = "<group>"; };
 		564F0AFF1E9C051300A48E43 /* WhiteFontLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhiteFontLabel.swift; sourceTree = "<group>"; };
+		565A88541EA938F30060A247 /* CreatePlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePlayerController.swift; sourceTree = "<group>"; };
+		565A88561EA93FD70060A247 /* CreatePlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePlayerView.swift; sourceTree = "<group>"; };
+		565A88581EA95D400060A247 /* TextFieldShake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldShake.swift; sourceTree = "<group>"; };
 		566EEDE31EA0230100D3F8A2 /* GamePeekScroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePeekScroller.swift; sourceTree = "<group>"; };
 		568D5B5E1E97CD4F009CA1C7 /* QueryFirebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryFirebase.swift; sourceTree = "<group>"; };
 		569F05CD1E99AAD5008C82B8 /* ChosenSportTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChosenSportTableCell.swift; sourceTree = "<group>"; };
@@ -203,6 +209,7 @@
 				56B5B9A81EA6659200294EF2 /* GameTableViewController.swift */,
 				56B5B9AC1EA6AD8000294EF2 /* GameController.swift */,
 				881D92EE1EA827DE006D5F44 /* PlayerSearchViewController.swift */,
+				565A88541EA938F30060A247 /* CreatePlayerController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -215,6 +222,7 @@
 				561B2AE01E9ED25800A3C95B /* StaticNavBar.swift */,
 				5614FC5B1EA0615D003D2A01 /* RandomColor.swift */,
 				56B5B9AA1EA69FA400294EF2 /* ViewControllerConstraints.swift */,
+				565A88581EA95D400060A247 /* TextFieldShake.swift */,
 			);
 			name = "Apple Class Extensions";
 			sourceTree = "<group>";
@@ -236,6 +244,7 @@
 				881D92E41EA51D37006D5F44 /* CreateGameView.swift */,
 				56B5B9AE1EA6B20D00294EF2 /* GameView.swift */,
 				56ED6E711EA5491B005206C8 /* PlayerView.swift */,
+				565A88561EA93FD70060A247 /* CreatePlayerView.swift */,
 				88F9F4BA1EA9307100671A9C /* AddFriendButton.swift */,
 			);
 			name = Views;
@@ -483,7 +492,9 @@
 				TargetAttributes = {
 					5624EFDC1E92BBED00BB2662 = {
 						CreatedOnToolsVersion = 8.3;
+
 						DevelopmentTeam = H7DR849HVE;
+
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -610,6 +621,7 @@
 				56BB7B8F1E996C8D001C75E9 /* BlurView.swift in Sources */,
 				5638E8DE1E9D7A3000058672 /* GamePeekController.swift in Sources */,
 				5624EFFA1E92BD7200BB2662 /* Team.swift in Sources */,
+				565A88591EA95D400060A247 /* TextFieldShake.swift in Sources */,
 				4C2E7EFA1E9D61EE008510F6 /* SWRevealViewController.m in Sources */,
 				889C529E1E9D2DEB00B4E550 /* GeoFireClient.swift in Sources */,
 				564F0B001E9C051300A48E43 /* WhiteFontLabel.swift in Sources */,
@@ -618,6 +630,7 @@
 				56E902CA1EA0489B00579F46 /* AbbreviatedGameView.swift in Sources */,
 				4C885E461E93F99C00B80EA4 /* LoginButton.swift in Sources */,
 				5638E8D81E9D5F6C00058672 /* GFGeoHash.m in Sources */,
+				565A88551EA938F30060A247 /* CreatePlayerController.swift in Sources */,
 				56B5B9A71EA6622B00294EF2 /* GameTableViewCell.swift in Sources */,
 				56ED6E741EA54DE7005206C8 /* PlayerViewDelegate.swift in Sources */,
 				5624EFE91E92BBED00BB2662 /* TeamOrange.xcdatamodeld in Sources */,
@@ -637,6 +650,7 @@
 				562358181E9994F300B58A32 /* ClickableImageView.swift in Sources */,
 				5624F00B1E92F43100BB2662 /* GameState.swift in Sources */,
 				569F05CE1E99AAD5008C82B8 /* ChosenSportTableCell.swift in Sources */,
+				565A88571EA93FD70060A247 /* CreatePlayerView.swift in Sources */,
 				881D88E71EA02114006D5F44 /* CompletionCell.swift in Sources */,
 				56B5B9A21EA5AA9100294EF2 /* PlayerTableViewController.swift in Sources */,
 				4CE02D271E95A1BD0068190C /* LoginButtonStackView.swift in Sources */,
@@ -769,6 +783,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TeamOrange/TeamOrange.entitlements;
+
 				DEVELOPMENT_TEAM = H7DR849HVE;
 				INFOPLIST_FILE = TeamOrange/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
@@ -789,6 +804,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TeamOrange/TeamOrange.entitlements;
 				DEVELOPMENT_TEAM = H7DR849HVE;
+
 				INFOPLIST_FILE = TeamOrange/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

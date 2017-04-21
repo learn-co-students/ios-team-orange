@@ -110,7 +110,7 @@ extension InsertToFirebase {
                 "favSport" : "Baseball",
                 "gender" : "Male",
                 "homeField" : "Dingletown",
-                "homeTown" : "Medford",
+                "hometown" : "Medford",
                 "imageUrlString" : "www.url.com",
                 "name" : "username\(num)",
                 "zipCode" : "33021",

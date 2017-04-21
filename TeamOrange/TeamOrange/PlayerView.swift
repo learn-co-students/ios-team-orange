@@ -15,7 +15,7 @@ class PlayerView: UIView {
     var nameLabel = UILabel()
     let tableView = UITableView()
     var friendButton = UIButton()
-    let mikesFavFont = UIFont(name: "SFSportsNight", size: 20)
+    let mikesFavFont = UIFont(name: "NunitoSans-Black", size: 20)
     
     weak var playerDelegate: (PlayerViewDelegate & UITableViewDelegate & UITableViewDataSource)?
     
@@ -82,6 +82,6 @@ class PlayerView: UIView {
         self.nameLabel.numberOfLines = 0
         self.nameLabel.text = self.playerDelegate?.player.name
         self.nameLabel.font = self.mikesFavFont
-        
+        self.nameLabel.textColor = UIColor.red
     }
 }

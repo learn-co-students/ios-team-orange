@@ -27,9 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.makeKeyAndVisible()
-        
         self.createSlidingMenu()
-        
         CurrentPlayer.createPlayer(){print("Current Player is:", CurrentPlayer.player)}
         
         return true
