@@ -51,15 +51,12 @@ class MapSearchView: UIView {
 
         self.addSubview(centerMapButton)
         centerMapButton.translatesAutoresizingMaskIntoConstraints = false
-        centerMapButton.bottomAnchor.constraint(equalTo: self.bottomAnchor , constant: -10).isActive = true
-        centerMapButton.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 35).isActive = true
-        centerMapButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
-        centerMapButton.widthAnchor.constraint(equalToConstant: 70).isActive = true
-        centerMapButton.layer.cornerRadius = 29
-        centerMapButton.setTitle(">O<", for: .normal)
-        centerMapButton.setTitle(">O<", for: .disabled)
-        centerMapButton.setTitleColor(UIColor.white, for: .disabled)
-        centerMapButton.setTitleColor(UIColor.red, for: .normal )
+        centerMapButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
+        centerMapButton.bottomAnchor.constraint(equalTo: self.bottomAnchor , constant: -100).isActive = true
+        
+        centerMapButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        centerMapButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        centerMapButton.setImage(#imageLiteral(resourceName: "target (1)"), for: .normal)
         self.insertSubview(centerMapButton, aboveSubview: mapView)
         
         self.addSubview(searchBarView)

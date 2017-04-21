@@ -52,7 +52,7 @@ class SearchBarView: UIView {
         okButtonConstraint = NSLayoutConstraint(item: okButton, attribute: .trailing, relatedBy: .equal, toItem: searchBar, attribute: .leading, multiplier: 1, constant: 0)
         self.addConstraint(okButtonConstraint)
         self.insertSubview(okButton, belowSubview: searchBar)
-        okButton.setTitle("-O", for: .normal)
+        okButton.setImage(#imageLiteral(resourceName: "Magnify"), for: .normal)
         
         cancelButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.1).isActive = true
         cancelButtonConstraint = NSLayoutConstraint(item: cancelButton, attribute: .leading, relatedBy: .equal, toItem: searchBar, attribute: .trailing, multiplier: 1, constant: 0)
