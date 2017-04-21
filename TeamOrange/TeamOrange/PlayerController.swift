@@ -13,7 +13,6 @@ class PlayerController: UIViewController, PlayerViewDelegate {
     
     let myView: PlayerView = PlayerView()
     var isCurrentPlayer = false
-    var isAFriend = false
     var player: Player! {
         didSet {
             self.player.fillArrays {
@@ -31,11 +30,16 @@ class PlayerController: UIViewController, PlayerViewDelegate {
         self.addAndConstrain(view: self.myView)
         self.navigationController?.navigationBar.isHidden = false
         isCurrentPlayer = player.id == CurrentPlayer.player.id
-        isAFriend = CurrentPlayer.player.friends.contains(where: {$0.id == player.id})
         if !isCurrentPlayer {
             myView.buildFriendButton(player: player, isFriend: isAFriend)
         }
         NotificationCenter.default.addObserver(self, selector: #selector(friendAlert), name: NSNotification.Name(rawValue: "Added Friend"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(confirmRemoveAsFriend), name: NSNotification.Name(rawValue: "AskedToRemoveFriend"), object: nil)
+    }
+    
+    
+    var isAFriend: Bool {
+        return CurrentPlayer.player.friends.contains(where: {$0.id == player.id})
     }
 }
 
@@ -92,9 +96,51 @@ extension PlayerController: UITableViewDelegate, UITableViewDataSource {
             self.myView.tableView.reloadData()
         }
         let alert = UIAlertController(title: "Added \(self.player.name ?? "ERROR") ", message: nil, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Got It", style: .destructive, handler: nil)
+        let okAction = UIAlertAction(title: "Got It", style: .default, handler: nil)
         alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func arrayDetailText(index: Int, array: [Any])-> String {
+        var numericalString = "\(array.count)"
+        var propertyString = "\(self.player.propertyArray[index])"
+        if array.count == 1 {
+            numericalString = "one"
+            let stringArray = propertyString.characters.dropLast()
+            propertyString = ""
+            propertyString.append(contentsOf: stringArray)
+        }
+        if isCurrentPlayer {
+            return "You currently have: \(numericalString) \(propertyString)"
+        }
+        return "\(player.name ?? "ERROR") currently has: \(numericalString) \(propertyString)"
+    }
+    
+    func confirmRemoveAsFriend(){
+        let alert = UIAlertController(title: "Remove \(self.player.name ?? "ERROR") from friends?", message: nil, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Do it", style: .destructive, handler: { action in
+            RemoveFromFirebase.friend(of: CurrentPlayer.player.id, withId: self.player.id, completion: {
+                self.reloadData(){
+                    let alert = UIAlertController(title: "Removed \(self.player.name ?? "ERROR") ", message: nil, preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "Got It", style: .default, handler: nil)
+                    alert.addAction(okAction)
+                    self.present(alert, animated: true, completion: nil)
+                }
+            })
+        })
+        let cancelAction = UIAlertAction(title: "Never mind", style: .default, handler: nil)
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func reloadData(completion: @escaping ()->()){
+        self.player.fillArrays {
+            let friendButton = self.myView.friendButton as! AddFriendButton
+            friendButton.changeImage(isFriend: self.isAFriend)
+            self.myView.buildView()
+            completion()
+        }
     }
 }
 

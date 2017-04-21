@@ -14,10 +14,8 @@ class AddFriendButton: UIButton {
     
     init(player: Player, isFriend: Bool) {
         super.init(frame: CGRect.zero)
-        self.addTarget(self, action: #selector(addFriend), for: .touchUpInside)
         self.player = player
-        if isFriend{self.setImage(#imageLiteral(resourceName: "facebook"), for: .normal)}
-        else {self.setImage(#imageLiteral(resourceName: "addPlayer"), for: .normal)}
+        changeImage(isFriend: isFriend)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -37,6 +35,20 @@ class AddFriendButton: UIButton {
             NotificationCenter.default.post(notification)
         }
         
+    }
+    func askRemoveFriend() {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AskedToRemoveFriend"), object: nil)
+    }
+    
+    func changeImage(isFriend: Bool) {
+        if isFriend{
+            self.setImage(#imageLiteral(resourceName: "facebook"), for: .normal)
+            self.addTarget(self, action: #selector(askRemoveFriend), for: .touchUpInside)
+        }
+        else {
+            self.addTarget(self, action: #selector(addFriend), for: .touchUpInside)
+            self.setImage(#imageLiteral(resourceName: "addPlayer"), for: .normal)
+        }
     }
 
 }

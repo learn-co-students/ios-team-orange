@@ -15,9 +15,7 @@ class PlayerTableViewController: UIViewController {
     var friends: [Player] = []
     var player: Player? {
         didSet {
-            guard let player = self.player else { return }
-            self.friends = player.friends
-            self.tableView.reloadData()
+            self.reloadData()
         }
     }
     
@@ -29,6 +27,17 @@ class PlayerTableViewController: UIViewController {
         self.navigationController?.buildStaticNavBar()
         self.tableView.register(PlayerTableViewCell.self, forCellReuseIdentifier: "cell")
         self.navigationController?.navigationBar.isHidden = false
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.reloadData()
+    }
+    
+    func reloadData() {
+        guard let player = self.player else { return }
+        self.friends = player.friends
+        self.tableView.reloadData()
+        
     }
 }
 
