@@ -128,7 +128,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
         self.doneButton.setTitle("I've Logged In!", for: .normal)
         self.doneButton.backgroundColor = UIColor.blue
         self.doneButton.addTarget(self, action: #selector(self.doneButtonTapped), for: .touchUpInside)
-        self.doneButton.setImage(#imageLiteral(resourceName: "facebook"), for: .normal)
     }
     
     func doneButtonTapped() {
