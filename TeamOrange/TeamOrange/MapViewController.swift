@@ -12,18 +12,14 @@ import CoreLocation
 import FirebaseDatabase
 import FirebaseAuth
 
-
 class MapViewController: UIViewController {
-    
     
     lazy var mainView: MapSearchView = MapSearchView()
     let mikesFavFont = UIFont(name: "NunitoSans-Black", size: 20)
     let profileButton = UIButton()
     let sportsButton = UIButton()
-    let loginButton = UIButton()
     let swipeView = UIView()
     var peekLocation: Location?
-    
     
     override func loadView() {
         super.loadView()
@@ -35,7 +31,6 @@ class MapViewController: UIViewController {
         self.buildMainView()
         self.buildProfileButton()
         self.buildSportsButton()
-        self.buildLoginButton()
         NotificationCenter.default.addObserver(self, selector: #selector(self.scaleUp), name: Notification.Name("Stop Peeking"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.makePeekViewAtAnnotation), name: Notification.Name("PeekToLoc"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.goToPlayerView), name: Notification.Name("Player View With Player"), object: nil)
@@ -47,18 +42,15 @@ class MapViewController: UIViewController {
         MapKitClient.setMap(to: self.mainView.mapView)
         LocSearchClient.setFieldAndTable(from: mainView.searchBarView)
         LocSearchClient.setDismissal(to: toggleSearchView)
-        
         //TODO: these buttons need to be pharmed out to the correct locations as the below four functions should not live on the controller
         self.mainView.centerMapButton.addTarget(self, action: #selector(centerMapButtonClicked), for: .touchUpInside)
         self.mainView.searchBarView.okButton.addTarget(self, action: #selector(searchBarButtonClicked), for: .touchUpInside)
         self.mainView.searchButton.addTarget(self, action: #selector(toggleSearchView), for: .touchUpInside)
         self.mainView.searchBarView.cancelButton.addTarget(self, action: #selector(toggleSearchView), for: .touchUpInside)
-        
         //TODO: As of now this function will never be called - however this is bad for user functionality, if time permits make it work.
         if let peekLocation = self.peekLocation {
             self.makePeekView(location: peekLocation)
         }
-        
         self.navigationController?.navigationBar.isHidden = true
     }
     
@@ -99,11 +91,6 @@ class MapViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear
-    }
-    
-    func goToLoginScreen() {
-        let loginScreen = LoginViewController()
-        self.navigationController?.pushViewController(loginScreen, animated: false)
     }
     
     func goToSportPicker() {
@@ -150,22 +137,7 @@ class MapViewController: UIViewController {
         self.sportsButton.titleLabel?.font = self.mikesFavFont
     }
     
-    func buildLoginButton() {
-        self.view.addSubview(self.loginButton)
-        self.loginButton.translatesAutoresizingMaskIntoConstraints = false
-        self.loginButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
-        self.loginButton.bottomAnchor.constraint(equalTo: self.profileButton.topAnchor, constant: -20).isActive = true
-        self.loginButton.heightAnchor.constraint(equalTo: self.profileButton.heightAnchor).isActive = true
-        self.loginButton.widthAnchor.constraint(equalTo: self.profileButton.widthAnchor).isActive = true
-        self.loginButton.setTitle("Login", for: .normal)
-        self.loginButton.setTitleColor(UIColor.red, for: .normal)
-        self.loginButton.addTarget(self, action: #selector(self.goToLoginScreen), for: .touchUpInside)
-        self.loginButton.titleLabel?.font = self.mikesFavFont
-        
-    }
-
     func goToGamePeekViewTest() {
-        
         self.view.layer.cornerRadius = 10
         self.view.clipsToBounds = true
         let coordinates = CLLocationCoordinate2D(latitude: 37.77971275757405, longitude: -122.4074749280276)
@@ -188,7 +160,6 @@ class MapViewController: UIViewController {
             self.view.transform = CGAffineTransform(scaleX: 1, y: 1)
         })
     }
-    
 }
 
 extension MapViewController: MKMapViewDelegate{
@@ -210,6 +181,4 @@ extension MapViewController: MKMapViewDelegate{
             self.view.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
         })
     }
-    
 }
-
