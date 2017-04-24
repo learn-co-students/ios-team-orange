@@ -13,10 +13,16 @@ import GoogleSignIn
 import FBSDKCoreKit
 import TwitterKit
 import Fabric
+import FirebaseAuth
 
 @UIApplicationMain
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    var frontViewController: UIViewController!
+    var rearViewController: UIViewController!
+    var swRevealVC: SWRevealViewController!
+    var navigationController: UINavigationController!
     
     var window: UIWindow?
     
@@ -28,8 +34,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.makeKeyAndVisible()
         self.createSlidingMenu()
-        if let playerId = UserDefaults.standard.string(forKey: "playerId") {
+        if FIRAuth.auth()?.currentUser == nil {
+            let loginController = LoginViewController()
+            self.navigationController?.pushViewController(loginController, animated: true)
+        } else if let playerId = UserDefaults.standard.string(forKey: "playerId") {
             CurrentPlayer.createPlayer(id: playerId) {print("Current Player is:", CurrentPlayer.player)}
+        } else {
+            let createPlayerController = CreatePlayerController()
+            self.navigationController.pushViewController(createPlayerController, animated: true)
         }
         
         return true
@@ -37,14 +49,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: SW Reveal View implementation
     func createSlidingMenu() {
-        let frontViewController = MapViewController()
-        let rearViewController  = HomeRearViewController()
+        self.frontViewController = MapViewController()
+        self.rearViewController  = HomeRearViewController()
         //create instance of swRevealVC based on front and rear VC
-        let swRevealVC = SWRevealViewController(rearViewController: rearViewController, frontViewController: frontViewController)
-        swRevealVC?.toggleAnimationType = SWRevealToggleAnimationType.easeOut
-        swRevealVC?.toggleAnimationDuration = 0.30
+        self.swRevealVC = SWRevealViewController(rearViewController: rearViewController, frontViewController: frontViewController)
+        self.swRevealVC?.toggleAnimationType = SWRevealToggleAnimationType.easeOut
+        self.swRevealVC?.toggleAnimationDuration = 0.30
         //set swRevealVC as rootVC of windows
-        let navigationController = UINavigationController(rootViewController: swRevealVC!)
+        self.navigationController = UINavigationController(rootViewController: swRevealVC!)
         self.window?.rootViewController = navigationController
     }
     

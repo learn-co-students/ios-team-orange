@@ -108,8 +108,11 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
             let sorryAction = UIAlertAction(title: "I'm Sorry :(", style: .cancel, handler: nil)
             alert.addAction(sorryAction)
             self.present(alert, animated: true, completion: nil)
+        } else if let playerId = UserDefaults.standard.string(forKey: "playerId") {
+            CurrentPlayer.createPlayer(id: playerId) {print("Current Player is:", CurrentPlayer.player)}
         } else {
-            self.navigationController?.popViewController(animated: true)
+            let createPlayerController = CreatePlayerController()
+            self.navigationController?.pushViewController(createPlayerController, animated: true)
         }
     }
     
