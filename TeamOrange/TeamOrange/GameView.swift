@@ -18,6 +18,8 @@ class GameView: UIView {
     var dateLabel = UILabel()
     var stateLabel = UILabel()
     var playersLabel = UILabel()
+    var button = UIButton()
+    var btnLabel = UILabel()
     var labels: [UILabel] = []
     
     weak var delegate: GameViewDelegate?
@@ -47,6 +49,7 @@ class GameView: UIView {
         self.buildPlayersLabel()
         self.buildCollectionView()
         self.buildSportIcon()
+        self.buildButton()
     }
     
     func buildNameLabel() {
@@ -111,5 +114,19 @@ class GameView: UIView {
         self.collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         self.collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         self.collectionView.backgroundColor = self.backgroundColor
+    }
+    
+    func buildButton() {
+        addSubview(button)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
+        button.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
+        button.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.15).isActive = true
+        button.heightAnchor.constraint(equalTo: button.widthAnchor).isActive = true
+        
+        addSubview(btnLabel)
+        btnLabel.translatesAutoresizingMaskIntoConstraints = false
+        btnLabel.topAnchor.constraint(equalTo: button.bottomAnchor).isActive = true
+        btnLabel.centerXAnchor.constraint(equalTo: button.centerXAnchor, constant: 1).isActive = true
     }
 }

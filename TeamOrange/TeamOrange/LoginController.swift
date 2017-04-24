@@ -15,7 +15,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
     let loginStack = LoginButtonStackView()
     let twitterBtn = TWTRLogInButton()
     let doneButton = UIButton()
-    let loginLabel = UILabel() 
+    let loginLabel = UILabel()
+    let mikesFavFont = UIFont(name: "NunitoSans-Black", size: 35)
     
     var userInfo: [String:String] = [:]
     
@@ -27,6 +28,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
         self.navigationController?.buildStaticNavBar()
         self.navigationController?.navigationBar.isHidden = true
         
+        setUpLoginLabel()
         setupLoginStack()
         setupGoogleButtons()
         buildDoneButton()
@@ -120,6 +122,12 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
     func setUpLoginLabel() {
         self.view.addSubview(loginLabel)
         self.loginLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.loginLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 50).isActive = true
+        self.loginLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        self.loginLabel.heightAnchor.constraint(equalTo: loginLabel.widthAnchor).isActive = true
+        self.loginLabel.text = "Please Login"
+        self.loginLabel.textColor = .white
+        self.loginLabel.font = mikesFavFont
         
     }
     

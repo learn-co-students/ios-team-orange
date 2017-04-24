@@ -63,9 +63,9 @@ class CreateGameController: UIViewController {
     }
     
     func perpareToSubmit() {
-        if checkTextField(mainView.addressField)
-            && checkTextField(mainView.nameField)
-            && coord != nil {
+        let hasCoord = coord != nil
+        let checkFields = checkTextField(mainView.addressField) && checkTextField(mainView.nameField)
+        if checkFields && hasCoord {
             let name = mainView.nameField.text!
             let address = mainView.addressField.text!
             let sport = mainView.selectedSport!.rawValue
@@ -73,9 +73,13 @@ class CreateGameController: UIViewController {
             let max = mainView.maxPlayers.selectedRow(inComponent: 0) + 2
             let dict: [String:Any] = ["name": name, "address": address, "date": date, "sport": sport, "state": "Not Started", "maxPlayers": max]
             InsertToFirebase.newGame(with: dict, completion: {id in
-                let location = Location(gameID: id, coordinate: coord!)
+                //let location = Location(gameID: id, coordinate: coord!)
+                var alert = UIAlertController(title: "Created Game!", message: nil, preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "Cool", style: .default , handler: nil)
+                alert.addAction(okAction)
+                self.present(alert, animated:
+                    true, completion: nil)
                 GeoFireClient.addLocation(game: id, coordinate: coord!, completion: {
-                    //perform segue! pass in location
                 })
                 InsertToFirebase.player(withId: CurrentPlayer.player.id, toGame: id, completion: {
                     InsertToFirebase.admin(withId: CurrentPlayer.player.id, toGame: id)
@@ -84,7 +88,7 @@ class CreateGameController: UIViewController {
             })
         }
     }
-    
+
     func checkTextField(_ textField: UITextField)-> Bool {
         guard let text = textField.text else {
             animateInvalidTextField(textField)
