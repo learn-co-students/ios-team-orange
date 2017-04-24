@@ -80,18 +80,9 @@ class CreateGameController: UIViewController {
                 self.present(alert, animated:
                     true, completion: nil)
                 GeoFireClient.addLocation(game: id, coordinate: coord!, completion: {
-                    //perform segue! pass in location
-                    alert = UIAlertController(title: "Game stored!", message: nil, preferredStyle: .alert)
-                    alert.addAction(okAction)
-                    self.present(alert, animated: true, completion: nil)
                 })
                 InsertToFirebase.player(withId: CurrentPlayer.player.id, toGame: id, completion: {
                     print ("PLEASE PLEASE WORK")
-                    alert = UIAlertController(title: "Player updated!", message: nil, preferredStyle: .alert)
-                    alert.addAction(okAction)
-                    self.present(alert, animated: true, completion: nil)
-                    // TODO: get this to work
-                    self.dismiss(animated: true, completion: nil)
                 })
             })
         }
