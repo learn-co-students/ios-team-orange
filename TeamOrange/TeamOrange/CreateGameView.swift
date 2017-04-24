@@ -39,8 +39,8 @@ class CreateGameView: UIView {
         createButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: createButton.frame.height/2).isActive = true
         createButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         createButton.layer.cornerRadius = 8
-        createButton.setTitle("Invite Players", for: .normal)
-        createButton.setTitle("Invite Players", for: .disabled)
+        createButton.setTitle("Create Game", for: .normal)
+        createButton.setTitle("Create Game", for: .disabled)
         createButton.backgroundColor = UIColor.white
         createButton.setTitleColor(createButton.tintColor, for: .normal)
         createButton.setTitleColor(UIColor.gray, for: .disabled)

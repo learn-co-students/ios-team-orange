@@ -48,3 +48,15 @@ extension CreatePlayerController: UIPickerViewDelegate, UIPickerViewDataSource {
         return row == 0 ? NSAttributedString(string: "Male") : NSAttributedString(string: "Female")
     }
 }
+
+extension CreatePlayerController: UITextFieldDelegate{
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        textField.returnKeyType = .done
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}

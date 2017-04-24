@@ -79,8 +79,7 @@ class CreateGameController: UIViewController {
                 })
                 InsertToFirebase.player(withId: CurrentPlayer.player.id, toGame: id, completion: {
                     InsertToFirebase.admin(withId: CurrentPlayer.player.id, toGame: id)
-                    print ("PLEASE PLEASE WORK")
-                self.dismiss(animated: true, completion: nil)
+                self.navigationController?.popToRootViewController(animated: true)
                 })
             })
         }
