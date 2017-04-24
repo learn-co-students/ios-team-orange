@@ -26,9 +26,9 @@ class CreatePlayerController: UIViewController {
     
     func goToAuthentication(notification: Notification) {
         guard let userInfo = notification.userInfo as? [String:String] else { return }
-        let loginController = LoginViewController()
-        loginController.userInfo = userInfo
-        self.navigationController?.pushViewController(loginController, animated: true)
+        InsertToFirebase.newPlayer(with: userInfo, completion: { _ in
+            self.navigationController?.popViewController(animated: true)
+        })
     }
 }
 
