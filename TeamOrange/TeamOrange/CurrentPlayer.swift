@@ -14,9 +14,10 @@ final class CurrentPlayer {
     
     private init() {}
     
-    static func createPlayer( completion: ()->() ) {
-        QueryFirebase.forPlayerWith(id: "-KiAkuDUeo9pyuE-bBcl", completion: { player in
+    static func createPlayer(id: String, completion: @escaping () -> Void ) {
+        QueryFirebase.forPlayerWith(id: id, completion: { player in
             self.player = player
+            completion()
         })
     }
 }
