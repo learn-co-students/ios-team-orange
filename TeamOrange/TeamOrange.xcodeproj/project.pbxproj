@@ -13,6 +13,7 @@
 		4C885E3F1E93EB9700B80EA4 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E3E1E93EB9700B80EA4 /* LoginController.swift */; };
 		4C885E421E93F3C000B80EA4 /* UIViewConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E411E93F3C000B80EA4 /* UIViewConstraints.swift */; };
 		4C885E461E93F99C00B80EA4 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C885E451E93F99C00B80EA4 /* LoginButton.swift */; };
+		4C93C7611EAE901F009B6CF7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C93C7601EAE901F009B6CF7 /* GoogleService-Info.plist */; };
 		4CDDFA9C1EA6A557001F40A5 /* NunitoSans-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4CDDFA9B1EA6A557001F40A5 /* NunitoSans-Black.ttf */; };
 		4CE02D271E95A1BD0068190C /* LoginButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE02D261E95A1BD0068190C /* LoginButtonStackView.swift */; };
 		5614FC5C1EA0615D003D2A01 /* RandomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5614FC5B1EA0615D003D2A01 /* RandomColor.swift */; };
@@ -45,7 +46,6 @@
 		565A88551EA938F30060A247 /* CreatePlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565A88541EA938F30060A247 /* CreatePlayerController.swift */; };
 		565A88571EA93FD70060A247 /* CreatePlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565A88561EA93FD70060A247 /* CreatePlayerView.swift */; };
 		565A88591EA95D400060A247 /* TextFieldShake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565A88581EA95D400060A247 /* TextFieldShake.swift */; };
-		565A885B1EAA45C90060A247 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 565A885A1EAA45C90060A247 /* GoogleService-Info.plist */; };
 		566EEDE41EA0230100D3F8A2 /* GamePeekScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566EEDE31EA0230100D3F8A2 /* GamePeekScroller.swift */; };
 		568D5B5F1E97CD4F009CA1C7 /* QueryFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568D5B5E1E97CD4F009CA1C7 /* QueryFirebase.swift */; };
 		569F05CE1E99AAD5008C82B8 /* ChosenSportTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569F05CD1E99AAD5008C82B8 /* ChosenSportTableCell.swift */; };
@@ -96,6 +96,7 @@
 		4C885E3E1E93EB9700B80EA4 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		4C885E411E93F3C000B80EA4 /* UIViewConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewConstraints.swift; sourceTree = "<group>"; };
 		4C885E451E93F99C00B80EA4 /* LoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
+		4C93C7601EAE901F009B6CF7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4CDD8C911EA568D700BAA84F /* TeamOrange.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TeamOrange.entitlements; sourceTree = "<group>"; };
 		4CDDFA9B1EA6A557001F40A5 /* NunitoSans-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NunitoSans-Black.ttf"; sourceTree = "<group>"; };
 		4CE02D261E95A1BD0068190C /* LoginButtonStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButtonStackView.swift; sourceTree = "<group>"; };
@@ -141,7 +142,6 @@
 		565A88541EA938F30060A247 /* CreatePlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePlayerController.swift; sourceTree = "<group>"; };
 		565A88561EA93FD70060A247 /* CreatePlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePlayerView.swift; sourceTree = "<group>"; };
 		565A88581EA95D400060A247 /* TextFieldShake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldShake.swift; sourceTree = "<group>"; };
-		565A885A1EAA45C90060A247 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		566EEDE31EA0230100D3F8A2 /* GamePeekScroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePeekScroller.swift; sourceTree = "<group>"; };
 		568D5B5E1E97CD4F009CA1C7 /* QueryFirebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryFirebase.swift; sourceTree = "<group>"; };
 		569F05CD1E99AAD5008C82B8 /* ChosenSportTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChosenSportTableCell.swift; sourceTree = "<group>"; };
@@ -326,7 +326,7 @@
 				5624EFE71E92BBED00BB2662 /* TeamOrange.xcdatamodeld */,
 				5624EFEA1E92BBED00BB2662 /* Assets.xcassets */,
 				5624EFEF1E92BBED00BB2662 /* Info.plist */,
-				565A885A1EAA45C90060A247 /* GoogleService-Info.plist */,
+				4C93C7601EAE901F009B6CF7 /* GoogleService-Info.plist */,
 			);
 			name = "Essential Files";
 			path = ..;
@@ -495,7 +495,7 @@
 				TargetAttributes = {
 					5624EFDC1E92BBED00BB2662 = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = H7DR849HVE;
+						DevelopmentTeam = GP3Y7UT49E;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -530,7 +530,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CDDFA9C1EA6A557001F40A5 /* NunitoSans-Black.ttf in Resources */,
-				565A885B1EAA45C90060A247 /* GoogleService-Info.plist in Resources */,
+				4C93C7611EAE901F009B6CF7 /* GoogleService-Info.plist in Resources */,
 				56F8C6F81E9C1D6D0022A695 /* SFSportsNight.ttf in Resources */,
 				5624EFEB1E92BBED00BB2662 /* Assets.xcassets in Resources */,
 			);
@@ -785,12 +785,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TeamOrange/TeamOrange.entitlements;
-				DEVELOPMENT_TEAM = H7DR849HVE;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = GP3Y7UT49E;
 				INFOPLIST_FILE = TeamOrange/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.TeamOrange.iOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.michaelFlorez.TeamUp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TeamOrange/TeamOrange-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -805,12 +807,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TeamOrange/TeamOrange.entitlements;
-				DEVELOPMENT_TEAM = H7DR849HVE;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = GP3Y7UT49E;
 				INFOPLIST_FILE = TeamOrange/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.TeamOrange.iOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.michaelFlorez.TeamUp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TeamOrange/TeamOrange-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
