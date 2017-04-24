@@ -63,9 +63,9 @@ class CreateGameController: UIViewController {
     }
     
     func perpareToSubmit() {
-        if checkTextField(mainView.addressField)
-            && checkTextField(mainView.nameField)
-            && coord != nil {
+        let hasCoord = coord != nil
+        let checkFields = checkTextField(mainView.addressField) && checkTextField(mainView.nameField)
+        if checkFields && hasCoord {
             let name = mainView.nameField.text!
             let address = mainView.addressField.text!
             let sport = mainView.selectedSport!.rawValue
@@ -78,14 +78,17 @@ class CreateGameController: UIViewController {
                     //perform segue! pass in location
                 })
                 InsertToFirebase.player(withId: CurrentPlayer.player.id, toGame: id, completion: {
-                    InsertToFirebase.admin(withId: CurrentPlayer.player.id, toGame: id)
-                    print ("PLEASE PLEASE WORK")
-                self.dismiss(animated: true, completion: nil)
+                    InsertToFirebase.admin(withId: CurrentPlayer.player.id, toGame: id, completion: {
+                        print ("PLEASE PLEASE WORK")
+                        // TODO: get this to work
+                        self.dismiss(animated: true, completion: nil)
+                    })
                 })
             })
+            
         }
     }
-    
+
     func checkTextField(_ textField: UITextField)-> Bool {
         guard let text = textField.text else {
             animateInvalidTextField(textField)

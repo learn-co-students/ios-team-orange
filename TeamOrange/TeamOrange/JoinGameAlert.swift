@@ -18,10 +18,12 @@ enum JoinGameAlert {
             let myAlert = UIAlertController(title: "Do you want to join this game?", message: nil, preferredStyle: .alert)
             let confirmAction = UIAlertAction(title: "Do it", style: .default, handler: {_ in
                 InsertToFirebase.player(withId: CurrentPlayer.player.id, toGame: vc.game.id, completion: {
-                    vc.present(JoinGameAlert.canJoin.confirmation, animated: true, completion: nil)
+                    CurrentPlayer.player.fillArrays {
+                        vc.getGameStatus()
+                        vc.present(JoinGameAlert.canJoin.confirmation, animated: true, completion: nil)
+                    }
                 })
             })
-            let cancelAction = UIAlertAction(title: "Forget it", style: .cancel, handler: nil)
             myAlert.addAction(confirmAction)
             myAlert.addAction(cancelAction)
             return myAlert
@@ -29,21 +31,27 @@ enum JoinGameAlert {
             let myAlert = UIAlertController(title: "Do you want to leave this game?", message: nil, preferredStyle: .alert)
             let confirmAction = UIAlertAction(title: "Do it", style: .destructive, handler: { _ in
                 RemoveFromFirebase.player(from: vc.game, withId: CurrentPlayer.player.id, completion: { success in
-                    vc.present(JoinGameAlert.canLeave.confirmation, animated: true, completion: {
-                    })
+                    if success{
+                        CurrentPlayer.player.fillArrays {
+                            vc.getGameStatus()
+                            vc.present(JoinGameAlert.canLeave.confirmation, animated: true, completion: {})
+                        }
+                    } else {
+                        vc.present(JoinGameAlert.get(forVc: vc, state: .cantLeave), animated: true)
+                    }
                 })
             })
-            let cancelAction = UIAlertAction(title: "Forget it", style: .cancel, handler: nil)
             myAlert.addAction(confirmAction)
             myAlert.addAction(cancelAction)
             return myAlert
         case .cantLeave:
-            let myAlert = UIAlertController(title: "An admin cannot leave a game.", message: "If you leave, the game will be cancelled. Is this OK?", preferredStyle: .alert)
+            let myAlert = UIAlertController(title: "If you leave, the game will be cancelled. Is this OK?", message: nil, preferredStyle: .alert)
             let leaveAction = UIAlertAction(title: "Leave", style: .destructive, handler: {_ in
                 InsertToFirebase.newState(of: .cancelled, forGame: vc.game.id)
             })
             myAlert.addAction(leaveAction)
             myAlert.addAction(okAction)
+            return myAlert
         case .doNothing:
             return JoinGameAlert.doNothing.confirmation
         }

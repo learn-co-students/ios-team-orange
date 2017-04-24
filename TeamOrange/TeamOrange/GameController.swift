@@ -15,6 +15,8 @@ class GameController: UIViewController {
     var isInGame = false
     var hasStarted = true
     var isFull = true
+    var isAdmin = false
+    var alert = UIAlertController(title: "buttonTapped", message: nil, preferredStyle: .alert)
     
     var game: Game! {
         didSet {
@@ -29,8 +31,13 @@ class GameController: UIViewController {
         self.myView.collectionView.dataSource = self
         self.addAndConstrain(view: self.myView)
         self.navigationController?.navigationBar.isHidden = false
-        self.myView.button.addTarget(self, action: #selector(joinGame), for: .touchUpInside)
-        self.myView.button.setImage(#imageLiteral(resourceName: "cancel"), for: .normal)
+        self.myView.button.addTarget(self, action: #selector(self.buttonTapped), for: .touchUpInside)
+        self.myView.button.setImage(#imageLiteral(resourceName: "avatar"), for: .normal)
+        self.getGameStatus()
+    }
+    
+    func buttonTapped() {
+        self.present(alert, animated: true, completion: {})
     }
     
     func relayGameData() {
@@ -42,13 +49,13 @@ class GameController: UIViewController {
         self.myView.playersLabel.text = "Players: \(self.game.numPlayers) / \(self.game.maxPlayers)"
     }
     
-    func addPlayerToGame(game: Game) {
-        InsertToFirebase.player(withId: CurrentPlayer.player.id, toGame: self.game.id, completion: {
-            self.game.fillArrays {
-                self.myView.collectionView.reloadData()
-            }
-        })
-    }
+//    func addPlayerToGame(game: Game) {
+//        InsertToFirebase.player(withId: CurrentPlayer.player.id, toGame: self.game.id, completion: {
+//            self.game.fillArrays {
+//                self.myView.collectionView.reloadData()
+//            }
+//        })
+//    }
     
     func goToPlayer(player: Player) {
         let playerController = PlayerController()
@@ -56,33 +63,38 @@ class GameController: UIViewController {
         self.navigationController?.pushViewController(playerController, animated: true)
     }
     
-    func presentInGameAlert() {
-        let alert = UIAlertController(title: "Already playing in this game!", message: nil, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Got It", style: .destructive, handler: nil)
-        alert.addAction(okAction)
-        self.present(alert, animated: true, completion: nil)
-    }
+//    func presentInGameAlert() {
+//        let alert = UIAlertController(title: "Already playing in this game!", message: nil, preferredStyle: .alert)
+//        let okAction = UIAlertAction(title: "Got It", style: .destructive, handler: nil)
+//        alert.addAction(okAction)
+//        self.present(alert, animated: true, completion: nil)
+//    }
     
-    func getGameStatus() -> ()->() {
+    func getGameStatus() {
         // TODO: determine if joined, joinable, full/inprogress(not joinable
         //       if not joinable should not show up.
         isFull = game.numPlayers == game.maxPlayers
         hasStarted = game.state != GameState.notStarted
-        if isInGame {
-            return leaveGame
+        isInGame = game.players.contains(where: {$0.id == CurrentPlayer.player.id})
+        isAdmin = game.admins.contains(where: {$0.id == CurrentPlayer.player.id})
+        if isAdmin{
+            myView.button.setImage( #imageLiteral(resourceName: "checked"), for: .normal)
+            myView.btnLabel.text = "Your game"
+            alert = JoinGameAlert.get(forVc: self, state: .cantLeave)
+        }else if isInGame{
+            myView.button.setImage(#imageLiteral(resourceName: "checked"), for: .normal)
+            myView.btnLabel.text = "In game"
+            alert = JoinGameAlert.get(forVc: self, state: .canLeave)
         }
-        if !(isFull || hasStarted) {
-            return joinGame
+        else if isFull || hasStarted {
+            myView.button.setImage(#imageLiteral(resourceName: "cancel"), for: .normal)
+            myView.btnLabel.text = "Can't join"
+            alert = JoinGameAlert.get(forVc: self, state: .doNothing)
+        } else {
+            myView.button.setImage(#imageLiteral(resourceName: "addPlayer"), for: .normal)
+            myView.btnLabel.text = "Open space"
+            alert = JoinGameAlert.get(forVc: self, state: .canJoin)
         }
-        return {}
-    }
-    
-    func joinGame() {
-        // TODO: join game w/ alert controller confirmation
-    }
-    
-    func leaveGame() {
-        // TODO: leave game w/ alert controller confirmation
     }
 }
 
@@ -108,10 +120,8 @@ extension GameController: UICollectionViewDelegate, UICollectionViewDataSource {
         if indexPath.item < self.game.players.count {
             let selectedPlayer = self.game.players[indexPath.item]
             self.goToPlayer(player: selectedPlayer)
-        } else if self.game.containsPlayer(withId: CurrentPlayer.player.id) {
-            self.presentInGameAlert()
         } else {
-            self.addPlayerToGame(game: self.game)
+            self.present(alert, animated: true, completion: {})
         }
     }
 }
