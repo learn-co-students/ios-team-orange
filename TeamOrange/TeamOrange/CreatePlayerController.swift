@@ -21,6 +21,8 @@ class CreatePlayerController: UIViewController {
         self.navigationItem.title = "Create Player"
         self.myView.genderPicker.delegate = self
         self.myView.genderPicker.dataSource = self
+        let fields = [myView.homeFieldEntry, myView.hometownEntry, myView.nameEntry]
+        fields.forEach({$0.delegate = self})
         NotificationCenter.default.addObserver(self, selector: #selector(self.goToAuthentication), name: Notification.Name("Player Entered Info"), object: nil)
     }
     
@@ -48,5 +50,17 @@ extension CreatePlayerController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         return row == 0 ? NSAttributedString(string: "Male") : NSAttributedString(string: "Female")
+    }
+}
+
+extension CreatePlayerController: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField)-> Bool {
+        textField.returnKeyType = .done
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField)->Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
