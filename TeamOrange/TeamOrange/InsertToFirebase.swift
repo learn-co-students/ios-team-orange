@@ -97,6 +97,11 @@ final class InsertToFirebase {
         firebase.child("players").child(playerId).child("adminOf").child(gameId).setValue(true)
         firebase.child("games").child(gameId).child("admins").child(playerId).setValue(true)
     }
+    
+    // MARK: Change aspects of game
+    class func newState(of state: GameState, forGame gameID: String) {
+        firebase.child("games").child(gameID).child("state").setValue(state.rawValue)
+    }
 }
 
 

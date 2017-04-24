@@ -12,6 +12,7 @@ enum GameState: String {
     
     case notStarted = "Not Started"
     case inProcess = "In Process"
+    case cancelled =  "Cancelled"
     case over = "Game Over"
 
 }
