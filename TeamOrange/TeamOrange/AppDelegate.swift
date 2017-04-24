@@ -28,7 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.makeKeyAndVisible()
         self.createSlidingMenu()
-        CurrentPlayer.createPlayer(id: "-KiVH25nAIc8fkrgl3Vi"){print("Current Player is:", CurrentPlayer.player)}
+        if let playerId = UserDefaults.standard.string(forKey: "playerId") {
+            CurrentPlayer.createPlayer(id: playerId) {print("Current Player is:", CurrentPlayer.player)}
+        }
         
         return true
     }
