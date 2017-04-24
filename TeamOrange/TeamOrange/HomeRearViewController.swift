@@ -10,7 +10,7 @@ import UIKit
 class HomeRearViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let mapView = MapSearchView()
-    let tableFieldsArray = ["Profile", "Friends", "Players", "Create Game", "Create Player"]
+    let tableFieldsArray = ["Profile", "Friends", "Players", "Create Game"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,13 +20,14 @@ class HomeRearViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.dataSource = self
         tableView.delegate = self
         tableView.addAndConstrainToEdges(of: self.view)
-        self.revealViewController().rearViewController.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+//        self.revealViewController().rearViewController.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         self.revealViewController().rearViewController.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
         self.revealViewController().frontViewController.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
         //        mapView.mainView.mapView.isUserInteractionEnabled = false
         //        mapView.mainView.mapView.isScrollEnabled = false
-        self.revealViewController().frontViewController.view.isUserInteractionEnabled = false
+//        self.revealViewController().frontViewController.view.isUserInteractionEnabled = false
     }
+    
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)

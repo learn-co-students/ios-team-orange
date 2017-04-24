@@ -52,7 +52,7 @@ class MapSearchView: UIView {
         self.addSubview(centerMapButton)
         centerMapButton.translatesAutoresizingMaskIntoConstraints = false
         centerMapButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
-        centerMapButton.bottomAnchor.constraint(equalTo: self.bottomAnchor , constant: -100).isActive = true
+        centerMapButton.bottomAnchor.constraint(equalTo: self.bottomAnchor , constant: -20).isActive = true
         
         centerMapButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         centerMapButton.widthAnchor.constraint(equalToConstant: 50).isActive = true

@@ -31,9 +31,7 @@ class CreatePlayerController: UIViewController {
         InsertToFirebase.newPlayer(with: userInfo, completion: { playerId in
             UserDefaults.standard.setValue(playerId, forKey: "playerId")
             CurrentPlayer.createPlayer(id: playerId, completion: {
-                let playerController = PlayerController()
-                playerController.player = CurrentPlayer.player
-                self.navigationController?.pushViewController(playerController, animated: true)
+            self.navigationController?.popToRootViewController(animated: true)
             })
         })
     }
