@@ -58,7 +58,7 @@ class AbbreviatedGameView: UIView {
     }
     
     func buildDateLabel() {
-        self.dateLabel = WhiteFontLabel(withTitle: self.game.date)
+        self.dateLabel = WhiteFontLabel(withTitle: self.game.dateString)
         self.addSubview(self.dateLabel)
         self.dateLabel.translatesAutoresizingMaskIntoConstraints = false
         self.dateLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true

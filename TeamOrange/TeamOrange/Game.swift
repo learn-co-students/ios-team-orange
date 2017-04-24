@@ -43,7 +43,9 @@ class Game {
         if let stateString = dict["state"] as? String{
             self.state = GameState(rawValue: stateString)
         }else { self.state = nil }
-        self.dateString = self.date[self.date.index(self.date.startIndex, offsetBy: 3)...self.date.index(self.date.startIndex, offsetBy: 3)]
+        self.dateString = self.date[self.date.index(self.date.startIndex, offsetBy: 5)...self.date.index(self.date.startIndex, offsetBy: 15)]
+        print(self.date)
+        print(self.dateString)
     }
     
     func fillArrays(completion: @escaping () -> Void) {
