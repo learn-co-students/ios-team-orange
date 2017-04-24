@@ -49,9 +49,16 @@ class HomeRearViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row{
         case 0:
-            let playerController = PlayerController()
-            playerController.player = CurrentPlayer.player
-            self.navigationController?.pushViewController(playerController, animated: true)
+            if CurrentPlayer.player != nil {
+                let playerController = PlayerController()
+                playerController.player = CurrentPlayer.player
+                self.navigationController?.pushViewController(playerController, animated: true)
+            } else {
+                let alert = UIAlertController(title: "You haven't created a player", message: "Click create player below to login", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "Got it!", style: .cancel, handler: nil)
+                alert.addAction(okAction)
+                self.present(alert, animated: true, completion: nil)
+            }
         case 1:
             let playerTableView = PlayerTableViewController()
             playerTableView.player = CurrentPlayer.player
@@ -65,8 +72,15 @@ class HomeRearViewController: UIViewController, UITableViewDelegate, UITableView
             let createGameController = CreateGameController()
             self.navigationController?.pushViewController(createGameController, animated: false)
         case 4:
-            let createPlayerController = CreatePlayerController()
-            self.navigationController?.pushViewController(createPlayerController, animated: true)
+            if CurrentPlayer.player != nil {
+                let alert = UIAlertController(title: "You've already created a player", message: "Click profile to view your info", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "Got it!", style: .cancel, handler: nil)
+                alert.addAction(okAction)
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                let createPlayerController = CreatePlayerController()
+                self.navigationController?.pushViewController(createPlayerController, animated: true)
+            }
         default:
             return
         }
