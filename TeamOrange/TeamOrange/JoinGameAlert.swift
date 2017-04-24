@@ -6,6 +6,7 @@
 //  Copyright © 2017 William Brancato. All rights reserved.
 //
 
+/*
 enum JoinGameAlert {
     case canJoin, canLeave, cantLeave, doNothing
     
@@ -79,3 +80,4 @@ enum JoinGameAlert {
         }
     }
 }
+*/
