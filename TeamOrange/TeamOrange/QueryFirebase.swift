@@ -185,10 +185,10 @@ extension QueryFirebase {
     private class func getKeys(for root: String, with searchField: String, of lookupItem: String, completion: @escaping ([String]) -> Void ) {
         var array: [String] = []
         firebase.child(root).observeSingleEvent(of: .value, with: { (snapshot) in
-            guard let snapshot = snapshot.value as? [String:Any] else { return }
+            guard let snapshot = snapshot.value as? [String:Any] else { completion([]); return }
             snapshot.forEach {
                 let item = $0.value as? [String:Any]
-                guard let value = item?[searchField] as? String else { return }
+                guard let value = item?[searchField] as? String else { completion([]); return }
                 if value == lookupItem { array.append($0.key) }
             }
             completion(array)
@@ -198,9 +198,7 @@ extension QueryFirebase {
     fileprivate class func buildArrayOf(_ category: Category, for keys: [String], completion: @escaping ([Any]) -> Void) {
         var array = [Any]()
         for key in keys {
-            print("########## Hello I'm gonna go out and contact firebase for key:", key)
             firebase.child(category.type).child(key).observeSingleEvent(of: .value, with: { (snapshot) in
-                print("########## I made it - I'm baaaaAAAAAaaaaAAAAAack")
                 if let info = snapshot.value as? [String:Any]  {
                     switch category.type {
                     case "teams": array.append(Team(id: snapshot.key, dict: info))
@@ -219,7 +217,7 @@ extension QueryFirebase {
     private class func getKeysContaining(for root: String, with searchField: String, of lookupItem: String, completion: @escaping ([String]) -> Void ) {
         var array: [String] = []
         firebase.child(root).observeSingleEvent(of: .value, with: { (snapshot) in
-            guard let snapshot = snapshot.value as? [String:Any] else { return }
+            guard let snapshot = snapshot.value as? [String:Any] else { completion([]); return }
             snapshot.forEach {
                 let item = $0.value as? [String:Any]
                 guard let value = item?[searchField] as? String else { return }
