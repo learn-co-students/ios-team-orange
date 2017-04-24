@@ -20,6 +20,7 @@ class Game {
     let state: GameState? // should not be optional, changing for testing purposes
     var success: Bool?
     var maxPlayers: Int
+    var dateString: String
     
     var numPlayers: Int {
         return players.count
@@ -42,6 +43,7 @@ class Game {
         if let stateString = dict["state"] as? String{
             self.state = GameState(rawValue: stateString)
         }else { self.state = nil }
+        self.dateString = self.date[self.date.index(self.date.startIndex, offsetBy: 3)...self.date.index(self.date.startIndex, offsetBy: 3)]
     }
     
     func fillArrays(completion: @escaping () -> Void) {
