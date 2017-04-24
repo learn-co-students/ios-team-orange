@@ -5,17 +5,13 @@
 //  Created by Michael on 4/11/17.
 //  Copyright © 2017 William Brancato. All rights reserved.
 //
-
 import UIKit
 
 class HomeRearViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let mapView = MapSearchView()
-
-    
     let tableFieldsArray = ["Profile", "Friends", "Players", "Create Game", "Create Player"]
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .blue

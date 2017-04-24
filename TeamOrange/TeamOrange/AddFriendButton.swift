@@ -10,12 +10,11 @@ import UIKit
 
 class AddFriendButton: UIButton {
     
-    weak var player: Player!
     
-    init(player: Player, isFriend: Bool) {
+    
+    init() {
         super.init(frame: CGRect.zero)
-        self.player = player
-        changeImage(isFriend: isFriend)
+        self.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -29,26 +28,32 @@ class AddFriendButton: UIButton {
         // Drawing code
     }
     */
-    func addFriend() {
-        InsertToFirebase.player(withId: player.id, toPlayer: CurrentPlayer.player.id){
-            let notification = Notification(name: Notification.Name(rawValue: "Added Friend"))
-            NotificationCenter.default.post(notification)
-        }
-        
-    }
-    func askRemoveFriend() {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AskedToRemoveFriend"), object: nil)
+
+    
+    func buttonAction() {
+        let notification = Notification(name: Notification.Name("Add/Remove Friend"), object: nil, userInfo: nil)
+        NotificationCenter.default.post(notification)
     }
     
-    func changeImage(isFriend: Bool) {
-        if isFriend{
-            self.setImage(#imageLiteral(resourceName: "facebook"), for: .normal)
-            self.addTarget(self, action: #selector(askRemoveFriend), for: .touchUpInside)
-        }
-        else {
-            self.addTarget(self, action: #selector(addFriend), for: .touchUpInside)
-            self.setImage(#imageLiteral(resourceName: "addPlayer"), for: .normal)
-        }
-    }
+//    func addFriend() {
+//        InsertToFirebase.player(withId: player.id, toPlayer: CurrentPlayer.player.id){
+//            let notification = Notification(name: Notification.Name(rawValue: "Added Friend"))
+//            NotificationCenter.default.post(notification)
+//        }
+//        
+//    }
+//    func askRemoveFriend() {
+//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AskedToRemoveFriend"), object: nil)
+//    }
+//    
+//    func changeImage() {
+//        print ("is friend \(isFriend)")
+//        if isFriend{
+//            self.setImage(#imageLiteral(resourceName: "facebook"), for: .normal)
+//        }
+//        else {
+//            self.setImage(#imageLiteral(resourceName: "addPlayer"), for: .normal)
+//        }
+//    }
 
 }
