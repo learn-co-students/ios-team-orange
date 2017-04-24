@@ -113,6 +113,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
             self.present(alert, animated: true, completion: nil)
         } else if let playerId = UserDefaults.standard.string(forKey: "playerId") {
             CurrentPlayer.createPlayer(id: playerId) {print("Current Player is:", CurrentPlayer.player)}
+            self.navigationController?.popToRootViewController(animated: true)
         } else {
             let createPlayerController = CreatePlayerController()
             self.navigationController?.pushViewController(createPlayerController, animated: true)

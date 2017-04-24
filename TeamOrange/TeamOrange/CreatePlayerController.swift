@@ -52,12 +52,14 @@ extension CreatePlayerController: UIPickerViewDelegate, UIPickerViewDataSource {
 }
 
 extension CreatePlayerController: UITextFieldDelegate {
-    func textFieldShouldBeginEditing(_ textField: UITextField)-> Bool {
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+
         textField.returnKeyType = .done
         return true
     }
     
-    func textFieldShouldReturn(_ textField: UITextField)->Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }

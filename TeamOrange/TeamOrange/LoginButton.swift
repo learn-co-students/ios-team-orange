@@ -24,7 +24,7 @@ class LoginButton: UIButton {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError("Stop using storyboard - that's not implemented")
     }
     
     func pressed() {

@@ -17,6 +17,7 @@ class GameController: UIViewController {
     var isFull = true
     var isAdmin = false
     var alert = UIAlertController(title: "buttonTapped", message: nil, preferredStyle: .alert)
+    var dateString: String!
     
     var game: Game! {
         didSet {
@@ -44,7 +45,7 @@ class GameController: UIViewController {
         self.myView.nameLabel.text = self.game.name
         self.myView.sportIcon.image = self.game.sport?.image.image
         self.myView.addressLabel.text = "66 Tuckerton Rd, Shamong, NJ 08088"
-        self.myView.dateLabel.text = self.game.date
+        self.myView.dateLabel.text = self.game.dateString
         self.myView.stateLabel.text = self.game.state?.rawValue
         self.myView.playersLabel.text = "Players: \(self.game.numPlayers) / \(self.game.maxPlayers)"
     }

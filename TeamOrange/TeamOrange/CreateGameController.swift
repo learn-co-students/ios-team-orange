@@ -75,14 +75,16 @@ class CreateGameController: UIViewController {
             InsertToFirebase.newGame(with: dict, completion: {id in
                 //let location = Location(gameID: id, coordinate: coord!)
                 var alert = UIAlertController(title: "Created Game!", message: nil, preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "Cool", style: .default , handler: nil)
+                let okAction = UIAlertAction(title: "Cool", style: .default , handler: { _ in
+                    self.navigationController?.popToRootViewController(animated: true)
+                })
                 alert.addAction(okAction)
                 self.present(alert, animated:
                     true, completion: nil)
                 GeoFireClient.addLocation(game: id, coordinate: coord!, completion: {
                 })
                 InsertToFirebase.player(withId: CurrentPlayer.player.id, toGame: id, completion: {
-                    print ("PLEASE PLEASE WORK")
+                    InsertToFirebase.admin(withId: CurrentPlayer.player.id, toGame: id)
                 })
             })
         }
