@@ -56,7 +56,6 @@ class PlayerView: UIView {
     }
     
     func buildFriendButton() {
-        print("building button")
         friendButton = AddFriendButton()
         addSubview(friendButton)
         friendButton.translatesAutoresizingMaskIntoConstraints = false

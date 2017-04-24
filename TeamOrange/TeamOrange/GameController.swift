@@ -12,6 +12,10 @@ import UIKit
 class GameController: UIViewController {
     
     let myView = GameView()
+    var isInGame = false
+    var hasStarted = true
+    var isFull = true
+    
     var game: Game! {
         didSet {
             self.relayGameData()
@@ -25,6 +29,8 @@ class GameController: UIViewController {
         self.myView.collectionView.dataSource = self
         self.addAndConstrain(view: self.myView)
         self.navigationController?.navigationBar.isHidden = false
+        self.myView.button.addTarget(self, action: #selector(joinGame), for: .touchUpInside)
+        self.myView.button.setImage(#imageLiteral(resourceName: "cancel"), for: .normal)
     }
     
     func relayGameData() {
@@ -57,6 +63,27 @@ class GameController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    func getGameStatus() -> ()->() {
+        // TODO: determine if joined, joinable, full/inprogress(not joinable
+        //       if not joinable should not show up.
+        isFull = game.numPlayers == game.maxPlayers
+        hasStarted = game.state != GameState.notStarted
+        if isInGame {
+            return leaveGame
+        }
+        if !(isFull || hasStarted) {
+            return joinGame
+        }
+        return {}
+    }
+    
+    func joinGame() {
+        // TODO: join game w/ alert controller confirmation
+    }
+    
+    func leaveGame() {
+        // TODO: leave game w/ alert controller confirmation
+    }
 }
 
 

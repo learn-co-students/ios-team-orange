@@ -83,6 +83,7 @@
 		889C529C1E9BFDAC00B4E550 /* LocSearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889C529B1E9BFDAC00B4E550 /* LocSearchClient.swift */; };
 		889C529E1E9D2DEB00B4E550 /* GeoFireClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889C529D1E9D2DEB00B4E550 /* GeoFireClient.swift */; };
 		88BF75771EA9596300E0DDD0 /* RemoveFromFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BF75761EA9596300E0DDD0 /* RemoveFromFirebase.swift */; };
+		88BF757E1EAD9BDD00E0DDD0 /* JoinGameAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BF757D1EAD9BDD00E0DDD0 /* JoinGameAlert.swift */; };
 		88F9F4BB1EA9307100671A9C /* AddFriendButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9F4BA1EA9307100671A9C /* AddFriendButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -178,6 +179,7 @@
 		889C529B1E9BFDAC00B4E550 /* LocSearchClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocSearchClient.swift; sourceTree = "<group>"; };
 		889C529D1E9D2DEB00B4E550 /* GeoFireClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoFireClient.swift; sourceTree = "<group>"; };
 		88BF75761EA9596300E0DDD0 /* RemoveFromFirebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoveFromFirebase.swift; sourceTree = "<group>"; };
+		88BF757D1EAD9BDD00E0DDD0 /* JoinGameAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinGameAlert.swift; sourceTree = "<group>"; };
 		88F9F4BA1EA9307100671A9C /* AddFriendButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendButton.swift; sourceTree = "<group>"; };
 		AAEF8389E9CBFCA746229A38 /* Pods_TeamOrange.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TeamOrange.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8EA57988E1A6ABDDCAF32E9 /* Pods-TeamOrange.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamOrange.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TeamOrange/Pods-TeamOrange.debug.xcconfig"; sourceTree = "<group>"; };
@@ -425,6 +427,7 @@
 				56FDCD381E9557CC00FE5AA9 /* Category.swift */,
 				5624F0021E92C58900BB2662 /* Gender.swift */,
 				5624F0001E92C04B00BB2662 /* Sport.swift */,
+				88BF757D1EAD9BDD00E0DDD0 /* JoinGameAlert.swift */,
 			);
 			name = Enums;
 			sourceTree = "<group>";
@@ -492,7 +495,7 @@
 				TargetAttributes = {
 					5624EFDC1E92BBED00BB2662 = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = GP3Y7UT49E;
+						DevelopmentTeam = H7DR849HVE;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -606,6 +609,7 @@
 				887987E11E93E7D100F5C540 /* CoreLocClient.swift in Sources */,
 				56ED6E721EA5491B005206C8 /* PlayerView.swift in Sources */,
 				5638E8DA1E9D5F6C00058672 /* GFQuery.m in Sources */,
+				88BF757E1EAD9BDD00E0DDD0 /* JoinGameAlert.swift in Sources */,
 				887987E51E9426DA00F5C540 /* Game.swift in Sources */,
 				561B2ADD1E9EA61F00A3C95B /* MapGradientView.swift in Sources */,
 				5638E8D71E9D5F6C00058672 /* GFBase32Utils.m in Sources */,
@@ -781,7 +785,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TeamOrange/TeamOrange.entitlements;
-				DEVELOPMENT_TEAM = GP3Y7UT49E;
+				DEVELOPMENT_TEAM = H7DR849HVE;
 				INFOPLIST_FILE = TeamOrange/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -801,7 +805,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TeamOrange/TeamOrange.entitlements;
-				DEVELOPMENT_TEAM = GP3Y7UT49E;
+				DEVELOPMENT_TEAM = H7DR849HVE;
 				INFOPLIST_FILE = TeamOrange/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
