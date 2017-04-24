@@ -167,8 +167,9 @@ extension QueryFirebase {
     
     // get array of games for players with ID
     fileprivate class func getArrayOf(_ category1: Category, from category2: Category, withId id: String, completion: @escaping ([Any]) -> Void) {
+        print("Going to firebase for some admins")
         firebase.child(category2.rawValue).child(id).child(category1.rawValue).observeSingleEvent(of: .value, with: { snapshot in
-            guard let snapshot = snapshot.value as? [String:Any] else { return }
+            guard let snapshot = snapshot.value as? [String:Any] else { completion([]); return }
             let keys = Array(snapshot.keys)
             self.buildArrayOf(category1, for: keys) { completion($0) }
         })
