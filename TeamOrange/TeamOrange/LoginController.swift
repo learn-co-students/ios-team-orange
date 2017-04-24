@@ -5,77 +5,129 @@
 //  Created by Michael on 4/4/17.
 //  Copyright © 2017 William Brancato. All rights reserved.
 //
-
 import UIKit
 import Firebase
+import GoogleSignIn
+import TwitterKit
 
-
-
-
-
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     
     let loginStack = LoginButtonStackView()
+    let twitterBtn = TWTRLogInButton()
+    let doneButton = UIButton()
+    let loginLabel = UILabel() 
+    
+    var userInfo: [String:String] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let geo = GeoFire()
-        
-        
-//        let blue = BlurView(blurEffect: .dark)
-//        self.view.addSubview(blurView)
-        
-        var darkBlur:UIBlurEffect = UIBlurEffect()
-        darkBlur = UIBlurEffect(style: UIBlurEffectStyle.dark)
-        let blurView = UIVisualEffectView(effect: darkBlur)
-        blurView.frame = self.view.frame
-        blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        blurView.alpha = 0.5
-        view.addSubview(blurView)
-        
-        let loginWtihLabel = UILabel()
-        loginWtihLabel.font = UIFont(name: loginWtihLabel.font.fontName, size: 25)
-        loginWtihLabel.text = "Sign in with"
-        
-        let exitBtn: UIButton = UIButton()
-        exitBtn.addTarget(self, action: #selector(self.exitPressed), for: .touchUpInside)
-        exitBtn.setImage(#imageLiteral(resourceName: "exit"), for: .normal)
-        
-        self.view.addSubview(loginWtihLabel)
+        GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
+        GIDSignIn.sharedInstance().delegate = self
+
+        self.navigationController?.buildStaticNavBar()
+        self.navigationController?.navigationBar.isHidden = true
+        setupLoginStack()
+        setupGoogleButtons()
+        buildDoneButton()
+    }
+    
+    func setupLoginStack() {
         self.view.addSubview(loginStack)
-        self.view.addSubview(exitBtn)
-        
-        loginWtihLabel.translatesAutoresizingMaskIntoConstraints = false
-        loginWtihLabel.bottomAnchor.constraint(equalTo: loginStack.topAnchor, constant: -50).isActive = true
-        loginWtihLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
         self.loginStack.translatesAutoresizingMaskIntoConstraints = false
-        self.loginStack.topAnchor.constraint(equalTo: loginWtihLabel.bottomAnchor, constant: 20).isActive = true
         self.loginStack.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         self.loginStack.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         self.loginStack.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.60).isActive = true
         self.loginStack.heightAnchor.constraint(equalTo: self.loginStack.widthAnchor, multiplier: 1/3).isActive = true
+    }
+    
+    //MARK: Twitter Login Methods
+    func setupTwitterButton() {
+        _ = TWTRLogInButton { (session, error) in
+            if let unwrappedSession = session {
+                let alert = UIAlertController(title: "Logged In", message: "User \(unwrappedSession.userName) has logged in", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                guard let token = session?.authToken else { return }
+                guard let secret = session?.authTokenSecret else { return }
+                let credentials = FIRTwitterAuthProvider.credential(withToken: token, secret: secret)
+                FIRAuth.auth()?.signIn(with: credentials, completion: { (user, error) in
+                    if let error = error {
+                        print("Failed to login in Firebase with Twitter", error)
+                        return
+                    }
+                    print("Succesfully created a FIrebase-Twitter user", user?.uid ?? "")
+                })
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                NSLog("Login error: %@", error!.localizedDescription);
+            }
+        }
+    }
+    
+    // MARK: Google Login Methods
+    fileprivate func setupGoogleButtons() {
+        GIDSignIn.sharedInstance().uiDelegate = self
+    }
+    
+    //  GIDSignInDelegate protcol methods. It handles the sign in process
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            print("Failed to log into Google:", error)
+            return
+        } else {
+            print ("Successfully logged in")
+        }
+        guard let idToken = user.authentication.idToken,
+            let accessToken = user.authentication.accessToken else { return }
+        let credential = FIRGoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
         
-        exitBtn.translatesAutoresizingMaskIntoConstraints = false
-        exitBtn.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        exitBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        exitBtn.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50).isActive = true
-        exitBtn.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.10).isActive = true
-        exitBtn.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.15).isActive = true
+        FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
+            if let error = error {
+                print( "Failed to create a Firebase User with Google account:", error)
+            }
+            guard let uid = user?.uid else { return }
+            print("Successfully logged into FIrebase with", uid)
+        })
     }
     
-    func exitPressed() {
-        self.dismiss(animated: true)
+    func buildDoneButton(){
+        self.view.addSubview(self.doneButton)
+        self.doneButton.translatesAutoresizingMaskIntoConstraints = false
+        self.doneButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -25).isActive = true
+        self.doneButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        self.doneButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1/3).isActive = true
+        self.doneButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        self.doneButton.layer.cornerRadius = 10
+        self.doneButton.setTitle("I've Logged In!", for: .normal)
+        self.doneButton.backgroundColor = UIColor.blue
+        self.doneButton.addTarget(self, action: #selector(self.doneButtonTapped), for: .touchUpInside)
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    func doneButtonTapped() {
+        if FIRAuth.auth()?.currentUser == nil {
+            let alert = UIAlertController(title: "Don't Lie to Me!", message: nil, preferredStyle: .alert)
+            let sorryAction = UIAlertAction(title: "I'm Sorry :(", style: .cancel, handler: nil)
+            alert.addAction(sorryAction)
+            self.present(alert, animated: true, completion: nil)
+        } else if let playerId = UserDefaults.standard.string(forKey: "playerId") {
+            CurrentPlayer.createPlayer(id: playerId) {print("Current Player is:", CurrentPlayer.player)}
+        } else {
+            let createPlayerController = CreatePlayerController()
+            self.navigationController?.pushViewController(createPlayerController, animated: true)
+        }
+    }
     
+    func setUpLoginLabel() {
+        self.view.addSubview(loginLabel)
+        self.loginLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+    }
+    
+    func signOut() {
+        do {
+            print("Signing out")
+            try GIDSignIn.sharedInstance().signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+    }
 }

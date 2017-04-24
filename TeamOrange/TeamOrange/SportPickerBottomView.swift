@@ -18,30 +18,20 @@ class SportPickerBottomView: UIView {
     let radiusSlider = UISlider()
     let radiusTextLabel = WhiteFontLabel(withTitle: "Search Radius")
     let radiusNumberLabel = WhiteFontLabel(withTitle: "5")
+    var viewArray: [UIView] = []
     
-    
-     init() {
-    super.init(frame: CGRect.zero)
+    init() {
+        super.init(frame: CGRect.zero)
+        self.viewArray = [self.sportsTextLabel, self.backButton, self.sportsNumberLabel, self.radiusSlider, self.radiusTextLabel, self.radiusNumberLabel]
         self.blur.addAndConstrainToEdges(of: self)
         self.buildNumSportsLabels()
-        self.buildBackButton()
         self.buildRadiusSlider()
         self.buildRadiusLabels()
+        self.viewArray.forEach{ $0.alpha = 0 }
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func buildBackButton() {
-        self.addSubview(self.backButton)
-        self.backButton.translatesAutoresizingMaskIntoConstraints = false
-        self.backButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
-        self.backButton.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        self.backButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.25).isActive = true
-        self.backButton.heightAnchor.constraint(equalTo: self.backButton.widthAnchor).isActive = true
-        self.backButton.setImage(#imageLiteral(resourceName: "rightArrow"), for: .normal)
-        self.backButton.addTarget(self, action: #selector(self.backButtonTapped), for: .touchUpInside)
     }
     
     func buildNumSportsLabels() {
@@ -78,11 +68,6 @@ class SportPickerBottomView: UIView {
         self.radiusSlider.maximumValue = 50
         self.radiusSlider.minimumValue = 0
         self.radiusSlider.value = 5
-    }
-    
-    func backButtonTapped() {
-        let notification = Notification(name: Notification.Name("Collapse Picker"), object: nil, userInfo: nil)
-        NotificationCenter.default.post(notification)
     }
     
     func radiusSliderChanged() {

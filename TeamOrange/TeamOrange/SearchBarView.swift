@@ -30,6 +30,9 @@ class SearchBarView: UIView {
     
     func commonInit() {
         self.backgroundColor = UIColor.clear
+        let blurView = BlurView(blurEffect: .dark)
+        blurView.alpha = 0.5
+        blurView.addAndConstrainToEdges(of: self)
         
         let views: [UIView] = [searchBar, okButton, cancelButton]
         views.forEach({ view in
@@ -37,62 +40,48 @@ class SearchBarView: UIView {
             view.translatesAutoresizingMaskIntoConstraints = false
             view.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
             view.heightAnchor.constraint(equalToConstant: 25).isActive = true
-            view.backgroundColor = UIColor.lightGray
+            view.backgroundColor = UIColor.clear
         })
         
         searchBar.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.8).isActive = true
         searchBar.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         searchBar.returnKeyType = .search
+        searchBar.layer.cornerRadius = 5
         
         okButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.1).isActive = true
-        okButtonConstraint = NSLayoutConstraint(item: okButton, attribute: .trailing, relatedBy: .equal, toItem: searchBar, attribute: .leading, multiplier: 1, constant: 50)
+        okButtonConstraint = NSLayoutConstraint(item: okButton, attribute: .trailing, relatedBy: .equal, toItem: searchBar, attribute: .leading, multiplier: 1, constant: 0)
         self.addConstraint(okButtonConstraint)
         self.insertSubview(okButton, belowSubview: searchBar)
-        okButton.backgroundColor = UIColor.green
-        okButton.setTitle("-O", for: .normal)
+        okButton.setImage(#imageLiteral(resourceName: "Magnify"), for: .normal)
         
         cancelButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.1).isActive = true
-        cancelButtonConstraint = NSLayoutConstraint(item: cancelButton, attribute: .leading, relatedBy: .equal, toItem: searchBar, attribute: .trailing, multiplier: 1, constant: -50)
+        cancelButtonConstraint = NSLayoutConstraint(item: cancelButton, attribute: .leading, relatedBy: .equal, toItem: searchBar, attribute: .trailing, multiplier: 1, constant: 0)
         self.addConstraint(cancelButtonConstraint)
         self.insertSubview(cancelButton, belowSubview: searchBar)
-        cancelButton.backgroundColor = UIColor.red
         cancelButton.setTitle("X", for: .normal)
         
         self.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableViewConstraint = NSLayoutConstraint(item: tableView, attribute: .bottom, relatedBy: .equal, toItem: searchBar, attribute: .bottom, multiplier: 1, constant: 0)
+        tableViewConstraint = NSLayoutConstraint(item: tableView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0)
         self.addConstraint(tableViewConstraint)
         tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 0).isActive = true
         tableView.leadingAnchor.constraint(equalTo: okButton.leadingAnchor, constant: 0).isActive = true
         tableView.trailingAnchor.constraint(equalTo: cancelButton.trailingAnchor, constant: 0).isActive = true
-        tableView.backgroundView = BlurView(blurEffect: .dark)
-        tableView.backgroundView?.alpha = 0.5
         tableView.backgroundColor = UIColor.clear
+        tableView.register(CompletionCell.self, forCellReuseIdentifier: "completionCell")
+        tableView.isUserInteractionEnabled = true
     }
     
     func animateSelf(state: Bool, completion: @escaping ()->()) {
-        UIView.animate(withDuration: 0.25, animations: {
-            self.layoutIfNeeded()
-        }, completion: { done in
-            if state == true{
-                self.tableViewConstraint.constant = 300
-            } else {
-                self.tableViewConstraint.constant = 0
-            }
-            UIView.animate(withDuration: 0.25, animations: { self.layoutIfNeeded() }, completion: { _ in completion ()})
-        })
+        self.searchBar.text = ""
+        completion ()
     }
     
-    func activateSelf(completion: @escaping ()->()){
-        self.searchBar.text = ""
-        self.okButtonConstraint.constant = 0
-        self.cancelButtonConstraint.constant = 0
+    func activateSelf(completion: @escaping ()->()) {
         animateSelf(state: true, completion: {completion()})
     }
     
-    func deactivateSelf(completion: @escaping ()->()){
-        self.okButtonConstraint.constant = 25
-        self.cancelButtonConstraint.constant = -25
+    func deactivateSelf(completion: @escaping ()->()) {
         animateSelf(state: false, completion: {completion()})
     }
 }

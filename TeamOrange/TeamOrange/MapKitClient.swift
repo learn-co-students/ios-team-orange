@@ -15,20 +15,16 @@ final class MapKitClient: NSObject {
     lazy var mapView = MKMapView()
     fileprivate static var client = MapKitClient()
     
+    
     private override init(){
         super.init()
     }
     
-    class func removeAnnotations() {
+    class func goTo(place: CLPlacemark, animated: Bool) {
+        let annotation = MKPlacemark(placemark: place)
         client.mapView.removeAnnotations(client.mapView.annotations)
-    }
-    
-    class func addAnnotations(locations: [Location]) {
-        client.mapView.addAnnotations(locations)
-    }
-    
-    class func centerMap(coordinate: CLLocationCoordinate2D){
-        client.mapView.setCenter(coordinate, animated: true )
+        client.mapView.addAnnotation(annotation)
+        client.mapView.setCenter(annotation.coordinate, animated: animated)
     }
 }
 
@@ -36,6 +32,8 @@ extension MapKitClient: CLLocationManagerDelegate, MKMapViewDelegate {
     class func setMap(to mapView: MKMapView) {
         client.mapView = mapView
         mapView.delegate = client
+        mapView.isRotateEnabled = false
+        mapView.showsPointsOfInterest = false
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -48,18 +46,13 @@ extension MapKitClient: CLLocationManagerDelegate, MKMapViewDelegate {
         }
     }
     
-    func mapViewWillStartRenderingMap(_ mapView: MKMapView) {
-        //probably where we will be loading games / locations
-    }
-    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        let identifier = "Location"
-        if annotation is Location { // will only fire off for a Location
-            //this will display a standard apple annotation.
-            //add a custom annotation view here later.
-            
+        
+        //this will display a standard apple annotation.
+        //add a custom annotation view here later.
+        if annotation is Location{
+            let identifier = "Location"
             var annotationView: MKPinAnnotationView
-            
             if let rawAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView {
                 annotationView = rawAnnotationView
                 annotationView.annotation = annotation
@@ -68,29 +61,69 @@ extension MapKitClient: CLLocationManagerDelegate, MKMapViewDelegate {
                 annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 annotationView.canShowCallout = true
                 let btn = UIButton(type: .detailDisclosure)
-                //this button will call calloutAccessoryTapped
                 annotationView.rightCalloutAccessoryView = btn
             }
+            annotationView.pinTintColor = UIColor.cyan
+            return annotationView
+        }
+        
+        if annotation is MKPlacemark{
+            let identifier = "Placemark"
+            var annotationView: MKPinAnnotationView
+            if let rawAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView {
+                annotationView = rawAnnotationView
+                annotationView.annotation = annotation
+            } else {
+                //this part adds an annotation view if one hasnt been dequeued for this location
+                annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                annotationView.canShowCallout = true
+                let btn = UIButton(type: .contactAdd)
+                annotationView.rightCalloutAccessoryView = btn
+            }
+            annotationView.pinTintColor = UIColor.red
             return annotationView
         }
         return nil
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        guard let location = view.annotation as? Location else { return }
-        
-        //this part gets some basic data from the location.
-        let locationName = location.name
-        var gamesString = "No game data for this location"
-        if let games = location.games?.count {
-            if games == 1 { gamesString = "One game at this location." }
-            else { gamesString = "\(games) games at this location." }
-        }//fallthrough to default gamesString if location.games == nil
-        
-        //present an alert controller with the name and message from above
-        //replace this with a different action once UI is built
-        let ac = UIAlertController(title: locationName, message: gamesString, preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        if view.annotation is Location {
+            let loc = view.annotation as! Location
+            print (loc.allGameIDs)
+            let message = Notification(name: Notification.Name("PeekToLoc"), object: loc, userInfo: nil)
+            NotificationCenter.default.post(message)
+            mapView.deselectAnnotation(loc, animated: true)
+        }
+    }
+    
+    func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
+
+        GeoFireClient.queryLocations(within: mapView.region, response: { response in
+            let coord = response.1.coordinate
+            let id = response.0
+            QueryFirebase.forGameWith(id: id, completion: { game in
+                let alreadyStarted = game.state?.rawValue != "Not Started"
+                if alreadyStarted { return }
+                DispatchQueue.main.async {
+                    //when callback received, loop over annotations looking for one that matches the location
+                    for annotation in mapView.annotations{
+                        guard annotation is Location,
+                            let location = annotation as? Location else {continue}
+                        //conditions: the game has not started, is not over, is not nil, is not contained at that Location already, and has the same coordinates as the location in question.
+                        let idCheck = !(location.games.contains(id))
+                        let coordCheck = location.coordinate == coord
+                        //now check those conditions, and if so add the game to the location, signal to end location search loop if so
+                        if  coordCheck && idCheck {
+                            location.addGame(id: response.0)
+                            return
+                        }// end the loop
+                    }//if no location matching the game's coordinates has been found, create a new one
+                    let newLocation = Location(gameID: id, coordinate: coord)
+                    mapView.addAnnotation(newLocation)
+                    newLocation.lookUpAddress(completion: {_ in})
+                }
+            })
+        })
     }
 }
 

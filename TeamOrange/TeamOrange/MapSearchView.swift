@@ -10,17 +10,11 @@ import UIKit
 import MapKit
 
 class MapSearchView: UIView {
-    /*
-     IMPORTANT!!!!!
-     assign MapSearchView.mapView to "weak var mapView!" in VC and adopt the MapUpdater protocol!
-     
-     */
     lazy var mapView = MKMapView()
     lazy var searchBarView: SearchBarView = SearchBarView()
     var searchBarViewActive = false
     var searchBarConstraint = NSLayoutConstraint()
     lazy var searchButton = UIButton()
-    var searchButtonConstraint = NSLayoutConstraint()
     lazy var centerMapButton = UIButton()
     
     override init(frame: CGRect){
@@ -33,40 +27,45 @@ class MapSearchView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+//        let gradient = CAGradientLayer()
+//        gradient.startPoint = CGPoint(x: 0, y: 0)
+//        gradient.endPoint = CGPoint(x: 100, y: 100)
+//        gradient.backgroundColor = UIColor.blue.cgColor
+//        self.layer.mask = gradient
+        self.roundCorners(corners: [.topLeft, .topRight], radius: 10)
+    }
+    
     func commonInit(){
         mapView.addAndConstrainToEdges(of: self)
         
         self.addSubview(searchButton)
         searchButton.translatesAutoresizingMaskIntoConstraints = false
-        searchButtonConstraint = NSLayoutConstraint(item: searchButton, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: -10)
-        self.addConstraint(searchButtonConstraint)
-        searchButton.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: -35).isActive = true
-        searchButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
-        searchButton.widthAnchor.constraint(equalToConstant: 70).isActive = true
-        searchButton.layer.cornerRadius = 29
-        searchButton.setTitle("-O", for: .normal)
-        searchButton.setTitleColor(UIColor.red, for: .normal )
+        searchButton.bottomAnchor.constraint(equalTo: self.mapView.bottomAnchor, constant: -20).isActive = true
+        searchButton.centerXAnchor.constraint(equalTo: self.mapView.centerXAnchor).isActive = true
+        searchButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        searchButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        searchButton.setImage(#imageLiteral(resourceName: "search"), for: .normal)
         self.insertSubview(searchButton, aboveSubview: mapView)
-        
+
         self.addSubview(centerMapButton)
         centerMapButton.translatesAutoresizingMaskIntoConstraints = false
-        centerMapButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
-        centerMapButton.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 35).isActive = true
-        centerMapButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
-        centerMapButton.widthAnchor.constraint(equalToConstant: 70).isActive = true
-        centerMapButton.layer.cornerRadius = 29
-        centerMapButton.setTitle(">O<", for: .normal)
-        centerMapButton.setTitle(">O<", for: .disabled)
-        centerMapButton.setTitleColor(UIColor.white, for: .disabled)
-        centerMapButton.setTitleColor(UIColor.red, for: .normal )
+        centerMapButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
+        centerMapButton.bottomAnchor.constraint(equalTo: self.bottomAnchor , constant: -20).isActive = true
+        
+        centerMapButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        centerMapButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        centerMapButton.setImage(#imageLiteral(resourceName: "target (1)"), for: .normal)
         self.insertSubview(centerMapButton, aboveSubview: mapView)
         
         self.addSubview(searchBarView)
         searchBarView.translatesAutoresizingMaskIntoConstraints = false
-        searchBarView.heightAnchor.constraint(equalToConstant: 325).isActive = true
+        searchBarView.heightAnchor.constraint(equalToConstant: 25).isActive = true
         searchBarView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.75).isActive = true
-        searchBarConstraint = NSLayoutConstraint(item: searchBarView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: -350)
+        searchBarConstraint = NSLayoutConstraint(item: searchBarView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: -50)
         self.addConstraint(searchBarConstraint)
+        searchBarView.layer.cornerRadius = 5
         searchBarView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         self.insertSubview(searchBarView, aboveSubview: mapView)
     }
@@ -74,8 +73,7 @@ class MapSearchView: UIView {
     func animateSearchBar(){
         if searchBarViewActive{
             searchBarView.deactivateSelf(completion: {
-                self.searchBarConstraint.constant = -350
-                self.searchButtonConstraint.constant = -10
+                self.searchBarConstraint.constant = -50
                 UIView.animate(withDuration: 0.5, animations: {
                     self.layoutIfNeeded()
                     self.searchBarViewActive = false
@@ -84,7 +82,6 @@ class MapSearchView: UIView {
             })
         } else {
             searchBarConstraint.constant = 64
-            searchButtonConstraint.constant = 50
             UIView.animate(withDuration: 0.5, animations: {
                 self.layoutIfNeeded()
             } , completion: { _ in
