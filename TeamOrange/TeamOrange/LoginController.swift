@@ -15,6 +15,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
     let loginStack = LoginButtonStackView()
     let twitterBtn = TWTRLogInButton()
     let doneButton = UIButton()
+    let loginLabel = UILabel() 
     
     var userInfo: [String:String] = [:]
     
@@ -111,6 +112,12 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
         } else {
             self.navigationController?.popViewController(animated: true)
         }
+    }
+    
+    func setUpLoginLabel() {
+        self.view.addSubview(loginLabel)
+        self.loginLabel.translatesAutoresizingMaskIntoConstraints = false
+        
     }
     
     func signOut() {
