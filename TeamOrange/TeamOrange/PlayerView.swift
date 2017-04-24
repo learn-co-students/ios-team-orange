@@ -77,7 +77,7 @@ class PlayerView: UIView {
         self.addSubview(self.nameLabel)
         self.nameLabel.translatesAutoresizingMaskIntoConstraints = false
         self.nameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
-        self.nameLabel.topAnchor.constraint(equalTo: self.imageView.bottomAnchor, constant: -20).isActive = true
+        self.nameLabel.topAnchor.constraint(equalTo: self.imageView.bottomAnchor, constant: -50).isActive = true
         self.nameLabel.lineBreakMode = .byWordWrapping
         self.nameLabel.numberOfLines = 0
         self.nameLabel.text = self.playerDelegate?.player.name

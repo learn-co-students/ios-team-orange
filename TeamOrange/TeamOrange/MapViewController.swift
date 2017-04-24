@@ -17,7 +17,7 @@ class MapViewController: UIViewController {
     lazy var mainView: MapSearchView = MapSearchView()
     let mikesFavFont = UIFont(name: "NunitoSans-Black", size: 20)
     let profileButton = UIButton()
-    let sportsButton = UIButton()
+//    let sportsButton = UIButton()
     let swipeView = UIView()
     var peekLocation: Location?
     
@@ -28,13 +28,14 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "TeamUp"
         self.buildMainView()
         self.buildProfileButton()
-        self.buildSportsButton()
+//        self.buildSportsButton()
         NotificationCenter.default.addObserver(self, selector: #selector(self.scaleUp), name: Notification.Name("Stop Peeking"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.makePeekViewAtAnnotation), name: Notification.Name("PeekToLoc"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.goToPlayerView), name: Notification.Name("Player View With Player"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.fadeSportsButton), name: Notification.Name("Picker Collapsed"), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.fadeSportsButton), name: Notification.Name("Picker Collapsed"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -87,6 +88,7 @@ class MapViewController: UIViewController {
     }
     
     func setNavBarToClear() {
+        
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
@@ -94,17 +96,17 @@ class MapViewController: UIViewController {
     }
     
     func goToSportPicker() {
-        self.fadeSportsButton()
+//        self.fadeSportsButton()
         let sportsPicker = SportPickerController()
         sportsPicker.modalPresentationStyle = .overCurrentContext
         self.present(sportsPicker, animated: false, completion: nil)
     }
     
-    func fadeSportsButton() {
-        UIView.animate(withDuration: 0.2, animations: {
-            self.sportsButton.alpha = self.sportsButton.alpha == 1 ? 0 : 1
-        })
-    }
+//    func fadeSportsButton() {
+//        UIView.animate(withDuration: 0.2, animations: {
+//            self.sportsButton.alpha = self.sportsButton.alpha == 1 ? 0 : 1
+//        })
+//    }
     
     func goToPlayerView(notification: Notification) {
         guard let selectedPlayer = notification.object as? Player else { return }
@@ -125,17 +127,17 @@ class MapViewController: UIViewController {
         self.profileButton.addTarget(self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
     }
     
-    func buildSportsButton() {
-        self.view.addSubview(self.sportsButton)
-        self.sportsButton.translatesAutoresizingMaskIntoConstraints = false
-        self.sportsButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20).isActive = true
-        self.sportsButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20).isActive = true
-        self.sportsButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        self.sportsButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        self.sportsButton.setImage(#imageLiteral(resourceName: "sport-bag"), for: .normal)
-        self.sportsButton.addTarget(self, action: #selector(self.goToSportPicker), for: .touchUpInside)
-        self.sportsButton.titleLabel?.font = self.mikesFavFont
-    }
+//    func buildSportsButton() {
+//        self.view.addSubview(self.sportsButton)
+//        self.sportsButton.translatesAutoresizingMaskIntoConstraints = false
+//        self.sportsButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20).isActive = true
+//        self.sportsButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20).isActive = true
+//        self.sportsButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+//        self.sportsButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+//        self.sportsButton.setImage(#imageLiteral(resourceName: "sport-bag"), for: .normal)
+//        self.sportsButton.addTarget(self, action: #selector(self.goToSportPicker), for: .touchUpInside)
+//        self.sportsButton.titleLabel?.font = self.mikesFavFont
+//    }
     
     func goToGamePeekViewTest() {
         self.view.layer.cornerRadius = 10
