@@ -63,6 +63,9 @@ class Location: NSObject {
         })
     }
     
+    func isNearbyTo(_ loc: Location)-> Bool {
+        let latCheck
+    }
 }
 
 extension Location: MKAnnotation{
@@ -78,34 +81,8 @@ extension Location: MKAnnotation{
         return games.joined(separator: ", ")
     }//for debugging.
     
-    
 }
 
-//extension CLPlacemark {
-//    func convertToLocation()-> Location? {
-//        if let street = self.addressDictionary?["Street"],
-//        let zip = self.addressDictionary?["ZIP"],
-//        let name = self.name,
-//        let latitude = self.location?.coordinate.latitude,
-//        let longitude = self.location?.coordinate.longitude {
-//            let address = "\(street), \(zip)"
-//            let dict: [String: Any] = [
-//                "name": name,
-//                "address" : address,
-//                "latitude" : latitude,
-//                "longitude" : longitude
-//            ]
-//            return Location(dict: dict)
-//        }
-//        return nil
-//    }
-//}
-
-//extension CLLocation {
-//    func convertToLocation(name: String)->Location {
-//        return Location(name: name, coordinate: self.coordinate)
-//    }
-//}
 
 extension MKMapItem {
     //for use when creating Locations
@@ -123,5 +100,15 @@ extension MKMapItem {
 extension CLLocationCoordinate2D: Equatable{
     public static func == (lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D)-> Bool{
         return lhs.latitude == rhs.latitude && lhs.longitude == rhs.longitude
+    }
+}
+
+extension Double {
+    mutating func roundedDownBy(places:Int){
+        var num = 1.0
+        for _ in 0...places {
+            num *= 10
+        }
+        self = Double(Darwin.round(self*num)/num)
     }
 }
