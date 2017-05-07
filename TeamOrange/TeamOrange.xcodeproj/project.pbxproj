@@ -16,7 +16,7 @@
 		4C93C7611EAE901F009B6CF7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C93C7601EAE901F009B6CF7 /* GoogleService-Info.plist */; };
 		4CDDFA9C1EA6A557001F40A5 /* NunitoSans-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4CDDFA9B1EA6A557001F40A5 /* NunitoSans-Black.ttf */; };
 		4CE02D271E95A1BD0068190C /* LoginButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE02D261E95A1BD0068190C /* LoginButtonStackView.swift */; };
-		5614FC5C1EA0615D003D2A01 /* RandomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5614FC5B1EA0615D003D2A01 /* RandomColor.swift */; };
+		5614FC5C1EA0615D003D2A01 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5614FC5B1EA0615D003D2A01 /* UIColor.swift */; };
 		5614FC5E1EA10BCA003D2A01 /* GamePeekScrollerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5614FC5D1EA10BCA003D2A01 /* GamePeekScrollerDelegate.swift */; };
 		561B2ADD1E9EA61F00A3C95B /* MapGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561B2ADC1E9EA61F00A3C95B /* MapGradientView.swift */; };
 		561B2AE11E9ED25800A3C95B /* StaticNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561B2AE01E9ED25800A3C95B /* StaticNavBar.swift */; };
@@ -100,7 +100,7 @@
 		4CDD8C911EA568D700BAA84F /* TeamOrange.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TeamOrange.entitlements; sourceTree = "<group>"; };
 		4CDDFA9B1EA6A557001F40A5 /* NunitoSans-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NunitoSans-Black.ttf"; sourceTree = "<group>"; };
 		4CE02D261E95A1BD0068190C /* LoginButtonStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButtonStackView.swift; sourceTree = "<group>"; };
-		5614FC5B1EA0615D003D2A01 /* RandomColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomColor.swift; sourceTree = "<group>"; };
+		5614FC5B1EA0615D003D2A01 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		5614FC5D1EA10BCA003D2A01 /* GamePeekScrollerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamePeekScrollerDelegate.swift; sourceTree = "<group>"; };
 		561B2ADC1E9EA61F00A3C95B /* MapGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapGradientView.swift; sourceTree = "<group>"; };
 		561B2AE01E9ED25800A3C95B /* StaticNavBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticNavBar.swift; sourceTree = "<group>"; };
@@ -222,7 +222,7 @@
 				4C885E411E93F3C000B80EA4 /* UIViewConstraints.swift */,
 				5638E8DF1E9E774900058672 /* RoundSingleCorners.swift */,
 				561B2AE01E9ED25800A3C95B /* StaticNavBar.swift */,
-				5614FC5B1EA0615D003D2A01 /* RandomColor.swift */,
+				5614FC5B1EA0615D003D2A01 /* UIColor.swift */,
 				56B5B9AA1EA69FA400294EF2 /* ViewControllerConstraints.swift */,
 				565A88581EA95D400060A247 /* TextFieldShake.swift */,
 			);
@@ -668,7 +668,7 @@
 				566EEDE41EA0230100D3F8A2 /* GamePeekScroller.swift in Sources */,
 				88798E261E95B60900F5C540 /* MapViewController.swift in Sources */,
 				5624EFF71E92BD3D00BB2662 /* Player.swift in Sources */,
-				5614FC5C1EA0615D003D2A01 /* RandomColor.swift in Sources */,
+				5614FC5C1EA0615D003D2A01 /* UIColor.swift in Sources */,
 				4C885E3F1E93EB9700B80EA4 /* LoginController.swift in Sources */,
 				561B2AE11E9ED25800A3C95B /* StaticNavBar.swift in Sources */,
 				887987ED1E94653000F5C540 /* SearchBarView.swift in Sources */,

@@ -63,7 +63,7 @@ extension MapKitClient: CLLocationManagerDelegate, MKMapViewDelegate {
                 let btn = UIButton(type: .detailDisclosure)
                 annotationView.rightCalloutAccessoryView = btn
             }
-            annotationView.pinTintColor = UIColor.cyan
+            annotationView.pinTintColor = UIColor.runnerBlue
             return annotationView
         }
         
