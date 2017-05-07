@@ -111,7 +111,8 @@ extension MapKitClient: CLLocationManagerDelegate, MKMapViewDelegate {
                             let location = annotation as? Location else {continue}
                         //conditions: the game has not started, is not over, is not nil, is not contained at that Location already, and has the same coordinates as the location in question.
                         let idCheck = !(location.games.contains(id))
-                        let coordCheck = location.coordinate == coord
+                        let coordCheck = location.isNearbyTo(coord)//location.coordinate == coord
+                        
                         //now check those conditions, and if so add the game to the location, signal to end location search loop if so
                         if  coordCheck && idCheck {
                             location.addGame(id: response.0)

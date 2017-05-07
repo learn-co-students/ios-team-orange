@@ -63,8 +63,12 @@ class Location: NSObject {
         })
     }
     
-    func isNearbyTo(_ loc: Location)-> Bool {
-        let latCheck
+    func isNearbyTo(_ coord: CLLocationCoordinate2D)->Bool {
+        let latDiff = abs(coord.latitude - self.latitude)
+        let longDiff = abs(coord.longitude - self.longitude)
+        print ("latD: \(latDiff), longD: \(longDiff)~~~~~~")
+        let distCheck = latDiff < 0.0002 && longDiff < 0.0002
+        return distCheck
     }
 }
 
@@ -103,12 +107,3 @@ extension CLLocationCoordinate2D: Equatable{
     }
 }
 
-extension Double {
-    mutating func roundedDownBy(places:Int){
-        var num = 1.0
-        for _ in 0...places {
-            num *= 10
-        }
-        self = Double(Darwin.round(self*num)/num)
-    }
-}

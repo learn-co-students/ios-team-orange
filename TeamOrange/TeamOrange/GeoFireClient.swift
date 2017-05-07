@@ -29,10 +29,10 @@ final class GeoFireClient {
         //remove locations from map first!
         GeoFireClient.query = geo?.query(with: region)
         guard let query = GeoFireClient.query else {return}
-        query.observe(.keyEntered, with: { key, rawLocation in
+        query.observe(.keyEntered, with: { key, location in
             //key is game id
             //location is CLLocation
-            guard let rawLocation = rawLocation
+            guard let location = location
                 , let key = key else { return }
             response(key, location)
         })
